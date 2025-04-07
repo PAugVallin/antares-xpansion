@@ -1,0 +1,340 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Antares Xpansion" />
+<meta property="og:image" content="https://github.com/AntaresSimulatorTeam/antares-xpansion/blob/develop/docs/assets/logo.png" />
+<meta property="og:description" content="Investment simulations for Antares studies." />
+<meta property="og:url" content="https://github.com/AntaresSimulatorTeam/antares-xpansion/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://github.com/AntaresSimulatorTeam/antares-xpansion/blob/develop/docs/assets/logo.png" />
+<meta name="twitter:title" content="Antares Xpansion" />
+<meta name="twitter:description" content="Investment simulations for Antares studies." />
+<!-- END twitter metadata -->
+<title>Antares Xpansion: StudyUpdater Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://github.com/AntaresSimulatorTeam/antares-xpansion/ -->
+<a href="https://github.com/AntaresSimulatorTeam/antares-xpansion" class="github-corner" title="View source on GitHub" target="_blank">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Antares Xpansion
+   </div>
+   <div id="projectbrief">Investment simulations for Antares studies</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classStudyUpdater.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="classStudyUpdater-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">StudyUpdater Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Class that updates an antares study after an antares-xpansion execution.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="StudyUpdater_8h_source.html">StudyUpdater.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ac386a6ced87a6a4315ed2c46f574601e" id="r_ac386a6ced87a6a4315ed2c46f574601e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac386a6ced87a6a4315ed2c46f574601e">StudyUpdater</a> (std::filesystem::path studyPath_p, const <a class="el" href="classAntaresVersionProvider.html">AntaresVersionProvider</a> &amp;antares_version_provider, std::shared_ptr&lt; <a class="el" href="classProblemGenerationLog_1_1ProblemGenerationLogger.html">ProblemGenerationLog::ProblemGenerationLogger</a> &gt; logger)</td></tr>
+<tr class="memdesc:ac386a6ced87a6a4315ed2c46f574601e"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructor of class <a class="el" href="classStudyUpdater.html" title="Class that updates an antares study after an antares-xpansion execution.">StudyUpdater</a>  <br /></td></tr>
+<tr class="separator:ac386a6ced87a6a4315ed2c46f574601e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1994cf8f167d62d5516ca2967cd4312e" id="r_a1994cf8f167d62d5516ca2967cd4312e"><td class="memItemLeft" align="right" valign="top"><a id="a1994cf8f167d62d5516ca2967cd4312e" name="a1994cf8f167d62d5516ca2967cd4312e"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~StudyUpdater</b> ()=default</td></tr>
+<tr class="memdesc:a1994cf8f167d62d5516ca2967cd4312e"><td class="mdescLeft">&#160;</td><td class="mdescRight">default destructor of calass <a class="el" href="classStudyUpdater.html" title="Class that updates an antares study after an antares-xpansion execution.">StudyUpdater</a> <br /></td></tr>
+<tr class="separator:a1994cf8f167d62d5516ca2967cd4312e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9db49727f1ceb8bb7c871dcdb99a099f" id="r_a9db49727f1ceb8bb7c871dcdb99a099f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9db49727f1ceb8bb7c871dcdb99a099f">updateLinkdataFile</a> (const <a class="el" href="classActiveLink.html">ActiveLink</a> &amp;link_p, const std::map&lt; std::string, double &gt; &amp;investments_p) const</td></tr>
+<tr class="memdesc:a9db49727f1ceb8bb7c871dcdb99a099f"><td class="mdescLeft">&#160;</td><td class="mdescRight">updates the linkdata file for a given link according to the investments of its candidates  <br /></td></tr>
+<tr class="separator:a9db49727f1ceb8bb7c871dcdb99a099f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addee402bd81476fc801f1e4dc12d7a72" id="r_addee402bd81476fc801f1e4dc12d7a72"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#addee402bd81476fc801f1e4dc12d7a72">update</a> (const std::vector&lt; <a class="el" href="classActiveLink.html">ActiveLink</a> &gt; &amp;links_p, const std::map&lt; std::string, double &gt; &amp;investments_p)</td></tr>
+<tr class="memdesc:addee402bd81476fc801f1e4dc12d7a72"><td class="mdescLeft">&#160;</td><td class="mdescRight">updates the linkdata files for multiple candidates from a solution Point  <br /></td></tr>
+<tr class="separator:addee402bd81476fc801f1e4dc12d7a72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad276097a955839dfc8ab779c9fb58dae" id="r_ad276097a955839dfc8ab779c9fb58dae"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad276097a955839dfc8ab779c9fb58dae">update</a> (const std::vector&lt; <a class="el" href="classActiveLink.html">ActiveLink</a> &gt; &amp;links_p, const std::filesystem::path &amp;jsonPath_p)</td></tr>
+<tr class="memdesc:ad276097a955839dfc8ab779c9fb58dae"><td class="mdescLeft">&#160;</td><td class="mdescRight">updates the linkdata files for multiple candidates from a json file  <br /></td></tr>
+<tr class="separator:ad276097a955839dfc8ab779c9fb58dae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class that updates an antares study after an antares-xpansion execution. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ac386a6ced87a6a4315ed2c46f574601e" name="ac386a6ced87a6a4315ed2c46f574601e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac386a6ced87a6a4315ed2c46f574601e">&#9670;&#160;</a></span>StudyUpdater()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">StudyUpdater::StudyUpdater </td>
+          <td>(</td>
+          <td class="paramtype">std::filesystem::path</td>          <td class="paramname"><span class="paramname"><em>studyPath_p</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classAntaresVersionProvider.html">AntaresVersionProvider</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>antares_version_provider</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classProblemGenerationLog_1_1ProblemGenerationLogger.html">ProblemGenerationLog::ProblemGenerationLogger</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>logger</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>constructor of class <a class="el" href="classStudyUpdater.html" title="Class that updates an antares study after an antares-xpansion execution.">StudyUpdater</a> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">studyPath_p</td><td>: path to the antares study folder </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ad276097a955839dfc8ab779c9fb58dae" name="ad276097a955839dfc8ab779c9fb58dae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad276097a955839dfc8ab779c9fb58dae">&#9670;&#160;</a></span>update() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int StudyUpdater::update </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classActiveLink.html">ActiveLink</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>links_p</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::filesystem::path &amp;</td>          <td class="paramname"><span class="paramname"><em>jsonPath_p</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>updates the linkdata files for multiple candidates from a json file </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">candidates_p</td><td>: the candidates for which the linkdata file will be updated</td></tr>
+    <tr><td class="paramname">jsonPath_p</td><td>: path to a json file to read the investment solution from</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number of candidates we failed to update </dd></dl>
+
+</div>
+</div>
+<a id="addee402bd81476fc801f1e4dc12d7a72" name="addee402bd81476fc801f1e4dc12d7a72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addee402bd81476fc801f1e4dc12d7a72">&#9670;&#160;</a></span>update() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int StudyUpdater::update </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classActiveLink.html">ActiveLink</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>links_p</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::map&lt; std::string, double &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>investments_p</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>updates the linkdata files for multiple candidates from a solution Point </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">candidates_p</td><td>: the candidates for which the linkdata file will be updated</td></tr>
+    <tr><td class="paramname">investments_p</td><td>: a map giving investments per candidate</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number of candidates we failed to update </dd></dl>
+
+</div>
+</div>
+<a id="a9db49727f1ceb8bb7c871dcdb99a099f" name="a9db49727f1ceb8bb7c871dcdb99a099f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9db49727f1ceb8bb7c871dcdb99a099f">&#9670;&#160;</a></span>updateLinkdataFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int StudyUpdater::updateLinkdataFile </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classActiveLink.html">ActiveLink</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>link_p</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::map&lt; std::string, double &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>investments_p</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>updates the linkdata file for a given link according to the investments of its candidates </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">link_p</td><td>: link for which the linkdata file will be updated </td></tr>
+    <tr><td class="paramname">investment_p</td><td>: value of investment to consider for the update</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 if the update fails, 0 otherwise </dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>src/cpp/study-updater/include/antares-xpansion/study-updater/<a class="el" href="StudyUpdater_8h_source.html">StudyUpdater.h</a></li>
+<li>src/cpp/study-updater/<b>StudyUpdater.cpp</b></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classStudyUpdater.html">StudyUpdater</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+</body>
+</html>

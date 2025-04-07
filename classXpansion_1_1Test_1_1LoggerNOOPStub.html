@@ -1,0 +1,812 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Antares Xpansion" />
+<meta property="og:image" content="https://github.com/AntaresSimulatorTeam/antares-xpansion/blob/develop/docs/assets/logo.png" />
+<meta property="og:description" content="Investment simulations for Antares studies." />
+<meta property="og:url" content="https://github.com/AntaresSimulatorTeam/antares-xpansion/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://github.com/AntaresSimulatorTeam/antares-xpansion/blob/develop/docs/assets/logo.png" />
+<meta name="twitter:title" content="Antares Xpansion" />
+<meta name="twitter:description" content="Investment simulations for Antares studies." />
+<!-- END twitter metadata -->
+<title>Antares Xpansion: Xpansion::Test::LoggerNOOPStub Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://github.com/AntaresSimulatorTeam/antares-xpansion/ -->
+<a href="https://github.com/AntaresSimulatorTeam/antares-xpansion" class="github-corner" title="View source on GitHub" target="_blank">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Antares Xpansion
+   </div>
+   <div id="projectbrief">Investment simulations for Antares studies</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classXpansion_1_1Test_1_1LoggerNOOPStub.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="classXpansion_1_1Test_1_1LoggerNOOPStub-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Xpansion::Test::LoggerNOOPStub Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+Inheritance diagram for Xpansion::Test::LoggerNOOPStub:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classXpansion_1_1Test_1_1LoggerNOOPStub.png" usemap="#Xpansion::Test::LoggerNOOPStub_map" alt=""/>
+  <map id="Xpansion::Test::LoggerNOOPStub_map" name="Xpansion::Test::LoggerNOOPStub_map">
+<area href="classILogger.html" title="abstract class for operational logs" alt="ILogger" shape="rect" coords="0,56,202,80"/>
+<area href="structILoggerXpansion.html" title="Xpansion Unique log Interface." alt="ILoggerXpansion" shape="rect" coords="0,0,202,24"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a78551de804e829cf89a6d4a84590170c" id="r_a78551de804e829cf89a6d4a84590170c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a78551de804e829cf89a6d4a84590170c">display_message</a> (const std::string &amp;str) override</td></tr>
+<tr class="memdesc:a78551de804e829cf89a6d4a84590170c"><td class="mdescLeft">&#160;</td><td class="mdescRight">pure virtual method to display a std::string message  <br /></td></tr>
+<tr class="separator:a78551de804e829cf89a6d4a84590170c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a400842384ca74e44a9bafe2e6aafff52" id="r_a400842384ca74e44a9bafe2e6aafff52"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a400842384ca74e44a9bafe2e6aafff52">display_message</a> (const std::string &amp;str, LogUtils::LOGLEVEL level, const std::string &amp;context) override</td></tr>
+<tr class="separator:a400842384ca74e44a9bafe2e6aafff52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78eb0bb749fabbcb6d0d611d844c1b9d" id="r_a78eb0bb749fabbcb6d0d611d844c1b9d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a78eb0bb749fabbcb6d0d611d844c1b9d">PrintIterationSeparatorBegin</a> () override</td></tr>
+<tr class="separator:a78eb0bb749fabbcb6d0d611d844c1b9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a503ed48cb4145f316090d01daa5f558b" id="r_a503ed48cb4145f316090d01daa5f558b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a503ed48cb4145f316090d01daa5f558b">PrintIterationSeparatorEnd</a> () override</td></tr>
+<tr class="separator:a503ed48cb4145f316090d01daa5f558b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f691c1a5c4d5ddaa8b464e92c2d0115" id="r_a5f691c1a5c4d5ddaa8b464e92c2d0115"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f691c1a5c4d5ddaa8b464e92c2d0115">log_at_initialization</a> (const int it_number) override</td></tr>
+<tr class="separator:a5f691c1a5c4d5ddaa8b464e92c2d0115"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2bfd7f0f5c38aeb20b77d45490dc8c5" id="r_ad2bfd7f0f5c38aeb20b77d45490dc8c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad2bfd7f0f5c38aeb20b77d45490dc8c5">log_iteration_candidates</a> (const <a class="el" href="structLogData.html">LogData</a> &amp;d) override</td></tr>
+<tr class="separator:ad2bfd7f0f5c38aeb20b77d45490dc8c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7eed9ef118515696530f0eb7e0dfc409" id="r_a7eed9ef118515696530f0eb7e0dfc409"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7eed9ef118515696530f0eb7e0dfc409">log_master_solving_duration</a> (double durationInSeconds) override</td></tr>
+<tr class="separator:a7eed9ef118515696530f0eb7e0dfc409"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c9cd2ca46faa53fdb7458aaff445baa" id="r_a3c9cd2ca46faa53fdb7458aaff445baa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3c9cd2ca46faa53fdb7458aaff445baa">LogSubproblemsSolvingWalltime</a> (double durationInSeconds) override</td></tr>
+<tr class="separator:a3c9cd2ca46faa53fdb7458aaff445baa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af722e064211e52d5038e127513a0eb87" id="r_af722e064211e52d5038e127513a0eb87"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af722e064211e52d5038e127513a0eb87">LogSubproblemsSolvingCumulativeCpuTime</a> (double durationInSeconds) override</td></tr>
+<tr class="separator:af722e064211e52d5038e127513a0eb87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14c2a4367a1bee1c8be7e55cd262c34f" id="r_a14c2a4367a1bee1c8be7e55cd262c34f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a14c2a4367a1bee1c8be7e55cd262c34f">log_at_iteration_end</a> (const <a class="el" href="structLogData.html">LogData</a> &amp;d) override</td></tr>
+<tr class="separator:a14c2a4367a1bee1c8be7e55cd262c34f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ca7747b1d43a244285cbf6bf3af828c" id="r_a5ca7747b1d43a244285cbf6bf3af828c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ca7747b1d43a244285cbf6bf3af828c">log_at_ending</a> (const <a class="el" href="structLogData.html">LogData</a> &amp;d) override</td></tr>
+<tr class="separator:a5ca7747b1d43a244285cbf6bf3af828c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af13a60d0116149a862ff45f164ff9b28" id="r_af13a60d0116149a862ff45f164ff9b28"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af13a60d0116149a862ff45f164ff9b28">log_total_duration</a> (double durationInSeconds) override</td></tr>
+<tr class="separator:af13a60d0116149a862ff45f164ff9b28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbe42791c6df106dbfbc04fee7a385cf" id="r_adbe42791c6df106dbfbc04fee7a385cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adbe42791c6df106dbfbc04fee7a385cf">log_stop_criterion_reached</a> (const StoppingCriterion stopping_criterion) override</td></tr>
+<tr class="separator:adbe42791c6df106dbfbc04fee7a385cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b5b44134065490093dd60df73af629c" id="r_a4b5b44134065490093dd60df73af629c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4b5b44134065490093dd60df73af629c">display_restart_message</a> () override</td></tr>
+<tr class="separator:a4b5b44134065490093dd60df73af629c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c08c499d49a91371673c9d558e3e110" id="r_a8c08c499d49a91371673c9d558e3e110"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c08c499d49a91371673c9d558e3e110">restart_elapsed_time</a> (const double elapsed_time) override</td></tr>
+<tr class="separator:a8c08c499d49a91371673c9d558e3e110"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1132cc16eee38a2c5a4a73b0749d1294" id="r_a1132cc16eee38a2c5a4a73b0749d1294"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1132cc16eee38a2c5a4a73b0749d1294">number_of_iterations_before_restart</a> (const int num_iterations) override</td></tr>
+<tr class="separator:a1132cc16eee38a2c5a4a73b0749d1294"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07caacd9ca2f227e6effcfb10dc3ffa9" id="r_a07caacd9ca2f227e6effcfb10dc3ffa9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07caacd9ca2f227e6effcfb10dc3ffa9">restart_best_iteration</a> (const int best_iterations) override</td></tr>
+<tr class="separator:a07caacd9ca2f227e6effcfb10dc3ffa9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42cdcffcf8168e5f867d66c9ef247575" id="r_a42cdcffcf8168e5f867d66c9ef247575"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a42cdcffcf8168e5f867d66c9ef247575">restart_best_iterations_infos</a> (const <a class="el" href="structLogData.html">LogData</a> &amp;best_iterations_data) override</td></tr>
+<tr class="separator:a42cdcffcf8168e5f867d66c9ef247575"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad01e97601f75b2a079b3f2c8a37fb3fc" id="r_ad01e97601f75b2a079b3f2c8a37fb3fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad01e97601f75b2a079b3f2c8a37fb3fc">LogAtInitialRelaxation</a> () override</td></tr>
+<tr class="separator:ad01e97601f75b2a079b3f2c8a37fb3fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7325145d57404af20430f1283e292ccd" id="r_a7325145d57404af20430f1283e292ccd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7325145d57404af20430f1283e292ccd">LogAtSwitchToInteger</a> () override</td></tr>
+<tr class="separator:a7325145d57404af20430f1283e292ccd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d5d77d879d28fe18b33e90ddccc7b27" id="r_a0d5d77d879d28fe18b33e90ddccc7b27"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0d5d77d879d28fe18b33e90ddccc7b27">cumulative_number_of_sub_problem_solved</a> (int number) override</td></tr>
+<tr class="separator:a0d5d77d879d28fe18b33e90ddccc7b27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classILogger"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classILogger')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classILogger.html">ILogger</a></td></tr>
+<tr class="inherit_header pub_methods_structILoggerXpansion"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_structILoggerXpansion')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="structILoggerXpansion.html">ILoggerXpansion</a></td></tr>
+<tr class="memitem:ac29cdc7dc59c2dde6ce45201c91e770e inherit pub_methods_structILoggerXpansion" id="r_ac29cdc7dc59c2dde6ce45201c91e770e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structILoggerXpansion.html#ac29cdc7dc59c2dde6ce45201c91e770e">display_message</a> (const std::ostringstream &amp;msg)</td></tr>
+<tr class="separator:ac29cdc7dc59c2dde6ce45201c91e770e inherit pub_methods_structILoggerXpansion"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_attribs_classILogger"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_classILogger')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classILogger.html">ILogger</a></td></tr>
+<tr class="memitem:a2607de07ee85d443d1229a9a9c3bd699 inherit pub_attribs_classILogger" id="r_a2607de07ee85d443d1229a9a9c3bd699"><td class="memItemLeft" align="right" valign="top">
+const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>CONTEXT</b> = &quot;Benders&quot;</td></tr>
+<tr class="separator:a2607de07ee85d443d1229a9a9c3bd699 inherit pub_attribs_classILogger"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a0d5d77d879d28fe18b33e90ddccc7b27" name="a0d5d77d879d28fe18b33e90ddccc7b27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d5d77d879d28fe18b33e90ddccc7b27">&#9670;&#160;</a></span>cumulative_number_of_sub_problem_solved()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Xpansion::Test::LoggerNOOPStub::cumulative_number_of_sub_problem_solved </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>number</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a78551de804e829cf89a6d4a84590170c" name="a78551de804e829cf89a6d4a84590170c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78551de804e829cf89a6d4a84590170c">&#9670;&#160;</a></span>display_message() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Xpansion::Test::LoggerNOOPStub::display_message </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>str</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>pure virtual method to display a std::string message </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>the message to be displayed </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="classILogger.html#a1326996d4147821e1dad10103a0dc2e8">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a400842384ca74e44a9bafe2e6aafff52" name="a400842384ca74e44a9bafe2e6aafff52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a400842384ca74e44a9bafe2e6aafff52">&#9670;&#160;</a></span>display_message() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Xpansion::Test::LoggerNOOPStub::display_message </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>str</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">LogUtils::LOGLEVEL</td>          <td class="paramname"><span class="paramname"><em>level</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>context</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a4b5b44134065490093dd60df73af629c" name="a4b5b44134065490093dd60df73af629c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b5b44134065490093dd60df73af629c">&#9670;&#160;</a></span>display_restart_message()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Xpansion::Test::LoggerNOOPStub::display_restart_message </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a5ca7747b1d43a244285cbf6bf3af828c" name="a5ca7747b1d43a244285cbf6bf3af828c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ca7747b1d43a244285cbf6bf3af828c">&#9670;&#160;</a></span>log_at_ending()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Xpansion::Test::LoggerNOOPStub::log_at_ending </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structLogData.html">LogData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>d</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a5f691c1a5c4d5ddaa8b464e92c2d0115" name="a5f691c1a5c4d5ddaa8b464e92c2d0115"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f691c1a5c4d5ddaa8b464e92c2d0115">&#9670;&#160;</a></span>log_at_initialization()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Xpansion::Test::LoggerNOOPStub::log_at_initialization </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>it_number</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a14c2a4367a1bee1c8be7e55cd262c34f" name="a14c2a4367a1bee1c8be7e55cd262c34f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14c2a4367a1bee1c8be7e55cd262c34f">&#9670;&#160;</a></span>log_at_iteration_end()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Xpansion::Test::LoggerNOOPStub::log_at_iteration_end </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structLogData.html">LogData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>d</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="ad2bfd7f0f5c38aeb20b77d45490dc8c5" name="ad2bfd7f0f5c38aeb20b77d45490dc8c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2bfd7f0f5c38aeb20b77d45490dc8c5">&#9670;&#160;</a></span>log_iteration_candidates()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Xpansion::Test::LoggerNOOPStub::log_iteration_candidates </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structLogData.html">LogData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>d</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a7eed9ef118515696530f0eb7e0dfc409" name="a7eed9ef118515696530f0eb7e0dfc409"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7eed9ef118515696530f0eb7e0dfc409">&#9670;&#160;</a></span>log_master_solving_duration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Xpansion::Test::LoggerNOOPStub::log_master_solving_duration </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>durationInSeconds</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="adbe42791c6df106dbfbc04fee7a385cf" name="adbe42791c6df106dbfbc04fee7a385cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbe42791c6df106dbfbc04fee7a385cf">&#9670;&#160;</a></span>log_stop_criterion_reached()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Xpansion::Test::LoggerNOOPStub::log_stop_criterion_reached </td>
+          <td>(</td>
+          <td class="paramtype">const StoppingCriterion</td>          <td class="paramname"><span class="paramname"><em>stopping_criterion</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="af13a60d0116149a862ff45f164ff9b28" name="af13a60d0116149a862ff45f164ff9b28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af13a60d0116149a862ff45f164ff9b28">&#9670;&#160;</a></span>log_total_duration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Xpansion::Test::LoggerNOOPStub::log_total_duration </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>durationInSeconds</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="ad01e97601f75b2a079b3f2c8a37fb3fc" name="ad01e97601f75b2a079b3f2c8a37fb3fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad01e97601f75b2a079b3f2c8a37fb3fc">&#9670;&#160;</a></span>LogAtInitialRelaxation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Xpansion::Test::LoggerNOOPStub::LogAtInitialRelaxation </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a7325145d57404af20430f1283e292ccd" name="a7325145d57404af20430f1283e292ccd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7325145d57404af20430f1283e292ccd">&#9670;&#160;</a></span>LogAtSwitchToInteger()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Xpansion::Test::LoggerNOOPStub::LogAtSwitchToInteger </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="af722e064211e52d5038e127513a0eb87" name="af722e064211e52d5038e127513a0eb87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af722e064211e52d5038e127513a0eb87">&#9670;&#160;</a></span>LogSubproblemsSolvingCumulativeCpuTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Xpansion::Test::LoggerNOOPStub::LogSubproblemsSolvingCumulativeCpuTime </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>durationInSeconds</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a3c9cd2ca46faa53fdb7458aaff445baa" name="a3c9cd2ca46faa53fdb7458aaff445baa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c9cd2ca46faa53fdb7458aaff445baa">&#9670;&#160;</a></span>LogSubproblemsSolvingWalltime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Xpansion::Test::LoggerNOOPStub::LogSubproblemsSolvingWalltime </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>durationInSeconds</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a1132cc16eee38a2c5a4a73b0749d1294" name="a1132cc16eee38a2c5a4a73b0749d1294"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1132cc16eee38a2c5a4a73b0749d1294">&#9670;&#160;</a></span>number_of_iterations_before_restart()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Xpansion::Test::LoggerNOOPStub::number_of_iterations_before_restart </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>num_iterations</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a78eb0bb749fabbcb6d0d611d844c1b9d" name="a78eb0bb749fabbcb6d0d611d844c1b9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78eb0bb749fabbcb6d0d611d844c1b9d">&#9670;&#160;</a></span>PrintIterationSeparatorBegin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Xpansion::Test::LoggerNOOPStub::PrintIterationSeparatorBegin </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a503ed48cb4145f316090d01daa5f558b" name="a503ed48cb4145f316090d01daa5f558b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a503ed48cb4145f316090d01daa5f558b">&#9670;&#160;</a></span>PrintIterationSeparatorEnd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Xpansion::Test::LoggerNOOPStub::PrintIterationSeparatorEnd </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a07caacd9ca2f227e6effcfb10dc3ffa9" name="a07caacd9ca2f227e6effcfb10dc3ffa9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07caacd9ca2f227e6effcfb10dc3ffa9">&#9670;&#160;</a></span>restart_best_iteration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Xpansion::Test::LoggerNOOPStub::restart_best_iteration </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>best_iterations</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a42cdcffcf8168e5f867d66c9ef247575" name="a42cdcffcf8168e5f867d66c9ef247575"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42cdcffcf8168e5f867d66c9ef247575">&#9670;&#160;</a></span>restart_best_iterations_infos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Xpansion::Test::LoggerNOOPStub::restart_best_iterations_infos </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structLogData.html">LogData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>best_iterations_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a8c08c499d49a91371673c9d558e3e110" name="a8c08c499d49a91371673c9d558e3e110"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c08c499d49a91371673c9d558e3e110">&#9670;&#160;</a></span>restart_elapsed_time()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Xpansion::Test::LoggerNOOPStub::restart_elapsed_time </td>
+          <td>(</td>
+          <td class="paramtype">const double</td>          <td class="paramname"><span class="paramname"><em>elapsed_time</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>tests/cpp/TestDoubles/<a class="el" href="LoggerStub_8h_source.html">LoggerStub.h</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><b>Xpansion</b></li><li class="navelem"><b>Test</b></li><li class="navelem"><a class="el" href="classXpansion_1_1Test_1_1LoggerNOOPStub.html">LoggerNOOPStub</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+</body>
+</html>

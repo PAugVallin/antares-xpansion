@@ -1,0 +1,960 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Antares Xpansion" />
+<meta property="og:image" content="https://github.com/AntaresSimulatorTeam/antares-xpansion/blob/develop/docs/assets/logo.png" />
+<meta property="og:description" content="Investment simulations for Antares studies." />
+<meta property="og:url" content="https://github.com/AntaresSimulatorTeam/antares-xpansion/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://github.com/AntaresSimulatorTeam/antares-xpansion/blob/develop/docs/assets/logo.png" />
+<meta name="twitter:title" content="Antares Xpansion" />
+<meta name="twitter:description" content="Investment simulations for Antares studies." />
+<!-- END twitter metadata -->
+<title>Antares Xpansion: antares_xpansion.config_loader.ConfigLoader Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://github.com/AntaresSimulatorTeam/antares-xpansion/ -->
+<a href="https://github.com/AntaresSimulatorTeam/antares-xpansion" class="github-corner" title="View source on GitHub" target="_blank">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Antares Xpansion
+   </div>
+   <div id="projectbrief">Investment simulations for Antares studies</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classantares__xpansion_1_1config__loader_1_1ConfigLoader.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="classantares__xpansion_1_1config__loader_1_1ConfigLoader-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">antares_xpansion.config_loader.ConfigLoader Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classantares__xpansion_1_1config__loader_1_1ConfigLoader_1_1InvalidSimulationName.html">InvalidSimulationName</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classantares__xpansion_1_1config__loader_1_1ConfigLoader_1_1MissingAntaresOutput.html">MissingAntaresOutput</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classantares__xpansion_1_1config__loader_1_1ConfigLoader_1_1MissingFile.html">MissingFile</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classantares__xpansion_1_1config__loader_1_1ConfigLoader_1_1MissingSimulationName.html">MissingSimulationName</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classantares__xpansion_1_1config__loader_1_1ConfigLoader_1_1NotAnXpansionOutputDir.html">NotAnXpansionOutputDir</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ae88f5d4c959a824dda5174a3da40627a" id="r_ae88f5d4c959a824dda5174a3da40627a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae88f5d4c959a824dda5174a3da40627a">__init__</a> (self, <a class="el" href="classantares__xpansion_1_1xpansionConfig_1_1XpansionConfig.html">XpansionConfig</a> config)</td></tr>
+<tr class="separator:ae88f5d4c959a824dda5174a3da40627a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb8ff91d67f3cc84ce47d028ea557627" id="r_aeb8ff91d67f3cc84ce47d028ea557627"><td class="memItemLeft" align="right" valign="top"><a id="aeb8ff91d67f3cc84ce47d028ea557627" name="aeb8ff91d67f3cc84ce47d028ea557627"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>check_candidates_file_format</b> (self)</td></tr>
+<tr class="separator:aeb8ff91d67f3cc84ce47d028ea557627"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07dbb473482923bcf11cbf551a8da4b4" id="r_a07dbb473482923bcf11cbf551a8da4b4"><td class="memItemLeft" align="right" valign="top"><a id="a07dbb473482923bcf11cbf551a8da4b4" name="a07dbb473482923bcf11cbf551a8da4b4"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>check_settings_file_format</b> (self)</td></tr>
+<tr class="separator:a07dbb473482923bcf11cbf551a8da4b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ebd0291e5efb3c813ec863c9f31c80d" id="r_a7ebd0291e5efb3c813ec863c9f31c80d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7ebd0291e5efb3c813ec863c9f31c80d">antares_output</a> (self)</td></tr>
+<tr class="separator:a7ebd0291e5efb3c813ec863c9f31c80d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a497a4f9701fda8abcd718e34f2cd7339" id="r_a497a4f9701fda8abcd718e34f2cd7339"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a497a4f9701fda8abcd718e34f2cd7339">exe_path</a> (self, exe)</td></tr>
+<tr class="separator:a497a4f9701fda8abcd718e34f2cd7339"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ae7b64e15afffeb42c8f010dbdeaf27" id="r_a4ae7b64e15afffeb42c8f010dbdeaf27"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ae7b64e15afffeb42c8f010dbdeaf27">data_dir</a> (self)</td></tr>
+<tr class="separator:a4ae7b64e15afffeb42c8f010dbdeaf27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae26d075456c79da0d651b5b760da9eba" id="r_ae26d075456c79da0d651b5b760da9eba"><td class="memItemLeft" align="right" valign="top"><a id="ae26d075456c79da0d651b5b760da9eba" name="ae26d075456c79da0d651b5b760da9eba"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>weight_file_name</b> (self)</td></tr>
+<tr class="separator:ae26d075456c79da0d651b5b760da9eba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d69cced84114b716a8b06830836f34e" id="r_a2d69cced84114b716a8b06830836f34e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2d69cced84114b716a8b06830836f34e">general_data</a> (self)</td></tr>
+<tr class="separator:a2d69cced84114b716a8b06830836f34e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81045f04c238135c94393176ae0916b0" id="r_a81045f04c238135c94393176ae0916b0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a81045f04c238135c94393176ae0916b0">candidates_ini_filepath</a> (self)</td></tr>
+<tr class="separator:a81045f04c238135c94393176ae0916b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a665fe759a2855d3aec99c8a1071211c1" id="r_a665fe759a2855d3aec99c8a1071211c1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a665fe759a2855d3aec99c8a1071211c1">capacity_file</a> (self, filename)</td></tr>
+<tr class="separator:a665fe759a2855d3aec99c8a1071211c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a267de5478c27b566118f8dfefa000f06" id="r_a267de5478c27b566118f8dfefa000f06"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a267de5478c27b566118f8dfefa000f06">json_sensitivity_in_path</a> (self)</td></tr>
+<tr class="separator:a267de5478c27b566118f8dfefa000f06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acaa771a745e0c4328f7852bdd10dae2d" id="r_acaa771a745e0c4328f7852bdd10dae2d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acaa771a745e0c4328f7852bdd10dae2d">weights_file_path</a> (self)</td></tr>
+<tr class="separator:acaa771a745e0c4328f7852bdd10dae2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abeb8e1cd1a742142f16e5a5d52fa6f34" id="r_abeb8e1cd1a742142f16e5a5d52fa6f34"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abeb8e1cd1a742142f16e5a5d52fa6f34">get_absolute_optimality_gap</a> (self)</td></tr>
+<tr class="separator:abeb8e1cd1a742142f16e5a5d52fa6f34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0a54777137727e495ed3beca55c11fa" id="r_ae0a54777137727e495ed3beca55c11fa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae0a54777137727e495ed3beca55c11fa">get_relative_optimality_gap</a> (self)</td></tr>
+<tr class="separator:ae0a54777137727e495ed3beca55c11fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4b86977f93268068a0257f971189e60" id="r_aa4b86977f93268068a0257f971189e60"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4b86977f93268068a0257f971189e60">get_relaxed_optimality_gap</a> (self)</td></tr>
+<tr class="separator:aa4b86977f93268068a0257f971189e60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4036a4536086cb3f2948debf2d138a13" id="r_a4036a4536086cb3f2948debf2d138a13"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4036a4536086cb3f2948debf2d138a13">get_max_iterations</a> (self)</td></tr>
+<tr class="separator:a4036a4536086cb3f2948debf2d138a13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add4228094dc1df7fe515ad389a79c1e6" id="r_add4228094dc1df7fe515ad389a79c1e6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#add4228094dc1df7fe515ad389a79c1e6">get_master_formulation</a> (self)</td></tr>
+<tr class="separator:add4228094dc1df7fe515ad389a79c1e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a275727bbd475ee7a1c9256cd0e9178" id="r_a7a275727bbd475ee7a1c9256cd0e9178"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a275727bbd475ee7a1c9256cd0e9178">get_separation</a> (self)</td></tr>
+<tr class="separator:a7a275727bbd475ee7a1c9256cd0e9178"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45c01d16794cd89c6ecdba83d5fc47b4" id="r_a45c01d16794cd89c6ecdba83d5fc47b4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a45c01d16794cd89c6ecdba83d5fc47b4">get_batch_size</a> (self)</td></tr>
+<tr class="separator:a45c01d16794cd89c6ecdba83d5fc47b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4144519a671a579b2440aa61a06bf6b1" id="r_a4144519a671a579b2440aa61a06bf6b1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4144519a671a579b2440aa61a06bf6b1">additional_constraints</a> (self)</td></tr>
+<tr class="separator:a4144519a671a579b2440aa61a06bf6b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25753d30ceeec60419c5c87947362887" id="r_a25753d30ceeec60419c5c87947362887"><td class="memItemLeft" align="right" valign="top"><a id="a25753d30ceeec60419c5c87947362887" name="a25753d30ceeec60419c5c87947362887"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>memory</b> (self)</td></tr>
+<tr class="separator:a25753d30ceeec60419c5c87947362887"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa47fd26d0c3bb553d126dc33cfb26ca3" id="r_aa47fd26d0c3bb553d126dc33cfb26ca3"><td class="memItemLeft" align="right" valign="top"><a id="aa47fd26d0c3bb553d126dc33cfb26ca3" name="aa47fd26d0c3bb553d126dc33cfb26ca3"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>simulation_lp_path</b> (self)</td></tr>
+<tr class="separator:aa47fd26d0c3bb553d126dc33cfb26ca3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca51dc1f8f71730679bfa2ace8ad0574" id="r_aca51dc1f8f71730679bfa2ace8ad0574"><td class="memItemLeft" align="right" valign="top"><a id="aca51dc1f8f71730679bfa2ace8ad0574" name="aca51dc1f8f71730679bfa2ace8ad0574"></a>
+Path&#160;</td><td class="memItemRight" valign="bottom"><b>xpansion_simulation_output</b> (self)</td></tr>
+<tr class="separator:aca51dc1f8f71730679bfa2ace8ad0574"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66f27e2bb8a07f3d6322dcb25040c4d0" id="r_a66f27e2bb8a07f3d6322dcb25040c4d0"><td class="memItemLeft" align="right" valign="top"><a id="a66f27e2bb8a07f3d6322dcb25040c4d0" name="a66f27e2bb8a07f3d6322dcb25040c4d0"></a>
+Path&#160;</td><td class="memItemRight" valign="bottom"><b>simulation_output_path</b> (self)</td></tr>
+<tr class="separator:a66f27e2bb8a07f3d6322dcb25040c4d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a340457585f944f80cc19373360b90fb1" id="r_a340457585f944f80cc19373360b90fb1"><td class="memItemLeft" align="right" valign="top"><a id="a340457585f944f80cc19373360b90fb1" name="a340457585f944f80cc19373360b90fb1"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>benders_pre_actions</b> (self)</td></tr>
+<tr class="separator:a340457585f944f80cc19373360b90fb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6989ddcbfe976ef87fa43f16b078dc2" id="r_ad6989ddcbfe976ef87fa43f16b078dc2"><td class="memItemLeft" align="right" valign="top"><a id="ad6989ddcbfe976ef87fa43f16b078dc2" name="ad6989ddcbfe976ef87fa43f16b078dc2"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>copy_area_file_to_lpdir</b> (self)</td></tr>
+<tr class="separator:ad6989ddcbfe976ef87fa43f16b078dc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3ed1b258a3809288781880d6914aa47" id="r_ad3ed1b258a3809288781880d6914aa47"><td class="memItemLeft" align="right" valign="top"><a id="ad3ed1b258a3809288781880d6914aa47" name="ad3ed1b258a3809288781880d6914aa47"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>save_launcher_options</b> (self)</td></tr>
+<tr class="separator:ad3ed1b258a3809288781880d6914aa47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9520c3f53246903040d08609caa33b70" id="r_a9520c3f53246903040d08609caa33b70"><td class="memItemLeft" align="right" valign="top"><a id="a9520c3f53246903040d08609caa33b70" name="a9520c3f53246903040d08609caa33b70"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>launcher_options_file_path</b> (self)</td></tr>
+<tr class="separator:a9520c3f53246903040d08609caa33b70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a767ca64e5c730b341b10dd9845751e47" id="r_a767ca64e5c730b341b10dd9845751e47"><td class="memItemLeft" align="right" valign="top"><a id="a767ca64e5c730b341b10dd9845751e47" name="a767ca64e5c730b341b10dd9845751e47"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>create_expansion_dir</b> (self)</td></tr>
+<tr class="separator:a767ca64e5c730b341b10dd9845751e47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcc26cf311070bf6929067ed1e836336" id="r_abcc26cf311070bf6929067ed1e836336"><td class="memItemLeft" align="right" valign="top"><a id="abcc26cf311070bf6929067ed1e836336" name="abcc26cf311070bf6929067ed1e836336"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>expansion_dir</b> (self)</td></tr>
+<tr class="separator:abcc26cf311070bf6929067ed1e836336"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad443adc839bf6c79f43307d8928ae270" id="r_ad443adc839bf6c79f43307d8928ae270"><td class="memItemLeft" align="right" valign="top"><a id="ad443adc839bf6c79f43307d8928ae270" name="ad443adc839bf6c79f43307d8928ae270"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>options_file_path</b> (self)</td></tr>
+<tr class="separator:ad443adc839bf6c79f43307d8928ae270"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a201edef4869e57704c2898ea9d8e30a5" id="r_a201edef4869e57704c2898ea9d8e30a5"><td class="memItemLeft" align="right" valign="top"><a id="a201edef4869e57704c2898ea9d8e30a5" name="a201edef4869e57704c2898ea9d8e30a5"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>options_file_name</b> (self)</td></tr>
+<tr class="separator:a201edef4869e57704c2898ea9d8e30a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97647b4ae29959c43d390b6a38176717" id="r_a97647b4ae29959c43d390b6a38176717"><td class="memItemLeft" align="right" valign="top"><a id="a97647b4ae29959c43d390b6a38176717" name="a97647b4ae29959c43d390b6a38176717"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>is_zip</b> (self, study)</td></tr>
+<tr class="separator:a97647b4ae29959c43d390b6a38176717"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeabd250f0d09fe17836cf4dfb6030dd0" id="r_aeabd250f0d09fe17836cf4dfb6030dd0"><td class="memItemLeft" align="right" valign="top"><a id="aeabd250f0d09fe17836cf4dfb6030dd0" name="aeabd250f0d09fe17836cf4dfb6030dd0"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>update_last_study_with_sensitivity_results</b> (self)</td></tr>
+<tr class="separator:aeabd250f0d09fe17836cf4dfb6030dd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa54a2b009160a87e6f5e60e6470b25ba" id="r_aa54a2b009160a87e6f5e60e6470b25ba"><td class="memItemLeft" align="right" valign="top"><a id="aa54a2b009160a87e6f5e60e6470b25ba" name="aa54a2b009160a87e6f5e60e6470b25ba"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>is_antares_study_output</b> (self, Path study)</td></tr>
+<tr class="separator:aa54a2b009160a87e6f5e60e6470b25ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7299724f1d0586887b8f33d3cd06df14" id="r_a7299724f1d0586887b8f33d3cd06df14"><td class="memItemLeft" align="right" valign="top"><a id="a7299724f1d0586887b8f33d3cd06df14" name="a7299724f1d0586887b8f33d3cd06df14"></a>
+Path&#160;</td><td class="memItemRight" valign="bottom"><b>last_modified_study</b> (self, Path root_dir)</td></tr>
+<tr class="separator:a7299724f1d0586887b8f33d3cd06df14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c3fa0cf225d9b7bb06864a8aa7f1b45" id="r_a0c3fa0cf225d9b7bb06864a8aa7f1b45"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c3fa0cf225d9b7bb06864a8aa7f1b45">is_accurate</a> (self)</td></tr>
+<tr class="separator:a0c3fa0cf225d9b7bb06864a8aa7f1b45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b43dd57f999df86ffacede36f47e197" id="r_a4b43dd57f999df86ffacede36f47e197"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4b43dd57f999df86ffacede36f47e197">is_relaxed</a> (self)</td></tr>
+<tr class="separator:a4b43dd57f999df86ffacede36f47e197"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65be573bc021652e38de96840ffdd982" id="r_a65be573bc021652e38de96840ffdd982"><td class="memItemLeft" align="right" valign="top"><a id="a65be573bc021652e38de96840ffdd982" name="a65be573bc021652e38de96840ffdd982"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>keep_mps</b> (self)</td></tr>
+<tr class="separator:a65be573bc021652e38de96840ffdd982"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a2006f3f2b68e09ad4a80eab6fc439c" id="r_a4a2006f3f2b68e09ad4a80eab6fc439c"><td class="memItemLeft" align="right" valign="top"><a id="a4a2006f3f2b68e09ad4a80eab6fc439c" name="a4a2006f3f2b68e09ad4a80eab6fc439c"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>antares_exe</b> (self)</td></tr>
+<tr class="separator:a4a2006f3f2b68e09ad4a80eab6fc439c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa591a4f92e8ee299fb9ff6394d315a6e" id="r_aa591a4f92e8ee299fb9ff6394d315a6e"><td class="memItemLeft" align="right" valign="top"><a id="aa591a4f92e8ee299fb9ff6394d315a6e" name="aa591a4f92e8ee299fb9ff6394d315a6e"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>lp_namer_exe</b> (self)</td></tr>
+<tr class="separator:aa591a4f92e8ee299fb9ff6394d315a6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f234223908efc7a2a35660d26758e8b" id="r_a9f234223908efc7a2a35660d26758e8b"><td class="memItemLeft" align="right" valign="top"><a id="a9f234223908efc7a2a35660d26758e8b" name="a9f234223908efc7a2a35660d26758e8b"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>benders_exe</b> (self)</td></tr>
+<tr class="separator:a9f234223908efc7a2a35660d26758e8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cdbe1bb4da19840ae9a3fe505b98284" id="r_a3cdbe1bb4da19840ae9a3fe505b98284"><td class="memItemLeft" align="right" valign="top"><a id="a3cdbe1bb4da19840ae9a3fe505b98284" name="a3cdbe1bb4da19840ae9a3fe505b98284"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>merge_mps_exe</b> (self)</td></tr>
+<tr class="separator:a3cdbe1bb4da19840ae9a3fe505b98284"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7c2cb93752b581cc3171497d06dcc3e" id="r_af7c2cb93752b581cc3171497d06dcc3e"><td class="memItemLeft" align="right" valign="top"><a id="af7c2cb93752b581cc3171497d06dcc3e" name="af7c2cb93752b581cc3171497d06dcc3e"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>study_update_exe</b> (self)</td></tr>
+<tr class="separator:af7c2cb93752b581cc3171497d06dcc3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b231bb3663091441aec26951a93eb65" id="r_a6b231bb3663091441aec26951a93eb65"><td class="memItemLeft" align="right" valign="top"><a id="a6b231bb3663091441aec26951a93eb65" name="a6b231bb3663091441aec26951a93eb65"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>sensitivity_exe</b> (self)</td></tr>
+<tr class="separator:a6b231bb3663091441aec26951a93eb65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f149fe2fdcceab43343a33314288817" id="r_a9f149fe2fdcceab43343a33314288817"><td class="memItemLeft" align="right" valign="top"><a id="a9f149fe2fdcceab43343a33314288817" name="a9f149fe2fdcceab43343a33314288817"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>full_run_exe</b> (self)</td></tr>
+<tr class="separator:a9f149fe2fdcceab43343a33314288817"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60d964a2c1db6202116df7d895bfb83c" id="r_a60d964a2c1db6202116df7d895bfb83c"><td class="memItemLeft" align="right" valign="top"><a id="a60d964a2c1db6202116df7d895bfb83c" name="a60d964a2c1db6202116df7d895bfb83c"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>antares_archive_updater_exe</b> (self)</td></tr>
+<tr class="separator:a60d964a2c1db6202116df7d895bfb83c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5571a88c8046d2a6048379da4c5c11cf" id="r_a5571a88c8046d2a6048379da4c5c11cf"><td class="memItemLeft" align="right" valign="top"><a id="a5571a88c8046d2a6048379da4c5c11cf" name="a5571a88c8046d2a6048379da4c5c11cf"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>outer_loop_exe</b> (self)</td></tr>
+<tr class="separator:a5571a88c8046d2a6048379da4c5c11cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a057f0bb68839550938557895477642" id="r_a0a057f0bb68839550938557895477642"><td class="memItemLeft" align="right" valign="top"><a id="a0a057f0bb68839550938557895477642" name="a0a057f0bb68839550938557895477642"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>method</b> (self)</td></tr>
+<tr class="separator:a0a057f0bb68839550938557895477642"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a15f93fe77ea2488c58079eb18c00a8" id="r_a5a15f93fe77ea2488c58079eb18c00a8"><td class="memItemLeft" align="right" valign="top"><a id="a5a15f93fe77ea2488c58079eb18c00a8" name="a5a15f93fe77ea2488c58079eb18c00a8"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>n_mpi</b> (self)</td></tr>
+<tr class="separator:a5a15f93fe77ea2488c58079eb18c00a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a530cf78d3141e1c19f9f074f53d9473f" id="r_a530cf78d3141e1c19f9f074f53d9473f"><td class="memItemLeft" align="right" valign="top"><a id="a530cf78d3141e1c19f9f074f53d9473f" name="a530cf78d3141e1c19f9f074f53d9473f"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>step</b> (self)</td></tr>
+<tr class="separator:a530cf78d3141e1c19f9f074f53d9473f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af506a734b44abcfba8537bdc1009b761" id="r_af506a734b44abcfba8537bdc1009b761"><td class="memItemLeft" align="right" valign="top"><a id="af506a734b44abcfba8537bdc1009b761" name="af506a734b44abcfba8537bdc1009b761"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>simulation_name</b> (self)</td></tr>
+<tr class="separator:af506a734b44abcfba8537bdc1009b761"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a794fa96f9781a999d99c4eaed4beb40d" id="r_a794fa96f9781a999d99c4eaed4beb40d"><td class="memItemLeft" align="right" valign="top"><a id="a794fa96f9781a999d99c4eaed4beb40d" name="a794fa96f9781a999d99c4eaed4beb40d"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>antares_n_cpu</b> (self)</td></tr>
+<tr class="separator:a794fa96f9781a999d99c4eaed4beb40d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d5e9be33a0591c8035b8d7920425025" id="r_a3d5e9be33a0591c8035b8d7920425025"><td class="memItemLeft" align="right" valign="top"><a id="a3d5e9be33a0591c8035b8d7920425025" name="a3d5e9be33a0591c8035b8d7920425025"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>json_file_path</b> (self)</td></tr>
+<tr class="separator:a3d5e9be33a0591c8035b8d7920425025"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70d23d4a79845fa35b94778b3c7a1a9b" id="r_a70d23d4a79845fa35b94778b3c7a1a9b"><td class="memItemLeft" align="right" valign="top"><a id="a70d23d4a79845fa35b94778b3c7a1a9b" name="a70d23d4a79845fa35b94778b3c7a1a9b"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>json_name</b> (self)</td></tr>
+<tr class="separator:a70d23d4a79845fa35b94778b3c7a1a9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dde82d56cded633ac40b904f8deb786" id="r_a2dde82d56cded633ac40b904f8deb786"><td class="memItemLeft" align="right" valign="top"><a id="a2dde82d56cded633ac40b904f8deb786" name="a2dde82d56cded633ac40b904f8deb786"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>last_iteration_json_file_path</b> (self)</td></tr>
+<tr class="separator:a2dde82d56cded633ac40b904f8deb786"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a982b69808f157ccbc4981917a0cf47df" id="r_a982b69808f157ccbc4981917a0cf47df"><td class="memItemLeft" align="right" valign="top"><a id="a982b69808f157ccbc4981917a0cf47df" name="a982b69808f157ccbc4981917a0cf47df"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>last_iteration_json_file_name</b> (self)</td></tr>
+<tr class="separator:a982b69808f157ccbc4981917a0cf47df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1397709275a9e5238632eb3955611655" id="r_a1397709275a9e5238632eb3955611655"><td class="memItemLeft" align="right" valign="top"><a id="a1397709275a9e5238632eb3955611655" name="a1397709275a9e5238632eb3955611655"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>json_sensitivity_out_path</b> (self)</td></tr>
+<tr class="separator:a1397709275a9e5238632eb3955611655"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f7740b1ed71a3d660283ad66c69c76d" id="r_a0f7740b1ed71a3d660283ad66c69c76d"><td class="memItemLeft" align="right" valign="top"><a id="a0f7740b1ed71a3d660283ad66c69c76d" name="a0f7740b1ed71a3d660283ad66c69c76d"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>structure_file_path</b> (self)</td></tr>
+<tr class="separator:a0f7740b1ed71a3d660283ad66c69c76d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78c5c5ef242695e6726ac45ee63bb391" id="r_a78c5c5ef242695e6726ac45ee63bb391"><td class="memItemLeft" align="right" valign="top"><a id="a78c5c5ef242695e6726ac45ee63bb391" name="a78c5c5ef242695e6726ac45ee63bb391"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>last_master_file_path</b> (self)</td></tr>
+<tr class="separator:a78c5c5ef242695e6726ac45ee63bb391"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe387b4ad87c5bf995db526963c8e3ec" id="r_abe387b4ad87c5bf995db526963c8e3ec"><td class="memItemLeft" align="right" valign="top"><a id="abe387b4ad87c5bf995db526963c8e3ec" name="abe387b4ad87c5bf995db526963c8e3ec"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>last_master_basis_path</b> (self)</td></tr>
+<tr class="separator:abe387b4ad87c5bf995db526963c8e3ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e64c1bfd7139c58b8cc9753aef7fb9c" id="r_a5e64c1bfd7139c58b8cc9753aef7fb9c"><td class="memItemLeft" align="right" valign="top"><a id="a5e64c1bfd7139c58b8cc9753aef7fb9c" name="a5e64c1bfd7139c58b8cc9753aef7fb9c"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>oversubscribe</b> (self)</td></tr>
+<tr class="separator:a5e64c1bfd7139c58b8cc9753aef7fb9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a675f7ad43daea70155d5d90f4afc9ec7" id="r_a675f7ad43daea70155d5d90f4afc9ec7"><td class="memItemLeft" align="right" valign="top"><a id="a675f7ad43daea70155d5d90f4afc9ec7" name="a675f7ad43daea70155d5d90f4afc9ec7"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>allow_run_as_root</b> (self)</td></tr>
+<tr class="separator:a675f7ad43daea70155d5d90f4afc9ec7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6f15d9db936e56e58b9fb980a2ccd62" id="r_aa6f15d9db936e56e58b9fb980a2ccd62"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa6f15d9db936e56e58b9fb980a2ccd62">timelimit</a> (self)</td></tr>
+<tr class="separator:aa6f15d9db936e56e58b9fb980a2ccd62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18ac312fdfc2181c7ad8dad85ba359d7" id="r_a18ac312fdfc2181c7ad8dad85ba359d7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a18ac312fdfc2181c7ad8dad85ba359d7">log_level</a> (self)</td></tr>
+<tr class="separator:a18ac312fdfc2181c7ad8dad85ba359d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1534ce7cfc28747fe63f853132754b14" id="r_a1534ce7cfc28747fe63f853132754b14"><td class="memItemLeft" align="right" valign="top"><a id="a1534ce7cfc28747fe63f853132754b14" name="a1534ce7cfc28747fe63f853132754b14"></a>
+Path&#160;</td><td class="memItemRight" valign="bottom"><b>sensitivity_log_file</b> (self)</td></tr>
+<tr class="separator:a1534ce7cfc28747fe63f853132754b14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24ac0f889584db9649d38969208c903d" id="r_a24ac0f889584db9649d38969208c903d"><td class="memItemLeft" align="right" valign="top"><a id="a24ac0f889584db9649d38969208c903d" name="a24ac0f889584db9649d38969208c903d"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>check_NTC_column_constraints</b> (self, antares_version)</td></tr>
+<tr class="separator:a24ac0f889584db9649d38969208c903d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cfbdcebe2ed4468e1d8ee7c987f38fe" id="r_a6cfbdcebe2ed4468e1d8ee7c987f38fe"><td class="memItemLeft" align="right" valign="top"><a id="a6cfbdcebe2ed4468e1d8ee7c987f38fe" name="a6cfbdcebe2ed4468e1d8ee7c987f38fe"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>mpi_exe</b> (self)</td></tr>
+<tr class="separator:a6cfbdcebe2ed4468e1d8ee7c987f38fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13ca690cbb57347c91e4dc302dad33ca" id="r_a13ca690cbb57347c91e4dc302dad33ca"><td class="memItemLeft" align="right" valign="top"><a id="a13ca690cbb57347c91e4dc302dad33ca" name="a13ca690cbb57347c91e4dc302dad33ca"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>outer_loop_options_path</b> (self)</td></tr>
+<tr class="separator:a13ca690cbb57347c91e4dc302dad33ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af393385885cd9cc5f80a53e900d350f5" id="r_af393385885cd9cc5f80a53e900d350f5"><td class="memItemLeft" align="right" valign="top"><a id="af393385885cd9cc5f80a53e900d350f5" name="af393385885cd9cc5f80a53e900d350f5"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>outer_loop_dir</b> (self)</td></tr>
+<tr class="separator:af393385885cd9cc5f80a53e900d350f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a79e36628190f70a5f2f148b5a0034add" id="r_a79e36628190f70a5f2f148b5a0034add"><td class="memItemLeft" align="right" valign="top"><a id="a79e36628190f70a5f2f148b5a0034add" name="a79e36628190f70a5f2f148b5a0034add"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>platform</b> = sys.platform</td></tr>
+<tr class="separator:a79e36628190f70a5f2f148b5a0034add"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4818287d7e95676a241653aaadcbb876" id="r_a4818287d7e95676a241653aaadcbb876"><td class="memItemLeft" align="right" valign="top"><a id="a4818287d7e95676a241653aaadcbb876" name="a4818287d7e95676a241653aaadcbb876"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>logger</b> = step_logger(__name__, __class__.__name__)</td></tr>
+<tr class="separator:a4818287d7e95676a241653aaadcbb876"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73792c5cb5b3dcb579ad7510ff4a00d4" id="r_a73792c5cb5b3dcb579ad7510ff4a00d4"><td class="memItemLeft" align="right" valign="top"><a id="a73792c5cb5b3dcb579ad7510ff4a00d4" name="a73792c5cb5b3dcb579ad7510ff4a00d4"></a>
+list&#160;</td><td class="memItemRight" valign="bottom"><b>candidates_list</b> = []</td></tr>
+<tr class="separator:a73792c5cb5b3dcb579ad7510ff4a00d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbd7b50be18dde5abbef836a9e4eda32" id="r_abbd7b50be18dde5abbef836a9e4eda32"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abbd7b50be18dde5abbef836a9e4eda32">active_years</a></td></tr>
+<tr class="separator:abbd7b50be18dde5abbef836a9e4eda32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17d48ed63de1dc22b51cec7bc6c162e1" id="r_a17d48ed63de1dc22b51cec7bc6c162e1"><td class="memItemLeft" align="right" valign="top"><a id="a17d48ed63de1dc22b51cec7bc6c162e1" name="a17d48ed63de1dc22b51cec7bc6c162e1"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>options</b> = self._get_options_from_settings_inifile()</td></tr>
+<tr class="separator:a17d48ed63de1dc22b51cec7bc6c162e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91ee8f8231a2eb52ec803511e07941b3" id="r_a91ee8f8231a2eb52ec803511e07941b3"><td class="memItemLeft" align="right" valign="top"><a id="a91ee8f8231a2eb52ec803511e07941b3" name="a91ee8f8231a2eb52ec803511e07941b3"></a>
+str&#160;</td><td class="memItemRight" valign="bottom"><b>options</b> = &quot;relaxed&quot;</td></tr>
+<tr class="separator:a91ee8f8231a2eb52ec803511e07941b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a54c36604cdea76cfce0d495f3fc4abf9" id="r_a54c36604cdea76cfce0d495f3fc4abf9"><td class="memItemLeft" align="right" valign="top"><a id="a54c36604cdea76cfce0d495f3fc4abf9" name="a54c36604cdea76cfce0d495f3fc4abf9"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>_set_simulation_name</b> (self)</td></tr>
+<tr class="separator:a54c36604cdea76cfce0d495f3fc4abf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8249176fa47099165eb9ace7e4b601c9" id="r_a8249176fa47099165eb9ace7e4b601c9"><td class="memItemLeft" align="right" valign="top"><a id="a8249176fa47099165eb9ace7e4b601c9" name="a8249176fa47099165eb9ace7e4b601c9"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>_restore_launcher_options</b> (self)</td></tr>
+<tr class="separator:a8249176fa47099165eb9ace7e4b601c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af548b810cbfb9af3e991d974a2258b2d" id="r_af548b810cbfb9af3e991d974a2258b2d"><td class="memItemLeft" align="right" valign="top"><a id="af548b810cbfb9af3e991d974a2258b2d" name="af548b810cbfb9af3e991d974a2258b2d"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>_verify_settings_ini_file_exists</b> (self)</td></tr>
+<tr class="separator:af548b810cbfb9af3e991d974a2258b2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2569182816efa8a9136167fcd09ef30a" id="r_a2569182816efa8a9136167fcd09ef30a"><td class="memItemLeft" align="right" valign="top"><a id="a2569182816efa8a9136167fcd09ef30a" name="a2569182816efa8a9136167fcd09ef30a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>_get_options_from_settings_inifile</b> (self)</td></tr>
+<tr class="separator:a2569182816efa8a9136167fcd09ef30a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6df09ad232598a2e9bb9b017b81ee12" id="r_af6df09ad232598a2e9bb9b017b81ee12"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af6df09ad232598a2e9bb9b017b81ee12">_get_settings_ini_filepath</a> (self)</td></tr>
+<tr class="separator:af6df09ad232598a2e9bb9b017b81ee12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5af88def0f232910e671f1c7b81251af" id="r_a5af88def0f232910e671f1c7b81251af"><td class="memItemLeft" align="right" valign="top"><a id="a5af88def0f232910e671f1c7b81251af" name="a5af88def0f232910e671f1c7b81251af"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>_get_path_from_file_in_xpansion_dir</b> (self, filename)</td></tr>
+<tr class="separator:a5af88def0f232910e671f1c7b81251af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af54987836d16db65e307e467505e8022" id="r_af54987836d16db65e307e467505e8022"><td class="memItemLeft" align="right" valign="top"><a id="af54987836d16db65e307e467505e8022" name="af54987836d16db65e307e467505e8022"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>_get_weight_file_path_in_weights_dir</b> (self, filename)</td></tr>
+<tr class="separator:af54987836d16db65e307e467505e8022"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0076acaeb4652e15ecf14ac48bc5c652" id="r_a0076acaeb4652e15ecf14ac48bc5c652"><td class="memItemLeft" align="right" valign="top"><a id="a0076acaeb4652e15ecf14ac48bc5c652" name="a0076acaeb4652e15ecf14ac48bc5c652"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>_get_constraints_file_path_in_constraints_dir</b> (self, filename)</td></tr>
+<tr class="separator:a0076acaeb4652e15ecf14ac48bc5c652"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d2abbb931c3fe1c730defbe99f14750" id="r_a9d2abbb931c3fe1c730defbe99f14750"><td class="memItemLeft" align="right" valign="top"><a id="a9d2abbb931c3fe1c730defbe99f14750" name="a9d2abbb931c3fe1c730defbe99f14750"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>_simulation_lp_path</b> (self)</td></tr>
+<tr class="separator:a9d2abbb931c3fe1c730defbe99f14750"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad85418b3ddd134bc659d2817a5348eba" id="r_ad85418b3ddd134bc659d2817a5348eba"><td class="memItemLeft" align="right" valign="top"><a id="ad85418b3ddd134bc659d2817a5348eba" name="ad85418b3ddd134bc659d2817a5348eba"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>_verify_additional_constraints_file</b> (self)</td></tr>
+<tr class="separator:ad85418b3ddd134bc659d2817a5348eba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a777cbffd03aba75d7311e26bfa9260" id="r_a6a777cbffd03aba75d7311e26bfa9260"><td class="memItemLeft" align="right" valign="top"><a id="a6a777cbffd03aba75d7311e26bfa9260" name="a6a777cbffd03aba75d7311e26bfa9260"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>_verify_solver</b> (self)</td></tr>
+<tr class="separator:a6a777cbffd03aba75d7311e26bfa9260"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4df9df5a0dd5194f2f8f2ff44af9bff7" id="r_a4df9df5a0dd5194f2f8f2ff44af9bff7"><td class="memItemLeft" align="right" valign="top"><a id="a4df9df5a0dd5194f2f8f2ff44af9bff7" name="a4df9df5a0dd5194f2f8f2ff44af9bff7"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>_create_sensitivity_dir</b> (self)</td></tr>
+<tr class="separator:a4df9df5a0dd5194f2f8f2ff44af9bff7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a521b2f91beeaac1f1b0a9a75889e253a" id="r_a521b2f91beeaac1f1b0a9a75889e253a"><td class="memItemLeft" align="right" valign="top"><a id="a521b2f91beeaac1f1b0a9a75889e253a" name="a521b2f91beeaac1f1b0a9a75889e253a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>_sensitivity_dir</b> (self)</td></tr>
+<tr class="separator:a521b2f91beeaac1f1b0a9a75889e253a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81feb79c377246560b940beb57f80924" id="r_a81feb79c377246560b940beb57f80924"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a81feb79c377246560b940beb57f80924">_set_options_for_benders_solver</a> (self)</td></tr>
+<tr class="separator:a81feb79c377246560b940beb57f80924"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fa29f1cdbb872c4cc1e15df7fd49b63" id="r_a0fa29f1cdbb872c4cc1e15df7fd49b63"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0fa29f1cdbb872c4cc1e15df7fd49b63">_set_last_simulation_name</a> (self)</td></tr>
+<tr class="separator:a0fa29f1cdbb872c4cc1e15df7fd49b63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a210d208231be7f5294350b11d7d4300e" id="r_a210d208231be7f5294350b11d7d4300e"><td class="memItemLeft" align="right" valign="top"><a id="a210d208231be7f5294350b11d7d4300e" name="a210d208231be7f5294350b11d7d4300e"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>_set_xpansion_simulation_name</b> (self)</td></tr>
+<tr class="separator:a210d208231be7f5294350b11d7d4300e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a4cee012e8f849f4326127b3f1ee89690" id="r_a4cee012e8f849f4326127b3f1ee89690"><td class="memItemLeft" align="right" valign="top"><a id="a4cee012e8f849f4326127b3f1ee89690" name="a4cee012e8f849f4326127b3f1ee89690"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>_config</b> = config</td></tr>
+<tr class="separator:a4cee012e8f849f4326127b3f1ee89690"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a889e2f343a550e8b095129522de0ea55" id="r_a889e2f343a550e8b095129522de0ea55"><td class="memItemLeft" align="right" valign="top"><a id="a889e2f343a550e8b095129522de0ea55" name="a889e2f343a550e8b095129522de0ea55"></a>
+Path&#160;</td><td class="memItemRight" valign="bottom"><b>_last_study</b> = None</td></tr>
+<tr class="separator:a889e2f343a550e8b095129522de0ea55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8eb8cb2844dd99f1f76af678e83079b4" id="r_a8eb8cb2844dd99f1f76af678e83079b4"><td class="memItemLeft" align="right" valign="top"><a id="a8eb8cb2844dd99f1f76af678e83079b4" name="a8eb8cb2844dd99f1f76af678e83079b4"></a>
+str&#160;</td><td class="memItemRight" valign="bottom"><b>_xpansion_simulation_name</b> = self._config.simulation_name</td></tr>
+<tr class="separator:a8eb8cb2844dd99f1f76af678e83079b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a667342513f34d8641b45c7374ec768b4" id="r_a667342513f34d8641b45c7374ec768b4"><td class="memItemLeft" align="right" valign="top"><a id="a667342513f34d8641b45c7374ec768b4" name="a667342513f34d8641b45c7374ec768b4"></a>
+Path&#160;</td><td class="memItemRight" valign="bottom"><b>_xpansion_simulation_name</b></td></tr>
+<tr class="separator:a667342513f34d8641b45c7374ec768b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><pre class="fragment">Class to control the execution of the optimization session
+</pre> </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ae88f5d4c959a824dda5174a3da40627a" name="ae88f5d4c959a824dda5174a3da40627a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae88f5d4c959a824dda5174a3da40627a">&#9670;&#160;</a></span>__init__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.config_loader.ConfigLoader.__init__ </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classantares__xpansion_1_1xpansionConfig_1_1XpansionConfig.html">XpansionConfig</a></td>          <td class="paramname"><span class="paramname"><em>config</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Initialise driver with a given antaresXpansion configuration,
+the system platform and parses the arguments
+:param config: configuration to use for the optimization
+:type config: XpansionConfig object
+</pre> 
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="af6df09ad232598a2e9bb9b017b81ee12" name="af6df09ad232598a2e9bb9b017b81ee12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6df09ad232598a2e9bb9b017b81ee12">&#9670;&#160;</a></span>_get_settings_ini_filepath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.config_loader.ConfigLoader._get_settings_ini_filepath </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">returns path to setting ini file
+</pre> 
+</div>
+</div>
+<a id="a0fa29f1cdbb872c4cc1e15df7fd49b63" name="a0fa29f1cdbb872c4cc1e15df7fd49b63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fa29f1cdbb872c4cc1e15df7fd49b63">&#9670;&#160;</a></span>_set_last_simulation_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.config_loader.ConfigLoader._set_last_simulation_name </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">return last simulation name
+</pre> 
+</div>
+</div>
+<a id="a81feb79c377246560b940beb57f80924" name="a81feb79c377246560b940beb57f80924"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81feb79c377246560b940beb57f80924">&#9670;&#160;</a></span>_set_options_for_benders_solver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.config_loader.ConfigLoader._set_options_for_benders_solver </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">generates a default option file for the solver
+</pre> 
+</div>
+</div>
+<a id="a4144519a671a579b2440aa61a06bf6b1" name="a4144519a671a579b2440aa61a06bf6b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4144519a671a579b2440aa61a06bf6b1">&#9670;&#160;</a></span>additional_constraints()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.config_loader.ConfigLoader.additional_constraints </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">returns path to additional constraints file
+</pre> 
+</div>
+</div>
+<a id="a7ebd0291e5efb3c813ec863c9f31c80d" name="a7ebd0291e5efb3c813ec863c9f31c80d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ebd0291e5efb3c813ec863c9f31c80d">&#9670;&#160;</a></span>antares_output()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.config_loader.ConfigLoader.antares_output </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">returns path to antares output data directory
+</pre> 
+</div>
+</div>
+<a id="a81045f04c238135c94393176ae0916b0" name="a81045f04c238135c94393176ae0916b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81045f04c238135c94393176ae0916b0">&#9670;&#160;</a></span>candidates_ini_filepath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.config_loader.ConfigLoader.candidates_ini_filepath </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">returns path to candidates ini file
+</pre> 
+</div>
+</div>
+<a id="a665fe759a2855d3aec99c8a1071211c1" name="a665fe759a2855d3aec99c8a1071211c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a665fe759a2855d3aec99c8a1071211c1">&#9670;&#160;</a></span>capacity_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.config_loader.ConfigLoader.capacity_file </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>filename</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">returns path to input capacity file
+</pre> 
+</div>
+</div>
+<a id="a4ae7b64e15afffeb42c8f010dbdeaf27" name="a4ae7b64e15afffeb42c8f010dbdeaf27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ae7b64e15afffeb42c8f010dbdeaf27">&#9670;&#160;</a></span>data_dir()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.config_loader.ConfigLoader.data_dir </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">returns path to the data directory
+</pre> 
+</div>
+</div>
+<a id="a497a4f9701fda8abcd718e34f2cd7339" name="a497a4f9701fda8abcd718e34f2cd7339"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a497a4f9701fda8abcd718e34f2cd7339">&#9670;&#160;</a></span>exe_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.config_loader.ConfigLoader.exe_path </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>exe</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">prefixes the input exe with the install directory containing the binaries
+
+:param exe: executable name
+
+:return: path to specified executable
+</pre> 
+</div>
+</div>
+<a id="a2d69cced84114b716a8b06830836f34e" name="a2d69cced84114b716a8b06830836f34e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d69cced84114b716a8b06830836f34e">&#9670;&#160;</a></span>general_data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.config_loader.ConfigLoader.general_data </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">returns path to general data ini file
+</pre> 
+</div>
+</div>
+<a id="abeb8e1cd1a742142f16e5a5d52fa6f34" name="abeb8e1cd1a742142f16e5a5d52fa6f34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abeb8e1cd1a742142f16e5a5d52fa6f34">&#9670;&#160;</a></span>get_absolute_optimality_gap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.config_loader.ConfigLoader.get_absolute_optimality_gap </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">returns the absolute optimality gap read from the settings file
+:return: gap value or 0 if the gap is negative
+</pre> 
+</div>
+</div>
+<a id="a45c01d16794cd89c6ecdba83d5fc47b4" name="a45c01d16794cd89c6ecdba83d5fc47b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45c01d16794cd89c6ecdba83d5fc47b4">&#9670;&#160;</a></span>get_batch_size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.config_loader.ConfigLoader.get_batch_size </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">return the batch_size read from the settings file
+</pre> 
+</div>
+</div>
+<a id="add4228094dc1df7fe515ad389a79c1e6" name="add4228094dc1df7fe515ad389a79c1e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add4228094dc1df7fe515ad389a79c1e6">&#9670;&#160;</a></span>get_master_formulation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.config_loader.ConfigLoader.get_master_formulation </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">return master formulation read from the settings file
+</pre> 
+</div>
+</div>
+<a id="a4036a4536086cb3f2948debf2d138a13" name="a4036a4536086cb3f2948debf2d138a13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4036a4536086cb3f2948debf2d138a13">&#9670;&#160;</a></span>get_max_iterations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.config_loader.ConfigLoader.get_max_iterations </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">prints and returns the maximum iterations read from the settings file
+
+:return: max iterations value or -1 if the parameter is set to +Inf or +infini
+</pre> 
+</div>
+</div>
+<a id="ae0a54777137727e495ed3beca55c11fa" name="ae0a54777137727e495ed3beca55c11fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0a54777137727e495ed3beca55c11fa">&#9670;&#160;</a></span>get_relative_optimality_gap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.config_loader.ConfigLoader.get_relative_optimality_gap </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">returns the relative optimality gap read from the settings file
+:return: gap value or 1e-12 if the value is set to a lower value than 1e-12
+</pre> 
+</div>
+</div>
+<a id="aa4b86977f93268068a0257f971189e60" name="aa4b86977f93268068a0257f971189e60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4b86977f93268068a0257f971189e60">&#9670;&#160;</a></span>get_relaxed_optimality_gap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.config_loader.ConfigLoader.get_relaxed_optimality_gap </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">returns the relaxed optimality gap read from the settings file
+:return: gap value or 1e-12 if the value is set to a lower value than 1e-12
+</pre> 
+</div>
+</div>
+<a id="a7a275727bbd475ee7a1c9256cd0e9178" name="a7a275727bbd475ee7a1c9256cd0e9178"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a275727bbd475ee7a1c9256cd0e9178">&#9670;&#160;</a></span>get_separation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.config_loader.ConfigLoader.get_separation </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">return the separation parameter read from the settings file
+</pre> 
+</div>
+</div>
+<a id="a0c3fa0cf225d9b7bb06864a8aa7f1b45" name="a0c3fa0cf225d9b7bb06864a8aa7f1b45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c3fa0cf225d9b7bb06864a8aa7f1b45">&#9670;&#160;</a></span>is_accurate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.config_loader.ConfigLoader.is_accurate </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">indicates if method to use is accurate by reading the uc_type in the settings file
+</pre> 
+</div>
+</div>
+<a id="a4b43dd57f999df86ffacede36f47e197" name="a4b43dd57f999df86ffacede36f47e197"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b43dd57f999df86ffacede36f47e197">&#9670;&#160;</a></span>is_relaxed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.config_loader.ConfigLoader.is_relaxed </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">indicates if method to use is relaxed by reading the relaxation_type
+from the settings file
+</pre> 
+</div>
+</div>
+<a id="a267de5478c27b566118f8dfefa000f06" name="a267de5478c27b566118f8dfefa000f06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a267de5478c27b566118f8dfefa000f06">&#9670;&#160;</a></span>json_sensitivity_in_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.config_loader.ConfigLoader.json_sensitivity_in_path </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">returns path to sensitivity input file
+</pre> 
+</div>
+</div>
+<a id="a18ac312fdfc2181c7ad8dad85ba359d7" name="a18ac312fdfc2181c7ad8dad85ba359d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18ac312fdfc2181c7ad8dad85ba359d7">&#9670;&#160;</a></span>log_level()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.config_loader.ConfigLoader.log_level </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">returns the log_level read from the settings file
+:return: log_level value
+</pre> 
+</div>
+</div>
+<a id="aa6f15d9db936e56e58b9fb980a2ccd62" name="aa6f15d9db936e56e58b9fb980a2ccd62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6f15d9db936e56e58b9fb980a2ccd62">&#9670;&#160;</a></span>timelimit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.config_loader.ConfigLoader.timelimit </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">returns the timelimit read from the settings file
+:return: timelimit value or 0 if the gap is negative
+</pre> 
+</div>
+</div>
+<a id="acaa771a745e0c4328f7852bdd10dae2d" name="acaa771a745e0c4328f7852bdd10dae2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acaa771a745e0c4328f7852bdd10dae2d">&#9670;&#160;</a></span>weights_file_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.config_loader.ConfigLoader.weights_file_path </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">returns the path to a yearly-weights file
+
+:return: path to input yearly-weights file
+</pre> 
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="abbd7b50be18dde5abbef836a9e4eda32" name="abbd7b50be18dde5abbef836a9e4eda32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbd7b50be18dde5abbef836a9e4eda32">&#9670;&#160;</a></span>active_years</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.config_loader.ConfigLoader.active_years</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=  <a class="code hl_class" href="classGeneralDataIniReader.html">GeneralDataIniReader</a>(</div>
+<div class="line">            Path(self.general_data())</div>
+<div class="line">        ).get_active_years()</div>
+<div class="ttc" id="aclassGeneralDataIniReader_html"><div class="ttname"><a href="classGeneralDataIniReader.html">GeneralDataIniReader</a></div><div class="ttdef"><b>Definition</b> GeneralDataReader.h:17</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>src/python/antares_xpansion/<b>config_loader.py</b></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespaceantares__xpansion.html">antares_xpansion</a></li><li class="navelem"><a class="el" href="namespaceantares__xpansion_1_1config__loader.html">config_loader</a></li><li class="navelem"><a class="el" href="classantares__xpansion_1_1config__loader_1_1ConfigLoader.html">ConfigLoader</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+</body>
+</html>

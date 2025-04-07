@@ -1,0 +1,583 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Antares Xpansion" />
+<meta property="og:image" content="https://github.com/AntaresSimulatorTeam/antares-xpansion/blob/develop/docs/assets/logo.png" />
+<meta property="og:description" content="Investment simulations for Antares studies." />
+<meta property="og:url" content="https://github.com/AntaresSimulatorTeam/antares-xpansion/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://github.com/AntaresSimulatorTeam/antares-xpansion/blob/develop/docs/assets/logo.png" />
+<meta name="twitter:title" content="Antares Xpansion" />
+<meta name="twitter:description" content="Investment simulations for Antares studies." />
+<!-- END twitter metadata -->
+<title>Antares Xpansion: antares_xpansion.input_checker Namespace Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://github.com/AntaresSimulatorTeam/antares-xpansion/ -->
+<a href="https://github.com/AntaresSimulatorTeam/antares-xpansion" class="github-corner" title="View source on GitHub" target="_blank">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Antares Xpansion
+   </div>
+   <div id="projectbrief">Investment simulations for Antares studies</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('namespaceantares__xpansion_1_1input__checker.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle"><div class="title">antares_xpansion.input_checker Namespace Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classantares__xpansion_1_1input__checker_1_1BatchSizeValueError.html">BatchSizeValueError</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classantares__xpansion_1_1input__checker_1_1CandidateFileWrongTypeValue.html">CandidateFileWrongTypeValue</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classantares__xpansion_1_1input__checker_1_1CandidateLinkWithoutSeparator.html">CandidateLinkWithoutSeparator</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classantares__xpansion_1_1input__checker_1_1CandidateNameDuplicatedError.html">CandidateNameDuplicatedError</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classantares__xpansion_1_1input__checker_1_1EmptyCandidateLink.html">EmptyCandidateLink</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classantares__xpansion_1_1input__checker_1_1EmptyCandidateName.html">EmptyCandidateName</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classantares__xpansion_1_1input__checker_1_1ExpertLogsValueError.html">ExpertLogsValueError</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classantares__xpansion_1_1input__checker_1_1GapValueError.html">GapValueError</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classantares__xpansion_1_1input__checker_1_1IllegalCharsInCandidateName.html">IllegalCharsInCandidateName</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classantares__xpansion_1_1input__checker_1_1LogLevelValueError.html">LogLevelValueError</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classantares__xpansion_1_1input__checker_1_1MaxIterValueError.html">MaxIterValueError</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classantares__xpansion_1_1input__checker_1_1MaxUnitsAndMaxInvestmentAreNullSimultaneously.html">MaxUnitsAndMaxInvestmentAreNullSimultaneously</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classantares__xpansion_1_1input__checker_1_1MaxUnitsAndMaxInvestmentNonNullSimultaneously.html">MaxUnitsAndMaxInvestmentNonNullSimultaneously</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classantares__xpansion_1_1input__checker_1_1NotHandledOption.html">NotHandledOption</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks related to settings.ini.  <a href="classantares__xpansion_1_1input__checker_1_1NotHandledOption.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classantares__xpansion_1_1input__checker_1_1NotHandledValue.html">NotHandledValue</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classantares__xpansion_1_1input__checker_1_1OptionTypeError.html">OptionTypeError</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classantares__xpansion_1_1input__checker_1_1ProfileFileNegativeValue.html">ProfileFileNegativeValue</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classantares__xpansion_1_1input__checker_1_1ProfileFileNotExists.html">ProfileFileNotExists</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classantares__xpansion_1_1input__checker_1_1ProfileFileValueError.html">ProfileFileValueError</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classantares__xpansion_1_1input__checker_1_1ProfileFileWrongNumberOfcolumns.html">ProfileFileWrongNumberOfcolumns</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classantares__xpansion_1_1input__checker_1_1ProfileFileWrongNumberOfLines.html">ProfileFileWrongNumberOfLines</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classantares__xpansion_1_1input__checker_1_1SeparationParameterValueError.html">SeparationParameterValueError</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classantares__xpansion_1_1input__checker_1_1TimelimitValueError.html">TimelimitValueError</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classantares__xpansion_1_1input__checker_1_1UnrecognizedCandidateOptionType.html">UnrecognizedCandidateOptionType</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks related to candidates.ini.  <a href="classantares__xpansion_1_1input__checker_1_1UnrecognizedCandidateOptionType.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:accd7c0c39557025134dc795bff854181" id="r_accd7c0c39557025134dc795bff854181"><td class="memItemLeft" align="right" valign="top"><a id="accd7c0c39557025134dc795bff854181" name="accd7c0c39557025134dc795bff854181"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>_check_profile_file_consistency</b> (filename_path)</td></tr>
+<tr class="separator:accd7c0c39557025134dc795bff854181"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f3d06c7c9c333e6348dad1926429372" id="r_a1f3d06c7c9c333e6348dad1926429372"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1f3d06c7c9c333e6348dad1926429372">_check_profile_file</a> (filename_path)</td></tr>
+<tr class="separator:a1f3d06c7c9c333e6348dad1926429372"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb88ac7230d67b32f83d000ad04e866a" id="r_abb88ac7230d67b32f83d000ad04e866a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abb88ac7230d67b32f83d000ad04e866a">_check_candidate_option_type</a> (option, value)</td></tr>
+<tr class="separator:abb88ac7230d67b32f83d000ad04e866a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45a9d07446dee99f5444c5501a8bf103" id="r_a45a9d07446dee99f5444c5501a8bf103"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a45a9d07446dee99f5444c5501a8bf103">_check_candidate_name</a> (name, section)</td></tr>
+<tr class="separator:a45a9d07446dee99f5444c5501a8bf103"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acebc9f9fb9fb5b744e0e0985ce0946ea" id="r_acebc9f9fb9fb5b744e0e0985ce0946ea"><td class="memItemLeft" align="right" valign="top"><a id="acebc9f9fb9fb5b744e0e0985ce0946ea" name="acebc9f9fb9fb5b744e0e0985ce0946ea"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>_verify_name_has_no_invalid_character</b> (name, section)</td></tr>
+<tr class="separator:acebc9f9fb9fb5b744e0e0985ce0946ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bf6f4744d3d71a4cfa59406ec6ff8f6" id="r_a2bf6f4744d3d71a4cfa59406ec6ff8f6"><td class="memItemLeft" align="right" valign="top"><a id="a2bf6f4744d3d71a4cfa59406ec6ff8f6" name="a2bf6f4744d3d71a4cfa59406ec6ff8f6"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>_verify_name_is_not_empty</b> (name, section)</td></tr>
+<tr class="separator:a2bf6f4744d3d71a4cfa59406ec6ff8f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16ac28238886dd434aa43f348eaf4708" id="r_a16ac28238886dd434aa43f348eaf4708"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a16ac28238886dd434aa43f348eaf4708">_check_candidate_link</a> (link, section)</td></tr>
+<tr class="separator:a16ac28238886dd434aa43f348eaf4708"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afaf1877a819e299deac29704c03d18ab" id="r_afaf1877a819e299deac29704c03d18ab"><td class="memItemLeft" align="right" valign="top"><a id="afaf1877a819e299deac29704c03d18ab" name="afaf1877a819e299deac29704c03d18ab"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>_check_candidate_attributes</b> (ini_file)</td></tr>
+<tr class="separator:afaf1877a819e299deac29704c03d18ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c0d720f30b69303e2281a775aca2bf1" id="r_a4c0d720f30b69303e2281a775aca2bf1"><td class="memItemLeft" align="right" valign="top"><a id="a4c0d720f30b69303e2281a775aca2bf1" name="a4c0d720f30b69303e2281a775aca2bf1"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>_check_name_is_unique</b> (ini_file)</td></tr>
+<tr class="separator:a4c0d720f30b69303e2281a775aca2bf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd4c3d301064d18af1106ddfe532681f" id="r_abd4c3d301064d18af1106ddfe532681f"><td class="memItemLeft" align="right" valign="top"><a id="abd4c3d301064d18af1106ddfe532681f" name="abd4c3d301064d18af1106ddfe532681f"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>_check_candidate_name_and_link</b> (ini_file)</td></tr>
+<tr class="separator:abd4c3d301064d18af1106ddfe532681f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a539c6cdd4adf33102c7666a9808f9eff" id="r_a539c6cdd4adf33102c7666a9808f9eff"><td class="memItemLeft" align="right" valign="top"><a id="a539c6cdd4adf33102c7666a9808f9eff" name="a539c6cdd4adf33102c7666a9808f9eff"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>_check_candidate_exclusive_attributes</b> (ini_file)</td></tr>
+<tr class="separator:a539c6cdd4adf33102c7666a9808f9eff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9449c2910a16381f1276455239e35dba" id="r_a9449c2910a16381f1276455239e35dba"><td class="memItemLeft" align="right" valign="top"><a id="a9449c2910a16381f1276455239e35dba" name="a9449c2910a16381f1276455239e35dba"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>_copy_in_backup</b> (ini_file, candidates_ini_filepath)</td></tr>
+<tr class="separator:a9449c2910a16381f1276455239e35dba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabf072c35aa7bfa46c0c8cfafa14cd17" id="r_aabf072c35aa7bfa46c0c8cfafa14cd17"><td class="memItemLeft" align="right" valign="top"><a id="aabf072c35aa7bfa46c0c8cfafa14cd17" name="aabf072c35aa7bfa46c0c8cfafa14cd17"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>_check_attribute_profile_values</b> (ini_file, capacity_dir_path)</td></tr>
+<tr class="separator:aabf072c35aa7bfa46c0c8cfafa14cd17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d1b27d8be90c98e9be9d8d7dc23c779" id="r_a4d1b27d8be90c98e9be9d8d7dc23c779"><td class="memItemLeft" align="right" valign="top"><a id="a4d1b27d8be90c98e9be9d8d7dc23c779" name="a4d1b27d8be90c98e9be9d8d7dc23c779"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>_check_attributes_profile</b> (ini_file, candidates_ini_filepath, capacity_dir_path)</td></tr>
+<tr class="separator:a4d1b27d8be90c98e9be9d8d7dc23c779"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96662b8897b707994cd4fb42f793e2eb" id="r_a96662b8897b707994cd4fb42f793e2eb"><td class="memItemLeft" align="right" valign="top"><a id="a96662b8897b707994cd4fb42f793e2eb" name="a96662b8897b707994cd4fb42f793e2eb"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>check_candidates_file</b> (candidates_ini_filepath, capacity_dir_path)</td></tr>
+<tr class="separator:a96662b8897b707994cd4fb42f793e2eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02b21a7c4f0ac900f285dc05ac0751f4" id="r_a02b21a7c4f0ac900f285dc05ac0751f4"><td class="memItemLeft" align="right" valign="top"><a id="a02b21a7c4f0ac900f285dc05ac0751f4" name="a02b21a7c4f0ac900f285dc05ac0751f4"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>is_bool</b> (str my_str)</td></tr>
+<tr class="separator:a02b21a7c4f0ac900f285dc05ac0751f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99b546c1befa0e0b5961fcac0f2c3cbf" id="r_a99b546c1befa0e0b5961fcac0f2c3cbf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a99b546c1befa0e0b5961fcac0f2c3cbf">_check_setting_option_type</a> (option, value)</td></tr>
+<tr class="separator:a99b546c1befa0e0b5961fcac0f2c3cbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6384647641c8b6636e1e0b97286ff37f" id="r_a6384647641c8b6636e1e0b97286ff37f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6384647641c8b6636e1e0b97286ff37f">check_options</a> (options)</td></tr>
+<tr class="separator:a6384647641c8b6636e1e0b97286ff37f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ac71f1bf601b58a0fbcff9c78c41fae" id="r_a9ac71f1bf601b58a0fbcff9c78c41fae"><td class="memItemLeft" align="right" valign="top"><a id="a9ac71f1bf601b58a0fbcff9c78c41fae" name="a9ac71f1bf601b58a0fbcff9c78c41fae"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>_check_max_iteration</b> (value)</td></tr>
+<tr class="separator:a9ac71f1bf601b58a0fbcff9c78c41fae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ac8a6bb057fa8e67037ca32cd2e3bef" id="r_a0ac8a6bb057fa8e67037ca32cd2e3bef"><td class="memItemLeft" align="right" valign="top"><a id="a0ac8a6bb057fa8e67037ca32cd2e3bef" name="a0ac8a6bb057fa8e67037ca32cd2e3bef"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>_check_timelimit</b> (value)</td></tr>
+<tr class="separator:a0ac8a6bb057fa8e67037ca32cd2e3bef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4bc7579ef54c51e22197a06a972a50f" id="r_ab4bc7579ef54c51e22197a06a972a50f"><td class="memItemLeft" align="right" valign="top"><a id="ab4bc7579ef54c51e22197a06a972a50f" name="ab4bc7579ef54c51e22197a06a972a50f"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>_check_log_level</b> (value)</td></tr>
+<tr class="separator:ab4bc7579ef54c51e22197a06a972a50f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a306008a6afa028bfb2cc9fe46fb83603" id="r_a306008a6afa028bfb2cc9fe46fb83603"><td class="memItemLeft" align="right" valign="top"><a id="a306008a6afa028bfb2cc9fe46fb83603" name="a306008a6afa028bfb2cc9fe46fb83603"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>_check_batch_size</b> (value)</td></tr>
+<tr class="separator:a306008a6afa028bfb2cc9fe46fb83603"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61463fd4b5064d8e4e14615871ca0c0e" id="r_a61463fd4b5064d8e4e14615871ca0c0e"><td class="memItemLeft" align="right" valign="top"><a id="a61463fd4b5064d8e4e14615871ca0c0e" name="a61463fd4b5064d8e4e14615871ca0c0e"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>_check_separation</b> (value)</td></tr>
+<tr class="separator:a61463fd4b5064d8e4e14615871ca0c0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8d45eb83f785a4a1975282c99798592" id="r_af8d45eb83f785a4a1975282c99798592"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8d45eb83f785a4a1975282c99798592">_check_setting_option_value</a> (option, value)</td></tr>
+<tr class="separator:af8d45eb83f785a4a1975282c99798592"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a6b4d3567f065917fd45b0018f2ae2c74" id="r_a6b4d3567f065917fd45b0018f2ae2c74"><td class="memItemLeft" align="right" valign="top"><a id="a6b4d3567f065917fd45b0018f2ae2c74" name="a6b4d3567f065917fd45b0018f2ae2c74"></a>
+list&#160;</td><td class="memItemRight" valign="bottom"><b>INFINITY_LIST</b> = [&quot;+Inf&quot;, &quot;+infini&quot;]</td></tr>
+<tr class="separator:a6b4d3567f065917fd45b0018f2ae2c74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0012f717a3cef3d19b92b26af2e3c05b" id="r_a0012f717a3cef3d19b92b26af2e3c05b"><td class="memItemLeft" align="right" valign="top"><a id="a0012f717a3cef3d19b92b26af2e3c05b" name="a0012f717a3cef3d19b92b26af2e3c05b"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>logger</b> = step_logger(__name__, &quot;input checks&quot;)</td></tr>
+<tr class="separator:a0012f717a3cef3d19b92b26af2e3c05b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae934b86727c46e7ad45f26ebde8f692d" id="r_ae934b86727c46e7ad45f26ebde8f692d"><td class="memItemLeft" align="right" valign="top">dict&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae934b86727c46e7ad45f26ebde8f692d">candidate_options_type</a></td></tr>
+<tr class="separator:ae934b86727c46e7ad45f26ebde8f692d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa74817edb6b7eec2e1de02ec2a01ffab" id="r_aa74817edb6b7eec2e1de02ec2a01ffab"><td class="memItemLeft" align="right" valign="top"><a id="aa74817edb6b7eec2e1de02ec2a01ffab" name="aa74817edb6b7eec2e1de02ec2a01ffab"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>type_str</b> = str</td></tr>
+<tr class="separator:aa74817edb6b7eec2e1de02ec2a01ffab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b11f7d3d885a277276f04752863afec" id="r_a5b11f7d3d885a277276f04752863afec"><td class="memItemLeft" align="right" valign="top"><a id="a5b11f7d3d885a277276f04752863afec" name="a5b11f7d3d885a277276f04752863afec"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>type_int</b> = int</td></tr>
+<tr class="separator:a5b11f7d3d885a277276f04752863afec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16cda4913b288a7ed2940ede7fb903ff" id="r_a16cda4913b288a7ed2940ede7fb903ff"><td class="memItemLeft" align="right" valign="top"><a id="a16cda4913b288a7ed2940ede7fb903ff" name="a16cda4913b288a7ed2940ede7fb903ff"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>type_float</b> = float</td></tr>
+<tr class="separator:a16cda4913b288a7ed2940ede7fb903ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0796d13b07b1820120591a01aa0e518" id="r_ab0796d13b07b1820120591a01aa0e518"><td class="memItemLeft" align="right" valign="top"><a id="ab0796d13b07b1820120591a01aa0e518" name="ab0796d13b07b1820120591a01aa0e518"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>type_bool</b> = bool</td></tr>
+<tr class="separator:ab0796d13b07b1820120591a01aa0e518"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c368716432d2e28265f21759faab73e" id="r_a4c368716432d2e28265f21759faab73e"><td class="memItemLeft" align="right" valign="top">dict&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4c368716432d2e28265f21759faab73e">options_types_and_legal_values</a></td></tr>
+<tr class="separator:a4c368716432d2e28265f21759faab73e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><pre class="fragment">    module to perform checks on antares xpansion input data
+</pre> </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a16ac28238886dd434aa43f348eaf4708" name="a16ac28238886dd434aa43f348eaf4708"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16ac28238886dd434aa43f348eaf4708">&#9670;&#160;</a></span>_check_candidate_link()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.input_checker._check_candidate_link </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>link</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>section</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">checks that the candidate's link is not empty
+</pre> 
+</div>
+</div>
+<a id="a45a9d07446dee99f5444c5501a8bf103" name="a45a9d07446dee99f5444c5501a8bf103"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45a9d07446dee99f5444c5501a8bf103">&#9670;&#160;</a></span>_check_candidate_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.input_checker._check_candidate_name </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>section</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">checks that the candidate's name is not empty and does not contain a space
+</pre> 
+</div>
+</div>
+<a id="abb88ac7230d67b32f83d000ad04e866a" name="abb88ac7230d67b32f83d000ad04e866a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb88ac7230d67b32f83d000ad04e866a">&#9670;&#160;</a></span>_check_candidate_option_type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.input_checker._check_candidate_option_type </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>option</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">verifies if a given option value has the correct type corresponding allowed for this option
+
+:param option: the treated option
+:param value: the value assigned to the option
+
+:return: True if the value has an appropriate type, False or exist otherwise
+</pre> 
+</div>
+</div>
+<a id="a1f3d06c7c9c333e6348dad1926429372" name="a1f3d06c7c9c333e6348dad1926429372"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f3d06c7c9c333e6348dad1926429372">&#9670;&#160;</a></span>_check_profile_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.input_checker._check_profile_file </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>filename_path</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">verifies if a given profile file is valid and indicates if it is a null profile or not
+
+:param filename_path: path to the profile file to check
+
+:return: returns False if the profile is null
+</pre> 
+</div>
+</div>
+<a id="a99b546c1befa0e0b5961fcac0f2c3cbf" name="a99b546c1befa0e0b5961fcac0f2c3cbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99b546c1befa0e0b5961fcac0f2c3cbf">&#9670;&#160;</a></span>_check_setting_option_type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.input_checker._check_setting_option_type </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>option</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">checks that a given option value has the correct type
+
+:param option: name of the option to verify from settings file
+:param value: value of the option to verify
+
+:return: True if the option has the correct type,
+         False or exits if the value has the wrong type
+</pre> 
+</div>
+</div>
+<a id="af8d45eb83f785a4a1975282c99798592" name="af8d45eb83f785a4a1975282c99798592"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8d45eb83f785a4a1975282c99798592">&#9670;&#160;</a></span>_check_setting_option_value()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.input_checker._check_setting_option_value </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>option</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">checks that an option has a legal value
+
+:param option: name of the option to verify from settings file
+:param value: value of the option to verify
+
+:return: True if the option has the correct type, exits if the value has the wrong type
+</pre> 
+</div>
+</div>
+<a id="a6384647641c8b6636e1e0b97286ff37f" name="a6384647641c8b6636e1e0b97286ff37f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6384647641c8b6636e1e0b97286ff37f">&#9670;&#160;</a></span>check_options()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.input_checker.check_options </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>options</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">checks that a settings file related to an XpansionDriver has the correct format
+Exits if the candidates files has the wrong format.
+
+:param options: the options obtained from the settings.ini file
+
+:return:
+</pre> 
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="ae934b86727c46e7ad45f26ebde8f692d" name="ae934b86727c46e7ad45f26ebde8f692d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae934b86727c46e7ad45f26ebde8f692d">&#9670;&#160;</a></span>candidate_options_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">dict antares_xpansion.input_checker.candidate_options_type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line"><span class="lineno">    1</span>=  {</div>
+<div class="line"><span class="lineno">    2</span>    <span class="stringliteral">&quot;name&quot;</span>: <span class="stringliteral">&quot;string&quot;</span>,</div>
+<div class="line"><span class="lineno">    3</span>    <span class="stringliteral">&quot;link&quot;</span>: <span class="stringliteral">&quot;string&quot;</span>,</div>
+<div class="line"><span class="lineno">    4</span>    <span class="stringliteral">&quot;annual-cost-per-mw&quot;</span>: <span class="stringliteral">&quot;non-negative&quot;</span>,</div>
+<div class="line"><span class="lineno">    5</span>    <span class="stringliteral">&quot;unit-size&quot;</span>: <span class="stringliteral">&quot;non-negative&quot;</span>,</div>
+<div class="line"><span class="lineno">    6</span>    <span class="stringliteral">&quot;max-units&quot;</span>: <span class="stringliteral">&quot;non-negative&quot;</span>,</div>
+<div class="line"><span class="lineno">    7</span>    <span class="stringliteral">&quot;max-investment&quot;</span>: <span class="stringliteral">&quot;non-negative&quot;</span>,</div>
+<div class="line"><span class="lineno">    8</span>    <span class="stringliteral">&quot;direct-link-profile&quot;</span>: <span class="stringliteral">&quot;string&quot;</span>,</div>
+<div class="line"><span class="lineno">    9</span>    <span class="stringliteral">&quot;indirect-link-profile&quot;</span>: <span class="stringliteral">&quot;string&quot;</span>,</div>
+<div class="line"><span class="lineno">   10</span>    <span class="stringliteral">&quot;already-installed-capacity&quot;</span>: <span class="stringliteral">&quot;non-negative&quot;</span>,</div>
+<div class="line"><span class="lineno">   11</span>    <span class="stringliteral">&quot;already-installed-direct-link-profile&quot;</span>: <span class="stringliteral">&quot;string&quot;</span>,</div>
+<div class="line"><span class="lineno">   12</span>    <span class="stringliteral">&quot;already-installed-indirect-link-profile&quot;</span>: <span class="stringliteral">&quot;string&quot;</span>,</div>
+<div class="line"><span class="lineno">   13</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a4c368716432d2e28265f21759faab73e" name="a4c368716432d2e28265f21759faab73e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c368716432d2e28265f21759faab73e">&#9670;&#160;</a></span>options_types_and_legal_values</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">dict antares_xpansion.input_checker.options_types_and_legal_values</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line"><span class="lineno">    1</span>=  {</div>
+<div class="line"><span class="lineno">    2</span>    <span class="stringliteral">&quot;uc_type&quot;</span>: (type_str, [<span class="stringliteral">&quot;expansion_accurate&quot;</span>, <span class="stringliteral">&quot;expansion_fast&quot;</span>]),</div>
+<div class="line"><span class="lineno">    3</span>    <span class="stringliteral">&quot;master&quot;</span>: (type_str, [<span class="stringliteral">&quot;relaxed&quot;</span>, <span class="stringliteral">&quot;integer&quot;</span>]),</div>
+<div class="line"><span class="lineno">    4</span>    <span class="stringliteral">&quot;optimality_gap&quot;</span>: (type_float, <span class="keywordtype">None</span>),</div>
+<div class="line"><span class="lineno">    5</span>    <span class="stringliteral">&quot;relative_gap&quot;</span>: (type_float, <span class="keywordtype">None</span>),</div>
+<div class="line"><span class="lineno">    6</span>    <span class="stringliteral">&quot;relaxed_optimality_gap&quot;</span>: (type_float, <span class="keywordtype">None</span>),</div>
+<div class="line"><span class="lineno">    7</span>    <span class="stringliteral">&quot;max_iteration&quot;</span>: (type_int, <span class="keywordtype">None</span>),</div>
+<div class="line"><span class="lineno">    8</span>    <span class="stringliteral">&quot;solver&quot;</span>: (type_str, <span class="keywordtype">None</span>),</div>
+<div class="line"><span class="lineno">    9</span>    <span class="stringliteral">&quot;timelimit&quot;</span>: (type_int, <span class="keywordtype">None</span>),</div>
+<div class="line"><span class="lineno">   10</span>    <span class="stringliteral">&quot;yearly-weights&quot;</span>: (type_str, <span class="keywordtype">None</span>),</div>
+<div class="line"><span class="lineno">   11</span>    <span class="stringliteral">&quot;additional-constraints&quot;</span>: (type_str, <span class="keywordtype">None</span>),</div>
+<div class="line"><span class="lineno">   12</span>    <span class="stringliteral">&quot;log_level&quot;</span>: (type_int, [<span class="stringliteral">&quot;0&quot;</span>, <span class="stringliteral">&quot;1&quot;</span>, <span class="stringliteral">&quot;2&quot;</span>, <span class="stringliteral">&quot;3&quot;</span>]),</div>
+<div class="line"><span class="lineno">   13</span>    <span class="stringliteral">&quot;separation_parameter&quot;</span>: (type_float, <span class="keywordtype">None</span>),</div>
+<div class="line"><span class="lineno">   14</span>    <span class="stringliteral">&quot;batch_size&quot;</span>: (type_int, <span class="keywordtype">None</span>),</div>
+<div class="line"><span class="lineno">   15</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespaceantares__xpansion.html">antares_xpansion</a></li><li class="navelem"><a class="el" href="namespaceantares__xpansion_1_1input__checker.html">input_checker</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Antares Xpansion" />
+<meta property="og:image" content="https://github.com/AntaresSimulatorTeam/antares-xpansion/blob/develop/docs/assets/logo.png" />
+<meta property="og:description" content="Investment simulations for Antares studies." />
+<meta property="og:url" content="https://github.com/AntaresSimulatorTeam/antares-xpansion/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://github.com/AntaresSimulatorTeam/antares-xpansion/blob/develop/docs/assets/logo.png" />
+<meta name="twitter:title" content="Antares Xpansion" />
+<meta name="twitter:description" content="Investment simulations for Antares studies." />
+<!-- END twitter metadata -->
+<title>Antares Xpansion: SensitivityProblemModifierTest Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://github.com/AntaresSimulatorTeam/antares-xpansion/ -->
+<a href="https://github.com/AntaresSimulatorTeam/antares-xpansion" class="github-corner" title="View source on GitHub" target="_blank">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Antares Xpansion
+   </div>
+   <div id="projectbrief">Investment simulations for Antares studies</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classSensitivityProblemModifierTest.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="classSensitivityProblemModifierTest-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">SensitivityProblemModifierTest Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+Inheritance diagram for SensitivityProblemModifierTest:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classSensitivityProblemModifierTest.png" alt=""/>
+ </div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:aee7b8e6975abcb765f585843f7d8e8f4" id="r_aee7b8e6975abcb765f585843f7d8e8f4"><td class="memItemLeft" align="right" valign="top"><a id="aee7b8e6975abcb765f585843f7d8e8f4" name="aee7b8e6975abcb765f585843f7d8e8f4"></a>
+<a class="el" href="structSolverData.html">SolverData</a>&#160;</td><td class="memItemRight" valign="bottom"><b>lastMasterData</b></td></tr>
+<tr class="separator:aee7b8e6975abcb765f585843f7d8e8f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a5ae972186abd51b07a58ab6ab1e9eb20" id="r_a5ae972186abd51b07a58ab6ab1e9eb20"><td class="memItemLeft" align="right" valign="top"><a id="a5ae972186abd51b07a58ab6ab1e9eb20" name="a5ae972186abd51b07a58ab6ab1e9eb20"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetUp</b> () override</td></tr>
+<tr class="separator:a5ae972186abd51b07a58ab6ab1e9eb20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af48b359f31b2b7b029472f310ff3c08e" id="r_af48b359f31b2b7b029472f310ff3c08e"><td class="memItemLeft" align="right" valign="top"><a id="af48b359f31b2b7b029472f310ff3c08e" name="af48b359f31b2b7b029472f310ff3c08e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>TearDown</b> () override</td></tr>
+<tr class="separator:af48b359f31b2b7b029472f310ff3c08e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06274bc8425f639d3d57152ddbd851e2" id="r_a06274bc8425f639d3d57152ddbd851e2"><td class="memItemLeft" align="right" valign="top"><a id="a06274bc8425f639d3d57152ddbd851e2" name="a06274bc8425f639d3d57152ddbd851e2"></a>
+<a class="el" href="structSolverData.html">SolverData</a>&#160;</td><td class="memItemRight" valign="bottom"><b>init_solver_data_from_solver_model</b> (const <a class="el" href="classSolverAbstract.html#aa8908e36c1d938344751665a8fa63076">SolverAbstract::Ptr</a> &amp;solver_model)</td></tr>
+<tr class="separator:a06274bc8425f639d3d57152ddbd851e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23cc391b6edb85e74871291b3a72f181" id="r_a23cc391b6edb85e74871291b3a72f181"><td class="memItemLeft" align="right" valign="top"><a id="a23cc391b6edb85e74871291b3a72f181" name="a23cc391b6edb85e74871291b3a72f181"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>update_n_cols</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;solver_data)</td></tr>
+<tr class="separator:a23cc391b6edb85e74871291b3a72f181"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab66a353174122e875e42c73be644d522" id="r_ab66a353174122e875e42c73be644d522"><td class="memItemLeft" align="right" valign="top"><a id="ab66a353174122e875e42c73be644d522" name="ab66a353174122e875e42c73be644d522"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>update_n_rows</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;solver_data)</td></tr>
+<tr class="separator:ab66a353174122e875e42c73be644d522"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4d8b7b522faffc9690502eebd66e31e" id="r_aa4d8b7b522faffc9690502eebd66e31e"><td class="memItemLeft" align="right" valign="top"><a id="aa4d8b7b522faffc9690502eebd66e31e" name="aa4d8b7b522faffc9690502eebd66e31e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>update_n_elems</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;solver_data)</td></tr>
+<tr class="separator:aa4d8b7b522faffc9690502eebd66e31e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7e563ac1939ec5c04a03dab6ceb248a" id="r_af7e563ac1939ec5c04a03dab6ceb248a"><td class="memItemLeft" align="right" valign="top"><a id="af7e563ac1939ec5c04a03dab6ceb248a" name="af7e563ac1939ec5c04a03dab6ceb248a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>update_col_names</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;solver_data)</td></tr>
+<tr class="separator:af7e563ac1939ec5c04a03dab6ceb248a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86f2c93ebb12ea8fc7931611a7a7f25a" id="r_a86f2c93ebb12ea8fc7931611a7a7f25a"><td class="memItemLeft" align="right" valign="top"><a id="a86f2c93ebb12ea8fc7931611a7a7f25a" name="a86f2c93ebb12ea8fc7931611a7a7f25a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>update_col_type</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;solver_data)</td></tr>
+<tr class="separator:a86f2c93ebb12ea8fc7931611a7a7f25a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63b6429fa38bf832ec0d791e75dd1cdb" id="r_a63b6429fa38bf832ec0d791e75dd1cdb"><td class="memItemLeft" align="right" valign="top"><a id="a63b6429fa38bf832ec0d791e75dd1cdb" name="a63b6429fa38bf832ec0d791e75dd1cdb"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>update_row_type</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;solver_data)</td></tr>
+<tr class="separator:a63b6429fa38bf832ec0d791e75dd1cdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11106c3233337c90c8f440bedea01214" id="r_a11106c3233337c90c8f440bedea01214"><td class="memItemLeft" align="right" valign="top"><a id="a11106c3233337c90c8f440bedea01214" name="a11106c3233337c90c8f440bedea01214"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>update_objectives</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;solver_data)</td></tr>
+<tr class="separator:a11106c3233337c90c8f440bedea01214"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a132157a2fc4a2f33289158f1d15a4431" id="r_a132157a2fc4a2f33289158f1d15a4431"><td class="memItemLeft" align="right" valign="top"><a id="a132157a2fc4a2f33289158f1d15a4431" name="a132157a2fc4a2f33289158f1d15a4431"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>update_lower_bounds</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;solver_data)</td></tr>
+<tr class="separator:a132157a2fc4a2f33289158f1d15a4431"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d1b2b4382ef59097da4374600403a07" id="r_a0d1b2b4382ef59097da4374600403a07"><td class="memItemLeft" align="right" valign="top"><a id="a0d1b2b4382ef59097da4374600403a07" name="a0d1b2b4382ef59097da4374600403a07"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>update_upper_bounds</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;solver_data)</td></tr>
+<tr class="separator:a0d1b2b4382ef59097da4374600403a07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afba9d06c1300a3d5c0662c325b976904" id="r_afba9d06c1300a3d5c0662c325b976904"><td class="memItemLeft" align="right" valign="top"><a id="afba9d06c1300a3d5c0662c325b976904" name="afba9d06c1300a3d5c0662c325b976904"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>update_mat_val</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;solver_data)</td></tr>
+<tr class="separator:afba9d06c1300a3d5c0662c325b976904"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a862f453b359eb16065588fcb553e78f8" id="r_a862f453b359eb16065588fcb553e78f8"><td class="memItemLeft" align="right" valign="top"><a id="a862f453b359eb16065588fcb553e78f8" name="a862f453b359eb16065588fcb553e78f8"></a>
+std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getRowCoefficients</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;solver_data, int index_row)</td></tr>
+<tr class="separator:a862f453b359eb16065588fcb553e78f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87b32514fc5873b71e37d5a7fd945bfe" id="r_a87b32514fc5873b71e37d5a7fd945bfe"><td class="memItemLeft" align="right" valign="top"><a id="a87b32514fc5873b71e37d5a7fd945bfe" name="a87b32514fc5873b71e37d5a7fd945bfe"></a>
+std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getRowColIndexes</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;solver_data, int index_row)</td></tr>
+<tr class="separator:a87b32514fc5873b71e37d5a7fd945bfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa77d1a2177895ed6d538a1e2c701d60a" id="r_aa77d1a2177895ed6d538a1e2c701d60a"><td class="memItemLeft" align="right" valign="top"><a id="aa77d1a2177895ed6d538a1e2c701d60a" name="aa77d1a2177895ed6d538a1e2c701d60a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>update_rhs_val</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;solver_data)</td></tr>
+<tr class="separator:aa77d1a2177895ed6d538a1e2c701d60a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2268d160afa78c844faff9cf9c14918f" id="r_a2268d160afa78c844faff9cf9c14918f"><td class="memItemLeft" align="right" valign="top"><a id="a2268d160afa78c844faff9cf9c14918f" name="a2268d160afa78c844faff9cf9c14918f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>verify_columns_are</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;solver_data, const int expected_n_cols)</td></tr>
+<tr class="separator:a2268d160afa78c844faff9cf9c14918f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af403214770cf620167af855674f5dda2" id="r_af403214770cf620167af855674f5dda2"><td class="memItemLeft" align="right" valign="top"><a id="af403214770cf620167af855674f5dda2" name="af403214770cf620167af855674f5dda2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>verify_rows_are</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;solver_data, const int expected_n_rows)</td></tr>
+<tr class="separator:af403214770cf620167af855674f5dda2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9df6d2013ba5320a20ef21b2ce3acfa" id="r_ac9df6d2013ba5320a20ef21b2ce3acfa"><td class="memItemLeft" align="right" valign="top"><a id="ac9df6d2013ba5320a20ef21b2ce3acfa" name="ac9df6d2013ba5320a20ef21b2ce3acfa"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>verify_column_name_is</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;solver_data, const int col_id, std::basic_string&lt; char &gt; name)</td></tr>
+<tr class="separator:ac9df6d2013ba5320a20ef21b2ce3acfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a781697a9324ac437060b460fff905d1e" id="r_a781697a9324ac437060b460fff905d1e"><td class="memItemLeft" align="right" valign="top"><a id="a781697a9324ac437060b460fff905d1e" name="a781697a9324ac437060b460fff905d1e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>verify_column_is_of_type</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;solver_data, const int col_id, char type)</td></tr>
+<tr class="separator:a781697a9324ac437060b460fff905d1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c9a522a2442e2f99e97d64e01ac2651" id="r_a5c9a522a2442e2f99e97d64e01ac2651"><td class="memItemLeft" align="right" valign="top"><a id="a5c9a522a2442e2f99e97d64e01ac2651" name="a5c9a522a2442e2f99e97d64e01ac2651"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>verify_column_objective_is</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;solver_data, const int col_id, double obj_value)</td></tr>
+<tr class="separator:a5c9a522a2442e2f99e97d64e01ac2651"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a670c9c2300d9fa2c0eee53db65ed247e" id="r_a670c9c2300d9fa2c0eee53db65ed247e"><td class="memItemLeft" align="right" valign="top"><a id="a670c9c2300d9fa2c0eee53db65ed247e" name="a670c9c2300d9fa2c0eee53db65ed247e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>verify_column_lower_bound_is</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;solver_data, const int col_id, double lower_value)</td></tr>
+<tr class="separator:a670c9c2300d9fa2c0eee53db65ed247e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0d2905ef98a7fdb02bb647a68791ddb" id="r_aa0d2905ef98a7fdb02bb647a68791ddb"><td class="memItemLeft" align="right" valign="top"><a id="aa0d2905ef98a7fdb02bb647a68791ddb" name="aa0d2905ef98a7fdb02bb647a68791ddb"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>verify_column_upper_bound_is</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;solver_data, const int col_id, double upper_value)</td></tr>
+<tr class="separator:aa0d2905ef98a7fdb02bb647a68791ddb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6eb8644374a7c16a2fe2e9d6380bcb68" id="r_a6eb8644374a7c16a2fe2e9d6380bcb68"><td class="memItemLeft" align="right" valign="top"><a id="a6eb8644374a7c16a2fe2e9d6380bcb68" name="a6eb8644374a7c16a2fe2e9d6380bcb68"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>verify_row_is_of_type</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;solver_data, const int row_id, char type)</td></tr>
+<tr class="separator:a6eb8644374a7c16a2fe2e9d6380bcb68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac78fa1262e704647d68fbb8685b89fc5" id="r_ac78fa1262e704647d68fbb8685b89fc5"><td class="memItemLeft" align="right" valign="top"><a id="ac78fa1262e704647d68fbb8685b89fc5" name="ac78fa1262e704647d68fbb8685b89fc5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>verify_rhs_is</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;solver_data, const int rhs_id, double rhs_value)</td></tr>
+<tr class="separator:ac78fa1262e704647d68fbb8685b89fc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a218a560dd6467609f6eb8585e592ed3a" id="r_a218a560dd6467609f6eb8585e592ed3a"><td class="memItemLeft" align="right" valign="top"><a id="a218a560dd6467609f6eb8585e592ed3a" name="a218a560dd6467609f6eb8585e592ed3a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>verify_column</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;solver_data, const int col_id, std::basic_string&lt; char &gt; name, char type, double obj_value, double lower_value, double upper_value)</td></tr>
+<tr class="separator:a218a560dd6467609f6eb8585e592ed3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6846ae4e2e0d0bb2fca0d007e1f965c" id="r_ad6846ae4e2e0d0bb2fca0d007e1f965c"><td class="memItemLeft" align="right" valign="top"><a id="ad6846ae4e2e0d0bb2fca0d007e1f965c" name="ad6846ae4e2e0d0bb2fca0d007e1f965c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>verify_row</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;solver_data, int row, char type, const std::vector&lt; double &gt; &amp;coeff, const std::vector&lt; int &gt; &amp;col_indexes, double rhs)</td></tr>
+<tr class="separator:ad6846ae4e2e0d0bb2fca0d007e1f965c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29fe2d6e2f039592cc8a8802d1dd9245" id="r_a29fe2d6e2f039592cc8a8802d1dd9245"><td class="memItemLeft" align="right" valign="top"><a id="a29fe2d6e2f039592cc8a8802d1dd9245" name="a29fe2d6e2f039592cc8a8802d1dd9245"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>verify_column_number_equality</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;lastMasterData, <a class="el" href="structSolverData.html">SolverData</a> &amp;sensitivityPbData)</td></tr>
+<tr class="separator:a29fe2d6e2f039592cc8a8802d1dd9245"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a958196c7dcebd3b72848c9c554262b2a" id="r_a958196c7dcebd3b72848c9c554262b2a"><td class="memItemLeft" align="right" valign="top"><a id="a958196c7dcebd3b72848c9c554262b2a" name="a958196c7dcebd3b72848c9c554262b2a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>verify_column_name_equality</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;lastMasterData, <a class="el" href="structSolverData.html">SolverData</a> &amp;sensitivityPbData, const int col_id)</td></tr>
+<tr class="separator:a958196c7dcebd3b72848c9c554262b2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9eaa8da4dd8397fcc04d8bea3aec41f5" id="r_a9eaa8da4dd8397fcc04d8bea3aec41f5"><td class="memItemLeft" align="right" valign="top"><a id="a9eaa8da4dd8397fcc04d8bea3aec41f5" name="a9eaa8da4dd8397fcc04d8bea3aec41f5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>verify_column_type_equality</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;lastMasterData, <a class="el" href="structSolverData.html">SolverData</a> &amp;sensitivityPbData, const int col_id)</td></tr>
+<tr class="separator:a9eaa8da4dd8397fcc04d8bea3aec41f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5312573a11025d90c77274300cae317a" id="r_a5312573a11025d90c77274300cae317a"><td class="memItemLeft" align="right" valign="top"><a id="a5312573a11025d90c77274300cae317a" name="a5312573a11025d90c77274300cae317a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>verify_column_objective_equality</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;lastMasterData, <a class="el" href="structSolverData.html">SolverData</a> &amp;sensitivityPbData, const int col_id)</td></tr>
+<tr class="separator:a5312573a11025d90c77274300cae317a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6629f6262c4a281aa803f04be3969f7" id="r_aa6629f6262c4a281aa803f04be3969f7"><td class="memItemLeft" align="right" valign="top"><a id="aa6629f6262c4a281aa803f04be3969f7" name="aa6629f6262c4a281aa803f04be3969f7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>verify_column_lower_bound_equality</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;lastMasterData, <a class="el" href="structSolverData.html">SolverData</a> &amp;sensitivityPbData, const int col_id)</td></tr>
+<tr class="separator:aa6629f6262c4a281aa803f04be3969f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03b34a56237660aadcb75f8538a04c17" id="r_a03b34a56237660aadcb75f8538a04c17"><td class="memItemLeft" align="right" valign="top"><a id="a03b34a56237660aadcb75f8538a04c17" name="a03b34a56237660aadcb75f8538a04c17"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>verify_column_upper_bound_equality</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;lastMasterData, <a class="el" href="structSolverData.html">SolverData</a> &amp;sensitivityPbData, const int col_id)</td></tr>
+<tr class="separator:a03b34a56237660aadcb75f8538a04c17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2176d26bff6703c5d97c08ebd10134d" id="r_ab2176d26bff6703c5d97c08ebd10134d"><td class="memItemLeft" align="right" valign="top"><a id="ab2176d26bff6703c5d97c08ebd10134d" name="ab2176d26bff6703c5d97c08ebd10134d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>verify_column_equality</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;lastMasterData, <a class="el" href="structSolverData.html">SolverData</a> &amp;sensitivityPbData, const int col_id)</td></tr>
+<tr class="separator:ab2176d26bff6703c5d97c08ebd10134d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a120ac08d084ed9c279cc3126c11f8d1f" id="r_a120ac08d084ed9c279cc3126c11f8d1f"><td class="memItemLeft" align="right" valign="top"><a id="a120ac08d084ed9c279cc3126c11f8d1f" name="a120ac08d084ed9c279cc3126c11f8d1f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>verify_column_objective_update</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;lastMasterData, <a class="el" href="structSolverData.html">SolverData</a> &amp;sensitivityPbData, const int col_id)</td></tr>
+<tr class="separator:a120ac08d084ed9c279cc3126c11f8d1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a095209042e166b0f3f1bbdfec120cd7f" id="r_a095209042e166b0f3f1bbdfec120cd7f"><td class="memItemLeft" align="right" valign="top"><a id="a095209042e166b0f3f1bbdfec120cd7f" name="a095209042e166b0f3f1bbdfec120cd7f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>verify_row_is_added</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;lastMasterData, <a class="el" href="structSolverData.html">SolverData</a> &amp;sensitivityPbData)</td></tr>
+<tr class="separator:a095209042e166b0f3f1bbdfec120cd7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08f75f2ca2f7a397a4228725da2da471" id="r_a08f75f2ca2f7a397a4228725da2da471"><td class="memItemLeft" align="right" valign="top"><a id="a08f75f2ca2f7a397a4228725da2da471" name="a08f75f2ca2f7a397a4228725da2da471"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>verify_row_type_equality</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;lastMasterData, <a class="el" href="structSolverData.html">SolverData</a> &amp;sensitivityPbData, const int row_id)</td></tr>
+<tr class="separator:a08f75f2ca2f7a397a4228725da2da471"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0077ccd3d9841799d05c3d77ceee31f8" id="r_a0077ccd3d9841799d05c3d77ceee31f8"><td class="memItemLeft" align="right" valign="top"><a id="a0077ccd3d9841799d05c3d77ceee31f8" name="a0077ccd3d9841799d05c3d77ceee31f8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>verify_rhs_equality</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;lastMasterData, <a class="el" href="structSolverData.html">SolverData</a> &amp;sensitivityPbData, const int row_id)</td></tr>
+<tr class="separator:a0077ccd3d9841799d05c3d77ceee31f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6970795d1b854c0259fb5a765c6114c6" id="r_a6970795d1b854c0259fb5a765c6114c6"><td class="memItemLeft" align="right" valign="top"><a id="a6970795d1b854c0259fb5a765c6114c6" name="a6970795d1b854c0259fb5a765c6114c6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>verify_row_equality</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;lastMasterData, <a class="el" href="structSolverData.html">SolverData</a> &amp;sensitivityPbData, const int row_id)</td></tr>
+<tr class="separator:a6970795d1b854c0259fb5a765c6114c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d2b66265660158d1190e343882bc735" id="r_a2d2b66265660158d1190e343882bc735"><td class="memItemLeft" align="right" valign="top"><a id="a2d2b66265660158d1190e343882bc735" name="a2d2b66265660158d1190e343882bc735"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>verify_additional_row</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;sensitivityPbData)</td></tr>
+<tr class="separator:a2d2b66265660158d1190e343882bc735"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cbfd0739ed2c91ac0376f51624ece53" id="r_a2cbfd0739ed2c91ac0376f51624ece53"><td class="memItemLeft" align="right" valign="top"><a id="a2cbfd0739ed2c91ac0376f51624ece53" name="a2cbfd0739ed2c91ac0376f51624ece53"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>verify_last_master_problem</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;solver_data)</td></tr>
+<tr class="separator:a2cbfd0739ed2c91ac0376f51624ece53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc0042fa974a36d47e1fff0552edcf71" id="r_adc0042fa974a36d47e1fff0552edcf71"><td class="memItemLeft" align="right" valign="top"><a id="adc0042fa974a36d47e1fff0552edcf71" name="adc0042fa974a36d47e1fff0552edcf71"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>verify_sensitivity_problem</b> (<a class="el" href="structSolverData.html">SolverData</a> &amp;lastMasterData, <a class="el" href="structSolverData.html">SolverData</a> &amp;sensitivityPbData)</td></tr>
+<tr class="separator:adc0042fa974a36d47e1fff0552edcf71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>tests/cpp/sensitivity/<b>SensitivityPbModifierTest.cpp</b></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classSensitivityProblemModifierTest.html">SensitivityProblemModifierTest</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+</body>
+</html>

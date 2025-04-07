@@ -1,0 +1,249 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Antares Xpansion" />
+<meta property="og:image" content="https://github.com/AntaresSimulatorTeam/antares-xpansion/blob/develop/docs/assets/logo.png" />
+<meta property="og:description" content="Investment simulations for Antares studies." />
+<meta property="og:url" content="https://github.com/AntaresSimulatorTeam/antares-xpansion/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://github.com/AntaresSimulatorTeam/antares-xpansion/blob/develop/docs/assets/logo.png" />
+<meta name="twitter:title" content="Antares Xpansion" />
+<meta name="twitter:description" content="Investment simulations for Antares studies." />
+<!-- END twitter metadata -->
+<title>Antares Xpansion: antares_xpansion.config_file_parser.ConfigFileParser Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://github.com/AntaresSimulatorTeam/antares-xpansion/ -->
+<a href="https://github.com/AntaresSimulatorTeam/antares-xpansion" class="github-corner" title="View source on GitHub" target="_blank">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Antares Xpansion
+   </div>
+   <div id="projectbrief">Investment simulations for Antares studies</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classantares__xpansion_1_1config__file__parser_1_1ConfigFileParser.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="classantares__xpansion_1_1config__file__parser_1_1ConfigFileParser-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">antares_xpansion.config_file_parser.ConfigFileParser Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ad7f23238441f4e103680a53c7d0f9e71" id="r_ad7f23238441f4e103680a53c7d0f9e71"><td class="memItemLeft" align="right" valign="top"><a id="ad7f23238441f4e103680a53c7d0f9e71" name="ad7f23238441f4e103680a53c7d0f9e71"></a>
+None&#160;</td><td class="memItemRight" valign="bottom"><b>__init__</b> (self, config_file)</td></tr>
+<tr class="separator:ad7f23238441f4e103680a53c7d0f9e71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5320e7201fa47c1a18a474425a8704e5" id="r_a5320e7201fa47c1a18a474425a8704e5"><td class="memItemLeft" align="right" valign="top"><a id="a5320e7201fa47c1a18a474425a8704e5" name="a5320e7201fa47c1a18a474425a8704e5"></a>
+<a class="el" href="classantares__xpansion_1_1xpansionConfig_1_1ConfigParameters.html">ConfigParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><b>get_config_parameters</b> (self)</td></tr>
+<tr class="separator:a5320e7201fa47c1a18a474425a8704e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:af516cecee0121e686945c6d10e454dcb" id="r_af516cecee0121e686945c6d10e454dcb"><td class="memItemLeft" align="right" valign="top"><a id="af516cecee0121e686945c6d10e454dcb" name="af516cecee0121e686945c6d10e454dcb"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>config_file</b> = config_file</td></tr>
+<tr class="separator:af516cecee0121e686945c6d10e454dcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a857eb7fb422372eedddff908eda98cf6" id="r_a857eb7fb422372eedddff908eda98cf6"><td class="memItemLeft" align="right" valign="top"><a id="a857eb7fb422372eedddff908eda98cf6" name="a857eb7fb422372eedddff908eda98cf6"></a>
+str&#160;</td><td class="memItemRight" valign="bottom"><b>default_install_dir</b> = &quot;&quot;</td></tr>
+<tr class="separator:a857eb7fb422372eedddff908eda98cf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aceb51660f5577e4230846c500c4fec75" id="r_aceb51660f5577e4230846c500c4fec75"><td class="memItemLeft" align="right" valign="top"><a id="aceb51660f5577e4230846c500c4fec75" name="aceb51660f5577e4230846c500c4fec75"></a>
+str&#160;</td><td class="memItemRight" valign="bottom"><b>ANTARES_DEFAULT</b> = &quot;antares-solver&quot;</td></tr>
+<tr class="separator:aceb51660f5577e4230846c500c4fec75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad2cf78f3599e0bf6d53b9faf5457c65" id="r_aad2cf78f3599e0bf6d53b9faf5457c65"><td class="memItemLeft" align="right" valign="top"><a id="aad2cf78f3599e0bf6d53b9faf5457c65" name="aad2cf78f3599e0bf6d53b9faf5457c65"></a>
+str&#160;</td><td class="memItemRight" valign="bottom"><b>MERGE_MPS_DEFAULT</b> = &quot;merge_mps&quot;</td></tr>
+<tr class="separator:aad2cf78f3599e0bf6d53b9faf5457c65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a233fda481114c5cfb49a9a1627f0a32c" id="r_a233fda481114c5cfb49a9a1627f0a32c"><td class="memItemLeft" align="right" valign="top"><a id="a233fda481114c5cfb49a9a1627f0a32c" name="a233fda481114c5cfb49a9a1627f0a32c"></a>
+str&#160;</td><td class="memItemRight" valign="bottom"><b>BENDERS_DEFAULT</b> = &quot;benders&quot;</td></tr>
+<tr class="separator:a233fda481114c5cfb49a9a1627f0a32c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a429dda4b0960fce9c278a6cb077d54f0" id="r_a429dda4b0960fce9c278a6cb077d54f0"><td class="memItemLeft" align="right" valign="top"><a id="a429dda4b0960fce9c278a6cb077d54f0" name="a429dda4b0960fce9c278a6cb077d54f0"></a>
+str&#160;</td><td class="memItemRight" valign="bottom"><b>LP_NAMER_DEFAULT</b> = &quot;lp_namer&quot;</td></tr>
+<tr class="separator:a429dda4b0960fce9c278a6cb077d54f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebbfa4ec0897e99c0f0b0ee8d128b18a" id="r_aebbfa4ec0897e99c0f0b0ee8d128b18a"><td class="memItemLeft" align="right" valign="top"><a id="aebbfa4ec0897e99c0f0b0ee8d128b18a" name="aebbfa4ec0897e99c0f0b0ee8d128b18a"></a>
+str&#160;</td><td class="memItemRight" valign="bottom"><b>STUDY_UPDATER_DEFAULT</b> = &quot;study_updater&quot;</td></tr>
+<tr class="separator:aebbfa4ec0897e99c0f0b0ee8d128b18a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3252f455bf2f5c7a759a58082d73766f" id="r_a3252f455bf2f5c7a759a58082d73766f"><td class="memItemLeft" align="right" valign="top"><a id="a3252f455bf2f5c7a759a58082d73766f" name="a3252f455bf2f5c7a759a58082d73766f"></a>
+str&#160;</td><td class="memItemRight" valign="bottom"><b>FULL_RUN_DEFAULT</b> = &quot;full_run&quot;</td></tr>
+<tr class="separator:a3252f455bf2f5c7a759a58082d73766f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4801d625faf0710544bb2db339830357" id="r_a4801d625faf0710544bb2db339830357"><td class="memItemLeft" align="right" valign="top"><a id="a4801d625faf0710544bb2db339830357" name="a4801d625faf0710544bb2db339830357"></a>
+str&#160;</td><td class="memItemRight" valign="bottom"><b>OUTER_LOOP_DEFAULT</b> = &quot;outer_loop&quot;</td></tr>
+<tr class="separator:a4801d625faf0710544bb2db339830357"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8dca51b366c24929d0ef866f24a3edc0" id="r_a8dca51b366c24929d0ef866f24a3edc0"><td class="memItemLeft" align="right" valign="top"><a id="a8dca51b366c24929d0ef866f24a3edc0" name="a8dca51b366c24929d0ef866f24a3edc0"></a>
+str&#160;</td><td class="memItemRight" valign="bottom"><b>ANTARES_ARCHIVE_UPDATER_DEFAULT</b> = &quot;antares_archive_updater&quot;</td></tr>
+<tr class="separator:a8dca51b366c24929d0ef866f24a3edc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affcafde83a1558a68b33bb400b804fbe" id="r_affcafde83a1558a68b33bb400b804fbe"><td class="memItemLeft" align="right" valign="top"><a id="affcafde83a1558a68b33bb400b804fbe" name="affcafde83a1558a68b33bb400b804fbe"></a>
+str&#160;</td><td class="memItemRight" valign="bottom"><b>SENSITIVITY_DEFAULT</b> = &quot;sensitivity&quot;</td></tr>
+<tr class="separator:affcafde83a1558a68b33bb400b804fbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa253778baedb60629eb4c2721ef2e480" id="r_aa253778baedb60629eb4c2721ef2e480"><td class="memItemLeft" align="right" valign="top"><a id="aa253778baedb60629eb4c2721ef2e480" name="aa253778baedb60629eb4c2721ef2e480"></a>
+str&#160;</td><td class="memItemRight" valign="bottom"><b>MPIEXEC_DEFAULT</b> = &quot;mpiexec&quot;</td></tr>
+<tr class="separator:aa253778baedb60629eb4c2721ef2e480"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2df5521785e15e01f977da96fe779877" id="r_a2df5521785e15e01f977da96fe779877"><td class="memItemLeft" align="right" valign="top"><a id="a2df5521785e15e01f977da96fe779877" name="a2df5521785e15e01f977da96fe779877"></a>
+list&#160;</td><td class="memItemRight" valign="bottom"><b>AVAILABLE_SOLVERS_DEFAULT</b> = []</td></tr>
+<tr class="separator:a2df5521785e15e01f977da96fe779877"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9905338f93a8061d8eee4be7b1288a9" id="r_ac9905338f93a8061d8eee4be7b1288a9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac9905338f93a8061d8eee4be7b1288a9">config</a></td></tr>
+<tr class="separator:ac9905338f93a8061d8eee4be7b1288a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ac9905338f93a8061d8eee4be7b1288a9" name="ac9905338f93a8061d8eee4be7b1288a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9905338f93a8061d8eee4be7b1288a9">&#9670;&#160;</a></span>config</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">antares_xpansion.config_file_parser.ConfigFileParser.config</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=  ConfigParameters(</div>
+<div class="line">                default_install_dir=content.get(</div>
+<div class="line">                    <span class="stringliteral">&quot;DEFAULT_INSTALL_DIR&quot;</span>, self.default_install_dir</div>
+<div class="line">                ),</div>
+<div class="line">                ANTARES=content.get(<span class="stringliteral">&quot;ANTARES&quot;</span>, self.ANTARES_DEFAULT),</div>
+<div class="line">                MERGE_MPS=content.get(<span class="stringliteral">&quot;MERGE_MPS&quot;</span>, self.MERGE_MPS_DEFAULT),</div>
+<div class="line">                BENDERS=content.get(<span class="stringliteral">&quot;BENDERS&quot;</span>, self.BENDERS_DEFAULT),</div>
+<div class="line">                LP_NAMER=content.get(<span class="stringliteral">&quot;LP_NAMER&quot;</span>, self.LP_NAMER_DEFAULT),</div>
+<div class="line">                STUDY_UPDATER=content.get(<span class="stringliteral">&quot;STUDY_UPDATER&quot;</span>, self.STUDY_UPDATER_DEFAULT),</div>
+<div class="line">                FULL_RUN=content.get(<span class="stringliteral">&quot;FULL_RUN&quot;</span>, self.FULL_RUN_DEFAULT),</div>
+<div class="line">                OUTER_LOOP=content.get(<span class="stringliteral">&quot;OUTER_LOOP&quot;</span>, self.FULL_RUN_DEFAULT),</div>
+<div class="line">                ANTARES_ARCHIVE_UPDATER=content.get(</div>
+<div class="line">                    <span class="stringliteral">&quot;ANTARES_ARCHIVE_UPDATER&quot;</span>, self.ANTARES_ARCHIVE_UPDATER_DEFAULT</div>
+<div class="line">                ),</div>
+<div class="line">                SENSITIVITY_EXE=content.get(<span class="stringliteral">&quot;SENSITIVITY&quot;</span>, self.SENSITIVITY_DEFAULT),</div>
+<div class="line">                MPIEXEC=content.get(<span class="stringliteral">&quot;mpiexec&quot;</span>, self.MPIEXEC_DEFAULT),</div>
+<div class="line">                AVAILABLE_SOLVERS=content.get(</div>
+<div class="line">                    <span class="stringliteral">&quot;AVAILABLE_SOLVER&quot;</span>, self.AVAILABLE_SOLVERS_DEFAULT</div>
+<div class="line">                ),</div>
+<div class="line">            )</div>
+</div><!-- fragment -->
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>src/python/antares_xpansion/<b>config_file_parser.py</b></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespaceantares__xpansion.html">antares_xpansion</a></li><li class="navelem"><b>config_file_parser</b></li><li class="navelem"><a class="el" href="classantares__xpansion_1_1config__file__parser_1_1ConfigFileParser.html">ConfigFileParser</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+</body>
+</html>

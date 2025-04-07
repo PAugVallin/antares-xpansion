@@ -1,0 +1,849 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Antares Xpansion" />
+<meta property="og:image" content="https://github.com/AntaresSimulatorTeam/antares-xpansion/blob/develop/docs/assets/logo.png" />
+<meta property="og:description" content="Investment simulations for Antares studies." />
+<meta property="og:url" content="https://github.com/AntaresSimulatorTeam/antares-xpansion/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://github.com/AntaresSimulatorTeam/antares-xpansion/blob/develop/docs/assets/logo.png" />
+<meta name="twitter:title" content="Antares Xpansion" />
+<meta name="twitter:description" content="Investment simulations for Antares studies." />
+<!-- END twitter metadata -->
+<title>Antares Xpansion: SimpleLoggerMock Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://github.com/AntaresSimulatorTeam/antares-xpansion/ -->
+<a href="https://github.com/AntaresSimulatorTeam/antares-xpansion" class="github-corner" title="View source on GitHub" target="_blank">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Antares Xpansion
+   </div>
+   <div id="projectbrief">Investment simulations for Antares studies</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classSimpleLoggerMock.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="classSimpleLoggerMock-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">SimpleLoggerMock Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+Inheritance diagram for SimpleLoggerMock:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classSimpleLoggerMock.png" usemap="#SimpleLoggerMock_map" alt=""/>
+  <map id="SimpleLoggerMock_map" name="SimpleLoggerMock_map">
+<area href="classILogger.html" title="abstract class for operational logs" alt="ILogger" shape="rect" coords="0,56,120,80"/>
+<area href="structILoggerXpansion.html" title="Xpansion Unique log Interface." alt="ILoggerXpansion" shape="rect" coords="0,0,120,24"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a4d6fb0377ff9865b580a0a82216ce28b" id="r_a4d6fb0377ff9865b580a0a82216ce28b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4d6fb0377ff9865b580a0a82216ce28b">display_message</a> (const std::string &amp;str)</td></tr>
+<tr class="memdesc:a4d6fb0377ff9865b580a0a82216ce28b"><td class="mdescLeft">&#160;</td><td class="mdescRight">pure virtual method to display a std::string message  <br /></td></tr>
+<tr class="separator:a4d6fb0377ff9865b580a0a82216ce28b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a764cd64bd06d4a1cefe9f61460b5455e" id="r_a764cd64bd06d4a1cefe9f61460b5455e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a764cd64bd06d4a1cefe9f61460b5455e">display_message</a> (const std::string &amp;str, LogUtils::LOGLEVEL level, const std::string &amp;context)</td></tr>
+<tr class="separator:a764cd64bd06d4a1cefe9f61460b5455e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe20deb631b42b0723fe2912362c0d32" id="r_abe20deb631b42b0723fe2912362c0d32"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe20deb631b42b0723fe2912362c0d32">PrintIterationSeparatorBegin</a> () override</td></tr>
+<tr class="separator:abe20deb631b42b0723fe2912362c0d32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24e51f35a23c788fb2c3c11eb8a3ee8f" id="r_a24e51f35a23c788fb2c3c11eb8a3ee8f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a24e51f35a23c788fb2c3c11eb8a3ee8f">PrintIterationSeparatorEnd</a> () override</td></tr>
+<tr class="separator:a24e51f35a23c788fb2c3c11eb8a3ee8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4286e547d77d62c4b54a3262e7caee90" id="r_a4286e547d77d62c4b54a3262e7caee90"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4286e547d77d62c4b54a3262e7caee90">log_at_initialization</a> (const int it_number) override</td></tr>
+<tr class="separator:a4286e547d77d62c4b54a3262e7caee90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1f6c5db71e9bedec20a355440113eea" id="r_aa1f6c5db71e9bedec20a355440113eea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa1f6c5db71e9bedec20a355440113eea">log_iteration_candidates</a> (const <a class="el" href="structLogData.html">LogData</a> &amp;d) override</td></tr>
+<tr class="separator:aa1f6c5db71e9bedec20a355440113eea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13b639a422d479d331bf0ea5ae2159d1" id="r_a13b639a422d479d331bf0ea5ae2159d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a13b639a422d479d331bf0ea5ae2159d1">log_master_solving_duration</a> (double durationInSeconds)</td></tr>
+<tr class="separator:a13b639a422d479d331bf0ea5ae2159d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2004e06ea259ac4a84af5832eca6cfc6" id="r_a2004e06ea259ac4a84af5832eca6cfc6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2004e06ea259ac4a84af5832eca6cfc6">LogSubproblemsSolvingWalltime</a> (double durationInSeconds)</td></tr>
+<tr class="separator:a2004e06ea259ac4a84af5832eca6cfc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adaea8667db135ea668690d26fb9a27f6" id="r_adaea8667db135ea668690d26fb9a27f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adaea8667db135ea668690d26fb9a27f6">LogSubproblemsSolvingCumulativeCpuTime</a> (double durationInSeconds)</td></tr>
+<tr class="separator:adaea8667db135ea668690d26fb9a27f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9db5fea6ab1d82d48512051166377f9" id="r_ad9db5fea6ab1d82d48512051166377f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9db5fea6ab1d82d48512051166377f9">log_at_iteration_end</a> (const <a class="el" href="structLogData.html">LogData</a> &amp;d) override</td></tr>
+<tr class="separator:ad9db5fea6ab1d82d48512051166377f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a713d3495e0a0f54e0df6e17fec89aa61" id="r_a713d3495e0a0f54e0df6e17fec89aa61"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a713d3495e0a0f54e0df6e17fec89aa61">log_at_ending</a> (const <a class="el" href="structLogData.html">LogData</a> &amp;d) override</td></tr>
+<tr class="separator:a713d3495e0a0f54e0df6e17fec89aa61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74456c34e302aa4671e7e8fe33d2f4e2" id="r_a74456c34e302aa4671e7e8fe33d2f4e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a74456c34e302aa4671e7e8fe33d2f4e2">log_total_duration</a> (double durationInSeconds)</td></tr>
+<tr class="separator:a74456c34e302aa4671e7e8fe33d2f4e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53e1c357bc9fffe23ac5146036c828fe" id="r_a53e1c357bc9fffe23ac5146036c828fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a53e1c357bc9fffe23ac5146036c828fe">log_stop_criterion_reached</a> (const StoppingCriterion stopping_criterion) override</td></tr>
+<tr class="separator:a53e1c357bc9fffe23ac5146036c828fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0206a7e66cb8a2bba55f1d751151b4d" id="r_ab0206a7e66cb8a2bba55f1d751151b4d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab0206a7e66cb8a2bba55f1d751151b4d">display_restart_message</a> () override</td></tr>
+<tr class="separator:ab0206a7e66cb8a2bba55f1d751151b4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaff674e06bc6739996807ae18377b282" id="r_aaff674e06bc6739996807ae18377b282"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaff674e06bc6739996807ae18377b282">restart_elapsed_time</a> (const double elapsed_time) override</td></tr>
+<tr class="separator:aaff674e06bc6739996807ae18377b282"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9beb99de269ad18561bc17fa9c06b76b" id="r_a9beb99de269ad18561bc17fa9c06b76b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9beb99de269ad18561bc17fa9c06b76b">number_of_iterations_before_restart</a> (const int num_iterations) override</td></tr>
+<tr class="separator:a9beb99de269ad18561bc17fa9c06b76b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f2b14a057675d37057214a381e7949e" id="r_a8f2b14a057675d37057214a381e7949e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f2b14a057675d37057214a381e7949e">restart_best_iteration</a> (const int best_iterations) override</td></tr>
+<tr class="separator:a8f2b14a057675d37057214a381e7949e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e4f632755d3c4883f01d46f9d003d0e" id="r_a2e4f632755d3c4883f01d46f9d003d0e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2e4f632755d3c4883f01d46f9d003d0e">restart_best_iterations_infos</a> (const <a class="el" href="structLogData.html">LogData</a> &amp;best_iterations_data) override</td></tr>
+<tr class="separator:a2e4f632755d3c4883f01d46f9d003d0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad215d7bb650bd315628cb9eb88510fdd" id="r_ad215d7bb650bd315628cb9eb88510fdd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad215d7bb650bd315628cb9eb88510fdd">LogAtInitialRelaxation</a> ()</td></tr>
+<tr class="separator:ad215d7bb650bd315628cb9eb88510fdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95fb75424cc230125d23445c4b687904" id="r_a95fb75424cc230125d23445c4b687904"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a95fb75424cc230125d23445c4b687904">LogAtSwitchToInteger</a> ()</td></tr>
+<tr class="separator:a95fb75424cc230125d23445c4b687904"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13ebf6785f57c5c4b776270581c44f0f" id="r_a13ebf6785f57c5c4b776270581c44f0f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a13ebf6785f57c5c4b776270581c44f0f">cumulative_number_of_sub_problem_solved</a> (int number)</td></tr>
+<tr class="separator:a13ebf6785f57c5c4b776270581c44f0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classILogger"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classILogger')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classILogger.html">ILogger</a></td></tr>
+<tr class="inherit_header pub_methods_structILoggerXpansion"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_structILoggerXpansion')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="structILoggerXpansion.html">ILoggerXpansion</a></td></tr>
+<tr class="memitem:ac29cdc7dc59c2dde6ce45201c91e770e inherit pub_methods_structILoggerXpansion" id="r_ac29cdc7dc59c2dde6ce45201c91e770e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structILoggerXpansion.html#ac29cdc7dc59c2dde6ce45201c91e770e">display_message</a> (const std::ostringstream &amp;msg)</td></tr>
+<tr class="separator:ac29cdc7dc59c2dde6ce45201c91e770e inherit pub_methods_structILoggerXpansion"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a4397fe8d001713d25b38e7f744e39f5c" id="r_a4397fe8d001713d25b38e7f744e39f5c"><td class="memItemLeft" align="right" valign="top"><a id="a4397fe8d001713d25b38e7f744e39f5c" name="a4397fe8d001713d25b38e7f744e39f5c"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>_initCall</b></td></tr>
+<tr class="separator:a4397fe8d001713d25b38e7f744e39f5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd87b3f8c3f23501fdbd2b782980cc30" id="r_acd87b3f8c3f23501fdbd2b782980cc30"><td class="memItemLeft" align="right" valign="top"><a id="acd87b3f8c3f23501fdbd2b782980cc30" name="acd87b3f8c3f23501fdbd2b782980cc30"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>_iterationStartCall</b></td></tr>
+<tr class="separator:acd87b3f8c3f23501fdbd2b782980cc30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7aec3834e565a734cc9a0617fa417bf7" id="r_a7aec3834e565a734cc9a0617fa417bf7"><td class="memItemLeft" align="right" valign="top"><a id="a7aec3834e565a734cc9a0617fa417bf7" name="a7aec3834e565a734cc9a0617fa417bf7"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>_iterationEndCall</b></td></tr>
+<tr class="separator:a7aec3834e565a734cc9a0617fa417bf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1dc06706f298102c32ffd6005684421" id="r_ad1dc06706f298102c32ffd6005684421"><td class="memItemLeft" align="right" valign="top"><a id="ad1dc06706f298102c32ffd6005684421" name="ad1dc06706f298102c32ffd6005684421"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>_endingCall</b></td></tr>
+<tr class="separator:ad1dc06706f298102c32ffd6005684421"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28aad656636e7105894b1c772d359830" id="r_a28aad656636e7105894b1c772d359830"><td class="memItemLeft" align="right" valign="top"><a id="a28aad656636e7105894b1c772d359830" name="a28aad656636e7105894b1c772d359830"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>_switchToIntegerCall</b></td></tr>
+<tr class="separator:a28aad656636e7105894b1c772d359830"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95467e1e47b03c1582575e8b6b491d91" id="r_a95467e1e47b03c1582575e8b6b491d91"><td class="memItemLeft" align="right" valign="top"><a id="a95467e1e47b03c1582575e8b6b491d91" name="a95467e1e47b03c1582575e8b6b491d91"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>_initialRelaxationCall</b></td></tr>
+<tr class="separator:a95467e1e47b03c1582575e8b6b491d91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf55ad4b82bf8ed57d4e872497f46958" id="r_abf55ad4b82bf8ed57d4e872497f46958"><td class="memItemLeft" align="right" valign="top"><a id="abf55ad4b82bf8ed57d4e872497f46958" name="abf55ad4b82bf8ed57d4e872497f46958"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>_cumulativeNumberOfSubProblemResolved</b></td></tr>
+<tr class="separator:abf55ad4b82bf8ed57d4e872497f46958"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef4f4dcf05acd5f6c24e8ce575b37972" id="r_aef4f4dcf05acd5f6c24e8ce575b37972"><td class="memItemLeft" align="right" valign="top"><a id="aef4f4dcf05acd5f6c24e8ce575b37972" name="aef4f4dcf05acd5f6c24e8ce575b37972"></a>
+StoppingCriterion&#160;</td><td class="memItemRight" valign="bottom"><b>_stopping_criterion</b></td></tr>
+<tr class="separator:aef4f4dcf05acd5f6c24e8ce575b37972"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf2a97addc33b9d3d7a0a78c36590210" id="r_adf2a97addc33b9d3d7a0a78c36590210"><td class="memItemLeft" align="right" valign="top"><a id="adf2a97addc33b9d3d7a0a78c36590210" name="adf2a97addc33b9d3d7a0a78c36590210"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>_displaymessage</b></td></tr>
+<tr class="separator:adf2a97addc33b9d3d7a0a78c36590210"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab217427eb7c352190f81028466688aeb" id="r_ab217427eb7c352190f81028466688aeb"><td class="memItemLeft" align="right" valign="top"><a id="ab217427eb7c352190f81028466688aeb" name="ab217427eb7c352190f81028466688aeb"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>_durationMaster</b></td></tr>
+<tr class="separator:ab217427eb7c352190f81028466688aeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e3232401cd2d70007490ede8b5482d8" id="r_a7e3232401cd2d70007490ede8b5482d8"><td class="memItemLeft" align="right" valign="top"><a id="a7e3232401cd2d70007490ede8b5482d8" name="a7e3232401cd2d70007490ede8b5482d8"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>_durationSubproblem</b></td></tr>
+<tr class="separator:a7e3232401cd2d70007490ede8b5482d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a251a301c94ab7de0da4e3787dad63ef0" id="r_a251a301c94ab7de0da4e3787dad63ef0"><td class="memItemLeft" align="right" valign="top"><a id="a251a301c94ab7de0da4e3787dad63ef0" name="a251a301c94ab7de0da4e3787dad63ef0"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>_durationTotal</b></td></tr>
+<tr class="separator:a251a301c94ab7de0da4e3787dad63ef0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_attribs_classILogger"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_classILogger')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classILogger.html">ILogger</a></td></tr>
+<tr class="memitem:a2607de07ee85d443d1229a9a9c3bd699 inherit pub_attribs_classILogger" id="r_a2607de07ee85d443d1229a9a9c3bd699"><td class="memItemLeft" align="right" valign="top">
+const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>CONTEXT</b> = &quot;Benders&quot;</td></tr>
+<tr class="separator:a2607de07ee85d443d1229a9a9c3bd699 inherit pub_attribs_classILogger"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a13ebf6785f57c5c4b776270581c44f0f" name="a13ebf6785f57c5c4b776270581c44f0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13ebf6785f57c5c4b776270581c44f0f">&#9670;&#160;</a></span>cumulative_number_of_sub_problem_solved()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SimpleLoggerMock::cumulative_number_of_sub_problem_solved </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>number</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a4d6fb0377ff9865b580a0a82216ce28b" name="a4d6fb0377ff9865b580a0a82216ce28b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d6fb0377ff9865b580a0a82216ce28b">&#9670;&#160;</a></span>display_message() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SimpleLoggerMock::display_message </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>str</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>pure virtual method to display a std::string message </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>the message to be displayed </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="classILogger.html#a1326996d4147821e1dad10103a0dc2e8">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a764cd64bd06d4a1cefe9f61460b5455e" name="a764cd64bd06d4a1cefe9f61460b5455e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a764cd64bd06d4a1cefe9f61460b5455e">&#9670;&#160;</a></span>display_message() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SimpleLoggerMock::display_message </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>str</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">LogUtils::LOGLEVEL</td>          <td class="paramname"><span class="paramname"><em>level</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>context</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="ab0206a7e66cb8a2bba55f1d751151b4d" name="ab0206a7e66cb8a2bba55f1d751151b4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0206a7e66cb8a2bba55f1d751151b4d">&#9670;&#160;</a></span>display_restart_message()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SimpleLoggerMock::display_restart_message </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a713d3495e0a0f54e0df6e17fec89aa61" name="a713d3495e0a0f54e0df6e17fec89aa61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a713d3495e0a0f54e0df6e17fec89aa61">&#9670;&#160;</a></span>log_at_ending()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SimpleLoggerMock::log_at_ending </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structLogData.html">LogData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>d</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a4286e547d77d62c4b54a3262e7caee90" name="a4286e547d77d62c4b54a3262e7caee90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4286e547d77d62c4b54a3262e7caee90">&#9670;&#160;</a></span>log_at_initialization()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SimpleLoggerMock::log_at_initialization </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>it_number</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="ad9db5fea6ab1d82d48512051166377f9" name="ad9db5fea6ab1d82d48512051166377f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9db5fea6ab1d82d48512051166377f9">&#9670;&#160;</a></span>log_at_iteration_end()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SimpleLoggerMock::log_at_iteration_end </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structLogData.html">LogData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>d</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="aa1f6c5db71e9bedec20a355440113eea" name="aa1f6c5db71e9bedec20a355440113eea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1f6c5db71e9bedec20a355440113eea">&#9670;&#160;</a></span>log_iteration_candidates()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SimpleLoggerMock::log_iteration_candidates </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structLogData.html">LogData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>d</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a13b639a422d479d331bf0ea5ae2159d1" name="a13b639a422d479d331bf0ea5ae2159d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13b639a422d479d331bf0ea5ae2159d1">&#9670;&#160;</a></span>log_master_solving_duration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SimpleLoggerMock::log_master_solving_duration </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>durationInSeconds</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a53e1c357bc9fffe23ac5146036c828fe" name="a53e1c357bc9fffe23ac5146036c828fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53e1c357bc9fffe23ac5146036c828fe">&#9670;&#160;</a></span>log_stop_criterion_reached()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SimpleLoggerMock::log_stop_criterion_reached </td>
+          <td>(</td>
+          <td class="paramtype">const StoppingCriterion</td>          <td class="paramname"><span class="paramname"><em>stopping_criterion</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a74456c34e302aa4671e7e8fe33d2f4e2" name="a74456c34e302aa4671e7e8fe33d2f4e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74456c34e302aa4671e7e8fe33d2f4e2">&#9670;&#160;</a></span>log_total_duration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SimpleLoggerMock::log_total_duration </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>durationInSeconds</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="ad215d7bb650bd315628cb9eb88510fdd" name="ad215d7bb650bd315628cb9eb88510fdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad215d7bb650bd315628cb9eb88510fdd">&#9670;&#160;</a></span>LogAtInitialRelaxation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SimpleLoggerMock::LogAtInitialRelaxation </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a95fb75424cc230125d23445c4b687904" name="a95fb75424cc230125d23445c4b687904"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95fb75424cc230125d23445c4b687904">&#9670;&#160;</a></span>LogAtSwitchToInteger()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SimpleLoggerMock::LogAtSwitchToInteger </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="adaea8667db135ea668690d26fb9a27f6" name="adaea8667db135ea668690d26fb9a27f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adaea8667db135ea668690d26fb9a27f6">&#9670;&#160;</a></span>LogSubproblemsSolvingCumulativeCpuTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SimpleLoggerMock::LogSubproblemsSolvingCumulativeCpuTime </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>durationInSeconds</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a2004e06ea259ac4a84af5832eca6cfc6" name="a2004e06ea259ac4a84af5832eca6cfc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2004e06ea259ac4a84af5832eca6cfc6">&#9670;&#160;</a></span>LogSubproblemsSolvingWalltime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SimpleLoggerMock::LogSubproblemsSolvingWalltime </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>durationInSeconds</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a9beb99de269ad18561bc17fa9c06b76b" name="a9beb99de269ad18561bc17fa9c06b76b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9beb99de269ad18561bc17fa9c06b76b">&#9670;&#160;</a></span>number_of_iterations_before_restart()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SimpleLoggerMock::number_of_iterations_before_restart </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>num_iterations</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="abe20deb631b42b0723fe2912362c0d32" name="abe20deb631b42b0723fe2912362c0d32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe20deb631b42b0723fe2912362c0d32">&#9670;&#160;</a></span>PrintIterationSeparatorBegin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SimpleLoggerMock::PrintIterationSeparatorBegin </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a24e51f35a23c788fb2c3c11eb8a3ee8f" name="a24e51f35a23c788fb2c3c11eb8a3ee8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24e51f35a23c788fb2c3c11eb8a3ee8f">&#9670;&#160;</a></span>PrintIterationSeparatorEnd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SimpleLoggerMock::PrintIterationSeparatorEnd </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a8f2b14a057675d37057214a381e7949e" name="a8f2b14a057675d37057214a381e7949e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f2b14a057675d37057214a381e7949e">&#9670;&#160;</a></span>restart_best_iteration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SimpleLoggerMock::restart_best_iteration </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>best_iterations</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a2e4f632755d3c4883f01d46f9d003d0e" name="a2e4f632755d3c4883f01d46f9d003d0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e4f632755d3c4883f01d46f9d003d0e">&#9670;&#160;</a></span>restart_best_iterations_infos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SimpleLoggerMock::restart_best_iterations_infos </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structLogData.html">LogData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>best_iterations_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="aaff674e06bc6739996807ae18377b282" name="aaff674e06bc6739996807ae18377b282"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaff674e06bc6739996807ae18377b282">&#9670;&#160;</a></span>restart_elapsed_time()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SimpleLoggerMock::restart_elapsed_time </td>
+          <td>(</td>
+          <td class="paramtype">const double</td>          <td class="paramname"><span class="paramname"><em>elapsed_time</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>tests/cpp/logger/<b>logger_test.cpp</b></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classSimpleLoggerMock.html">SimpleLoggerMock</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+</body>
+</html>
