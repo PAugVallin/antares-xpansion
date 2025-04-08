@@ -1,5 +1,6 @@
 var NAVTREEINDEX5 =
 {
+"classtests_1_1python_1_1test__resume__study_1_1TestResumeStudy.html":[25,0,13,1,10,0],
 "classtests_1_1python_1_1test__sensitivity__driver_1_1TestSensitivityDriver.html":[25,0,13,1,11,0],
 "classtests_1_1python_1_1test__split__link__profile_1_1TestSplitLinkProfile.html":[25,0,13,1,12,0],
 "classtests_1_1python_1_1test__study__locker_1_1TestStudyLocker.html":[25,0,13,1,13,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX5 =
 "md_docs_2changelog_2CHANGELOG.html#autotoc_md65":[1,18,0],
 "md_docs_2changelog_2CHANGELOG.html#autotoc_md66":[1,18,1],
 "md_docs_2changelog_2CHANGELOG.html#autotoc_md67":[1,19],
-"md_docs_2changelog_2CHANGELOG.html#autotoc_md68":[1,20],
-"md_docs_2changelog_2format__changes.html":[2]
+"md_docs_2changelog_2CHANGELOG.html#autotoc_md68":[1,20]
 };

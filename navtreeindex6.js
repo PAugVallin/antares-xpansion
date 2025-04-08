@@ -1,5 +1,6 @@
 var NAVTREEINDEX6 =
 {
+"md_docs_2changelog_2format__changes.html":[2],
 "md_docs_2changelog_2format__changes.html#autotoc_md70":[2,0],
 "md_docs_2developer-guide_2install__from__sources_20-INSTALL.html":[3],
 "md_docs_2developer-guide_2install__from__sources_20-INSTALL.html#autotoc_md72":[3,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX6 =
 "structCatch_1_1Matchers_1_1Vector_1_1ApproxMatcher.html":[25,0,2,3,5,0],
 "structCatch_1_1Matchers_1_1Vector_1_1ContainsElementMatcher.html":[25,0,2,3,5,1],
 "structCatch_1_1Matchers_1_1Vector_1_1ContainsMatcher.html":[25,0,2,3,5,2],
-"structCatch_1_1Matchers_1_1Vector_1_1EqualsMatcher.html":[25,0,2,3,5,3],
-"structCatch_1_1Matchers_1_1Vector_1_1UnorderedEqualsMatcher.html":[25,0,2,3,5,4]
+"structCatch_1_1Matchers_1_1Vector_1_1EqualsMatcher.html":[25,0,2,3,5,3]
 };
