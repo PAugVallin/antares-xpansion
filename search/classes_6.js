@@ -12,7 +12,8 @@ var searchData=
   ['generatorwrapper_9',['GeneratorWrapper',['../classCatch_1_1Generators_1_1GeneratorWrapper.html',1,'Catch::Generators']]],
   ['generatorwrapper_3c_20u_20_3e_10',['GeneratorWrapper&lt; U &gt;',['../classCatch_1_1Generators_1_1GeneratorWrapper.html',1,'Catch::Generators']]],
   ['genericsolverexception_11',['GenericSolverException',['../classGenericSolverException.html',1,'']]],
-  ['gridpointdata_12',['GridPointData',['../structOutput_1_1GridPointData.html',1,'Output']]],
-  ['gridsearch_13',['GridSearch',['../classGridSearch.html',1,'']]],
-  ['gridsearchtest_14',['GridSearchTest',['../classGridSearchTest.html',1,'']]]
+  ['gridevaluator_12',['GridEvaluator',['../classGridEvaluator.html',1,'']]],
+  ['gridpointdata_13',['GridPointData',['../structOutput_1_1GridPointData.html',1,'Output']]],
+  ['gridsearch_14',['GridSearch',['../classGridSearch.html',1,'']]],
+  ['gridsearchtest_15',['GridSearchTest',['../classGridSearchTest.html',1,'']]]
 ];

@@ -8,7 +8,8 @@ var searchData=
   ['variablesgroup_5',['VariablesGroup',['../classBenders_1_1Criterion_1_1VariablesGroup.html',1,'Benders::Criterion']]],
   ['variablesgrouptest_6',['VariablesGroupTest',['../classVariablesGroupTest.html',1,'']]],
   ['variablesnotfound_7',['VariablesNotFound',['../classVariableFileReader_1_1VariablesNotFound.html',1,'VariableFileReader']]],
-  ['version_8',['Version',['../structVersion.html',1,'']]],
-  ['void_5ftype_9',['void_type',['../structCatch_1_1detail_1_1void__type.html',1,'Catch::detail']]],
-  ['voidwriter_10',['VoidWriter',['../classOutput_1_1VoidWriter.html',1,'Output']]]
+  ['variationdeniveauxdestockkey_8',['VariationDeNiveauxDeStockKey',['../structOutput_1_1VariationDeNiveauxDeStockKey.html',1,'Output']]],
+  ['version_9',['Version',['../structVersion.html',1,'']]],
+  ['void_5ftype_10',['void_type',['../structCatch_1_1detail_1_1void__type.html',1,'Catch::detail']]],
+  ['voidwriter_11',['VoidWriter',['../classOutput_1_1VoidWriter.html',1,'Output']]]
 ];

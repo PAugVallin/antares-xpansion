@@ -1,5 +1,8 @@
 var hierarchy =
 [
+    [ "AbstractMergeMPS", "classAbstractMergeMPS.html", [
+      [ "MergeMasterSubproblemMPS", "classMergeMasterSubproblemMPS.html", null ]
+    ] ],
     [ "act", "classact.html", null ],
     [ "ActiveLink", "classActiveLink.html", null ],
     [ "ActiveLinksBuilder", "classActiveLinksBuilder.html", null ],
@@ -25,10 +28,13 @@ var hierarchy =
     [ "Catch::AssertionInfo", "structCatch_1_1AssertionInfo.html", null ],
     [ "Catch::AssertionReaction", "structCatch_1_1AssertionReaction.html", null ],
     [ "BaseOptions", "structBaseOptions.html", [
-      [ "BendersBaseOptions", "structBendersBaseOptions.html", null ]
+      [ "SolverBaseOptions", "structSolverBaseOptions.html", [
+        [ "BendersBaseOptions", "structBendersBaseOptions.html", null ]
+      ] ]
     ] ],
     [ "Batch", "structBatch.html", null ],
     [ "BatchCollection", "classBatchCollection.html", null ],
+    [ "BendersApp", "classBendersApp.html", null ],
     [ "BendersBase", "classBendersBase.html", [
       [ "BendersMpi", "classBendersMpi.html", [
         [ "BendersByBatch", "classBendersByBatch.html", null ],
@@ -39,7 +45,8 @@ var hierarchy =
       ] ]
     ] ],
     [ "antares_xpansion.benders_driver.BendersDriver", "classantares__xpansion_1_1benders__driver_1_1BendersDriver.html", null ],
-    [ "BendersMainFactory", "classBendersMainFactory.html", null ],
+    [ "BendersFactory::BendersEnvironment", "structBendersFactory_1_1BendersEnvironment.html", null ],
+    [ "BendersFactory", "classBendersFactory.html", null ],
     [ "BendersRelevantIterationsData", "structBendersRelevantIterationsData.html", null ],
     [ "Candidate", "classCandidate.html", null ],
     [ "CandidateData", "structCandidateData.html", null ],
@@ -59,9 +66,12 @@ var hierarchy =
       [ "ClockMock", "classClockMock.html", null ]
     ] ],
     [ "ColumnToChange", "structColumnToChange.html", null ],
+    [ "Output::ConcurrentInsertionMap< Key, Value >", "structOutput_1_1ConcurrentInsertionMap.html", null ],
+    [ "ConfigurationManager::ConfigDirectories", "structConfigurationManager_1_1ConfigDirectories.html", null ],
     [ "antares_xpansion.config_file_parser.ConfigFileParser", "classantares__xpansion_1_1config__file__parser_1_1ConfigFileParser.html", null ],
     [ "antares_xpansion.config_loader.ConfigLoader", "classantares__xpansion_1_1config__loader_1_1ConfigLoader.html", null ],
     [ "antares_xpansion.xpansionConfig.ConfigParameters", "classantares__xpansion_1_1xpansionConfig_1_1ConfigParameters.html", null ],
+    [ "ConfigurationManager", "classConfigurationManager.html", null ],
     [ "ProblemGenerationOptions::ConflictingParameters", "classProblemGenerationOptions_1_1ConflictingParameters.html", null ],
     [ "YAML::convert< CriterionSingleInputData >", "classYAML_1_1convert_3_01CriterionSingleInputData_01_4.html", null ],
     [ "YAML::convert< OuterLoopCriterionInputData >", "classYAML_1_1convert_3_01OuterLoopCriterionInputData_01_4.html", null ],
@@ -232,6 +242,7 @@ var hierarchy =
     ] ],
     [ "Catch::Generators::GeneratorWrapper< T >", "classCatch_1_1Generators_1_1GeneratorWrapper.html", null ],
     [ "Catch::Generators::GeneratorWrapper< U >", "classCatch_1_1Generators_1_1GeneratorWrapper.html", null ],
+    [ "GridEvaluator", "classGridEvaluator.html", null ],
     [ "Output::GridPointData", "structOutput_1_1GridPointData.html", null ],
     [ "GridSearch", "classGridSearch.html", null ],
     [ "HeadersManager", "structHeadersManager.html", [
@@ -424,7 +435,6 @@ var hierarchy =
     ] ],
     [ "MathLoggerFactory", "classMathLoggerFactory.html", null ],
     [ "YearlyWeightsWriter::McYearNotInActiveYearsListError", "classYearlyWeightsWriter_1_1McYearNotInActiveYearsListError.html", null ],
-    [ "MergeMPS", "classMergeMPS.html", null ],
     [ "Catch::MessageInfo", "structCatch_1_1MessageInfo.html", null ],
     [ "Catch::MessageStream", "structCatch_1_1MessageStream.html", [
       [ "Catch::MessageBuilder", "structCatch_1_1MessageBuilder.html", null ]
@@ -497,6 +507,7 @@ var hierarchy =
       [ "IniFileNotFound", "classIniFileNotFound.html", null ],
       [ "NotImplementedFeatureSolverException", "classNotImplementedFeatureSolverException.html", null ]
     ] ],
+    [ "ScenarioAndWeek", "structScenarioAndWeek.html", null ],
     [ "ScenarioToChronicleReader", "classScenarioToChronicleReader.html", null ],
     [ "Catch::ScopedMessage", "classCatch_1_1ScopedMessage.html", null ],
     [ "Catch::SectionEndInfo", "structCatch_1_1SectionEndInfo.html", null ],
@@ -525,9 +536,7 @@ var hierarchy =
     [ "Output::SolutionData", "structOutput_1_1SolutionData.html", null ],
     [ "SolverAbstract", "classSolverAbstract.html", [
       [ "NOOPSolver", "classNOOPSolver.html", null ],
-      [ "Problem", "classProblem.html", [
-        [ "MockProblem", "classMockProblem.html", null ]
-      ] ],
+      [ "Problem", "classProblem.html", null ],
       [ "SolverCbc", "classSolverCbc.html", null ],
       [ "SolverClp", "classSolverClp.html", null ],
       [ "SolverXpress", "classSolverXpress.html", null ]
@@ -603,6 +612,7 @@ var hierarchy =
       [ "ChronicleTest", "classChronicleTest.html", null ],
       [ "FileLoggerTest", "classFileLoggerTest.html", null ],
       [ "FixtureMPSFileProblemProviderAdapter", "classFixtureMPSFileProblemProviderAdapter.html", null ],
+      [ "GridSearchTest", "classGridSearchTest.html", null ],
       [ "GridSearchTest", "classGridSearchTest.html", null ],
       [ "JsonWriterTest", "classJsonWriterTest.html", null ],
       [ "JsonXpansionReaderTest", "classJsonXpansionReaderTest.html", null ],
@@ -698,10 +708,12 @@ var hierarchy =
     [ "VariableNameComposition", "structVariableNameComposition.html", null ],
     [ "Benders::Criterion::VariablesGroup", "classBenders_1_1Criterion_1_1VariablesGroup.html", null ],
     [ "VariableFileReader::VariablesNotFound", "classVariableFileReader_1_1VariablesNotFound.html", null ],
+    [ "Output::VariationDeNiveauxDeStockKey", "structOutput_1_1VariationDeNiveauxDeStockKey.html", null ],
     [ "Version", "structVersion.html", null ],
     [ "Catch::detail::void_type<... >", "structCatch_1_1detail_1_1void__type.html", null ],
     [ "Catch::WaitForKeypress", "structCatch_1_1WaitForKeypress.html", null ],
     [ "Catch::WarnAbout", "structCatch_1_1WarnAbout.html", null ],
+    [ "WeightFileProcessor", "classWeightFileProcessor.html", null ],
     [ "WeightsFileReader::WeightsFileError", "classWeightsFileReader_1_1WeightsFileError.html", [
       [ "WeightsFileReader::InvalidYearsWeightNumber", "classWeightsFileReader_1_1InvalidYearsWeightNumber.html", null ],
       [ "WeightsFileReader::InvalidYearsWeightValue", "classWeightsFileReader_1_1InvalidYearsWeightValue.html", null ],

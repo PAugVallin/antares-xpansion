@@ -160,28 +160,43 @@ Inheritance diagram for SubproblemWorker:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a93b2d068ae048662aab3b9b8375ada34" id="r_a93b2d068ae048662aab3b9b8375ada34"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a93b2d068ae048662aab3b9b8375ada34">SubproblemWorker</a> (const VariableMap &amp;variable_map, const std::filesystem::path &amp;path_to_mps, const double &amp;slave_weight, const std::string &amp;solver_name, const int log_level, <a class="el" href="classSolverLogManager.html">SolverLogManager</a> &amp;solver_log_manager, Logger logger, ProblemsFormat format)</td></tr>
-<tr class="memdesc:a93b2d068ae048662aab3b9b8375ada34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of a <a class="el" href="classWorker.html" title="Mother-class Worker.">Worker</a> Slave.  <br /></td></tr>
-<tr class="separator:a93b2d068ae048662aab3b9b8375ada34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4310e1d3b5519bf9ae215c7ee2a6f6a8" id="r_a4310e1d3b5519bf9ae215c7ee2a6f6a8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4310e1d3b5519bf9ae215c7ee2a6f6a8">SubproblemWorker</a> (const VariableMap &amp;variable_map, const std::filesystem::path &amp;path_to_mps, double slave_weight, const std::string &amp;solver_name, int log_level, const <a class="el" href="classSolverLogManager.html">SolverLogManager</a> &amp;solver_log_manager, Logger logger, ProblemsFormat format)</td></tr>
+<tr class="memdesc:a4310e1d3b5519bf9ae215c7ee2a6f6a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of a <a class="el" href="classWorker.html" title="Mother-class Worker.">Worker</a> Slave.  <br /></td></tr>
+<tr class="separator:a4310e1d3b5519bf9ae215c7ee2a6f6a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3edbadb0c559ba749ce6922a21c27d67" id="r_a3edbadb0c559ba749ce6922a21c27d67"><td class="memItemLeft" align="right" valign="top"><a id="a3edbadb0c559ba749ce6922a21c27d67" name="a3edbadb0c559ba749ce6922a21c27d67"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>SubproblemWorker</b> (const std::filesystem::path &amp;path_to_mps, const double &amp;slave_weight, const std::string &amp;solver_name, const int log_level, <a class="el" href="classSolverLogManager.html">SolverLogManager</a> &amp;solver_log_manager, Logger logger, ProblemsFormat format)</td></tr>
+<tr class="separator:a3edbadb0c559ba749ce6922a21c27d67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1c505070e046e61bf4c46fa015907fa" id="r_af1c505070e046e61bf4c46fa015907fa"><td class="memItemLeft" align="right" valign="top">std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af1c505070e046e61bf4c46fa015907fa">get_solution</a> () const</td></tr>
 <tr class="memdesc:af1c505070e046e61bf4c46fa015907fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the solutions values of a problem.  <br /></td></tr>
 <tr class="separator:af1c505070e046e61bf4c46fa015907fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9032b50b5b2e7ed630cbb106f487a1ec" id="r_a9032b50b5b2e7ed630cbb106f487a1ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9032b50b5b2e7ed630cbb106f487a1ec">fix_to</a> (const Point &amp;x0) const</td></tr>
 <tr class="memdesc:a9032b50b5b2e7ed630cbb106f487a1ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fix a set of variables to constant in a problem.  <br /></td></tr>
 <tr class="separator:a9032b50b5b2e7ed630cbb106f487a1ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87b58b353c4ea4f3f8a3fbb6d1ab20db" id="r_a87b58b353c4ea4f3f8a3fbb6d1ab20db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87b58b353c4ea4f3f8a3fbb6d1ab20db">fix_rhs_to</a> (const std::string &amp;name, const double &amp;value) const</td></tr>
+<tr class="memdesc:a87b58b353c4ea4f3f8a3fbb6d1ab20db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fix the rhs of a constraint to a constant in a problem.  <br /></td></tr>
+<tr class="separator:a87b58b353c4ea4f3f8a3fbb6d1ab20db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5041b689d03610f4a6ae2f2824266add" id="r_a5041b689d03610f4a6ae2f2824266add"><td class="memItemLeft" align="right" valign="top"><a id="a5041b689d03610f4a6ae2f2824266add" name="a5041b689d03610f4a6ae2f2824266add"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>get_rhs_value_from_name</b> (const std::string &amp;constraint_name) const</td></tr>
+<tr class="separator:a5041b689d03610f4a6ae2f2824266add"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a685f6fdf771213aadaf6cd61b19ea311" id="r_a685f6fdf771213aadaf6cd61b19ea311"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a685f6fdf771213aadaf6cd61b19ea311">get_subgradient</a> (Point &amp;s) const</td></tr>
 <tr class="memdesc:a685f6fdf771213aadaf6cd61b19ea311"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get LP solution value of a problem.  <br /></td></tr>
 <tr class="separator:a685f6fdf771213aadaf6cd61b19ea311"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99e2515abc23ec6bb1d84b19ca6a8e9f" id="r_a99e2515abc23ec6bb1d84b19ca6a8e9f"><td class="memItemLeft" align="right" valign="top"><a id="a99e2515abc23ec6bb1d84b19ca6a8e9f" name="a99e2515abc23ec6bb1d84b19ca6a8e9f"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Worker</b> (VariableMap variable_map, std::filesystem::path path_to_mps, Logger logger)</td></tr>
 <tr class="separator:a99e2515abc23ec6bb1d84b19ca6a8e9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8145214fe0533e0c752f4ba3c7e94442" id="r_a8145214fe0533e0c752f4ba3c7e94442"><td class="memItemLeft" align="right" valign="top"><a id="a8145214fe0533e0c752f4ba3c7e94442" name="a8145214fe0533e0c752f4ba3c7e94442"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Worker</b> (std::filesystem::path path_to_mps, Logger logger)</td></tr>
+<tr class="separator:a8145214fe0533e0c752f4ba3c7e94442"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classWorker"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classWorker')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classWorker.html">Worker</a></td></tr>
 <tr class="memitem:a99e2515abc23ec6bb1d84b19ca6a8e9f inherit pub_methods_classWorker" id="r_a99e2515abc23ec6bb1d84b19ca6a8e9f"><td class="memItemLeft" align="right" valign="top">
 &#160;</td><td class="memItemRight" valign="bottom"><b>Worker</b> (VariableMap variable_map, std::filesystem::path path_to_mps, Logger logger)</td></tr>
 <tr class="separator:a99e2515abc23ec6bb1d84b19ca6a8e9f inherit pub_methods_classWorker"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85328967d4e91eb3c1eef016db6f30a3 inherit pub_methods_classWorker" id="r_a85328967d4e91eb3c1eef016db6f30a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWorker.html#a85328967d4e91eb3c1eef016db6f30a3">init</a> (const std::string &amp;solver_name, int log_level, <a class="el" href="classSolverLogManager.html">SolverLogManager</a> &amp;solver_log_manager, ProblemsFormat format)</td></tr>
-<tr class="memdesc:a85328967d4e91eb3c1eef016db6f30a3 inherit pub_methods_classWorker"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization of a problem.  <br /></td></tr>
-<tr class="separator:a85328967d4e91eb3c1eef016db6f30a3 inherit pub_methods_classWorker"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8145214fe0533e0c752f4ba3c7e94442 inherit pub_methods_classWorker" id="r_a8145214fe0533e0c752f4ba3c7e94442"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><b>Worker</b> (std::filesystem::path path_to_mps, Logger logger)</td></tr>
+<tr class="separator:a8145214fe0533e0c752f4ba3c7e94442 inherit pub_methods_classWorker"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a878688e2dbece0cb4a51c3a14ddb026c inherit pub_methods_classWorker" id="r_a878688e2dbece0cb4a51c3a14ddb026c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWorker.html#a878688e2dbece0cb4a51c3a14ddb026c">init</a> (const std::string &amp;solver_name, int log_level, const <a class="el" href="classSolverLogManager.html">SolverLogManager</a> &amp;solver_log_manager, ProblemsFormat format)</td></tr>
+<tr class="memdesc:a878688e2dbece0cb4a51c3a14ddb026c inherit pub_methods_classWorker"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization of a problem.  <br /></td></tr>
+<tr class="separator:a878688e2dbece0cb4a51c3a14ddb026c inherit pub_methods_classWorker"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad144d280cf5f7bc86c80728f41f356fc inherit pub_methods_classWorker" id="r_ad144d280cf5f7bc86c80728f41f356fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWorker.html#ad144d280cf5f7bc86c80728f41f356fc">get_value</a> (double &amp;lb) const</td></tr>
 <tr class="memdesc:ad144d280cf5f7bc86c80728f41f356fc inherit pub_methods_classWorker"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the optimal value of a problem.  <br /></td></tr>
 <tr class="separator:ad144d280cf5f7bc86c80728f41f356fc inherit pub_methods_classWorker"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -243,8 +258,8 @@ Logger&#160;</td><td class="memItemRight" valign="bottom"><b>logger_</b></td></t
 <div class="textblock"><p>Class daughter of <a class="el" href="classWorker.html" title="Mother-class Worker.">Worker</a> Class, build and manage a subproblem. </p>
 <p>Class daughter of <a class="el" href="classWorker.html" title="Mother-class Worker.">Worker</a> Class, build and manage a master problem. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a93b2d068ae048662aab3b9b8375ada34" name="a93b2d068ae048662aab3b9b8375ada34"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a93b2d068ae048662aab3b9b8375ada34">&#9670;&#160;</a></span>SubproblemWorker()</h2>
+<a id="a4310e1d3b5519bf9ae215c7ee2a6f6a8" name="a4310e1d3b5519bf9ae215c7ee2a6f6a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4310e1d3b5519bf9ae215c7ee2a6f6a8">&#9670;&#160;</a></span>SubproblemWorker()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -262,7 +277,7 @@ Logger&#160;</td><td class="memItemRight" valign="bottom"><b>logger_</b></td></t
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const double &amp;</td>          <td class="paramname"><span class="paramname"><em>slave_weight</em></span>, </td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>slave_weight</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -272,12 +287,12 @@ Logger&#160;</td><td class="memItemRight" valign="bottom"><b>logger_</b></td></t
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>log_level</em></span>, </td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>log_level</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classSolverLogManager.html">SolverLogManager</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>solver_log_manager</em></span>, </td>
+          <td class="paramtype">const <a class="el" href="classSolverLogManager.html">SolverLogManager</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>solver_log_manager</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -304,6 +319,37 @@ Logger&#160;</td><td class="memItemRight" valign="bottom"><b>logger_</b></td></t
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a87b58b353c4ea4f3f8a3fbb6d1ab20db" name="a87b58b353c4ea4f3f8a3fbb6d1ab20db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87b58b353c4ea4f3f8a3fbb6d1ab20db">&#9670;&#160;</a></span>fix_rhs_to()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SubproblemWorker::fix_rhs_to </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fix the rhs of a constraint to a constant in a problem. </p>
+<p>Method to set the rhs of a constraint in a problem by fixing their bounds</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>: name of the constraint </td></tr>
+    <tr><td class="paramname">value</td><td>: value to fix </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a9032b50b5b2e7ed630cbb106f487a1ec" name="a9032b50b5b2e7ed630cbb106f487a1ec"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9032b50b5b2e7ed630cbb106f487a1ec">&#9670;&#160;</a></span>fix_to()</h2>
 

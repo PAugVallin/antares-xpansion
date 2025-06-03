@@ -1,0 +1,774 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Antares Xpansion" />
+<meta property="og:image" content="https://github.com/AntaresSimulatorTeam/antares-xpansion/blob/develop/docs/assets/logo.png" />
+<meta property="og:description" content="Investment simulations for Antares studies." />
+<meta property="og:url" content="https://github.com/AntaresSimulatorTeam/antares-xpansion/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://github.com/AntaresSimulatorTeam/antares-xpansion/blob/develop/docs/assets/logo.png" />
+<meta name="twitter:title" content="Antares Xpansion" />
+<meta name="twitter:description" content="Investment simulations for Antares studies." />
+<!-- END twitter metadata -->
+<title>Antares Xpansion: GridEvaluator Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://github.com/AntaresSimulatorTeam/antares-xpansion/ -->
+<a href="https://github.com/AntaresSimulatorTeam/antares-xpansion" class="github-corner" title="View source on GitHub" target="_blank">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Antares Xpansion
+   </div>
+   <div id="projectbrief">Investment simulations for Antares studies</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classGridEvaluator.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="classGridEvaluator-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">GridEvaluator Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Class to compute Stock levels variation.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="GridEvaluator_8h_source.html">GridEvaluator.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ac3d366628197d5bf95e2c2be33a21214" id="r_ac3d366628197d5bf95e2c2be33a21214"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac3d366628197d5bf95e2c2be33a21214">GridEvaluator</a> (Logger logger, std::shared_ptr&lt; <a class="el" href="classOutput_1_1JsonWriter.html">Output::JsonWriter</a> &gt; writer, std::filesystem::path path_to_data, ProblemsFormat data_format)</td></tr>
+<tr class="memdesc:ac3d366628197d5bf95e2c2be33a21214"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
+<tr class="separator:ac3d366628197d5bf95e2c2be33a21214"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0820a05f713c3e8a2f1e7f63545fa7ca" id="r_a0820a05f713c3e8a2f1e7f63545fa7ca"><td class="memItemLeft" align="right" valign="top"><a id="a0820a05f713c3e8a2f1e7f63545fa7ca" name="a0820a05f713c3e8a2f1e7f63545fa7ca"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>launch</b> ()</td></tr>
+<tr class="memdesc:a0820a05f713c3e8a2f1e7f63545fa7ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Launch the Stock level variation computation. <br /></td></tr>
+<tr class="separator:a0820a05f713c3e8a2f1e7f63545fa7ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a139cf1fba2498ccaa9f6ef521193333c" id="r_a139cf1fba2498ccaa9f6ef521193333c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a139cf1fba2498ccaa9f6ef521193333c">setThreads</a> (int <a class="el" href="#ace707d90179e06185d6426dc0f007525">nbThreads</a>)</td></tr>
+<tr class="memdesc:a139cf1fba2498ccaa9f6ef521193333c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the number of threads to use.  <br /></td></tr>
+<tr class="separator:a139cf1fba2498ccaa9f6ef521193333c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a96a1d0f12cf2146c2b224c6ffae591c3" id="r_a96a1d0f12cf2146c2b224c6ffae591c3"><td class="memItemLeft" align="right" valign="top"><a id="a96a1d0f12cf2146c2b224c6ffae591c3" name="a96a1d0f12cf2146c2b224c6ffae591c3"></a>
+<a class="el" href="structOutput_1_1ConcurrentInsertionMap.html">Output::VariationDeNiveauxDeStockData</a>&#160;</td><td class="memItemRight" valign="bottom"><b>variationDeNiveauxDeStockData</b></td></tr>
+<tr class="memdesc:a96a1d0f12cf2146c2b224c6ffae591c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data to write in the output file. <br /></td></tr>
+<tr class="separator:a96a1d0f12cf2146c2b224c6ffae591c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a429fa53f0375c186f366e7007ca25486" id="r_a429fa53f0375c186f366e7007ca25486"><td class="memItemLeft" align="right" valign="top"><a id="a429fa53f0375c186f366e7007ca25486" name="a429fa53f0375c186f366e7007ca25486"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>InitSubProblems</b> ()</td></tr>
+<tr class="memdesc:a429fa53f0375c186f366e7007ca25486"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the subproblems from the mps files in the mps folder and generate the RHS grid values for each subproblem. <br /></td></tr>
+<tr class="separator:a429fa53f0375c186f366e7007ca25486"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2efaf82d89f49c2491813c6b6e3ac6bd" id="r_a2efaf82d89f49c2491813c6b6e3ac6bd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2efaf82d89f49c2491813c6b6e3ac6bd">IsSubproblemUsed</a> (const std::string &amp;subPbName) const</td></tr>
+<tr class="memdesc:a2efaf82d89f49c2491813c6b6e3ac6bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the subproblem is used in the grid.csv file.  <br /></td></tr>
+<tr class="separator:a2efaf82d89f49c2491813c6b6e3ac6bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4169b6309b4d927bc21c0b620919013c" id="r_a4169b6309b4d927bc21c0b620919013c"><td class="memItemLeft" align="right" valign="top"><a id="a4169b6309b4d927bc21c0b620919013c" name="a4169b6309b4d927bc21c0b620919013c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Run</b> ()</td></tr>
+<tr class="memdesc:a4169b6309b4d927bc21c0b620919013c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the ProcessSubproblem method in parallel for each subproblem. <br /></td></tr>
+<tr class="separator:a4169b6309b4d927bc21c0b620919013c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cb304479b5023826ab4e1a38850ae28" id="r_a6cb304479b5023826ab4e1a38850ae28"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6cb304479b5023826ab4e1a38850ae28">ProcessSubproblem</a> (const std::string &amp;subPbName)</td></tr>
+<tr class="memdesc:a6cb304479b5023826ab4e1a38850ae28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process a single subproblem.  <br /></td></tr>
+<tr class="separator:a6cb304479b5023826ab4e1a38850ae28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25ddd30b5828cfd531308879604c8e60" id="r_a25ddd30b5828cfd531308879604c8e60"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a25ddd30b5828cfd531308879604c8e60">ProcessSubproblemsParallel</a> (const std::vector&lt; std::string &gt; &amp;<a class="el" href="#a28e649d557c7a45a5c27500292a73630">subPbNames</a>, int <a class="el" href="#ace707d90179e06185d6426dc0f007525">nbThreads</a>)</td></tr>
+<tr class="memdesc:a25ddd30b5828cfd531308879604c8e60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process the subproblems in parallel using TBB over nbThreads.  <br /></td></tr>
+<tr class="separator:a25ddd30b5828cfd531308879604c8e60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac30cd07a72f1490ee4b1ab661ad2ba2d" id="r_ac30cd07a72f1490ee4b1ab661ad2ba2d"><td class="memItemLeft" align="right" valign="top">std::map&lt; int, AreaConstraintMaps &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac30cd07a72f1490ee4b1ab661ad2ba2d">GenerateRHSGridValues</a> (std::string subPbName, SubproblemWorkerPtr subPbWorker)</td></tr>
+<tr class="memdesc:ac30cd07a72f1490ee4b1ab661ad2ba2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate the RHS grid values for each subproblem The RHS grid values are generated for each area and each constraint.  <br /></td></tr>
+<tr class="separator:ac30cd07a72f1490ee4b1ab661ad2ba2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afda28b5da7202af9f76e05cd440d8b32" id="r_afda28b5da7202af9f76e05cd440d8b32"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afda28b5da7202af9f76e05cd440d8b32">SetConstraintsRHSValues</a> (const std::map&lt; std::string, double &gt; &amp;rhsValues, SubproblemWorkerPtr subPbWorker)</td></tr>
+<tr class="memdesc:afda28b5da7202af9f76e05cd440d8b32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the constraints RHS values for a given subproblem.  <br /></td></tr>
+<tr class="separator:afda28b5da7202af9f76e05cd440d8b32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0607dea44dc19851a2767f8b3313e47b" id="r_a0607dea44dc19851a2767f8b3313e47b"><td class="memItemLeft" align="right" valign="top">std::filesystem::path&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0607dea44dc19851a2767f8b3313e47b">GetSubproblemPath</a> (const std::string &amp;subPbName) const</td></tr>
+<tr class="memdesc:a0607dea44dc19851a2767f8b3313e47b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the path to the subproblem mps file.  <br /></td></tr>
+<tr class="separator:a0607dea44dc19851a2767f8b3313e47b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7538917613681ff980896b9b09a52512" id="r_a7538917613681ff980896b9b09a52512"><td class="memItemLeft" align="right" valign="top">SubproblemWorkerPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7538917613681ff980896b9b09a52512">AddSubproblem</a> (const std::string &amp;subPbName)</td></tr>
+<tr class="memdesc:a7538917613681ff980896b9b09a52512"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a subproblem to the subproblem map and initialize it with the mps file The solver is initialized here.  <br /></td></tr>
+<tr class="separator:a7538917613681ff980896b9b09a52512"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4ebd91802763963cf5c51fe22434701" id="r_ac4ebd91802763963cf5c51fe22434701"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4ebd91802763963cf5c51fe22434701">SolveSubproblem</a> (SubproblemWorkerPtr subPbWorker)</td></tr>
+<tr class="memdesc:ac4ebd91802763963cf5c51fe22434701"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solve the subproblem and return the cost.  <br /></td></tr>
+<tr class="separator:ac4ebd91802763963cf5c51fe22434701"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50ec9e6269b6ff9d33d8d0496aa6c861" id="r_a50ec9e6269b6ff9d33d8d0496aa6c861"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a50ec9e6269b6ff9d33d8d0496aa6c861">GetConstraintName</a> (const std::string &amp;subPbName, const std::string &amp;area, const std::string &amp;constraint) const</td></tr>
+<tr class="memdesc:a50ec9e6269b6ff9d33d8d0496aa6c861"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the constraint in the mps file.  <br /></td></tr>
+<tr class="separator:a50ec9e6269b6ff9d33d8d0496aa6c861"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8efc7819eac884a5979e2ace3b0aa0ff" id="r_a8efc7819eac884a5979e2ace3b0aa0ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structScenarioAndWeek.html">ScenarioAndWeek</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8efc7819eac884a5979e2ace3b0aa0ff">GetPbInfo</a> (const std::string &amp;pbName) const</td></tr>
+<tr class="memdesc:a8efc7819eac884a5979e2ace3b0aa0ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the problem info from the problem name.  <br /></td></tr>
+<tr class="separator:a8efc7819eac884a5979e2ace3b0aa0ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a183df8c46b0b9cc3c8e767bbd3cae924" id="r_a183df8c46b0b9cc3c8e767bbd3cae924"><td class="memItemLeft" align="right" valign="top">ConstraintCombos&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a183df8c46b0b9cc3c8e767bbd3cae924">GenerateConstraintProduct</a> (const ConstraintMap &amp;constraints)</td></tr>
+<tr class="memdesc:a183df8c46b0b9cc3c8e767bbd3cae924"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates all combinations of constraint values (Cartesian product).  <br /></td></tr>
+<tr class="separator:a183df8c46b0b9cc3c8e767bbd3cae924"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7db7ca3d0db4a518865712eafdae52a0" id="r_a7db7ca3d0db4a518865712eafdae52a0"><td class="memItemLeft" align="right" valign="top">ConstraintCombos&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7db7ca3d0db4a518865712eafdae52a0">GenerateSubPbCombos</a> (const std::string &amp;subPbName, const AreaConstraintMaps &amp;areas)</td></tr>
+<tr class="memdesc:a7db7ca3d0db4a518865712eafdae52a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates all combinations of constraint values for all areas in a subproblem.  <br /></td></tr>
+<tr class="separator:a7db7ca3d0db4a518865712eafdae52a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a8fbc2edaa5a2d7c5338536203bc8a3" id="r_a1a8fbc2edaa5a2d7c5338536203bc8a3"><td class="memItemLeft" align="right" valign="top"><a id="a1a8fbc2edaa5a2d7c5338536203bc8a3" name="a1a8fbc2edaa5a2d7c5338536203bc8a3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>WriteOutput</b> ()</td></tr>
+<tr class="memdesc:a1a8fbc2edaa5a2d7c5338536203bc8a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write the output to the json file. <br /></td></tr>
+<tr class="separator:a1a8fbc2edaa5a2d7c5338536203bc8a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a2986723882dff95813ef50eab4ee2452" id="r_a2986723882dff95813ef50eab4ee2452"><td class="memItemLeft" align="right" valign="top"><a id="a2986723882dff95813ef50eab4ee2452" name="a2986723882dff95813ef50eab4ee2452"></a>
+std::filesystem::path&#160;</td><td class="memItemRight" valign="bottom"><b>xpansionFolderPath</b></td></tr>
+<tr class="memdesc:a2986723882dff95813ef50eab4ee2452"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path to the xpansion folder. <br /></td></tr>
+<tr class="separator:a2986723882dff95813ef50eab4ee2452"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28e649d557c7a45a5c27500292a73630" id="r_a28e649d557c7a45a5c27500292a73630"><td class="memItemLeft" align="right" valign="top"><a id="a28e649d557c7a45a5c27500292a73630" name="a28e649d557c7a45a5c27500292a73630"></a>
+std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>subPbNames</b></td></tr>
+<tr class="memdesc:a28e649d557c7a45a5c27500292a73630"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of subproblems names. <br /></td></tr>
+<tr class="separator:a28e649d557c7a45a5c27500292a73630"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a494c4b426525197136d9652bf3a0cbf7" id="r_a494c4b426525197136d9652bf3a0cbf7"><td class="memItemLeft" align="right" valign="top"><a id="a494c4b426525197136d9652bf3a0cbf7" name="a494c4b426525197136d9652bf3a0cbf7"></a>
+ProblemsFormat&#160;</td><td class="memItemRight" valign="bottom"><b>problemsFormat</b></td></tr>
+<tr class="memdesc:a494c4b426525197136d9652bf3a0cbf7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format of the problems. <br /></td></tr>
+<tr class="separator:a494c4b426525197136d9652bf3a0cbf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace707d90179e06185d6426dc0f007525" id="r_ace707d90179e06185d6426dc0f007525"><td class="memItemLeft" align="right" valign="top"><a id="ace707d90179e06185d6426dc0f007525" name="ace707d90179e06185d6426dc0f007525"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>nbThreads</b> = 1</td></tr>
+<tr class="memdesc:ace707d90179e06185d6426dc0f007525"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of threads to use. <br /></td></tr>
+<tr class="separator:ace707d90179e06185d6426dc0f007525"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68ed4338a098f4cc4663a73cc11f500f" id="r_a68ed4338a098f4cc4663a73cc11f500f"><td class="memItemLeft" align="right" valign="top"><a id="a68ed4338a098f4cc4663a73cc11f500f" name="a68ed4338a098f4cc4663a73cc11f500f"></a>
+<a class="el" href="classSolverLogManager.html">SolverLogManager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>solver_log_manager_</b></td></tr>
+<tr class="separator:a68ed4338a098f4cc4663a73cc11f500f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57ee15d9acad3cd007188a4955b7b09f" id="r_a57ee15d9acad3cd007188a4955b7b09f"><td class="memItemLeft" align="right" valign="top"><a id="a57ee15d9acad3cd007188a4955b7b09f" name="a57ee15d9acad3cd007188a4955b7b09f"></a>
+Logger&#160;</td><td class="memItemRight" valign="bottom"><b>_logger</b></td></tr>
+<tr class="separator:a57ee15d9acad3cd007188a4955b7b09f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca54bbcca686f592656097ce6a0f55e0" id="r_aca54bbcca686f592656097ce6a0f55e0"><td class="memItemLeft" align="right" valign="top"><a id="aca54bbcca686f592656097ce6a0f55e0" name="aca54bbcca686f592656097ce6a0f55e0"></a>
+std::shared_ptr&lt; <a class="el" href="classOutput_1_1JsonWriter.html">Output::JsonWriter</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_writer</b></td></tr>
+<tr class="separator:aca54bbcca686f592656097ce6a0f55e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class to compute Stock levels variation. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ac3d366628197d5bf95e2c2be33a21214" name="ac3d366628197d5bf95e2c2be33a21214"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3d366628197d5bf95e2c2be33a21214">&#9670;&#160;</a></span>GridEvaluator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GridEvaluator::GridEvaluator </td>
+          <td>(</td>
+          <td class="paramtype">Logger</td>          <td class="paramname"><span class="paramname"><em>logger</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classOutput_1_1JsonWriter.html">Output::JsonWriter</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>writer</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::filesystem::path</td>          <td class="paramname"><span class="paramname"><em>path_to_data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ProblemsFormat</td>          <td class="paramname"><span class="paramname"><em>data_format</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">logger</td><td>Logger </td></tr>
+    <tr><td class="paramname">writer</td><td>JsonWriter </td></tr>
+    <tr><td class="paramname">path_to_data</td><td>Path to the data folder </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a7538917613681ff980896b9b09a52512" name="a7538917613681ff980896b9b09a52512"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7538917613681ff980896b9b09a52512">&#9670;&#160;</a></span>AddSubproblem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SubproblemWorkerPtr GridEvaluator::AddSubproblem </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pbName</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Add a subproblem to the subproblem map and initialize it with the mps file The solver is initialized here. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pbName</td><td>The name of the subproblem </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The subproblem worker </dd></dl>
+
+</div>
+</div>
+<a id="a183df8c46b0b9cc3c8e767bbd3cae924" name="a183df8c46b0b9cc3c8e767bbd3cae924"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a183df8c46b0b9cc3c8e767bbd3cae924">&#9670;&#160;</a></span>GenerateConstraintProduct()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ConstraintCombos GridEvaluator::GenerateConstraintProduct </td>
+          <td>(</td>
+          <td class="paramtype">const ConstraintMap &amp;</td>          <td class="paramname"><span class="paramname"><em>constraints</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Generates all combinations of constraint values (Cartesian product). </p>
+<p>This function takes a map of constraints, where each constraint is associated with a list of possible values, and produces all possible combinations of those values across the entire set of constraints. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">constraints</td><td>Map from constraint names to lists of values. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector of maps, where each map is one possible combination of constraint values. </dd></dl>
+
+</div>
+</div>
+<a id="ac30cd07a72f1490ee4b1ab661ad2ba2d" name="ac30cd07a72f1490ee4b1ab661ad2ba2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac30cd07a72f1490ee4b1ab661ad2ba2d">&#9670;&#160;</a></span>GenerateRHSGridValues()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt; int, AreaConstraintMaps &gt; GridEvaluator::GenerateRHSGridValues </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>subPbName</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SubproblemWorkerPtr</td>          <td class="paramname"><span class="paramname"><em>subPbWorker</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Generate the RHS grid values for each subproblem The RHS grid values are generated for each area and each constraint. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">subPbName</td><td>The name of the subproblem </td></tr>
+    <tr><td class="paramname">subPbWorker</td><td>The subproblem worker </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The RHS grid values for each subproblem </dd></dl>
+
+</div>
+</div>
+<a id="a7db7ca3d0db4a518865712eafdae52a0" name="a7db7ca3d0db4a518865712eafdae52a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7db7ca3d0db4a518865712eafdae52a0">&#9670;&#160;</a></span>GenerateSubPbCombos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ConstraintCombos GridEvaluator::GenerateSubPbCombos </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>subPbName</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const AreaConstraintMaps &amp;</td>          <td class="paramname"><span class="paramname"><em>areas</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Generates all combinations of constraint values for all areas in a subproblem. </p>
+<p>This function iterates over each area in the subproblem, generates local combinations of constraint values using GenerateConstraintProduct, and merges them with area-specific names into a complete list of subproblem-level combinations. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">subPbName</td><td>Name of the subproblem (used to prefix constraint names). </td></tr>
+    <tr><td class="paramname">areas</td><td>Map from area names to their constraint maps. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector of maps, where each map is a full combination of all constraints (with area-prefixed keys) for the subproblem. </dd></dl>
+
+</div>
+</div>
+<a id="a50ec9e6269b6ff9d33d8d0496aa6c861" name="a50ec9e6269b6ff9d33d8d0496aa6c861"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50ec9e6269b6ff9d33d8d0496aa6c861">&#9670;&#160;</a></span>GetConstraintName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string GridEvaluator::GetConstraintName </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>subPbName</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>area</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>constraint</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the name of the constraint in the mps file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">subPbName</td><td>The name of the subproblem </td></tr>
+    <tr><td class="paramname">area</td><td>The name of the area </td></tr>
+    <tr><td class="paramname">constraint</td><td>The name of the constraint </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The name of the constraint in the mps file </dd></dl>
+
+</div>
+</div>
+<a id="a8efc7819eac884a5979e2ace3b0aa0ff" name="a8efc7819eac884a5979e2ace3b0aa0ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8efc7819eac884a5979e2ace3b0aa0ff">&#9670;&#160;</a></span>GetPbInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structScenarioAndWeek.html">ScenarioAndWeek</a> GridEvaluator::GetPbInfo </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>pbName</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the problem info from the problem name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pbName</td><td>The problem name </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The scenario and week of the problem </dd></dl>
+
+</div>
+</div>
+<a id="a0607dea44dc19851a2767f8b3313e47b" name="a0607dea44dc19851a2767f8b3313e47b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0607dea44dc19851a2767f8b3313e47b">&#9670;&#160;</a></span>GetSubproblemPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::filesystem::path GridEvaluator::GetSubproblemPath </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>subPbName</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the path to the subproblem mps file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">subPbName</td><td>The name of the subproblem </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The path to the subproblem mps file </dd></dl>
+
+</div>
+</div>
+<a id="a2efaf82d89f49c2491813c6b6e3ac6bd" name="a2efaf82d89f49c2491813c6b6e3ac6bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2efaf82d89f49c2491813c6b6e3ac6bd">&#9670;&#160;</a></span>IsSubproblemUsed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GridEvaluator::IsSubproblemUsed </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>subPbName</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if the subproblem is used in the grid.csv file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">subPbName</td><td>The name of the subproblem </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the subproblem is used, false otherwise </dd></dl>
+
+</div>
+</div>
+<a id="a6cb304479b5023826ab4e1a38850ae28" name="a6cb304479b5023826ab4e1a38850ae28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cb304479b5023826ab4e1a38850ae28">&#9670;&#160;</a></span>ProcessSubproblem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GridEvaluator::ProcessSubproblem </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>subPbName</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Process a single subproblem. </p>
+<p>this function generates all possible combinations of right-hand side (RHS) constraint values using <code>GenerateSubPbCombos</code>, applies them to the model via <code>SetConstraintsRHSValues</code>, solves the subproblem using <code>SolveSubproblem</code>, and stores the resulting cost in the <code>variationDeNiveauxDeStockData</code> map indexed by scenario, week, and constraint values. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">subPbName</td><td>The name of the subproblem </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a25ddd30b5828cfd531308879604c8e60" name="a25ddd30b5828cfd531308879604c8e60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25ddd30b5828cfd531308879604c8e60">&#9670;&#160;</a></span>ProcessSubproblemsParallel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GridEvaluator::ProcessSubproblemsParallel </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::string &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>subPbNames</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>nbThreads</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Process the subproblems in parallel using TBB over nbThreads. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">subPbNames</td><td>The list of subproblems names to process </td></tr>
+    <tr><td class="paramname">nbThreads</td><td>The number of threads to use </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afda28b5da7202af9f76e05cd440d8b32" name="afda28b5da7202af9f76e05cd440d8b32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afda28b5da7202af9f76e05cd440d8b32">&#9670;&#160;</a></span>SetConstraintsRHSValues()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GridEvaluator::SetConstraintsRHSValues </td>
+          <td>(</td>
+          <td class="paramtype">const std::map&lt; std::string, double &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>rhsValues</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SubproblemWorkerPtr</td>          <td class="paramname"><span class="paramname"><em>subPbWorker</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the constraints RHS values for a given subproblem. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rhsValues</td><td>The RHS values to set </td></tr>
+    <tr><td class="paramname">subPbWorker</td><td>The subproblem worker </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a139cf1fba2498ccaa9f6ef521193333c" name="a139cf1fba2498ccaa9f6ef521193333c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a139cf1fba2498ccaa9f6ef521193333c">&#9670;&#160;</a></span>setThreads()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GridEvaluator::setThreads </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>nbThreads</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the number of threads to use. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nbThreads</td><td>Number of threads </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac4ebd91802763963cf5c51fe22434701" name="ac4ebd91802763963cf5c51fe22434701"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4ebd91802763963cf5c51fe22434701">&#9670;&#160;</a></span>SolveSubproblem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double GridEvaluator::SolveSubproblem </td>
+          <td>(</td>
+          <td class="paramtype">SubproblemWorkerPtr</td>          <td class="paramname"><span class="paramname"><em>subPbWorker</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Solve the subproblem and return the cost. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">subPbWorker</td><td>The subproblem worker </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The cost of the subproblem </dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>src/cpp/grid_evaluator/include/antares-xpansion/grid_evaluator/<a class="el" href="GridEvaluator_8h_source.html">GridEvaluator.h</a></li>
+<li>src/cpp/grid_evaluator/<b>GridEvaluator.cpp</b></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classGridEvaluator.html">GridEvaluator</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+</body>
+</html>
