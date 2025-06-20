@@ -314,6 +314,40 @@ var NAVTREE =
       ] ],
       [ "Reliability-constrained investment problem", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md233", null ]
     ] ],
+    [ "Merging the master problems of annual Xpansion studies", "md_docs_2user-guide_2trajectory-investment_2merge-master.html", [
+      [ " Usage of the master merger executable", "md_docs_2user-guide_2trajectory-investment_2merge-master.html#autotoc_md235", null ],
+      [ " Options file", "md_docs_2user-guide_2trajectory-investment_2merge-master.html#autotoc_md236", null ],
+      [ "Master merger info file", "md_docs_2user-guide_2trajectory-investment_2merge-master.html#autotoc_md237", null ],
+      [ " Nodal lp info file", "md_docs_2user-guide_2trajectory-investment_2merge-master.html#autotoc_md238", null ],
+      [ "Input files from each annual study", "md_docs_2user-guide_2trajectory-investment_2merge-master.html#autotoc_md239", null ],
+      [ "Trajectory constraints", "md_docs_2user-guide_2trajectory-investment_2merge-master.html#autotoc_md240", null ]
+    ] ],
+    [ "Weights", "md_docs_2user-guide_2trajectory-investment_2merge-weights.html", [
+      [ "Why we need custom weights", "md_docs_2user-guide_2trajectory-investment_2merge-weights.html#autotoc_md242", null ],
+      [ "Usage", "md_docs_2user-guide_2trajectory-investment_2merge-weights.html#autotoc_md243", null ],
+      [ " Output", "md_docs_2user-guide_2trajectory-investment_2merge-weights.html#autotoc_md244", null ]
+    ] ],
+    [ "Multiple problem generation", "md_docs_2user-guide_2trajectory-investment_2multiple-problem-generation.html", [
+      [ "Usage", "md_docs_2user-guide_2trajectory-investment_2multiple-problem-generation.html#autotoc_md246", null ],
+      [ "Study paths / archives file", "md_docs_2user-guide_2trajectory-investment_2multiple-problem-generation.html#autotoc_md247", null ],
+      [ " Weights and/or additional constraints reference file", "md_docs_2user-guide_2trajectory-investment_2multiple-problem-generation.html#autotoc_md248", null ],
+      [ "Output : Nodal Lp Info file", "md_docs_2user-guide_2trajectory-investment_2multiple-problem-generation.html#autotoc_md249", null ]
+    ] ],
+    [ "orchestration", "md_docs_2user-guide_2trajectory-investment_2orchestration.html", null ],
+    [ "Trajectory investment problem", "md_docs_2user-guide_2trajectory-investment_2trajectory-problem.html", [
+      [ "General description", "md_docs_2user-guide_2trajectory-investment_2trajectory-problem.html#autotoc_md251", null ],
+      [ "On the $dx^{+/-}$ variables", "md_docs_2user-guide_2trajectory-investment_2trajectory-problem.html#autotoc_md252", null ]
+    ] ],
+    [ "trajectory-workflow", "md_docs_2user-guide_2trajectory-investment_2trajectory-workflow.html", null ],
+    [ "User input file parsing", "md_docs_2user-guide_2trajectory-investment_2user-input.html", [
+      [ "User input file", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md256", null ],
+      [ " Input file parser & translator", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md257", null ],
+      [ "Trajectory constraints translation", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md258", [
+        [ "type: max_investment_per_node_per_candidate", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md259", null ],
+        [ " type: max_cumulative_investment_per_node", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md260", null ],
+        [ "type: max_retirement_per_node_per_candidate", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md261", null ]
+      ] ]
+    ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -342,13 +376,14 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "ActiveLinks_8h_source.html",
-"classBendersSequentialTestSolverAndFormat.html",
-"classNOOPSolver.html#af8afd7437082c5bc2aa69b5c35e9e971",
-"classSolverCbc.html#a5be71afd2ba393af429ae72018a2399e",
-"classYearlyWeightsWriter.html",
-"classantares__xpansion_1_1xpansionConfig_1_1InputParameters.html",
-"md_docs_2changelog_2CHANGELOG.html#autotoc_md17",
-"structAreaFileData.html"
+"classBendersSequentialDouble.html#a33c0199bf9a762b001db1f631ca9444f",
+"classNOOPSolver.html#ac3576fca5a8327ba50a0b3f7543292e0",
+"classSolverCbc.html#a1b3d4706655309b6d8143d96343069ae",
+"classWorkerMaster.html#accfd98c6107377016c56d00a242c5ec5",
+"classantares__xpansion_1_1split__link__profile_1_1SplitLinkProfile_1_1ProfileFileValueError.html",
+"dir_c8fad1715aea1f636405603d945b096c.html",
+"md_docs_2user-guide_2get-started_2launching-optimization.html",
+"structCatch__global__namespace__dummy.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

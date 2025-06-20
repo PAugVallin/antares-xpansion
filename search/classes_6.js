@@ -12,8 +12,9 @@ var searchData=
   ['generatorwrapper_9',['GeneratorWrapper',['../classCatch_1_1Generators_1_1GeneratorWrapper.html',1,'Catch::Generators']]],
   ['generatorwrapper_3c_20u_20_3e_10',['GeneratorWrapper&lt; U &gt;',['../classCatch_1_1Generators_1_1GeneratorWrapper.html',1,'Catch::Generators']]],
   ['genericsolverexception_11',['GenericSolverException',['../classGenericSolverException.html',1,'']]],
-  ['gridevaluator_12',['GridEvaluator',['../classGridEvaluator.html',1,'']]],
-  ['gridpointdata_13',['GridPointData',['../structOutput_1_1GridPointData.html',1,'Output']]],
-  ['gridsearch_14',['GridSearch',['../classGridSearch.html',1,'']]],
-  ['gridsearchtest_15',['GridSearchTest',['../classGridSearchTest.html',1,'']]]
+  ['globaldata_12',['GlobalData',['../classtrajectory__module_1_1TrajectoryModule_1_1GlobalData.html',1,'trajectory_module.TrajectoryModule.GlobalData'],['../classuser__input__translation_1_1TrajectoryModule_1_1GlobalData.html',1,'user_input_translation.TrajectoryModule.GlobalData']]],
+  ['gridevaluator_13',['GridEvaluator',['../classGridEvaluator.html',1,'']]],
+  ['gridpointdata_14',['GridPointData',['../structOutput_1_1GridPointData.html',1,'Output']]],
+  ['gridsearch_15',['GridSearch',['../classGridSearch.html',1,'']]],
+  ['gridsearchtest_16',['GridSearchTest',['../classGridSearchTest.html',1,'']]]
 ];
