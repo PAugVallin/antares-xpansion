@@ -100,5 +100,6 @@ var searchData=
   ['studyupdatestrategy_97',['StudyUpdateStrategy',['../classStudyUpdateStrategy.html',1,'']]],
   ['studyupdatetest_98',['StudyUpdateTest',['../classStudyUpdateTest.html',1,'']]],
   ['subproblemdata_99',['SubProblemData',['../structPlainData_1_1SubProblemData.html',1,'PlainData']]],
-  ['subproblemworker_100',['SubproblemWorker',['../classSubproblemWorker.html',1,'']]]
+  ['subproblemworker_100',['SubproblemWorker',['../classSubproblemWorker.html',1,'']]],
+  ['subproblemworkertest_101',['SubproblemWorkerTest',['../classSubproblemWorkerTest.html',1,'']]]
 ];

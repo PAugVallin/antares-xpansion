@@ -31,5 +31,5 @@ var searchData=
   ['solvesubproblem_28',['SolveSubproblem',['../classGridEvaluator.html#ac4ebd91802763963cf5c51fe22434701',1,'GridEvaluator']]],
   ['studyupdater_29',['StudyUpdater',['../classStudyUpdater.html#ac386a6ced87a6a4315ed2c46f574601e',1,'StudyUpdater']]],
   ['subproblemweight_30',['SubproblemWeight',['../classBendersBase.html#ab979fd9e6fd791c6b01d244da33ba849',1,'BendersBase']]],
-  ['subproblemworker_31',['SubproblemWorker',['../classSubproblemWorker.html#a4310e1d3b5519bf9ae215c7ee2a6f6a8',1,'SubproblemWorker']]]
+  ['subproblemworker_31',['SubproblemWorker',['../classSubproblemWorker.html#a4353df6111363aa803afcfa82c21bd2d',1,'SubproblemWorker']]]
 ];
