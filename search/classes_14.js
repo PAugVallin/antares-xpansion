@@ -11,6 +11,5 @@ var searchData=
   ['variablesnotfound_8',['VariablesNotFound',['../classVariableFileReader_1_1VariablesNotFound.html',1,'VariableFileReader']]],
   ['variationdeniveauxdestockkey_9',['VariationDeNiveauxDeStockKey',['../structOutput_1_1VariationDeNiveauxDeStockKey.html',1,'Output']]],
   ['version_10',['Version',['../structVersion.html',1,'']]],
-  ['void_5ftype_11',['void_type',['../structCatch_1_1detail_1_1void__type.html',1,'Catch::detail']]],
-  ['voidwriter_12',['VoidWriter',['../classOutput_1_1VoidWriter.html',1,'Output']]]
+  ['voidwriter_11',['VoidWriter',['../classOutput_1_1VoidWriter.html',1,'Output']]]
 ];
