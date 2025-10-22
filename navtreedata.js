@@ -27,336 +27,351 @@ var NAVTREE =
   [ "Antares Xpansion", "index.html", [
     [ "Antares-Xpansion", "index.html", "index" ],
     [ "Antares-Xpansion changelog", "md_docs_2changelog_2CHANGELOG.html", [
-      [ "v1.5.0 (07/2025)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md10", null ],
-      [ "Features", "md_docs_2changelog_2CHANGELOG.html#autotoc_md11", null ],
-      [ "Bug fixes", "md_docs_2changelog_2CHANGELOG.html#autotoc_md12", null ],
-      [ "v1.4.0 (07/2025)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md13", [
-        [ "Important", "md_docs_2changelog_2CHANGELOG.html#autotoc_md14", null ],
-        [ "Features", "md_docs_2changelog_2CHANGELOG.html#autotoc_md15", null ],
-        [ "For developers", "md_docs_2changelog_2CHANGELOG.html#autotoc_md16", null ],
-        [ "New Contributors", "md_docs_2changelog_2CHANGELOG.html#autotoc_md17", null ]
+      [ "v1.6.0 (10/2025)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md10", [
+        [ "Features", "md_docs_2changelog_2CHANGELOG.html#autotoc_md11", null ],
+        [ "Bug fixes", "md_docs_2changelog_2CHANGELOG.html#autotoc_md12", null ],
+        [ "Refactoring & Maintenance", "md_docs_2changelog_2CHANGELOG.html#autotoc_md13", null ]
       ] ],
-      [ "v1.3.2 (07/2024)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md18", [
-        [ "Bug Fixes", "md_docs_2changelog_2CHANGELOG.html#autotoc_md19", null ]
+      [ "v1.5.0 (07/2025)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md14", null ],
+      [ "Features", "md_docs_2changelog_2CHANGELOG.html#autotoc_md15", null ],
+      [ "Bug fixes", "md_docs_2changelog_2CHANGELOG.html#autotoc_md16", null ],
+      [ "v1.4.0 (07/2025)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md17", [
+        [ "Important", "md_docs_2changelog_2CHANGELOG.html#autotoc_md18", null ],
+        [ "Features", "md_docs_2changelog_2CHANGELOG.html#autotoc_md19", null ],
+        [ "For developers", "md_docs_2changelog_2CHANGELOG.html#autotoc_md20", null ],
+        [ "New Contributors", "md_docs_2changelog_2CHANGELOG.html#autotoc_md21", null ]
       ] ],
-      [ "v1.3.1 (07/2024)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md20", [
-        [ "Features", "md_docs_2changelog_2CHANGELOG.html#autotoc_md21", null ],
-        [ "Bug Fixes", "md_docs_2changelog_2CHANGELOG.html#autotoc_md22", null ],
-        [ "Doc", "md_docs_2changelog_2CHANGELOG.html#autotoc_md23", null ]
+      [ "v1.3.2 (07/2024)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md22", [
+        [ "Bug Fixes", "md_docs_2changelog_2CHANGELOG.html#autotoc_md23", null ]
       ] ],
-      [ "v1.3.0 (06/2024)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md24", [
-        [ "⚠️ Single-file versions in Ubuntu are known to have MPI-related issues. Please use the other ones.", "md_docs_2changelog_2CHANGELOG.html#autotoc_md25", null ],
-        [ "Features", "md_docs_2changelog_2CHANGELOG.html#autotoc_md26", null ],
-        [ "Bug Fixes", "md_docs_2changelog_2CHANGELOG.html#autotoc_md27", null ]
+      [ "v1.3.1 (07/2024)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md24", [
+        [ "Features", "md_docs_2changelog_2CHANGELOG.html#autotoc_md25", null ],
+        [ "Bug Fixes", "md_docs_2changelog_2CHANGELOG.html#autotoc_md26", null ],
+        [ "Doc", "md_docs_2changelog_2CHANGELOG.html#autotoc_md27", null ]
       ] ],
-      [ "v1.2.2 (02/2024)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md28", null ],
-      [ "v1.2 (10/2023)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md29", [
+      [ "v1.3.0 (06/2024)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md28", [
+        [ "⚠️ Single-file versions in Ubuntu are known to have MPI-related issues. Please use the other ones.", "md_docs_2changelog_2CHANGELOG.html#autotoc_md29", null ],
         [ "Features", "md_docs_2changelog_2CHANGELOG.html#autotoc_md30", null ],
-        [ "Bug fixes", "md_docs_2changelog_2CHANGELOG.html#autotoc_md31", null ]
+        [ "Bug Fixes", "md_docs_2changelog_2CHANGELOG.html#autotoc_md31", null ]
       ] ],
-      [ "v1.1.1 (09/2023)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md32", [
-        [ "Fix", "md_docs_2changelog_2CHANGELOG.html#autotoc_md33", null ]
+      [ "v1.2.2 (02/2024)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md32", null ],
+      [ "v1.2 (10/2023)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md33", [
+        [ "Features", "md_docs_2changelog_2CHANGELOG.html#autotoc_md34", null ],
+        [ "Bug fixes", "md_docs_2changelog_2CHANGELOG.html#autotoc_md35", null ]
       ] ],
-      [ "v1.1.0 (09/2023)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md34", [
-        [ "Features", "md_docs_2changelog_2CHANGELOG.html#autotoc_md35", null ],
-        [ "For developers", "md_docs_2changelog_2CHANGELOG.html#autotoc_md36", null ]
+      [ "v1.1.1 (09/2023)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md36", [
+        [ "Fix", "md_docs_2changelog_2CHANGELOG.html#autotoc_md37", null ]
       ] ],
-      [ "v1.0.3 (02/2023)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md37", [
-        [ "Features", "md_docs_2changelog_2CHANGELOG.html#autotoc_md38", null ],
-        [ "Bug", "md_docs_2changelog_2CHANGELOG.html#autotoc_md39", null ]
+      [ "v1.1.0 (09/2023)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md38", [
+        [ "Features", "md_docs_2changelog_2CHANGELOG.html#autotoc_md39", null ],
+        [ "For developers", "md_docs_2changelog_2CHANGELOG.html#autotoc_md40", null ]
       ] ],
-      [ "v1.0.2 (01/2023)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md40", [
-        [ "Bug fix", "md_docs_2changelog_2CHANGELOG.html#autotoc_md41", null ]
+      [ "v1.0.3 (02/2023)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md41", [
+        [ "Features", "md_docs_2changelog_2CHANGELOG.html#autotoc_md42", null ],
+        [ "Bug", "md_docs_2changelog_2CHANGELOG.html#autotoc_md43", null ]
       ] ],
-      [ "v1.0.1 (01/2023)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md42", [
-        [ "Features", "md_docs_2changelog_2CHANGELOG.html#autotoc_md43", null ]
+      [ "v1.0.2 (01/2023)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md44", [
+        [ "Bug fix", "md_docs_2changelog_2CHANGELOG.html#autotoc_md45", null ]
       ] ],
-      [ "v1.0.0 (12/2022)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md44", [
-        [ "Features", "md_docs_2changelog_2CHANGELOG.html#autotoc_md45", null ],
-        [ "Documentation", "md_docs_2changelog_2CHANGELOG.html#autotoc_md46", null ]
+      [ "v1.0.1 (01/2023)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md46", [
+        [ "Features", "md_docs_2changelog_2CHANGELOG.html#autotoc_md47", null ]
       ] ],
-      [ "v0.8.0 (10/2022)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md47", [
-        [ "Features", "md_docs_2changelog_2CHANGELOG.html#autotoc_md48", null ],
-        [ "Bug fixes", "md_docs_2changelog_2CHANGELOG.html#autotoc_md49", null ]
+      [ "v1.0.0 (12/2022)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md48", [
+        [ "Features", "md_docs_2changelog_2CHANGELOG.html#autotoc_md49", null ],
+        [ "Documentation", "md_docs_2changelog_2CHANGELOG.html#autotoc_md50", null ]
       ] ],
-      [ "v0.7.0 (06/2022)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md50", [
-        [ "Features", "md_docs_2changelog_2CHANGELOG.html#autotoc_md51", null ],
-        [ "Bug fixes", "md_docs_2changelog_2CHANGELOG.html#autotoc_md52", null ],
-        [ "For developers", "md_docs_2changelog_2CHANGELOG.html#autotoc_md53", null ]
+      [ "v0.8.0 (10/2022)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md51", [
+        [ "Features", "md_docs_2changelog_2CHANGELOG.html#autotoc_md52", null ],
+        [ "Bug fixes", "md_docs_2changelog_2CHANGELOG.html#autotoc_md53", null ]
       ] ],
-      [ "v0.6.0 (12/2021)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md54", [
+      [ "v0.7.0 (06/2022)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md54", [
         [ "Features", "md_docs_2changelog_2CHANGELOG.html#autotoc_md55", null ],
         [ "Bug fixes", "md_docs_2changelog_2CHANGELOG.html#autotoc_md56", null ],
         [ "For developers", "md_docs_2changelog_2CHANGELOG.html#autotoc_md57", null ]
       ] ],
-      [ "v0.5.0 (10/2021)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md58", [
+      [ "v0.6.0 (12/2021)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md58", [
         [ "Features", "md_docs_2changelog_2CHANGELOG.html#autotoc_md59", null ],
         [ "Bug fixes", "md_docs_2changelog_2CHANGELOG.html#autotoc_md60", null ],
         [ "For developers", "md_docs_2changelog_2CHANGELOG.html#autotoc_md61", null ]
       ] ],
-      [ "v0.4.0 (07/2021)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md62", [
+      [ "v0.5.0 (10/2021)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md62", [
         [ "Features", "md_docs_2changelog_2CHANGELOG.html#autotoc_md63", null ],
-        [ "Bug fixes", "md_docs_2changelog_2CHANGELOG.html#autotoc_md64", null ]
+        [ "Bug fixes", "md_docs_2changelog_2CHANGELOG.html#autotoc_md64", null ],
+        [ "For developers", "md_docs_2changelog_2CHANGELOG.html#autotoc_md65", null ]
       ] ],
-      [ "v0.3.0 (05/2021)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md65", [
-        [ "Features", "md_docs_2changelog_2CHANGELOG.html#autotoc_md66", null ],
-        [ "Bug fixes", "md_docs_2changelog_2CHANGELOG.html#autotoc_md67", null ]
+      [ "v0.4.0 (07/2021)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md66", [
+        [ "Features", "md_docs_2changelog_2CHANGELOG.html#autotoc_md67", null ],
+        [ "Bug fixes", "md_docs_2changelog_2CHANGELOG.html#autotoc_md68", null ]
       ] ],
-      [ "v0.2.0 (04/2021)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md68", [
-        [ "Features", "md_docs_2changelog_2CHANGELOG.html#autotoc_md69", null ],
-        [ "Bug fixes", "md_docs_2changelog_2CHANGELOG.html#autotoc_md70", null ]
+      [ "v0.3.0 (05/2021)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md69", [
+        [ "Features", "md_docs_2changelog_2CHANGELOG.html#autotoc_md70", null ],
+        [ "Bug fixes", "md_docs_2changelog_2CHANGELOG.html#autotoc_md71", null ]
       ] ],
-      [ "v0.1.0 (03/2021)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md71", null ],
-      [ "Notes", "md_docs_2changelog_2CHANGELOG.html#autotoc_md72", null ]
+      [ "v0.2.0 (04/2021)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md72", [
+        [ "Features", "md_docs_2changelog_2CHANGELOG.html#autotoc_md73", null ],
+        [ "Bug fixes", "md_docs_2changelog_2CHANGELOG.html#autotoc_md74", null ]
+      ] ],
+      [ "v0.1.0 (03/2021)", "md_docs_2changelog_2CHANGELOG.html#autotoc_md75", null ],
+      [ "Notes", "md_docs_2changelog_2CHANGELOG.html#autotoc_md76", null ]
     ] ],
     [ "Study format changes", "md_docs_2changelog_2format__changes.html", [
-      [ "v1.5", "md_docs_2changelog_2format__changes.html#autotoc_md74", null ],
-      [ "v1.1", "md_docs_2changelog_2format__changes.html#autotoc_md75", null ]
+      [ "v1.5", "md_docs_2changelog_2format__changes.html#autotoc_md78", null ],
+      [ "v1.1", "md_docs_2changelog_2format__changes.html#autotoc_md79", null ]
     ] ],
     [ "Introduction", "md_docs_2developer-guide_2install__from__sources_20-INSTALL.html", [
-      [ "Build and installation details", "md_docs_2developer-guide_2install__from__sources_20-INSTALL.html#autotoc_md77", null ]
+      [ "Build and installation details", "md_docs_2developer-guide_2install__from__sources_20-INSTALL.html#autotoc_md81", null ]
     ] ],
     [ "Development requirements", "md_docs_2developer-guide_2install__from__sources_21-Development-requirements.html", [
-      [ "C++ version", "md_docs_2developer-guide_2install__from__sources_21-Development-requirements.html#autotoc_md79", null ],
-      [ "CMake version", "md_docs_2developer-guide_2install__from__sources_21-Development-requirements.html#autotoc_md80", null ],
-      [ "Python version", "md_docs_2developer-guide_2install__from__sources_21-Development-requirements.html#autotoc_md81", null ],
-      [ "Git version", "md_docs_2developer-guide_2install__from__sources_21-Development-requirements.html#autotoc_md82", null ]
+      [ "C++ version", "md_docs_2developer-guide_2install__from__sources_21-Development-requirements.html#autotoc_md83", null ],
+      [ "CMake version", "md_docs_2developer-guide_2install__from__sources_21-Development-requirements.html#autotoc_md84", null ],
+      [ "Python version", "md_docs_2developer-guide_2install__from__sources_21-Development-requirements.html#autotoc_md85", null ],
+      [ "Git version", "md_docs_2developer-guide_2install__from__sources_21-Development-requirements.html#autotoc_md86", null ]
     ] ],
     [ "Dependencies install", "md_docs_2developer-guide_2install__from__sources_22-Dependencies-install.html", [
-      [ "Install with a VCPKG package manager", "md_docs_2developer-guide_2install__from__sources_22-Dependencies-install.html#autotoc_md84", [
-        [ "Configure VCPKG", "md_docs_2developer-guide_2install__from__sources_22-Dependencies-install.html#autotoc_md85", null ],
-        [ "Installing dependencies", "md_docs_2developer-guide_2install__from__sources_22-Dependencies-install.html#autotoc_md86", [
-          [ "Runtime dependency", "md_docs_2developer-guide_2install__from__sources_22-Dependencies-install.html#autotoc_md87", null ]
+      [ "Install with a VCPKG package manager", "md_docs_2developer-guide_2install__from__sources_22-Dependencies-install.html#autotoc_md88", [
+        [ "Configure VCPKG", "md_docs_2developer-guide_2install__from__sources_22-Dependencies-install.html#autotoc_md89", null ],
+        [ "Installing dependencies", "md_docs_2developer-guide_2install__from__sources_22-Dependencies-install.html#autotoc_md90", [
+          [ "Runtime dependency", "md_docs_2developer-guide_2install__from__sources_22-Dependencies-install.html#autotoc_md91", null ]
         ] ]
       ] ],
-      [ "Other dependencies", "md_docs_2developer-guide_2install__from__sources_22-Dependencies-install.html#autotoc_md88", [
-        [ "Using pre-build dependency", "md_docs_2developer-guide_2install__from__sources_22-Dependencies-install.html#autotoc_md89", null ],
-        [ "Versions", "md_docs_2developer-guide_2install__from__sources_22-Dependencies-install.html#autotoc_md90", null ]
+      [ "Other dependencies", "md_docs_2developer-guide_2install__from__sources_22-Dependencies-install.html#autotoc_md92", [
+        [ "Using pre-build dependency", "md_docs_2developer-guide_2install__from__sources_22-Dependencies-install.html#autotoc_md93", null ],
+        [ "Versions", "md_docs_2developer-guide_2install__from__sources_22-Dependencies-install.html#autotoc_md94", null ]
       ] ],
-      [ "Automatic Antares Simulator build", "md_docs_2developer-guide_2install__from__sources_22-Dependencies-install.html#autotoc_md91", null ]
+      [ "Automatic Antares Simulator build", "md_docs_2developer-guide_2install__from__sources_22-Dependencies-install.html#autotoc_md95", null ]
     ] ],
     [ "Build", "md_docs_2developer-guide_2install__from__sources_23-Build.html", [
-      [ "Environnement settings", "md_docs_2developer-guide_2install__from__sources_23-Build.html#autotoc_md93", null ],
-      [ "Configure build with CMake", "md_docs_2developer-guide_2install__from__sources_23-Build.html#autotoc_md94", null ],
-      [ "Build", "md_docs_2developer-guide_2install__from__sources_23-Build.html#autotoc_md95", null ]
+      [ "Environnement settings", "md_docs_2developer-guide_2install__from__sources_23-Build.html#autotoc_md97", null ],
+      [ "Configure build with CMake", "md_docs_2developer-guide_2install__from__sources_23-Build.html#autotoc_md98", null ],
+      [ "Build", "md_docs_2developer-guide_2install__from__sources_23-Build.html#autotoc_md99", null ]
     ] ],
     [ "Tests", "md_docs_2developer-guide_2install__from__sources_24-Tests.html", null ],
     [ "Installer creation", "md_docs_2developer-guide_2install__from__sources_25-Installer-creation.html", null ],
     [ "Installing Xpress Solver and Loading it Dynamically", "md_docs_2developer-guide_2install__from__sources_26-Xpress.html", [
-      [ "Table of Contents", "md_docs_2developer-guide_2install__from__sources_26-Xpress.html#autotoc_md99", null ],
-      [ "Installing Xpress", "md_docs_2developer-guide_2install__from__sources_26-Xpress.html#autotoc_md101", [
-        [ "Default Installation", "md_docs_2developer-guide_2install__from__sources_26-Xpress.html#autotoc_md102", null ],
-        [ "Non-Default Installation", "md_docs_2developer-guide_2install__from__sources_26-Xpress.html#autotoc_md103", [
-          [ "Windows", "md_docs_2developer-guide_2install__from__sources_26-Xpress.html#autotoc_md104", null ],
-          [ "Linux/macOS", "md_docs_2developer-guide_2install__from__sources_26-Xpress.html#autotoc_md105", null ]
+      [ "Table of Contents", "md_docs_2developer-guide_2install__from__sources_26-Xpress.html#autotoc_md103", null ],
+      [ "Installing Xpress", "md_docs_2developer-guide_2install__from__sources_26-Xpress.html#autotoc_md105", [
+        [ "Default Installation", "md_docs_2developer-guide_2install__from__sources_26-Xpress.html#autotoc_md106", null ],
+        [ "Non-Default Installation", "md_docs_2developer-guide_2install__from__sources_26-Xpress.html#autotoc_md107", [
+          [ "Windows", "md_docs_2developer-guide_2install__from__sources_26-Xpress.html#autotoc_md108", null ],
+          [ "Linux/macOS", "md_docs_2developer-guide_2install__from__sources_26-Xpress.html#autotoc_md109", null ]
         ] ]
       ] ],
-      [ "How the Code Loads Xpress", "md_docs_2developer-guide_2install__from__sources_26-Xpress.html#autotoc_md106", [
-        [ "Locating Xpress Libraries", "md_docs_2developer-guide_2install__from__sources_26-Xpress.html#autotoc_md107", null ],
-        [ "Loading License Information", "md_docs_2developer-guide_2install__from__sources_26-Xpress.html#autotoc_md108", null ],
-        [ "Handling Different Platforms", "md_docs_2developer-guide_2install__from__sources_26-Xpress.html#autotoc_md109", null ]
+      [ "How the Code Loads Xpress", "md_docs_2developer-guide_2install__from__sources_26-Xpress.html#autotoc_md110", [
+        [ "Locating Xpress Libraries", "md_docs_2developer-guide_2install__from__sources_26-Xpress.html#autotoc_md111", null ],
+        [ "Loading License Information", "md_docs_2developer-guide_2install__from__sources_26-Xpress.html#autotoc_md112", null ],
+        [ "Handling Different Platforms", "md_docs_2developer-guide_2install__from__sources_26-Xpress.html#autotoc_md113", null ]
       ] ]
     ] ],
     [ "Antares-Xpansion simulation procedure", "md_docs_2developer-guide_2xpansion__steps_20-overview.html", [
-      [ "1- Antares-Simulator optimization problems retrieval: antares", "md_docs_2developer-guide_2xpansion__steps_20-overview.html#autotoc_md111", null ],
-      [ "2- Investment problem generation: problem_generation", "md_docs_2developer-guide_2xpansion__steps_20-overview.html#autotoc_md112", null ],
-      [ "3- Resolution stage with Benders decomposition: benders", "md_docs_2developer-guide_2xpansion__steps_20-overview.html#autotoc_md113", null ],
-      [ "4- Update of antares study: study_update", "md_docs_2developer-guide_2xpansion__steps_20-overview.html#autotoc_md114", null ],
-      [ "Antares-Xpansion package executables", "md_docs_2developer-guide_2xpansion__steps_20-overview.html#autotoc_md115", null ]
+      [ "1- Antares-Simulator optimization problems retrieval: antares", "md_docs_2developer-guide_2xpansion__steps_20-overview.html#autotoc_md115", null ],
+      [ "2- Investment problem generation: problem_generation", "md_docs_2developer-guide_2xpansion__steps_20-overview.html#autotoc_md116", null ],
+      [ "3- Resolution stage with Benders decomposition: benders", "md_docs_2developer-guide_2xpansion__steps_20-overview.html#autotoc_md117", null ],
+      [ "4- Update of antares study: study_update", "md_docs_2developer-guide_2xpansion__steps_20-overview.html#autotoc_md118", null ],
+      [ "Antares-Xpansion package executables", "md_docs_2developer-guide_2xpansion__steps_20-overview.html#autotoc_md119", null ]
     ] ],
     [ "Antares optimization problem retrieval", "md_docs_2developer-guide_2xpansion__steps_21-antares-solver-problem.html", [
-      [ "Specific configuration for Antares-Xpansion", "md_docs_2developer-guide_2xpansion__steps_21-antares-solver-problem.html#autotoc_md117", null ],
-      [ "Output files", "md_docs_2developer-guide_2xpansion__steps_21-antares-solver-problem.html#autotoc_md118", [
-        [ ".mps files for the weekly optimization problems", "md_docs_2developer-guide_2xpansion__steps_21-antares-solver-problem.html#autotoc_md119", null ],
-        [ "variables.txt file for each .mps file", "md_docs_2developer-guide_2xpansion__steps_21-antares-solver-problem.html#autotoc_md120", null ],
-        [ "The file area.txt", "md_docs_2developer-guide_2xpansion__steps_21-antares-solver-problem.html#autotoc_md121", null ],
-        [ "The file interco.txt", "md_docs_2developer-guide_2xpansion__steps_21-antares-solver-problem.html#autotoc_md122", null ]
+      [ "Specific configuration for Antares-Xpansion", "md_docs_2developer-guide_2xpansion__steps_21-antares-solver-problem.html#autotoc_md121", null ],
+      [ "Output files", "md_docs_2developer-guide_2xpansion__steps_21-antares-solver-problem.html#autotoc_md122", [
+        [ ".mps files for the weekly optimization problems", "md_docs_2developer-guide_2xpansion__steps_21-antares-solver-problem.html#autotoc_md123", null ],
+        [ "variables.txt file for each .mps file", "md_docs_2developer-guide_2xpansion__steps_21-antares-solver-problem.html#autotoc_md124", null ],
+        [ "The file area.txt", "md_docs_2developer-guide_2xpansion__steps_21-antares-solver-problem.html#autotoc_md125", null ],
+        [ "The file interco.txt", "md_docs_2developer-guide_2xpansion__steps_21-antares-solver-problem.html#autotoc_md126", null ]
       ] ]
     ] ],
     [ "Investment problem generation", "md_docs_2developer-guide_2xpansion__steps_22-problem-modification.html", [
-      [ "Python orchestrator get_names", "md_docs_2developer-guide_2xpansion__steps_22-problem-modification.html#autotoc_md124", null ],
-      [ "Modification of weekly problems with lp_namer", "md_docs_2developer-guide_2xpansion__steps_22-problem-modification.html#autotoc_md125", [
-        [ "1- Read candidates and get link column ID", "md_docs_2developer-guide_2xpansion__steps_22-problem-modification.html#autotoc_md126", null ],
-        [ "2- Modification of .mps file", "md_docs_2developer-guide_2xpansion__steps_22-problem-modification.html#autotoc_md127", [
-          [ "Initial weekly problems", "md_docs_2developer-guide_2xpansion__steps_22-problem-modification.html#autotoc_md128", null ],
-          [ "Modifications for satellite problems", "md_docs_2developer-guide_2xpansion__steps_22-problem-modification.html#autotoc_md129", null ]
+      [ "Python orchestrator get_names", "md_docs_2developer-guide_2xpansion__steps_22-problem-modification.html#autotoc_md128", null ],
+      [ "Modification of weekly problems with lp_namer", "md_docs_2developer-guide_2xpansion__steps_22-problem-modification.html#autotoc_md129", [
+        [ "1- Read candidates and get link column ID", "md_docs_2developer-guide_2xpansion__steps_22-problem-modification.html#autotoc_md130", null ],
+        [ "2- Modification of .mps file", "md_docs_2developer-guide_2xpansion__steps_22-problem-modification.html#autotoc_md131", [
+          [ "Initial weekly problems", "md_docs_2developer-guide_2xpansion__steps_22-problem-modification.html#autotoc_md132", null ],
+          [ "Modifications for satellite problems", "md_docs_2developer-guide_2xpansion__steps_22-problem-modification.html#autotoc_md133", null ]
         ] ],
-        [ "3- Read additional candidate constraints", "md_docs_2developer-guide_2xpansion__steps_22-problem-modification.html#autotoc_md130", null ],
-        [ "4- Creation of master problem", "md_docs_2developer-guide_2xpansion__steps_22-problem-modification.html#autotoc_md131", null ],
-        [ "5- Creation of a variable / column ID mapping file", "md_docs_2developer-guide_2xpansion__steps_22-problem-modification.html#autotoc_md132", null ]
+        [ "3- Read additional candidate constraints", "md_docs_2developer-guide_2xpansion__steps_22-problem-modification.html#autotoc_md134", null ],
+        [ "4- Creation of master problem", "md_docs_2developer-guide_2xpansion__steps_22-problem-modification.html#autotoc_md135", null ],
+        [ "5- Creation of a variable / column ID mapping file", "md_docs_2developer-guide_2xpansion__steps_22-problem-modification.html#autotoc_md136", null ]
       ] ]
     ] ],
     [ "Documention generation guidelines", "md_docs_2how__to.html", [
-      [ "Online documentation", "md_docs_2how__to.html#autotoc_md134", null ],
-      [ "PDF generation", "md_docs_2how__to.html#autotoc_md135", null ]
+      [ "Online documentation", "md_docs_2how__to.html#autotoc_md138", null ],
+      [ "PDF generation", "md_docs_2how__to.html#autotoc_md139", null ]
     ] ],
     [ "index", "md_docs_2index.html", [
-      [ "Introduction", "md_docs_2index.html#autotoc_md136", [
-        [ "Antares study", "md_docs_2index.html#autotoc_md137", null ],
-        [ "Antares-Xpansion simulation", "md_docs_2index.html#autotoc_md138", null ]
+      [ "Introduction", "md_docs_2index.html#autotoc_md140", [
+        [ "Antares study", "md_docs_2index.html#autotoc_md141", null ],
+        [ "Antares-Xpansion simulation", "md_docs_2index.html#autotoc_md142", null ]
       ] ]
     ] ],
     [ "Adequacy criterion", "md_docs_2user-guide_2get-started_2adequacy-criterion.html", [
-      [ "Input data for adequacy criterion in adequacy_criterion.yml", "md_docs_2user-guide_2get-started_2adequacy-criterion.html#autotoc_md140", null ],
-      [ "Launching the optimization with the adequacy criterion", "md_docs_2user-guide_2get-started_2adequacy-criterion.html#autotoc_md141", null ],
-      [ "Outputs", "md_docs_2user-guide_2get-started_2adequacy-criterion.html#autotoc_md142", null ]
+      [ "Input data for adequacy criterion in adequacy_criterion.yml", "md_docs_2user-guide_2get-started_2adequacy-criterion.html#autotoc_md144", null ],
+      [ "Launching the optimization with the adequacy criterion", "md_docs_2user-guide_2get-started_2adequacy-criterion.html#autotoc_md145", null ],
+      [ "Outputs", "md_docs_2user-guide_2get-started_2adequacy-criterion.html#autotoc_md146", null ]
     ] ],
     [ "Define the candidates", "md_docs_2user-guide_2get-started_2candidate-definition.html", [
-      [ "Characterization of investment candidates in candidates.ini", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md144", [
-        [ "Overview of the candidates.ini file", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md145", null ],
-        [ "Details of the parameters", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md146", [
-          [ "name", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md147", null ],
-          [ "link", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md148", null ],
-          [ "annual-cost-per-mw", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md149", null ],
-          [ "max-investment", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md150", null ],
-          [ "unit-size", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md151", null ],
-          [ "max-units", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md152", null ],
-          [ "already-installed-capacity", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md153", null ],
-          [ "[in]direct-link-profile", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md154", null ],
-          [ "already-installed-[in]direct-link-profile", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md155", null ]
+      [ "Characterization of investment candidates in candidates.ini", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md148", [
+        [ "Overview of the candidates.ini file", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md149", null ],
+        [ "Details of the parameters", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md150", [
+          [ "name", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md151", null ],
+          [ "link", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md152", null ],
+          [ "annual-cost-per-mw", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md153", null ],
+          [ "max-investment", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md154", null ],
+          [ "unit-size", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md155", null ],
+          [ "max-units", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md156", null ],
+          [ "already-installed-capacity", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md157", null ],
+          [ "[in]direct-link-profile", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md158", null ],
+          [ "already-installed-[in]direct-link-profile", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md159", null ]
         ] ]
       ] ],
-      [ "Link between invested capacity and capacity of the Antares study", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md156", null ],
-      [ "Using different profiles depending on the Monte-Carlo year", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md157", null ],
-      [ "Examples of candidates", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md158", [
-        [ "Basic example", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md159", null ],
-        [ "Several investment candidates on the same link", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md160", null ],
-        [ "Decommissioning candidates", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md161", null ]
+      [ "Link between invested capacity and capacity of the Antares study", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md160", null ],
+      [ "Using different profiles depending on the Monte-Carlo year", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md161", null ],
+      [ "Examples of candidates", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md162", [
+        [ "Basic example", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md163", null ],
+        [ "Several investment candidates on the same link", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md164", null ],
+        [ "Decommissioning candidates", "md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md165", null ]
       ] ]
     ] ],
     [ "Installation", "md_docs_2user-guide_2get-started_2installation.html", [
-      [ "Download Antares-Xpansion", "md_docs_2user-guide_2get-started_2installation.html#autotoc_md163", null ],
-      [ "Installation instruction", "md_docs_2user-guide_2get-started_2installation.html#autotoc_md164", null ]
+      [ "Download Antares-Xpansion", "md_docs_2user-guide_2get-started_2installation.html#autotoc_md167", null ],
+      [ "Installation instruction", "md_docs_2user-guide_2get-started_2installation.html#autotoc_md168", null ]
     ] ],
     [ "Launch the optimization", "md_docs_2user-guide_2get-started_2launching-optimization.html", [
-      [ "Command line usage", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md166", [
-        [ "Quick start", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md167", null ],
-        [ "Command line parameters", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md168", [
-          [ "-h, --help", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md169", null ],
-          [ "--step {full, antares, problem_generation, benders, study_update, sensitivity, presolve,...", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md170", null ],
-          [ "-i, --dataDir", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md171", null ],
-          [ "--simulationName {last, your-antares-output-directory}", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md172", null ],
-          [ "-m, --method {benders, mergeMPS, adequacy_criterion}", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md173", null ],
-          [ "--problem-format {MPS, OPTIMIZED}", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md174", null ],
-          [ "-n, --np", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md175", null ],
-          [ "--antares-n-cpu", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md176", null ],
-          [ "--keepMps", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md177", null ],
-          [ "--presolve", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md178", null ],
-          [ "-v, --version", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md179", null ],
-          [ "--antares-version", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md180", null ]
+      [ "Command line usage", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md170", [
+        [ "Quick start", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md171", null ],
+        [ "Command line parameters", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md172", [
+          [ "-h, --help", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md173", null ],
+          [ "--step {full, antares, problem_generation, benders, study_update, sensitivity, presolve,...", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md174", null ],
+          [ "-i, --dataDir", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md175", null ],
+          [ "--simulationName {last, your-antares-output-directory}", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md176", null ],
+          [ "-m, --method {benders, mergeMPS, adequacy_criterion}", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md177", null ],
+          [ "--problem-format {MPS, OPTIMIZED}", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md178", null ],
+          [ "-n, --np", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md179", null ],
+          [ "--antares-n-cpu", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md180", null ],
+          [ "--keepMps", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md181", null ],
+          [ "--presolve", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md182", null ],
+          [ "-v, --version", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md183", null ],
+          [ "--antares-version", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md184", null ]
         ] ],
-        [ "--cache_problems", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md181", null ]
+        [ "--cache_problems", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md185", null ]
       ] ],
-      [ "Output of Antares-Xpansion", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md182", [
-        [ "Results", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md183", null ],
-        [ "Updates of candidate links", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md184", null ],
-        [ "Logs", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md185", null ]
+      [ "Output of Antares-Xpansion", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md186", [
+        [ "Results", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md187", null ],
+        [ "Updates of candidate links", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md188", null ],
+        [ "Logs", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md189", null ]
       ] ],
-      [ "Errors", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md186", null ]
+      [ "Errors", "md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md190", null ]
     ] ],
     [ "Set up an Antares-Xpansion study", "md_docs_2user-guide_2get-started_2prepare-a-simulation.html", [
-      [ "Overview", "md_docs_2user-guide_2get-started_2prepare-a-simulation.html#autotoc_md188", null ],
-      [ "Prepare the Antares study", "md_docs_2user-guide_2get-started_2prepare-a-simulation.html#autotoc_md189", [
-        [ "Investment in transmission capacity between two areas", "md_docs_2user-guide_2get-started_2prepare-a-simulation.html#autotoc_md190", null ],
-        [ "Investment in thermal generation capacity", "md_docs_2user-guide_2get-started_2prepare-a-simulation.html#autotoc_md191", null ],
-        [ "Investment in renewable generation capacity", "md_docs_2user-guide_2get-started_2prepare-a-simulation.html#autotoc_md192", null ],
-        [ "Investment in flexibility", "md_docs_2user-guide_2get-started_2prepare-a-simulation.html#autotoc_md193", null ],
-        [ "Decommissioning decisions for thermal capacities", "md_docs_2user-guide_2get-started_2prepare-a-simulation.html#autotoc_md194", [
-          [ "Fixed-cost annuity for investment candidates", "md_docs_2user-guide_2get-started_2prepare-a-simulation.html#autotoc_md195", null ],
-          [ "Fixed-cost annuity for decommissioning candidates", "md_docs_2user-guide_2get-started_2prepare-a-simulation.html#autotoc_md196", null ]
+      [ "Overview", "md_docs_2user-guide_2get-started_2prepare-a-simulation.html#autotoc_md192", null ],
+      [ "Prepare the Antares study", "md_docs_2user-guide_2get-started_2prepare-a-simulation.html#autotoc_md193", [
+        [ "Investment in transmission capacity between two areas", "md_docs_2user-guide_2get-started_2prepare-a-simulation.html#autotoc_md194", null ],
+        [ "Investment in thermal generation capacity", "md_docs_2user-guide_2get-started_2prepare-a-simulation.html#autotoc_md195", null ],
+        [ "Investment in renewable generation capacity", "md_docs_2user-guide_2get-started_2prepare-a-simulation.html#autotoc_md196", null ],
+        [ "Investment in flexibility", "md_docs_2user-guide_2get-started_2prepare-a-simulation.html#autotoc_md197", null ],
+        [ "Decommissioning decisions for thermal capacities", "md_docs_2user-guide_2get-started_2prepare-a-simulation.html#autotoc_md198", [
+          [ "Fixed-cost annuity for investment candidates", "md_docs_2user-guide_2get-started_2prepare-a-simulation.html#autotoc_md199", null ],
+          [ "Fixed-cost annuity for decommissioning candidates", "md_docs_2user-guide_2get-started_2prepare-a-simulation.html#autotoc_md200", null ]
         ] ],
-        [ "Additional characteristics for links of investment candidates", "md_docs_2user-guide_2get-started_2prepare-a-simulation.html#autotoc_md197", null ]
+        [ "Additional characteristics for links of investment candidates", "md_docs_2user-guide_2get-started_2prepare-a-simulation.html#autotoc_md201", null ]
       ] ]
     ] ],
     [ "Sensitivity analysis", "md_docs_2user-guide_2get-started_2sensitivity-analysis.html", [
-      [ "Description of the method", "md_docs_2user-guide_2get-started_2sensitivity-analysis.html#autotoc_md199", null ],
-      [ "Mathematical formulation of the sensitivity analysis problem", "md_docs_2user-guide_2get-started_2sensitivity-analysis.html#autotoc_md200", null ],
-      [ "Results interpretation", "md_docs_2user-guide_2get-started_2sensitivity-analysis.html#autotoc_md201", null ],
-      [ "Launch the sensitivity analysis", "md_docs_2user-guide_2get-started_2sensitivity-analysis.html#autotoc_md202", [
-        [ "Sensitivity input file creation", "md_docs_2user-guide_2get-started_2sensitivity-analysis.html#autotoc_md203", null ],
-        [ "Run the sensitivity analysis", "md_docs_2user-guide_2get-started_2sensitivity-analysis.html#autotoc_md204", null ],
-        [ "Output of the sensitivity analysis", "md_docs_2user-guide_2get-started_2sensitivity-analysis.html#autotoc_md205", null ]
+      [ "Description of the method", "md_docs_2user-guide_2get-started_2sensitivity-analysis.html#autotoc_md203", null ],
+      [ "Mathematical formulation of the sensitivity analysis problem", "md_docs_2user-guide_2get-started_2sensitivity-analysis.html#autotoc_md204", null ],
+      [ "Results interpretation", "md_docs_2user-guide_2get-started_2sensitivity-analysis.html#autotoc_md205", null ],
+      [ "Launch the sensitivity analysis", "md_docs_2user-guide_2get-started_2sensitivity-analysis.html#autotoc_md206", [
+        [ "Sensitivity input file creation", "md_docs_2user-guide_2get-started_2sensitivity-analysis.html#autotoc_md207", null ],
+        [ "Run the sensitivity analysis", "md_docs_2user-guide_2get-started_2sensitivity-analysis.html#autotoc_md208", null ],
+        [ "Output of the sensitivity analysis", "md_docs_2user-guide_2get-started_2sensitivity-analysis.html#autotoc_md209", null ]
       ] ]
     ] ],
     [ "Settings of the algorithm", "md_docs_2user-guide_2get-started_2settings-definition.html", [
-      [ "Overview of the settings.ini file", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md207", null ],
-      [ "Details of the parameters", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md208", [
-        [ "optimality_gap", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md209", null ],
-        [ "relative_gap", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md210", null ],
-        [ "max_iteration", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md211", null ],
-        [ "timelimit", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md212", null ],
-        [ "uc_type", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md213", null ],
-        [ "master", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md214", null ],
-        [ "yearly-weights", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md215", null ],
-        [ "solver", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md216", null ],
-        [ "log_level", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md217", null ],
-        [ "additional-constraints", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md218", null ],
-        [ "separation_parameter", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md219", null ],
-        [ "relaxed_optimality_gap", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md220", null ],
-        [ "batch_size", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md221", null ],
-        [ "master_solution_tolerance", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md222", null ],
-        [ "cut_coefficient_tolerance", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md223", null ]
+      [ "Overview of the settings.ini file", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md211", null ],
+      [ "Details of the parameters", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md212", [
+        [ "optimality_gap", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md213", null ],
+        [ "relative_gap", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md214", null ],
+        [ "max_iteration", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md215", null ],
+        [ "timelimit", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md216", null ],
+        [ "uc_type", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md217", null ],
+        [ "master", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md218", null ],
+        [ "yearly-weights", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md219", null ],
+        [ "solver", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md220", null ],
+        [ "log_level", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md221", null ],
+        [ "additional-constraints", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md222", null ],
+        [ "separation_parameter", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md223", null ],
+        [ "relaxed_optimality_gap", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md224", null ],
+        [ "batch_size", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md225", null ],
+        [ "master_solution_tolerance", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md226", null ],
+        [ "cut_coefficient_tolerance", "md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md227", null ]
       ] ]
     ] ],
     [ "The optimal investment problem in Antares-Xpansion", "md_docs_2user-guide_2optimization-principles_2investment-problem.html", [
-      [ "General description", "md_docs_2user-guide_2optimization-principles_2investment-problem.html#autotoc_md225", null ],
-      [ "Investment variables", "md_docs_2user-guide_2optimization-principles_2investment-problem.html#autotoc_md226", null ],
-      [ "Resolution with the Benders decomposition", "md_docs_2user-guide_2optimization-principles_2investment-problem.html#autotoc_md227", [
-        [ "Calling the presolve", "md_docs_2user-guide_2optimization-principles_2investment-problem.html#autotoc_md228", null ]
+      [ "General description", "md_docs_2user-guide_2optimization-principles_2investment-problem.html#autotoc_md229", null ],
+      [ "Investment variables", "md_docs_2user-guide_2optimization-principles_2investment-problem.html#autotoc_md230", null ],
+      [ "Resolution with the Benders decomposition", "md_docs_2user-guide_2optimization-principles_2investment-problem.html#autotoc_md231", [
+        [ "Calling the presolve", "md_docs_2user-guide_2optimization-principles_2investment-problem.html#autotoc_md232", null ]
       ] ]
     ] ],
     [ "Mathematical aspects of the investment problem", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html", [
-      [ "Problem formulation", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md230", [
-        [ "Variables and costs", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md231", [
-          [ "Invested capacity and investment cost", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md232", null ],
-          [ "Operating cost", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md233", [
-            [ "The operating cost as the solution of an Antares simulation", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md234", null ],
-            [ "Splitting the weeks", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md235", null ]
+      [ "Problem formulation", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md234", [
+        [ "Variables and costs", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md235", [
+          [ "Invested capacity and investment cost", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md236", null ],
+          [ "Operating cost", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md237", [
+            [ "The operating cost as the solution of an Antares simulation", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md238", null ],
+            [ "Splitting the weeks", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md239", null ]
           ] ],
-          [ "Summary of the costs", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md236", null ]
+          [ "Summary of the costs", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md240", null ]
         ] ],
-        [ "Constraints (for the investment problem)", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md237", null ],
-        [ "Investment problem", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md238", null ]
+        [ "Constraints (for the investment problem)", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md241", null ],
+        [ "Investment problem", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md242", null ]
       ] ],
-      [ "Benders reformulation and decomposition algorithm", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md239", [
-        [ "Benders reformulation of the investment problem", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md240", null ],
-        [ "The Benders decomposition algorithm", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md241", null ],
-        [ "The Benders by batch algorithm", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md242", null ]
+      [ "Benders reformulation and decomposition algorithm", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md243", [
+        [ "Benders reformulation of the investment problem", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md244", null ],
+        [ "The Benders decomposition algorithm", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md245", null ],
+        [ "The Benders by batch algorithm", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md246", null ]
       ] ],
-      [ "Reliability-constrained investment problem", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md243", null ]
+      [ "Reliability-constrained investment problem", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md247", null ]
     ] ],
     [ "Merging the master problems of annual Xpansion studies", "md_docs_2user-guide_2trajectory-investment_2merge-master.html", [
-      [ " Usage of the master merger executable", "md_docs_2user-guide_2trajectory-investment_2merge-master.html#autotoc_md245", null ],
-      [ " Options file", "md_docs_2user-guide_2trajectory-investment_2merge-master.html#autotoc_md246", null ],
-      [ "Master merger info file", "md_docs_2user-guide_2trajectory-investment_2merge-master.html#autotoc_md247", null ],
-      [ " Nodal lp info file", "md_docs_2user-guide_2trajectory-investment_2merge-master.html#autotoc_md248", null ],
-      [ "Input files from each annual study", "md_docs_2user-guide_2trajectory-investment_2merge-master.html#autotoc_md249", null ],
-      [ "Trajectory constraints", "md_docs_2user-guide_2trajectory-investment_2merge-master.html#autotoc_md250", null ]
+      [ " Usage of the master merger executable", "md_docs_2user-guide_2trajectory-investment_2merge-master.html#autotoc_md249", null ],
+      [ " Options file", "md_docs_2user-guide_2trajectory-investment_2merge-master.html#autotoc_md250", null ],
+      [ "Master merger info file", "md_docs_2user-guide_2trajectory-investment_2merge-master.html#autotoc_md251", null ],
+      [ " Nodal lp info file", "md_docs_2user-guide_2trajectory-investment_2merge-master.html#autotoc_md252", null ],
+      [ "Input files from each annual study", "md_docs_2user-guide_2trajectory-investment_2merge-master.html#autotoc_md253", null ],
+      [ "Trajectory constraints", "md_docs_2user-guide_2trajectory-investment_2merge-master.html#autotoc_md254", null ]
     ] ],
     [ "Weights", "md_docs_2user-guide_2trajectory-investment_2merge-weights.html", [
-      [ "Why we need custom weights", "md_docs_2user-guide_2trajectory-investment_2merge-weights.html#autotoc_md252", null ],
-      [ "Usage", "md_docs_2user-guide_2trajectory-investment_2merge-weights.html#autotoc_md253", null ],
-      [ " Output", "md_docs_2user-guide_2trajectory-investment_2merge-weights.html#autotoc_md254", null ]
+      [ "Why we need custom weights", "md_docs_2user-guide_2trajectory-investment_2merge-weights.html#autotoc_md256", null ],
+      [ "Usage", "md_docs_2user-guide_2trajectory-investment_2merge-weights.html#autotoc_md257", null ],
+      [ " Output", "md_docs_2user-guide_2trajectory-investment_2merge-weights.html#autotoc_md258", null ]
     ] ],
     [ "Multiple problem generation", "md_docs_2user-guide_2trajectory-investment_2multiple-problem-generation.html", [
-      [ "Usage", "md_docs_2user-guide_2trajectory-investment_2multiple-problem-generation.html#autotoc_md256", null ],
-      [ "Study paths / archives file", "md_docs_2user-guide_2trajectory-investment_2multiple-problem-generation.html#autotoc_md257", null ],
-      [ " Weights and/or additional constraints reference file", "md_docs_2user-guide_2trajectory-investment_2multiple-problem-generation.html#autotoc_md258", null ],
-      [ "Output : Nodal Lp Info file", "md_docs_2user-guide_2trajectory-investment_2multiple-problem-generation.html#autotoc_md259", null ]
+      [ "Usage", "md_docs_2user-guide_2trajectory-investment_2multiple-problem-generation.html#autotoc_md260", null ],
+      [ "Study paths / archives file", "md_docs_2user-guide_2trajectory-investment_2multiple-problem-generation.html#autotoc_md261", null ],
+      [ " Weights / additional constraints reference file", "md_docs_2user-guide_2trajectory-investment_2multiple-problem-generation.html#autotoc_md262", null ],
+      [ "Output : Nodal Lp Info file", "md_docs_2user-guide_2trajectory-investment_2multiple-problem-generation.html#autotoc_md263", null ]
     ] ],
-    [ "orchestration", "md_docs_2user-guide_2trajectory-investment_2orchestration.html", null ],
+    [ "Launching the workflow : <tt>xpansion trajectory</tt>", "md_docs_2user-guide_2trajectory-investment_2orchestration.html", [
+      [ "Usage", "md_docs_2user-guide_2trajectory-investment_2orchestration.html#autotoc_md265", null ],
+      [ "Mandatory arguments", "md_docs_2user-guide_2trajectory-investment_2orchestration.html#autotoc_md266", null ],
+      [ "Optional arguments", "md_docs_2user-guide_2trajectory-investment_2orchestration.html#autotoc_md267", null ],
+      [ "A note on intermediary files", "md_docs_2user-guide_2trajectory-investment_2orchestration.html#autotoc_md268", null ]
+    ] ],
     [ "Trajectory investment problem", "md_docs_2user-guide_2trajectory-investment_2trajectory-problem.html", [
-      [ "General description", "md_docs_2user-guide_2trajectory-investment_2trajectory-problem.html#autotoc_md261", null ],
-      [ "On the $dx^{+/-}$ variables", "md_docs_2user-guide_2trajectory-investment_2trajectory-problem.html#autotoc_md262", null ]
+      [ "General description", "md_docs_2user-guide_2trajectory-investment_2trajectory-problem.html#autotoc_md270", null ],
+      [ " Switching to a pluriannual vision", "md_docs_2user-guide_2trajectory-investment_2trajectory-problem.html#autotoc_md271", null ],
+      [ "On the $dx^{+/-}$ variables", "md_docs_2user-guide_2trajectory-investment_2trajectory-problem.html#autotoc_md272", null ]
     ] ],
     [ "trajectory-workflow", "md_docs_2user-guide_2trajectory-investment_2trajectory-workflow.html", null ],
     [ "User input file parsing", "md_docs_2user-guide_2trajectory-investment_2user-input.html", [
-      [ "User input file", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md266", null ],
-      [ " Input file parser & translator", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md267", null ],
-      [ "Trajectory constraints translation", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md268", [
-        [ "type: max_investment_per_node_per_candidate", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md269", null ],
-        [ " type: max_cumulative_investment_per_node", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md270", null ],
-        [ "type: max_retirement_per_node_per_candidate", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md271", null ]
+      [ "User input file", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md276", null ],
+      [ " Input file parser & translator", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md277", null ],
+      [ " A note on candidates", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md278", null ],
+      [ "Trajectory constraints translation", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md279", [
+        [ "type: max_investment_per_node_per_candidate", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md280", null ],
+        [ " type: max_cumulative_investment_per_node", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md281", null ],
+        [ "type: max_retirement_per_node_per_candidate", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md282", null ],
+        [ " type: max_cumulative_retirement_per_node", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md283", null ],
+        [ " type: min_investment_per_candidate_per_node", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md284", null ],
+        [ " type: min_retirement_per_candidate_per_node", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md285", null ]
       ] ]
     ] ],
     [ "Namespaces", "namespaces.html", [
@@ -388,12 +403,12 @@ var NAVTREEINDEX =
 "ActiveLinks_8h_source.html",
 "classBendersMpi.html#af435deb52a324bfbf0d953bf78644cf4",
 "classNOOPSolverForWorker.html#ad56571ee392cbf1467b32e361e2866f5",
-"classSolverCbc.html#a33e87572a8da001d4f728d0772fff27a",
-"classWorkerMaster.html#ae30daf897744416118a9d9cbf5d22a36",
-"classantares__xpansion_1_1resume__study_1_1ResumeStudy_1_1KeyWordNotFound.html",
-"dir_8ddaa066abaf6ef43dff69c981ce5d63.html",
-"md_docs_2how__to.html",
-"structProblemVariables.html"
+"classSolverCbc.html#a2c14ea49c71844eafcc50aa69e38b444",
+"classWorkerMaster.html#accfd98c6107377016c56d00a242c5ec5",
+"classantares__xpansion_1_1resume__study_1_1ResumeStudyData.html",
+"dir_b53e5bf8429ba9c17c53c8a945f0f679.html",
+"md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md148",
+"structSinglePbData.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
