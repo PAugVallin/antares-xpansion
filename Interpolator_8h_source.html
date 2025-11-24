@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Antares Xpansion" />
 <meta name="twitter:description" content="Investment simulations for Antares studies." />
 <!-- END twitter metadata -->
-<title>Antares Xpansion: Member List</title>
+<title>Antares Xpansion: src/cpp/grid_evaluator/include/antares-xpansion/grid_evaluator/Interpolator.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -111,7 +111,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('structOutput_1_1VariationDeNiveauxDeStockKey.html',''); initResizable(true); });
+$(function(){initNavTree('Interpolator_8h_source.html',''); initResizable(true); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -137,22 +137,59 @@ $(function(){initNavTree('structOutput_1_1VariationDeNiveauxDeStockKey.html','')
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">Output::VariationDeNiveauxDeStockKey Member List</div></div>
+  <div class="headertitle"><div class="title">Interpolator.h</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p>This is the complete list of members for <a class="el" href="structOutput_1_1VariationDeNiveauxDeStockKey.html">Output::VariationDeNiveauxDeStockKey</a>, including all inherited members.</p>
-<table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>operator&lt;</b>(const VariationDeNiveauxDeStockKey &amp;other) const (defined in <a class="el" href="structOutput_1_1VariationDeNiveauxDeStockKey.html">Output::VariationDeNiveauxDeStockKey</a>)</td><td class="entry"><a class="el" href="structOutput_1_1VariationDeNiveauxDeStockKey.html">Output::VariationDeNiveauxDeStockKey</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>operator==</b>(const VariationDeNiveauxDeStockKey &amp;other) const (defined in <a class="el" href="structOutput_1_1VariationDeNiveauxDeStockKey.html">Output::VariationDeNiveauxDeStockKey</a>)</td><td class="entry"><a class="el" href="structOutput_1_1VariationDeNiveauxDeStockKey.html">Output::VariationDeNiveauxDeStockKey</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>rhsValues</b> (defined in <a class="el" href="structOutput_1_1VariationDeNiveauxDeStockKey.html">Output::VariationDeNiveauxDeStockKey</a>)</td><td class="entry"><a class="el" href="structOutput_1_1VariationDeNiveauxDeStockKey.html">Output::VariationDeNiveauxDeStockKey</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>scenario</b> (defined in <a class="el" href="structOutput_1_1VariationDeNiveauxDeStockKey.html">Output::VariationDeNiveauxDeStockKey</a>)</td><td class="entry"><a class="el" href="structOutput_1_1VariationDeNiveauxDeStockKey.html">Output::VariationDeNiveauxDeStockKey</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>week</b> (defined in <a class="el" href="structOutput_1_1VariationDeNiveauxDeStockKey.html">Output::VariationDeNiveauxDeStockKey</a>)</td><td class="entry"><a class="el" href="structOutput_1_1VariationDeNiveauxDeStockKey.html">Output::VariationDeNiveauxDeStockKey</a></td><td class="entry"></td></tr>
-</table></div><!-- contents -->
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;algorithm&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;cassert&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="foldopen" id="foldopen00008" data-start="{" data-end="};">
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="classInterpolator.html">    8</a></span><span class="keyword">class </span><a class="code hl_class" href="classInterpolator.html">Interpolator</a></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>{</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00015" data-start="{" data-end="}">
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classInterpolator.html#adb53e364d284ae3e78404e12055c06de">   15</a></span>    <span class="keyword">static</span> std::function&lt;double(<span class="keywordtype">double</span>)&gt; <a class="code hl_function" href="classInterpolator.html#adb53e364d284ae3e78404e12055c06de">linearInterpolation</a>(<span class="keyword">const</span> std::vector&lt;double&gt;&amp; x,</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>                                                             <span class="keyword">const</span> std::vector&lt;double&gt;&amp; y)</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        <span class="keywordflow">return</span> [x, y](<span class="keywordtype">double</span> xi) -&gt; <span class="keywordtype">double</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>            assert(std::is_sorted(x.begin(), x.end()));</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>            <span class="keywordflow">if</span> (xi &lt;= x.front())</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>            {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>                <span class="keywordflow">return</span> y.front();</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>            }</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>            <span class="keywordflow">if</span> (xi &gt;= x.back())</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>            {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>                <span class="keywordflow">return</span> y.back();</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>            }</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>            <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 1; i &lt; x.size(); ++i)</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>            {</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>                <span class="keywordflow">if</span> (xi &lt; x[i])</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>                {</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>                    <span class="keywordtype">double</span> slope = (y[i] - y[i - 1]) / (x[i] - x[i - 1]);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>                    <span class="keywordflow">return</span> y[i - 1] + slope * (xi - x[i - 1]);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>                }</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>            }</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            <span class="keywordflow">return</span> y.back();</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        };</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    }</div>
+</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>};</div>
+</div>
+<div class="ttc" id="aclassInterpolator_html"><div class="ttname"><a href="classInterpolator.html">Interpolator</a></div><div class="ttdef"><b>Definition</b> Interpolator.h:9</div></div>
+<div class="ttc" id="aclassInterpolator_html_adb53e364d284ae3e78404e12055c06de"><div class="ttname"><a href="classInterpolator.html#adb53e364d284ae3e78404e12055c06de">Interpolator::linearInterpolation</a></div><div class="ttdeci">static std::function&lt; double(double)&gt; linearInterpolation(const std::vector&lt; double &gt; &amp;x, const std::vector&lt; double &gt; &amp;y)</div><div class="ttdoc">function that lineraly interpolates a double from a list of x and y coordonates</div><div class="ttdef"><b>Definition</b> Interpolator.h:15</div></div>
+</div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_dfdbda394c3f7a3aa55229f33a559c41.html">cpp</a></li><li class="navelem"><a class="el" href="dir_8ddaa066abaf6ef43dff69c981ce5d63.html">grid_evaluator</a></li><li class="navelem"><a class="el" href="dir_88e18aea429bc7043bf32d5e9c7d158d.html">include</a></li><li class="navelem"><a class="el" href="dir_9cbc6a0088319e908399e71a613969a9.html">antares-xpansion</a></li><li class="navelem"><a class="el" href="dir_e6025362ed656d4694dd182c589a06c2.html">grid_evaluator</a></li><li class="navelem"><b>Interpolator.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>

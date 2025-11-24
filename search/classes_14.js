@@ -9,7 +9,6 @@ var searchData=
   ['variablesgroup_6',['VariablesGroup',['../classBenders_1_1Criterion_1_1VariablesGroup.html',1,'Benders::Criterion']]],
   ['variablesgrouptest_7',['VariablesGroupTest',['../classVariablesGroupTest.html',1,'']]],
   ['variablesnotfound_8',['VariablesNotFound',['../classVariableFileReader_1_1VariablesNotFound.html',1,'VariableFileReader']]],
-  ['variationdeniveauxdestockkey_9',['VariationDeNiveauxDeStockKey',['../structOutput_1_1VariationDeNiveauxDeStockKey.html',1,'Output']]],
-  ['version_10',['Version',['../structVersion.html',1,'']]],
-  ['voidwriter_11',['VoidWriter',['../classOutput_1_1VoidWriter.html',1,'Output']]]
+  ['version_9',['Version',['../structVersion.html',1,'']]],
+  ['voidwriter_10',['VoidWriter',['../classOutput_1_1VoidWriter.html',1,'Output']]]
 ];

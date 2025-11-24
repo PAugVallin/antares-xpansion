@@ -30,6 +30,7 @@ var hierarchy =
     ] ],
     [ "Batch", "structBatch.html", null ],
     [ "BatchCollection", "classBatchCollection.html", null ],
+    [ "BellmanValues", "classBellmanValues.html", null ],
     [ "BendersApp", "classBendersApp.html", null ],
     [ "BendersBase", "classBendersBase.html", [
       [ "BendersBaseDouble", "classBendersBaseDouble.html", null ],
@@ -61,6 +62,7 @@ var hierarchy =
     ] ],
     [ "ColumnToChange", "structColumnToChange.html", null ],
     [ "Output::ConcurrentInsertionMap< Key, Value >", "structOutput_1_1ConcurrentInsertionMap.html", null ],
+    [ "Output::ConcurrentInsertionMap< Output::PointWeekScenarioKey, double >", "structOutput_1_1ConcurrentInsertionMap.html", null ],
     [ "ConfigurationManager::ConfigDirectories", "structConfigurationManager_1_1ConfigDirectories.html", null ],
     [ "antares_xpansion.config_file_parser.ConfigFileParser", "classantares__xpansion_1_1config__file__parser_1_1ConfigFileParser.html", null ],
     [ "antares_xpansion.xpansionConfig.ConfigParameters", "classantares__xpansion_1_1xpansionConfig_1_1ConfigParameters.html", null ],
@@ -86,6 +88,20 @@ var hierarchy =
     [ "CurrentIterationData", "structCurrentIterationData.html", null ],
     [ "DirectAccessScenarioToChronicleProvider", "classDirectAccessScenarioToChronicleProvider.html", null ],
     [ "Solver::DynamicLibrary", "classSolver_1_1DynamicLibrary.html", null ],
+    [ "std::enable_shared_from_this", null, [
+      [ "SolverAbstract", "classSolverAbstract.html", [
+        [ "NOOPSolver", "classNOOPSolver.html", [
+          [ "NOOPSolverForWorker", "classNOOPSolverForWorker.html", [
+            [ "NOOPSolverForSubproblemWorker", "classNOOPSolverForSubproblemWorker.html", null ],
+            [ "NOOPSolverForWorkerMaster", "classNOOPSolverForWorkerMaster.html", null ]
+          ] ]
+        ] ],
+        [ "Problem", "classProblem.html", null ],
+        [ "SolverCbc", "classSolverCbc.html", null ],
+        [ "SolverClp", "classSolverClp.html", null ],
+        [ "SolverXpress", "classSolverXpress.html", null ]
+      ] ]
+    ] ],
     [ "LpFilesExtractor::ErrorWithAreaFile", "classLpFilesExtractor_1_1ErrorWithAreaFile.html", null ],
     [ "LpFilesExtractor::ErrorWithIntercosFile", "classLpFilesExtractor_1_1ErrorWithIntercosFile.html", null ],
     [ "Exception", null, [
@@ -214,7 +230,12 @@ var hierarchy =
     [ "antares_xpansion.general_data_reader.GeneralDataIniReader", "classantares__xpansion_1_1general__data__reader_1_1GeneralDataIniReader.html", null ],
     [ "GeneralDataIniReader", "classGeneralDataIniReader.html", null ],
     [ "antares_xpansion.general_data_processor.GeneralDataProcessor", "classantares__xpansion_1_1general__data__processor_1_1GeneralDataProcessor.html", null ],
-    [ "GridEvaluator", "classGridEvaluator.html", null ],
+    [ "GridCollection", "classGridCollection.html", null ],
+    [ "GridDefinition", "structGridDefinition.html", null ],
+    [ "GridElement", "structGridElement.html", null ],
+    [ "GridEvaluator", "classGridEvaluator.html", [
+      [ "BellmanValuesComputeTest::GridEvaluatorMock", "structBellmanValuesComputeTest_1_1GridEvaluatorMock.html", null ]
+    ] ],
     [ "Output::GridPointData", "structOutput_1_1GridPointData.html", null ],
     [ "GridSearch", "classGridSearch.html", null ],
     [ "HeadersManager", "structHeadersManager.html", [
@@ -277,6 +298,7 @@ var hierarchy =
     [ "driver_input_translation.InputTranslationDriver", "classdriver__input__translation_1_1InputTranslationDriver.html", null ],
     [ "InstanceData", "classInstanceData.html", null ],
     [ "IntercoFileData", "structIntercoFileData.html", null ],
+    [ "Interpolator", "classInterpolator.html", null ],
     [ "InvalidBoundTypeException", "classInvalidBoundTypeException.html", null ],
     [ "InvalidColSizeException", "classInvalidColSizeException.html", null ],
     [ "InvalidColTypeException", "classInvalidColTypeException.html", null ],
@@ -357,6 +379,7 @@ var hierarchy =
     [ "antares_xpansion.optimisation_keys.OptimisationKeys", "classantares__xpansion_1_1optimisation__keys_1_1OptimisationKeys.html", null ],
     [ "OptionsParser", "classOptionsParser.html", [
       [ "AntaresArchiveUpdaterExeOptions", "classAntaresArchiveUpdaterExeOptions.html", null ],
+      [ "BellmanValuesExeOptions", "classBellmanValuesExeOptions.html", null ],
       [ "ProblemGenerationExeOptions", "classProblemGenerationExeOptions.html", [
         [ "FullRunOptionsParser", "classFullRunOptionsParser.html", null ],
         [ "MultipleProblemGenerationExeOptions", "classMultipleProblemGenerationExeOptions.html", null ]
@@ -376,7 +399,9 @@ var hierarchy =
         [ "WriterMockStatus", "classWriterMockStatus.html", null ]
       ] ]
     ] ],
+    [ "PenaltiesConfigReader", "classPenaltiesConfigReader.html", null ],
     [ "performance.PerfPlotsGenerator", "classperformance_1_1PerfPlotsGenerator.html", null ],
+    [ "Output::PointWeekScenarioKey", "structOutput_1_1PointWeekScenarioKey.html", null ],
     [ "Predicate", "structPredicate.html", null ],
     [ "Presolve", "classPresolve.html", null ],
     [ "antares_xpansion.presolve_driver.PresolveData", "classantares__xpansion_1_1presolve__driver_1_1PresolveData.html", null ],
@@ -386,6 +411,7 @@ var hierarchy =
     [ "ProblemGeneration", "classProblemGeneration.html", [
       [ "ProblemGenerationSpyAndMock", "classProblemGenerationSpyAndMock.html", null ]
     ] ],
+    [ "ProblemGenerationForWaterValueCalculation", "classProblemGenerationForWaterValueCalculation.html", null ],
     [ "ProblemGenerationOptions", "classProblemGenerationOptions.html", [
       [ "ProblemGenerationExeOptions", "classProblemGenerationExeOptions.html", null ]
     ] ],
@@ -398,6 +424,8 @@ var hierarchy =
     [ "RandomBatchShuffler", "classRandomBatchShuffler.html", null ],
     [ "RawPbData", "structRawPbData.html", null ],
     [ "RenameUtils", "classRenameUtils.html", null ],
+    [ "Reservoir", "classReservoir.html", null ],
+    [ "ReservoirManagement", "classReservoirManagement.html", null ],
     [ "antares_xpansion.resume_study.ResumeStudy", "classantares__xpansion_1_1resume__study_1_1ResumeStudy.html", null ],
     [ "antares_xpansion.resume_study.ResumeStudyData", "classantares__xpansion_1_1resume__study_1_1ResumeStudyData.html", null ],
     [ "std::runtime_error", null, [
@@ -408,7 +436,6 @@ var hierarchy =
       [ "InvalidMasterStructureFileException", "classInvalidMasterStructureFileException.html", null ],
       [ "NotImplementedFeatureSolverException", "classNotImplementedFeatureSolverException.html", null ]
     ] ],
-    [ "ScenarioAndWeek", "structScenarioAndWeek.html", null ],
     [ "ScenarioToChronicleReader", "classScenarioToChronicleReader.html", null ],
     [ "antares_xpansion.sensitivity_driver.SensitivityDriver", "classantares__xpansion_1_1sensitivity__driver_1_1SensitivityDriver.html", null ],
     [ "SensitivityILogger", "classSensitivityILogger.html", [
@@ -430,18 +457,6 @@ var hierarchy =
     [ "SimulationOptions", "classSimulationOptions.html", null ],
     [ "SinglePbData", "structSinglePbData.html", null ],
     [ "Output::SolutionData", "structOutput_1_1SolutionData.html", null ],
-    [ "SolverAbstract", "classSolverAbstract.html", [
-      [ "NOOPSolver", "classNOOPSolver.html", [
-        [ "NOOPSolverForWorker", "classNOOPSolverForWorker.html", [
-          [ "NOOPSolverForSubproblemWorker", "classNOOPSolverForSubproblemWorker.html", null ],
-          [ "NOOPSolverForWorkerMaster", "classNOOPSolverForWorkerMaster.html", null ]
-        ] ]
-      ] ],
-      [ "Problem", "classProblem.html", null ],
-      [ "SolverCbc", "classSolverCbc.html", null ],
-      [ "SolverClp", "classSolverClp.html", null ],
-      [ "SolverXpress", "classSolverXpress.html", null ]
-    ] ],
     [ "SolverConfig", "classSolverConfig.html", null ],
     [ "SolverData", "structSolverData.html", null ],
     [ "SolverFactory", "classSolverFactory.html", null ],
@@ -477,6 +492,7 @@ var hierarchy =
       [ "ArchiveUpdaterTest", "classArchiveUpdaterTest.html", null ],
       [ "ArchiveWriterTest", "classArchiveWriterTest.html", null ],
       [ "BatchCollectionTest", "classBatchCollectionTest.html", null ],
+      [ "BellmanValuesComputeTest", "classBellmanValuesComputeTest.html", null ],
       [ "BendersBaseTest", "classBendersBaseTest.html", null ],
       [ "BendersSequentialTest", "classBendersSequentialTest.html", [
         [ "BendersSequentialTestBySolver", "classBendersSequentialTestBySolver.html", null ],
@@ -487,7 +503,6 @@ var hierarchy =
       [ "ChronicleTest", "classChronicleTest.html", null ],
       [ "FileLoggerTest", "classFileLoggerTest.html", null ],
       [ "FixtureMPSFileProblemProviderAdapter", "classFixtureMPSFileProblemProviderAdapter.html", null ],
-      [ "GridSearchTest", "classGridSearchTest.html", null ],
       [ "GridSearchTest", "classGridSearchTest.html", null ],
       [ "JsonWriterTest", "classJsonWriterTest.html", null ],
       [ "JsonXpansionReaderTest", "classJsonXpansionReaderTest.html", null ],
@@ -591,7 +606,6 @@ var hierarchy =
     [ "MergeMasterTrajectoryMPS::VariablePositions", "structMergeMasterTrajectoryMPS_1_1VariablePositions.html", null ],
     [ "Benders::Criterion::VariablesGroup", "classBenders_1_1Criterion_1_1VariablesGroup.html", null ],
     [ "VariableFileReader::VariablesNotFound", "classVariableFileReader_1_1VariablesNotFound.html", null ],
-    [ "Output::VariationDeNiveauxDeStockKey", "structOutput_1_1VariationDeNiveauxDeStockKey.html", null ],
     [ "Version", "structVersion.html", null ],
     [ "WeightFileProcessor", "classWeightFileProcessor.html", null ],
     [ "WeightsFileReader::WeightsFileError", "classWeightsFileReader_1_1WeightsFileError.html", [

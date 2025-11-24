@@ -4,9 +4,7 @@ var searchData=
   ['init_5fdata_1',['init_data',['../classBendersBase.html#a62a819640d2a7530fce9418547f45d65',1,'BendersBase::init_data()'],['../classBendersSequentialDouble.html#a33c0199bf9a762b001db1f631ca9444f',1,'BendersSequentialDouble::init_data()'],['../classBendersBaseDouble.html#abec4d97a2176e8747fdf4c6cbb94a8cd',1,'BendersBaseDouble::init_data()']]],
   ['initialize_2',['initialize',['../classOutput_1_1JsonWriter.html#aee3cc2a6e0300509d23bbbb8de1eae94',1,'Output::JsonWriter::initialize()'],['../classOutput_1_1OutputWriter.html#a3a0f989f5e057b16bf4ead25ab992f05',1,'Output::OutputWriter::initialize()'],['../classOutput_1_1VoidWriter.html#ad6904d7f602e37270c000a9dbe564cde',1,'Output::VoidWriter::initialize()'],['../classXpansion_1_1Test_1_1InMemoryWriter.html#a0711ca27e8c1fd83a4dbcd5376be9150',1,'Xpansion::Test::InMemoryWriter::initialize()'],['../classXpansion_1_1Test_1_1WriterNOOPStub.html#a46fd1d525db02b1601910b5ffff0fc43',1,'Xpansion::Test::WriterNOOPStub::initialize()']]],
   ['initializeproblems_3',['InitializeProblems',['../classBendersMpi.html#a217d3af6fbe78082f30fa9ef75cf1dfb',1,'BendersMpi::InitializeProblems()'],['../classGridSearch.html#adae8b182696920e0932715fdf8247525',1,'GridSearch::InitializeProblems()']]],
-  ['initsubproblems_4',['InitSubProblems',['../classGridEvaluator.html#a429fa53f0375c186f366e7007ca25486',1,'GridEvaluator']]],
-  ['initxpressenv_5',['initXpressEnv',['../classLoadXpress_1_1XpressLoader.html#a1a17e7973088bd65105007a7e2f2481e',1,'LoadXpress::XpressLoader']]],
-  ['is_5faccurate_6',['is_accurate',['../classantares__xpansion_1_1config__loader_1_1ConfigLoader.html#a0c3fa0cf225d9b7bb06864a8aa7f1b45',1,'antares_xpansion::config_loader::ConfigLoader']]],
-  ['is_5frelaxed_7',['is_relaxed',['../classantares__xpansion_1_1config__loader_1_1ConfigLoader.html#a4b43dd57f999df86ffacede36f47e197',1,'antares_xpansion::config_loader::ConfigLoader']]],
-  ['issubproblemused_8',['IsSubproblemUsed',['../classGridEvaluator.html#a2efaf82d89f49c2491813c6b6e3ac6bd',1,'GridEvaluator']]]
+  ['initxpressenv_4',['initXpressEnv',['../classLoadXpress_1_1XpressLoader.html#a1a17e7973088bd65105007a7e2f2481e',1,'LoadXpress::XpressLoader']]],
+  ['is_5faccurate_5',['is_accurate',['../classantares__xpansion_1_1config__loader_1_1ConfigLoader.html#a0c3fa0cf225d9b7bb06864a8aa7f1b45',1,'antares_xpansion::config_loader::ConfigLoader']]],
+  ['is_5frelaxed_6',['is_relaxed',['../classantares__xpansion_1_1config__loader_1_1ConfigLoader.html#a4b43dd57f999df86ffacede36f47e197',1,'antares_xpansion::config_loader::ConfigLoader']]]
 ];

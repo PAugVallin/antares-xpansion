@@ -1,10 +1,7 @@
 var searchData=
 [
-  ['xpansion_0',['Xpansion',['../index.html',1,'Antares-Xpansion'],['../md_docs_2user-guide_2optimization-principles_2investment-problem.html',1,'The optimal investment problem in Antares-Xpansion']]],
-  ['xpansion_20changelog_1',['Antares-Xpansion changelog',['../md_docs_2changelog_2CHANGELOG.html',1,'']]],
-  ['xpansion_20simulation_20procedure_2',['Antares-Xpansion simulation procedure',['../md_docs_2developer-guide_2xpansion__steps_20-overview.html',1,'']]],
-  ['xpansion_20studies_3',['Merging the master problems of annual Xpansion studies',['../md_docs_2user-guide_2trajectory-investment_2merge-master.html',1,'']]],
-  ['xpansion_20study_4',['Set up an Antares-Xpansion study',['../md_docs_2user-guide_2get-started_2prepare-a-simulation.html',1,'']]],
-  ['xpansion_20trajectory_20tt_5',['Launching the workflow : &lt;tt&gt;xpansion trajectory&lt;/tt&gt;',['../md_docs_2user-guide_2trajectory-investment_2orchestration.html',1,'']]],
-  ['xpress_20solver_20and_20loading_20it_20dynamically_6',['Installing Xpress Solver and Loading it Dynamically',['../md_docs_2developer-guide_2install__from__sources_26-Xpress.html',1,'']]]
+  ['water_20values_20computation_0',['Water values computation',['../md_docs_2user-guide_2get-started_2water-values-computation.html',1,'']]],
+  ['weights_1',['Weights',['../md_docs_2user-guide_2trajectory-investment_2merge-weights.html',1,'']]],
+  ['workflow_2',['trajectory-workflow',['../md_docs_2user-guide_2trajectory-investment_2trajectory-workflow.html',1,'']]],
+  ['workflow_20_3a_20tt_20xpansion_20trajectory_20tt_3',['Launching the workflow : &lt;tt&gt;xpansion trajectory&lt;/tt&gt;',['../md_docs_2user-guide_2trajectory-investment_2orchestration.html',1,'']]]
 ];

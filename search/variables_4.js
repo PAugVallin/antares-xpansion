@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['nbthreads_0',['nbThreads',['../classGridEvaluator.html#ace707d90179e06185d6426dc0f007525',1,'GridEvaluator']]]
+  ['levels_0',['levels',['../classBellmanValues.html#a8b7a73e0d6867a5045678c9d07978615',1,'BellmanValues']]],
+  ['loopflow_5f_1',['loopFlow_',['../structLinkdataRecord_1_1FileColumns.html#a72660e6f946994368a7a69859aa7dde0',1,'LinkdataRecord::FileColumns']]]
 ];
