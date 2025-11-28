@@ -140,14 +140,14 @@ $(function(){initNavTree('md_docs_2user-guide_2get-started_2water-values-computa
   <div class="headertitle"><div class="title">Water values computation</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md228"></a></p>
+<div class="textblock"><p><a class="anchor" id="autotoc_md230"></a></p>
 <p>The inputs for the computation of the water values are:</p>
 <ul>
 <li>a study</li>
 <li>a grid defined by a grid.csv file at the root of the study</li>
 </ul>
 <p>The outputs are the water values for all the weeks discretized over 101 level of stock for all the grid IDs. The output is a json file named <code>[grid_ID]_water_values.json</code> located in the output directory.</p>
-<h1><a class="anchor" id="autotoc_md229"></a>
+<h1><a class="anchor" id="autotoc_md231"></a>
 Input file grid.csv</h1>
 <p>Here is an example of a grid.csv file (must be comma separated, shown here as a table for readability):</p>
 <table class="markdownTable">
@@ -167,7 +167,7 @@ Input file grid.csv</h1>
 <li><code>max</code>: the maximum value of the constraint or variable (from 0 to 1)</li>
 <li><code>step</code>: the step of the discretization of the constraint or variable (from 0 to 1)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md230"></a>
+<h2><a class="anchor" id="autotoc_md232"></a>
 Secondary input file penalties.yaml</h2>
 <p>Here is an example of a penalties.yaml file, that defines parameters related to the penalties when computing water values:</p>
 <div class="fragment"><div class="line"># All parameters related to penalties when computing water values.</div>
@@ -192,9 +192,9 @@ Secondary input file penalties.yaml</h2>
 <div class="line">overflow : ~</div>
 <div class="line"># default: true</div>
 </div><!-- fragment --><p>This file is expected to be located at the root of the study. It is optional, however default values are hard-coded in the program.</p>
-<h1><a class="anchor" id="autotoc_md231"></a>
+<h1><a class="anchor" id="autotoc_md233"></a>
 Command line usage</h1>
-<h2><a class="anchor" id="autotoc_md232"></a>
+<h2><a class="anchor" id="autotoc_md234"></a>
 Quick start</h2>
 <ol type="1">
 <li>Open a command prompt in your Antares-Xpansion install directory (by default it is named <code>antaresXpansion-x.y.z-win64</code> where <code>x.y.z</code> is the version number). You can launch a command line prompt by typing <code>cmd</code> in the path.</li>
@@ -202,42 +202,42 @@ Quick start</h2>
 <div class="fragment"><div class="line">water_values_exe --study data_test/one_node_base</div>
 </div><!-- fragment --></li>
 </ol>
-<h2><a class="anchor" id="autotoc_md233"></a>
+<h2><a class="anchor" id="autotoc_md235"></a>
 Command line parameters</h2>
-<h3><a class="anchor" id="autotoc_md234"></a>
+<h3><a class="anchor" id="autotoc_md236"></a>
 <code>-h, --help</code></h3>
 <p>Show a help message and exit.</p>
-<h3><a class="anchor" id="autotoc_md235"></a>
+<h3><a class="anchor" id="autotoc_md237"></a>
 <code>--study &lt;path&gt;</code></h3>
 <p>Path to the Antares study.</p>
-<h3><a class="anchor" id="autotoc_md236"></a>
+<h3><a class="anchor" id="autotoc_md238"></a>
 <code>--solver {xpress, coin}</code></h3>
 <p>Default value: <code>xpress</code>.</p>
-<h3><a class="anchor" id="autotoc_md237"></a>
+<h3><a class="anchor" id="autotoc_md239"></a>
 <code>--threads &lt;number&gt;</code></h3>
 <p>Default value: <code>1</code>.</p>
 <p>Number of threads that will be used to solve the problems from the grid.</p>
-<h3><a class="anchor" id="autotoc_md238"></a>
+<h3><a class="anchor" id="autotoc_md240"></a>
 <code>--start-week &lt;number&gt;</code></h3>
 <p>Default value: <code>1</code>.</p>
 <p>Starting week of the Bellman values computation.</p>
-<h3><a class="anchor" id="autotoc_md239"></a>
+<h3><a class="anchor" id="autotoc_md241"></a>
 <code>--end-week &lt;number&gt;</code></h3>
 <p>Default value: <code>52</code>.</p>
 <p>Ending week of the Bellman values computation.</p>
-<h3><a class="anchor" id="autotoc_md240"></a>
+<h3><a class="anchor" id="autotoc_md242"></a>
 <code>--nb-levels &lt;number&gt;</code></h3>
 <p>Default value: <code>10</code>.</p>
 <p>Number of levels of the stock.</p>
-<h3><a class="anchor" id="autotoc_md241"></a>
+<h3><a class="anchor" id="autotoc_md243"></a>
 <code>--antares-format &lt;bool&gt;</code></h3>
 <p>Default value: <code>false</code>.</p>
 <p>If true, the output will be in the Antares format (values will be interpolated to get 101 levels of stock).</p>
-<h3><a class="anchor" id="autotoc_md242"></a>
+<h3><a class="anchor" id="autotoc_md244"></a>
 <code>--keepMps &lt;bool&gt;</code></h3>
 <p>Default value: <code>false</code>.</p>
 <p>If true, a file (.mps or .svf, see below) for each solved problem will be written to disk (location is <code>&lt;study&gt;/output/&lt;run&gt;/mps_n</code>).</p>
-<h3><a class="anchor" id="autotoc_md243"></a>
+<h3><a class="anchor" id="autotoc_md245"></a>
 <code>--problem-format {mps, optimized}</code></h3>
 <p>Default value: <code>optimized</code>.</p>
 <p>Selects the storage format of the generated mathematical problems (master + subproblems):</p>
@@ -249,7 +249,7 @@ Command line parameters</h2>
 </li>
 <li>MPS : write the problems in MPS format, which is a standard format for mathematical programming problems.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md244"></a>
+<h1><a class="anchor" id="autotoc_md246"></a>
 Workflow</h1>
 <p><img src="../../assets/media/water-values-workflow.png" alt="Water values computation workflow" class="inline"/> </p>
 </div></div><!-- contents -->

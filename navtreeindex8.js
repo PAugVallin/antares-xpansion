@@ -1,5 +1,11 @@
 var NAVTREEINDEX8 =
 {
+"structILoggerXpansion.html#ac29cdc7dc59c2dde6ce45201c91e770e":[34,0,121,0],
+"structIntercoFileData.html":[34,0,126],
+"structInvalidStructureFile.html":[34,0,138],
+"structLinkdataRecord.html":[34,0,153],
+"structLinkdataRecord.html#a192b9300bf9ef3704dd29c7447e38680":[34,0,153,5],
+"structLinkdataRecord.html#a316036c66af27b703cfa96e5816940e2":[34,0,153,3],
 "structLinkdataRecord.html#a80fbca65660bf152d9523946037b4e38":[34,0,153,4],
 "structLinkdataRecord.html#aa46f4f8abc7f1561d5f38cfc007db565":[34,0,153,6],
 "structLinkdataRecord.html#ac225589197f2bc3346b67b3a6ae9ef80":[34,0,153,2],
