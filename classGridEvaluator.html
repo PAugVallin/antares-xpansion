@@ -166,9 +166,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac8ed65cdfac58c9b8c415b8cdc2d5760" id="r_ac8ed65cdfac58c9b8c415b8cdc2d5760"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8ed65cdfac58c9b8c415b8cdc2d5760">GridEvaluator</a> (Logger logger, std::map&lt; Antares::Solver::WeeklyProblemId, std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; &gt; <a class="el" href="#a0afbedfd9b1ef4f2158f9430279cb33e">problems</a>, <a class="el" href="structGridDefinition.html">GridDefinition</a> &amp;grid_definition, std::string <a class="el" href="#aab7ade345e6d95ed0c4500550ae959ae">solverName</a>, int <a class="el" href="#ace707d90179e06185d6426dc0f007525">nbThreads</a>=1)</td></tr>
 <tr class="memdesc:ac8ed65cdfac58c9b8c415b8cdc2d5760"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
 <tr class="separator:ac8ed65cdfac58c9b8c415b8cdc2d5760"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90d3bbaae6a6afa466f807052d18e9a1" id="r_a90d3bbaae6a6afa466f807052d18e9a1"><td class="memItemLeft" align="right" valign="top">virtual std::map&lt; <a class="el" href="structOutput_1_1PointWeekScenarioKey.html">Output::PointWeekScenarioKey</a>, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a90d3bbaae6a6afa466f807052d18e9a1">ComputeCosts</a> ()</td></tr>
-<tr class="memdesc:a90d3bbaae6a6afa466f807052d18e9a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Launch the Stock level variation computation.  <br /></td></tr>
-<tr class="separator:a90d3bbaae6a6afa466f807052d18e9a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c9c1f352acc9f6a88745d43fa291bb3" id="r_a0c9c1f352acc9f6a88745d43fa291bb3"><td class="memItemLeft" align="right" valign="top">virtual std::map&lt; <a class="el" href="structOutput_1_1PointWeekScenarioKey.html">Output::PointWeekScenarioKey</a>, <a class="el" href="structGridPointResult.html">GridPointResult</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c9c1f352acc9f6a88745d43fa291bb3">ComputeCostsAndDuals</a> ()</td></tr>
+<tr class="memdesc:a0c9c1f352acc9f6a88745d43fa291bb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Launch the Stock level variation computation.  <br /></td></tr>
+<tr class="separator:a0c9c1f352acc9f6a88745d43fa291bb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -182,9 +182,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Run</b> ()</td></tr>
 <tr class="memitem:ab2ded9fe41cc2f3643262aa231c99168" id="r_ab2ded9fe41cc2f3643262aa231c99168"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab2ded9fe41cc2f3643262aa231c99168">SetConstraintsRHSValues</a> (const std::map&lt; std::string, double &gt; &amp;rhsValues, std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; subProblem)</td></tr>
 <tr class="memdesc:ab2ded9fe41cc2f3643262aa231c99168"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the constraints RHS values for a given subproblem.  <br /></td></tr>
 <tr class="separator:ab2ded9fe41cc2f3643262aa231c99168"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6523003b8be82f07ede43881d0a0b979" id="r_a6523003b8be82f07ede43881d0a0b979"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6523003b8be82f07ede43881d0a0b979">SolveSubproblem</a> (std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; subProblem)</td></tr>
-<tr class="memdesc:a6523003b8be82f07ede43881d0a0b979"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solve the subproblem and return the cost.  <br /></td></tr>
-<tr class="separator:a6523003b8be82f07ede43881d0a0b979"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3709c4f7f11e7927d5d1880a5b9913ba" id="r_a3709c4f7f11e7927d5d1880a5b9913ba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structGridPointResult.html">GridPointResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3709c4f7f11e7927d5d1880a5b9913ba">SolveSubproblem</a> (std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; subProblem, Point subPbCombo)</td></tr>
+<tr class="memdesc:a3709c4f7f11e7927d5d1880a5b9913ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solve the subproblem and return the cost.  <br /></td></tr>
+<tr class="separator:a3709c4f7f11e7927d5d1880a5b9913ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7db823135a4095d8997e4d03cb63ab30" id="r_a7db823135a4095d8997e4d03cb63ab30"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7db823135a4095d8997e4d03cb63ab30">GetConstraintName</a> (const Antares::Solver::WeeklyProblemId id, const std::string &amp;area, const std::string &amp;constraint) const</td></tr>
 <tr class="memdesc:a7db823135a4095d8997e4d03cb63ab30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the constraint in the mps file.  <br /></td></tr>
 <tr class="separator:a7db823135a4095d8997e4d03cb63ab30"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -278,8 +278,8 @@ Friends</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a90d3bbaae6a6afa466f807052d18e9a1" name="a90d3bbaae6a6afa466f807052d18e9a1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a90d3bbaae6a6afa466f807052d18e9a1">&#9670;&#160;</a></span>ComputeCosts()</h2>
+<a id="a0c9c1f352acc9f6a88745d43fa291bb3" name="a0c9c1f352acc9f6a88745d43fa291bb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c9c1f352acc9f6a88745d43fa291bb3">&#9670;&#160;</a></span>ComputeCostsAndDuals()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -288,7 +288,7 @@ Friends</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt; <a class="el" href="structOutput_1_1PointWeekScenarioKey.html">Output::PointWeekScenarioKey</a>, double &gt; GridEvaluator::ComputeCosts </td>
+          <td class="memname">std::map&lt; <a class="el" href="structOutput_1_1PointWeekScenarioKey.html">Output::PointWeekScenarioKey</a>, <a class="el" href="structGridPointResult.html">GridPointResult</a> &gt; GridEvaluator::ComputeCostsAndDuals </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -304,7 +304,7 @@ Friends</h2></td></tr>
 <p>Launch the Stock level variation computation. </p>
 <dl class="section return"><dt>Returns</dt><dd>The stock level variation results </dd></dl>
 
-<p>Reimplemented in <a class="el" href="structBellmanValuesComputeTest_1_1GridEvaluatorMock.html#a7d940bd46354c607323413601a0ed8d8">BellmanValuesComputeTest::GridEvaluatorMock</a>.</p>
+<p>Reimplemented in <a class="el" href="structBellmanValuesComputeTest_1_1GridEvaluatorMock.html#ab8833854eeb733e4efaab0bd3c118aec">BellmanValuesComputeTest::GridEvaluatorMock</a>.</p>
 
 </div>
 </div>
@@ -454,7 +454,7 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Process a single subproblem. </p>
-<p>this function generates all possible combinations of right-hand side (RHS) constraint values using <code>GenerateSubPbCombos</code>, applies them to the model via <code>SetConstraintsRHSValues</code>, solves the subproblem using <code>SolveSubproblem</code>, and stores the resulting cost in the <code>variationDeNiveauxDeStockData</code> map indexed by scenario, week, and constraint values. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>this function generates all possible combinations of right-hand side (RHS) constraint values using <code>GenerateSubPbCombos</code>, applies them to the model via <code>SetConstraintsRHSValues</code>, solves the subproblem using <code>SolveSubproblem</code>, and stores the resulting cost in the <code>variationDeNiveauxDeStockResults</code> map indexed by scenario, week, and constraint values. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">subProblemId</td><td>the id of the problem to treat </td></tr>
     <tr><td class="paramname">subPronlem</td><td>the problem to treat </td></tr>
@@ -502,8 +502,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="a6523003b8be82f07ede43881d0a0b979" name="a6523003b8be82f07ede43881d0a0b979"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6523003b8be82f07ede43881d0a0b979">&#9670;&#160;</a></span>SolveSubproblem()</h2>
+<a id="a3709c4f7f11e7927d5d1880a5b9913ba" name="a3709c4f7f11e7927d5d1880a5b9913ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3709c4f7f11e7927d5d1880a5b9913ba">&#9670;&#160;</a></span>SolveSubproblem()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -512,10 +512,14 @@ Friends</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">double GridEvaluator::SolveSubproblem </td>
+          <td class="memname"><a class="el" href="structGridPointResult.html">GridPointResult</a> GridEvaluator::SolveSubproblem </td>
           <td>(</td>
-          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>problem</em></span></td><td>)</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>problem</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">Point</td>          <td class="paramname"><span class="paramname"><em>subPbCombo</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -532,7 +536,7 @@ Friends</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The cost of the subproblem </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The data of the solved subproblem : cost and dualValues </dd></dl>
 
 </div>
 </div>

@@ -26,7 +26,7 @@ var searchData=
   ['solverclp_23',['SolverClp',['../classSolverClp.html#a2187e8b150f471557445330c9942424d',1,'SolverClp']]],
   ['solverfactory_24',['SolverFactory',['../classSolverFactory.html#ad70db765e0de8baa6de02b29295dfce7',1,'SolverFactory']]],
   ['solverxpress_25',['SolverXpress',['../classSolverXpress.html#a3fa04264091ce029e091b1c3eac8c560',1,'SolverXpress']]],
-  ['solvesubproblem_26',['SolveSubproblem',['../classGridEvaluator.html#a6523003b8be82f07ede43881d0a0b979',1,'GridEvaluator']]],
+  ['solvesubproblem_26',['SolveSubproblem',['../classGridEvaluator.html#a3709c4f7f11e7927d5d1880a5b9913ba',1,'GridEvaluator']]],
   ['studyupdater_27',['StudyUpdater',['../classStudyUpdater.html#ac386a6ced87a6a4315ed2c46f574601e',1,'StudyUpdater']]],
   ['subproblemweight_28',['SubproblemWeight',['../classBendersBase.html#ab979fd9e6fd791c6b01d244da33ba849',1,'BendersBase']]],
   ['subproblemworker_29',['SubproblemWorker',['../classSubproblemWorker.html#a4353df6111363aa803afcfa82c21bd2d',1,'SubproblemWorker']]]

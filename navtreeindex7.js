@@ -225,7 +225,7 @@ var NAVTREEINDEX7 =
 "structBaseOptions.html":[34,0,52],
 "structBatch.html":[34,0,53],
 "structBellmanValuesComputeTest_1_1GridEvaluatorMock.html":[34,0,57,0],
-"structBellmanValuesComputeTest_1_1GridEvaluatorMock.html#a7d940bd46354c607323413601a0ed8d8":[34,0,57,0,0],
+"structBellmanValuesComputeTest_1_1GridEvaluatorMock.html#ab8833854eeb733e4efaab0bd3c118aec":[34,0,57,0,0],
 "structBendersBaseOptions.html":[34,0,62],
 "structBendersFactory_1_1BendersEnvironment.html":[34,0,65,0],
 "structBendersLoggerBase.html":[34,0,66],
@@ -244,10 +244,10 @@ var NAVTREEINDEX7 =
 "structGridDefinition.html#abcc8e09dc6238009b8b7013114e78574":[34,0,111,0],
 "structGridDefinition.html#ae0876b6863d35a711b3e3fc7c7bd34bd":[34,0,111,1],
 "structGridElement.html":[34,0,112],
-"structHeadersManager.html":[34,0,116],
-"structHeadersManagerExternalLoop.html":[34,0,117],
-"structILoggerMock.html":[34,0,120],
-"structILoggerMock.html#a497d3772376f2bf29b5d9530a926a208":[34,0,120,0],
-"structILoggerXpansion.html":[34,0,121],
-"structILoggerXpansion.html#a5d5ef0a1321f54372ecba334a7ae1acd":[34,0,121,1]
+"structGridPointResult.html":[34,0,114],
+"structHeadersManager.html":[34,0,117],
+"structHeadersManagerExternalLoop.html":[34,0,118],
+"structILoggerMock.html":[34,0,121],
+"structILoggerMock.html#a497d3772376f2bf29b5d9530a926a208":[34,0,121,0],
+"structILoggerXpansion.html":[34,0,122]
 };

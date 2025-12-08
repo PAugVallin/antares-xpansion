@@ -27,7 +27,7 @@ var searchData=
   ['clockmock_24',['ClockMock',['../classClockMock.html',1,'']]],
   ['columntochange_25',['ColumnToChange',['../structColumnToChange.html',1,'']]],
   ['concurrentinsertionmap_26',['ConcurrentInsertionMap',['../structOutput_1_1ConcurrentInsertionMap.html',1,'Output']]],
-  ['concurrentinsertionmap_3c_20output_3a_3apointweekscenariokey_2c_20double_20_3e_27',['ConcurrentInsertionMap&lt; Output::PointWeekScenarioKey, double &gt;',['../structOutput_1_1ConcurrentInsertionMap.html',1,'Output']]],
+  ['concurrentinsertionmap_3c_20output_3a_3apointweekscenariokey_2c_20gridpointresult_20_3e_27',['ConcurrentInsertionMap&lt; Output::PointWeekScenarioKey, GridPointResult &gt;',['../structOutput_1_1ConcurrentInsertionMap.html',1,'Output']]],
   ['configdirectories_28',['ConfigDirectories',['../structConfigurationManager_1_1ConfigDirectories.html',1,'ConfigurationManager']]],
   ['configfileparser_29',['ConfigFileParser',['../classantares__xpansion_1_1config__file__parser_1_1ConfigFileParser.html',1,'antares_xpansion::config_file_parser']]],
   ['configloader_30',['ConfigLoader',['../classantares__xpansion_1_1config__loader_1_1ConfigLoader.html',1,'antares_xpansion::config_loader']]],

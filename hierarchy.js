@@ -62,7 +62,7 @@ var hierarchy =
     ] ],
     [ "ColumnToChange", "structColumnToChange.html", null ],
     [ "Output::ConcurrentInsertionMap< Key, Value >", "structOutput_1_1ConcurrentInsertionMap.html", null ],
-    [ "Output::ConcurrentInsertionMap< Output::PointWeekScenarioKey, double >", "structOutput_1_1ConcurrentInsertionMap.html", null ],
+    [ "Output::ConcurrentInsertionMap< Output::PointWeekScenarioKey, GridPointResult >", "structOutput_1_1ConcurrentInsertionMap.html", null ],
     [ "ConfigurationManager::ConfigDirectories", "structConfigurationManager_1_1ConfigDirectories.html", null ],
     [ "antares_xpansion.config_file_parser.ConfigFileParser", "classantares__xpansion_1_1config__file__parser_1_1ConfigFileParser.html", null ],
     [ "antares_xpansion.xpansionConfig.ConfigParameters", "classantares__xpansion_1_1xpansionConfig_1_1ConfigParameters.html", null ],
@@ -237,6 +237,7 @@ var hierarchy =
       [ "BellmanValuesComputeTest::GridEvaluatorMock", "structBellmanValuesComputeTest_1_1GridEvaluatorMock.html", null ]
     ] ],
     [ "Output::GridPointData", "structOutput_1_1GridPointData.html", null ],
+    [ "GridPointResult", "structGridPointResult.html", null ],
     [ "GridSearch", "classGridSearch.html", null ],
     [ "HeadersManager", "structHeadersManager.html", [
       [ "HeadersManagerExternalLoop", "structHeadersManagerExternalLoop.html", null ]

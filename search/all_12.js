@@ -100,7 +100,8 @@ var searchData=
   ['gridevaluator_97',['gridEvaluator',['../classBellmanValues.html#a2e0fb954173f6dcf2228b91e1a12035d',1,'BellmanValues']]],
   ['gridevaluatormock_98',['GridEvaluatorMock',['../structBellmanValuesComputeTest_1_1GridEvaluatorMock.html',1,'BellmanValuesComputeTest']]],
   ['gridpointdata_99',['GridPointData',['../structOutput_1_1GridPointData.html',1,'Output']]],
-  ['gridsearch_100',['GridSearch',['../classGridSearch.html',1,'']]],
-  ['gridsearchtest_101',['GridSearchTest',['../classGridSearchTest.html',1,'']]],
-  ['guidelines_102',['Documention generation guidelines',['../md_docs_2how__to.html',1,'']]]
+  ['gridpointresult_100',['GridPointResult',['../structGridPointResult.html',1,'']]],
+  ['gridsearch_101',['GridSearch',['../classGridSearch.html',1,'']]],
+  ['gridsearchtest_102',['GridSearchTest',['../classGridSearchTest.html',1,'']]],
+  ['guidelines_103',['Documention generation guidelines',['../md_docs_2how__to.html',1,'']]]
 ];

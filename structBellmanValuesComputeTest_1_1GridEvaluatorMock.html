@@ -156,9 +156,9 @@ Inheritance diagram for BellmanValuesComputeTest::GridEvaluatorMock:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7d940bd46354c607323413601a0ed8d8" id="r_a7d940bd46354c607323413601a0ed8d8"><td class="memItemLeft" align="right" valign="top">std::map&lt; <a class="el" href="structOutput_1_1PointWeekScenarioKey.html">Output::PointWeekScenarioKey</a>, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7d940bd46354c607323413601a0ed8d8">ComputeCosts</a> () override</td></tr>
-<tr class="memdesc:a7d940bd46354c607323413601a0ed8d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Launch the Stock level variation computation.  <br /></td></tr>
-<tr class="separator:a7d940bd46354c607323413601a0ed8d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8833854eeb733e4efaab0bd3c118aec" id="r_ab8833854eeb733e4efaab0bd3c118aec"><td class="memItemLeft" align="right" valign="top">std::map&lt; <a class="el" href="structOutput_1_1PointWeekScenarioKey.html">Output::PointWeekScenarioKey</a>, <a class="el" href="structGridPointResult.html">GridPointResult</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab8833854eeb733e4efaab0bd3c118aec">ComputeCostsAndDuals</a> () override</td></tr>
+<tr class="memdesc:ab8833854eeb733e4efaab0bd3c118aec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Launch the Stock level variation computation.  <br /></td></tr>
+<tr class="separator:ab8833854eeb733e4efaab0bd3c118aec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classGridEvaluator"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classGridEvaluator')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classGridEvaluator.html">GridEvaluator</a></td></tr>
 <tr class="memitem:ac8ed65cdfac58c9b8c415b8cdc2d5760 inherit pub_methods_classGridEvaluator" id="r_ac8ed65cdfac58c9b8c415b8cdc2d5760"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGridEvaluator.html#ac8ed65cdfac58c9b8c415b8cdc2d5760">GridEvaluator</a> (Logger logger, std::map&lt; Antares::Solver::WeeklyProblemId, std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; &gt; <a class="el" href="classGridEvaluator.html#a0afbedfd9b1ef4f2158f9430279cb33e">problems</a>, <a class="el" href="structGridDefinition.html">GridDefinition</a> &amp;grid_definition, std::string <a class="el" href="classGridEvaluator.html#aab7ade345e6d95ed0c4500550ae959ae">solverName</a>, int <a class="el" href="classGridEvaluator.html#ace707d90179e06185d6426dc0f007525">nbThreads</a>=1)</td></tr>
 <tr class="memdesc:ac8ed65cdfac58c9b8c415b8cdc2d5760 inherit pub_methods_classGridEvaluator"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
@@ -182,9 +182,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Run</b> ()</td></tr>
 <tr class="memitem:ab2ded9fe41cc2f3643262aa231c99168 inherit pro_methods_classGridEvaluator" id="r_ab2ded9fe41cc2f3643262aa231c99168"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGridEvaluator.html#ab2ded9fe41cc2f3643262aa231c99168">SetConstraintsRHSValues</a> (const std::map&lt; std::string, double &gt; &amp;rhsValues, std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; subProblem)</td></tr>
 <tr class="memdesc:ab2ded9fe41cc2f3643262aa231c99168 inherit pro_methods_classGridEvaluator"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the constraints RHS values for a given subproblem.  <br /></td></tr>
 <tr class="separator:ab2ded9fe41cc2f3643262aa231c99168 inherit pro_methods_classGridEvaluator"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6523003b8be82f07ede43881d0a0b979 inherit pro_methods_classGridEvaluator" id="r_a6523003b8be82f07ede43881d0a0b979"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGridEvaluator.html#a6523003b8be82f07ede43881d0a0b979">SolveSubproblem</a> (std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; subProblem)</td></tr>
-<tr class="memdesc:a6523003b8be82f07ede43881d0a0b979 inherit pro_methods_classGridEvaluator"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solve the subproblem and return the cost.  <br /></td></tr>
-<tr class="separator:a6523003b8be82f07ede43881d0a0b979 inherit pro_methods_classGridEvaluator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3709c4f7f11e7927d5d1880a5b9913ba inherit pro_methods_classGridEvaluator" id="r_a3709c4f7f11e7927d5d1880a5b9913ba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structGridPointResult.html">GridPointResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGridEvaluator.html#a3709c4f7f11e7927d5d1880a5b9913ba">SolveSubproblem</a> (std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; subProblem, Point subPbCombo)</td></tr>
+<tr class="memdesc:a3709c4f7f11e7927d5d1880a5b9913ba inherit pro_methods_classGridEvaluator"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solve the subproblem and return the cost.  <br /></td></tr>
+<tr class="separator:a3709c4f7f11e7927d5d1880a5b9913ba inherit pro_methods_classGridEvaluator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7db823135a4095d8997e4d03cb63ab30 inherit pro_methods_classGridEvaluator" id="r_a7db823135a4095d8997e4d03cb63ab30"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGridEvaluator.html#a7db823135a4095d8997e4d03cb63ab30">GetConstraintName</a> (const Antares::Solver::WeeklyProblemId id, const std::string &amp;area, const std::string &amp;constraint) const</td></tr>
 <tr class="memdesc:a7db823135a4095d8997e4d03cb63ab30 inherit pro_methods_classGridEvaluator"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the constraint in the mps file.  <br /></td></tr>
 <tr class="separator:a7db823135a4095d8997e4d03cb63ab30 inherit pro_methods_classGridEvaluator"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -219,8 +219,8 @@ Logger&#160;</td><td class="memItemRight" valign="bottom"><b>logger</b></td></tr
 <tr class="separator:aa58211934f507ac98a10b0e0979d88cb inherit pro_attribs_classGridEvaluator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a7d940bd46354c607323413601a0ed8d8" name="a7d940bd46354c607323413601a0ed8d8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7d940bd46354c607323413601a0ed8d8">&#9670;&#160;</a></span>ComputeCosts()</h2>
+<a id="ab8833854eeb733e4efaab0bd3c118aec" name="ab8833854eeb733e4efaab0bd3c118aec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8833854eeb733e4efaab0bd3c118aec">&#9670;&#160;</a></span>ComputeCostsAndDuals()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -229,7 +229,7 @@ Logger&#160;</td><td class="memItemRight" valign="bottom"><b>logger</b></td></tr
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt; <a class="el" href="structOutput_1_1PointWeekScenarioKey.html">Output::PointWeekScenarioKey</a>, double &gt; BellmanValuesComputeTest::GridEvaluatorMock::ComputeCosts </td>
+          <td class="memname">std::map&lt; <a class="el" href="structOutput_1_1PointWeekScenarioKey.html">Output::PointWeekScenarioKey</a>, <a class="el" href="structGridPointResult.html">GridPointResult</a> &gt; BellmanValuesComputeTest::GridEvaluatorMock::ComputeCostsAndDuals </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -245,7 +245,7 @@ Logger&#160;</td><td class="memItemRight" valign="bottom"><b>logger</b></td></tr
 <p>Launch the Stock level variation computation. </p>
 <dl class="section return"><dt>Returns</dt><dd>The stock level variation results </dd></dl>
 
-<p>Reimplemented from <a class="el" href="classGridEvaluator.html#a90d3bbaae6a6afa466f807052d18e9a1">GridEvaluator</a>.</p>
+<p>Reimplemented from <a class="el" href="classGridEvaluator.html#a0c9c1f352acc9f6a88745d43fa291bb3">GridEvaluator</a>.</p>
 
 </div>
 </div>

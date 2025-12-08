@@ -448,6 +448,7 @@ var annotated_dup =
     [ "GridDefinition", "structGridDefinition.html", "structGridDefinition" ],
     [ "GridElement", "structGridElement.html", null ],
     [ "GridEvaluator", "classGridEvaluator.html", "classGridEvaluator" ],
+    [ "GridPointResult", "structGridPointResult.html", null ],
     [ "GridSearch", "classGridSearch.html", "classGridSearch" ],
     [ "GridSearchTest", "classGridSearchTest.html", null ],
     [ "HeadersManager", "structHeadersManager.html", null ],

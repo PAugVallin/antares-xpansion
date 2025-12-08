@@ -13,6 +13,7 @@ var searchData=
   ['gridevaluator_10',['GridEvaluator',['../classGridEvaluator.html',1,'']]],
   ['gridevaluatormock_11',['GridEvaluatorMock',['../structBellmanValuesComputeTest_1_1GridEvaluatorMock.html',1,'BellmanValuesComputeTest']]],
   ['gridpointdata_12',['GridPointData',['../structOutput_1_1GridPointData.html',1,'Output']]],
-  ['gridsearch_13',['GridSearch',['../classGridSearch.html',1,'']]],
-  ['gridsearchtest_14',['GridSearchTest',['../classGridSearchTest.html',1,'']]]
+  ['gridpointresult_13',['GridPointResult',['../structGridPointResult.html',1,'']]],
+  ['gridsearch_14',['GridSearch',['../classGridSearch.html',1,'']]],
+  ['gridsearchtest_15',['GridSearchTest',['../classGridSearchTest.html',1,'']]]
 ];
