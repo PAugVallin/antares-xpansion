@@ -11,6 +11,8 @@
 #include "antares-xpansion/benders/benders_core/BendersProblemFromFile.h"
 #include "antares-xpansion/helpers/Timer.h"
 
+using namespace PlainData;
+
 std::atomic<int> totalSimplexIter = 0;     ///< Total number of simplex iterations
 std::atomic<double> totalSubPbTimer = 0;   ///< Total time spent solving subproblems
 std::atomic<double> totalPbModifTimer = 0; ///< Total time spent modifying subproblems
@@ -279,11 +281,11 @@ void GridEvaluator::ProcessSubproblem(const Antares::Solver::WeeklyProblemId sub
                                     LogUtils::LOGLEVEL::DEBUG,
                                     GRID_EVALUATOR_LOGGER_CONTEXT);
         }
-        GridPointResult res = SolveSubproblem(subProblem, subPbCombo);
+        SubProblemData res = SolveSubproblem(subProblem, subPbCombo);
 
         variationDeNiveauxDeStockResults.insert({subPbCombo, subProblemId.week, subProblemId.year},
                                                 res);
-        logger->display_message((std::stringstream() << "Cost: " << res.cost).str(),
+        logger->display_message((std::stringstream() << "Cost: " << res.subproblem_cost).str(),
                                 LogUtils::LOGLEVEL::DEBUG,
                                 GRID_EVALUATOR_LOGGER_CONTEXT);
     }
@@ -292,42 +294,87 @@ void GridEvaluator::ProcessSubproblem(const Antares::Solver::WeeklyProblemId sub
 /// @brief Solve the subproblem and return the cost
 /// @param problem The subproblem to solve
 /// @return The data of the solved subproblem : cost and dualValues
-GridPointResult GridEvaluator::SolveSubproblem(std::shared_ptr<Problem> problem, Point subPbCombo)
+SubProblemData GridEvaluator::SolveSubproblem(std::shared_ptr<Problem> problem, Point subPbCombo)
 {
-    PlainData::SubProblemData subproblem_data;
-    GridPointResult gridPointRes;
+    SubProblemData subPbData;
     Timer subproblem_timer;
     problem->solve_lp();
 
-    std::vector<double> dualValues(problem->get_ncols());
-    problem->get_lp_sol(NULL, dualValues.data(), NULL);
+    std::vector<double> varValues(problem->get_ncols());
+    std::vector<double> dualValuesCst(problem->get_nrows());
+    std::vector<double> dualValuesVar(problem->get_ncols());
+    problem->get_lp_sol(varValues.data(), dualValuesCst.data(), dualValuesVar.data());
 
-    gridPointRes.cost = problem->get_lp_value();
-    subproblem_data.subproblem_cost = gridPointRes.cost;
+    subPbData.subproblem_cost = problem->get_lp_value();
 
-    subproblem_data.subproblem_timer = subproblem_timer.elapsed();
+    subPbData.subproblem_timer = subproblem_timer.elapsed();
+    int nbSimplexIter = problem->get_splex_num_of_ite_last();
 
     for (const auto& [constraintName, value]: subPbCombo)
     {
-        gridPointRes.dual.emplace(constraintName,
-                                  dualValues[problem->get_row_index(constraintName)]);
+        subPbData.dual.emplace(constraintName,
+                               dualValuesCst[problem->get_row_index(constraintName)]);
     }
 
-    int nbSimplexIter = problem->get_splex_num_of_ite_last();
-    logger->display_message((std::stringstream() << "nb simplex : " << nbSimplexIter << " / in "
-                                                 << subproblem_data.subproblem_timer << " seconds")
-                              .str(),
-                            LogUtils::LOGLEVEL::DEBUG,
-                            GRID_EVALUATOR_LOGGER_CONTEXT);
-    totalSimplexIter += nbSimplexIter;
-    totalSubPbTimer += subproblem_data.subproblem_timer;
+    if (criterion_computation_ && criterion_computation_->getCriterionInputData().isDual())
+    {
+        const auto row_names = problem->get_row_names();
+        criterion_computation_->SearchConstraints(row_names);
 
-    return gridPointRes;
+        double unspEnergyObj{0};
+        const auto col_names = problem->get_col_names();
+        for (size_t index = 0; index < col_names.size(); ++index)
+        {
+            const auto& name = col_names[index];
+            // The hour is not important as it is the same value for every hours
+            if (name.starts_with("PositiveUnsuppliedEnergy::area<area>"))
+            {
+                problem->get_obj(&unspEnergyObj, index, index);
+                break;
+            }
+        }
+        criterion_computation_->SetCriterionCountThreshold(unspEnergyObj);
+
+        criterion_computation_->ComputeCriterion(1,
+                                                 dualValuesCst,
+                                                 subPbData.criteria,
+                                                 subPbData.patterns_values);
+        logger->display_message((std::stringstream()
+                                 << "nb simplex : " << nbSimplexIter << " / in "
+                                 << subPbData.subproblem_timer << " seconds / "
+                                 << "NPCAP hours : " << subPbData.criteria[0] << " / "
+                                 << "NPCAP total price : " << subPbData.patterns_values[0])
+                                  .str(),
+                                LogUtils::LOGLEVEL::DEBUG,
+                                GRID_EVALUATOR_LOGGER_CONTEXT);
+    }
+    else if (criterion_computation_ && !criterion_computation_->getCriterionInputData().isDual())
+    {
+        const auto col_names = problem->get_col_names();
+        criterion_computation_->SearchVariables(col_names);
+        criterion_computation_->ComputeCriterion(1,
+                                                 varValues,
+                                                 subPbData.criteria,
+                                                 subPbData.patterns_values);
+        logger->display_message((std::stringstream()
+                                 << "nb simplex : " << nbSimplexIter << " / in "
+                                 << subPbData.subproblem_timer << " seconds / "
+                                 << "UNSP hours : " << subPbData.criteria[0] << " / "
+                                 << "UNSP Power : " << subPbData.patterns_values[0])
+                                  .str(),
+                                LogUtils::LOGLEVEL::DEBUG,
+                                GRID_EVALUATOR_LOGGER_CONTEXT);
+    }
+
+    totalSimplexIter += nbSimplexIter;
+    totalSubPbTimer += subPbData.subproblem_timer;
+
+    return subPbData;
 }
 
 /// @brief Launch the Stock level variation computation
 /// @return The stock level variation results
-std::map<Output::PointWeekScenarioKey, GridPointResult> GridEvaluator::ComputeCostsAndDuals()
+std::map<Output::PointWeekScenarioKey, SubProblemData> GridEvaluator::ComputeCostsAndDuals()
 {
     logger->display_message((std::stringstream() << "Launching Stock level variation").str(),
                             LogUtils::LOGLEVEL::INFO,

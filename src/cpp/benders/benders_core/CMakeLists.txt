@@ -27,8 +27,11 @@ target_sources(benders_core PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/WorkerMaster.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/common.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/CriterionComputation.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/CriterionLOL.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/CriterionNPCAP.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/CriterionInputDataReader.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/VariablesGroup.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/ConstraintsGroup.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/CouplingMapGenerator.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/include/antares-xpansion/benders/benders_core/BendersBase.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/antares-xpansion/benders/benders_core/BendersMathLogger.h
@@ -36,6 +39,8 @@ target_sources(benders_core PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/include/antares-xpansion/benders/benders_core/BendersMethod.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/antares-xpansion/benders/benders_core/BendersStructsDatas.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/antares-xpansion/benders/benders_core/CriterionComputation.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/antares-xpansion/benders/benders_core/CriterionLOL.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/antares-xpansion/benders/benders_core/CriterionNPCAP.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/antares-xpansion/benders/benders_core/CriterionInputDataReader.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/antares-xpansion/benders/benders_core/CustomVector.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/antares-xpansion/benders/benders_core/CutsManagement.h
@@ -49,6 +54,7 @@ target_sources(benders_core PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/include/antares-xpansion/benders/benders_core/StartUp.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/antares-xpansion/benders/benders_core/SubproblemWorker.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/antares-xpansion/benders/benders_core/VariablesGroup.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/antares-xpansion/benders/benders_core/ConstraintsGroup.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/antares-xpansion/benders/benders_core/Worker.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/antares-xpansion/benders/benders_core/WorkerMaster.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/antares-xpansion/benders/benders_core/common.h

@@ -4,6 +4,9 @@
 
 #include <antares/solver/lps/LpsFromAntares.h>
 
+#include "antares-xpansion/benders/benders_core/CriterionComputation.h"
+#include "antares-xpansion/benders/benders_core/CriterionLOL.h"
+#include "antares-xpansion/benders/benders_core/CriterionNPCAP.h"
 #include "antares-xpansion/benders/benders_core/SubproblemWorker.h"
 #include "antares-xpansion/benders/output/JsonWriter.h"
 #include "antares-xpansion/grid_evaluator/GridCollection.h"
@@ -14,12 +17,7 @@ constexpr char GRID_EVALUATOR_LOGGER_CONTEXT[] = "GridEvaluator";
 
 /// @brief vector of maps (key constraint name, value rhs value)
 using ConstraintCombos = std::vector<std::map<std::string, double>>;
-
-struct GridPointResult
-{
-    double cost;
-    std::map<AreaName, double> dual{};
-};
+using namespace PlainData;
 
 /// @brief Class to compute Stock levels variation
 class GridEvaluator
@@ -30,10 +28,31 @@ public:
                   GridDefinition& grid_definition,
                   std::string solverName,
                   int nbThreads = 1);
-    virtual std::map<Output::PointWeekScenarioKey, GridPointResult> ComputeCostsAndDuals();
+    // virtual function to be overridable for the tests
+    virtual std::map<Output::PointWeekScenarioKey, SubProblemData> ComputeCostsAndDuals();
+
+    void setCriterionComputationInputs(
+      const Benders::Criterion::CriterionInputData& criterion_input_data)
+    {
+        using enum Benders::Criterion::Type;
+        switch (criterion_input_data.criterion)
+        {
+        case PositiveUnsuppliedEnergy:
+            criterion_computation_ = std::make_unique<Benders::Criterion::CriterionLOL>(
+              criterion_input_data);
+            break;
+        case NearPriceCapHours:
+            criterion_computation_ = std::make_unique<Benders::Criterion::CriterionNPCAP>(
+              criterion_input_data);
+            break;
+        default:
+            criterion_computation_.reset();
+            break;
+        }
+    }
 
 private:
-    Output::ConcurrentInsertionMap<Output::PointWeekScenarioKey, GridPointResult>
+    Output::ConcurrentInsertionMap<Output::PointWeekScenarioKey, SubProblemData>
       variationDeNiveauxDeStockResults;
 
 protected:
@@ -42,7 +61,7 @@ protected:
                            std::shared_ptr<Problem> subProblem);
     void SetConstraintsRHSValues(const std::map<std::string, double>& rhsValues,
                                  std::shared_ptr<Problem> subProblem);
-    GridPointResult SolveSubproblem(std::shared_ptr<Problem> subProblem, Point subPbCombo);
+    SubProblemData SolveSubproblem(std::shared_ptr<Problem> subProblem, Point subPbCombo);
     std::string GetConstraintName(const Antares::Solver::WeeklyProblemId id,
                                   const std::string& area,
                                   const std::string& constraint) const;
@@ -51,15 +70,17 @@ protected:
                                          const AreaConstraintMaps& areas);
 
 protected:
+    Logger logger;
     std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>>
       problems;                     ///< map of subproblems
     GridDefinition& gridDefinition; ///< Grid definition
     std::string solverName;         ///< Solver name
 
+    std::unique_ptr<Benders::Criterion::CriterionComputation> criterion_computation_;
+
     int nbThreads; ///< Number of threads to use
 
     SolverLogManager solver_log_manager;
-    Logger logger;
 
     friend class BellmanValues;
 };

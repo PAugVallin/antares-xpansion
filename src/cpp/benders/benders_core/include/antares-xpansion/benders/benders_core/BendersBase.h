@@ -7,7 +7,7 @@
 
 #include "BendersMathLogger.h"
 #include "BendersStructsDatas.h"
-#include "CriterionComputation.h"
+#include "CriterionLOL.h"
 #include "SubproblemCut.h"
 #include "SubproblemWorker.h"
 #include "Worker.h"
@@ -297,7 +297,7 @@ protected:
                                  const std::shared_ptr<SubproblemWorker>& worker);
     void SetSubproblemVariablesIndices(const SubproblemWorker& subproblem);
 
-    Benders::Criterion::CriterionComputation criterion_computation_;
+    Benders::Criterion::CriterionLOL criterion_computation_;
     /**
      * for the nth variable name, Subproblems shares the same prefix , only the
      suffix is different
