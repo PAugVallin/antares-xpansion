@@ -107,7 +107,7 @@ std::set<std::string> readAreaFile(const std::filesystem::path& areaFile)
     const auto area_file_data = AreaParser::ReadAreaFile(areaFile);
     if (const auto& msg = area_file_data.error_message; !msg.empty())
     {
-        throw std::runtime_error("File " + std::string(areaFile) + " has not been found");
+        throw std::runtime_error("File " + areaFile.string() + " has not been found");
         return {};
     }
     return {area_file_data.areas.begin(), area_file_data.areas.end()};
