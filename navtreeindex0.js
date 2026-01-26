@@ -94,7 +94,6 @@ var NAVTREEINDEX0 =
 "MergeMPS_8h_source.html":[35,0,0,0,1,7,0,0,0,0,1],
 "MergeMasterMPS_8h_source.html":[35,0,0,0,1,6,0,0,0,0,1],
 "MergeWeightsTrajectory_8h_source.html":[35,0,0,0,8,0,0,0,0],
-"Mode_8h_source.html":[35,0,0,0,7,3,0,0,0,0,5],
 "MpsTxtWriter_8h_source.html":[35,0,0,0,7,1,0,0,0,0,7],
 "MultipleProblemGeneration_8h_source.html":[35,0,0,0,7,2,0,0,0,0,1],
 "NOOPSolver_8h_source.html":[35,0,1,0,3,2],
@@ -115,11 +114,11 @@ var NAVTREEINDEX0 =
 "ProblemModifierCapex_8h_source.html":[35,0,0,0,11,0,0,0,0],
 "ProblemModifierProjection_8h_source.html":[35,0,0,0,11,0,0,0,1],
 "ProblemModifier_8h_source.html":[35,0,0,0,7,4,0,0,0,0,15],
-"ProblemNameParser_8h_source.html":[35,0,0,0,7,3,0,0,0,0,7],
+"ProblemNameParser_8h_source.html":[35,0,0,0,7,3,0,0,0,0,6],
 "ProblemVariablesFileAdapter_8h_source.html":[35,0,0,0,7,4,0,0,0,0,16],
 "ProblemVariablesFromProblemAdapter_8h_source.html":[35,0,0,0,7,4,0,0,0,0,17],
 "ProblemVariablesZipAdapter_8h_source.html":[35,0,0,0,7,4,0,0,0,0,18],
-"Problem_8h_source.html":[35,0,0,0,7,3,0,0,0,0,6],
+"Problem_8h_source.html":[35,0,0,0,7,3,0,0,0,0,5],
 "RandomBatchShuffler_8h_source.html":[35,0,0,0,1,0,0,0,0,0,2],
 "RandomDirGenerator_8h_source.html":[35,0,1,0,3,3],
 "RenameUtils_8h_source.html":[35,0,0,0,7,4,0,0,0,0,19],
@@ -134,7 +133,7 @@ var NAVTREEINDEX0 =
 "SensitivityStudy_8h_source.html":[35,0,0,0,11,0,0,0,9],
 "SensitivityWriter_8h_source.html":[35,0,0,0,11,0,0,0,10],
 "SettingsReader_8h_source.html":[35,0,0,0,7,1,0,0,0,0,8],
-"SimulationInputMode_8h_source.html":[35,0,0,0,7,3,0,0,0,0,8],
+"SimulationInputMode_8h_source.html":[35,0,0,0,7,3,0,0,0,0,7],
 "SimulationOptions_8h_source.html":[35,0,0,0,1,1,0,0,0,0,16],
 "SimulationOptions_8hxx_source.html":[35,0,0,0,1,1,0,0,0,0,17],
 "SolverAbstract_8h_source.html":[35,0,0,0,9,0,0,0,3],
@@ -249,5 +248,6 @@ var NAVTREEINDEX0 =
 "classBendersBase.html#a805ed56ad6729dd00f5d16dc705af264":[34,0,60,11],
 "classBendersBase.html#ab979fd9e6fd791c6b01d244da33ba849":[34,0,60,12],
 "classBendersBase.html#adb953cbbd95d83ed70de4244f975d436":[34,0,60,15],
-"classBendersBase.html#af938b540f0daa0592257f5fb9fcfc80f":[34,0,60,13]
+"classBendersBase.html#af938b540f0daa0592257f5fb9fcfc80f":[34,0,60,13],
+"classBendersBase.html#afa9edac4513a89c829bdd69271bf3b50":[34,0,60,8]
 };

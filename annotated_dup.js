@@ -315,6 +315,9 @@ var annotated_dup =
         ] ],
         [ "test_study_updater", null, [
           [ "TestStudyUpdater", "classtests_1_1python_1_1test__study__updater_1_1TestStudyUpdater.html", null ]
+        ] ],
+        [ "test_trajectory_cleanup", null, [
+          [ "TestTrajectoryCleanup", "classtests_1_1python_1_1test__trajectory__cleanup_1_1TestTrajectoryCleanup.html", "classtests_1_1python_1_1test__trajectory__cleanup_1_1TestTrajectoryCleanup" ]
         ] ]
       ] ]
     ] ],
@@ -632,6 +635,7 @@ var annotated_dup =
     [ "Worker", "classWorker.html", "classWorker" ],
     [ "WorkerMaster", "classWorkerMaster.html", "classWorkerMaster" ],
     [ "WorkerMasterData", "classWorkerMasterData.html", "classWorkerMasterData" ],
+    [ "WorkerMasterMock", "classWorkerMasterMock.html", "classWorkerMasterMock" ],
     [ "WorkerMasterTest", "classWorkerMasterTest.html", null ],
     [ "WriterMockStatus", "classWriterMockStatus.html", null ],
     [ "XpansionProblemsFromAntaresProvider", "classXpansionProblemsFromAntaresProvider.html", null ],

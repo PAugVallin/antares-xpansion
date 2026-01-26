@@ -1,6 +1,5 @@
 var NAVTREEINDEX3 =
 {
-"classSolverAbstract.html#afc8bb82a34495de9bb4ab186746dfe04":[34,0,257,63],
 "classSolverCbc.html":[34,0,259],
 "classSolverCbc.html#a074eff3c988ab78f5155ef03f64ae8af":[34,0,259,30],
 "classSolverCbc.html#a0990733602db4b38284455ef0aa0349a":[34,0,259,2],
@@ -249,5 +248,6 @@ var NAVTREEINDEX3 =
 "classWeightsFileReader_1_1WeightsFileError.html":[34,0,292,3],
 "classWeightsFileReader_1_1WeightsFileIsEmtpy.html":[34,0,292,4],
 "classWeightsFileReader_1_1WeightsFileOpenError.html":[34,0,292,5],
-"classWeightsFileWriterTest.html":[34,0,294]
+"classWeightsFileWriterTest.html":[34,0,294],
+"classWorker.html":[34,0,295]
 };

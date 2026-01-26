@@ -570,6 +570,7 @@ var hierarchy =
     [ "tests.python.test_study_locker.TestStudyLocker", "classtests_1_1python_1_1test__study__locker_1_1TestStudyLocker.html", null ],
     [ "tests.python.test_study_output_cleaner.TestStudyOutputCleaner", "classtests_1_1python_1_1test__study__output__cleaner_1_1TestStudyOutputCleaner.html", null ],
     [ "tests.python.test_study_updater.TestStudyUpdater", "classtests_1_1python_1_1test__study__updater_1_1TestStudyUpdater.html", null ],
+    [ "tests.python.test_trajectory_cleanup.TestTrajectoryCleanup", "classtests_1_1python_1_1test__trajectory__cleanup_1_1TestTrajectoryCleanup.html", null ],
     [ "testing::TestWithParam", null, [
       [ "CreateFixture", "classCreateFixture.html", null ],
       [ "FullRunOptionsParserTest", "classFullRunOptionsParserTest.html", [
@@ -625,7 +626,9 @@ var hierarchy =
     ] ],
     [ "Worker", "classWorker.html", [
       [ "SubproblemWorker", "classSubproblemWorker.html", null ],
-      [ "WorkerMaster", "classWorkerMaster.html", null ]
+      [ "WorkerMaster", "classWorkerMaster.html", [
+        [ "WorkerMasterMock", "classWorkerMasterMock.html", null ]
+      ] ]
     ] ],
     [ "WorkerMasterData", "classWorkerMasterData.html", null ],
     [ "antares_xpansion.xpansionConfig.XpansionConfigConstants", "classantares__xpansion_1_1xpansionConfig_1_1XpansionConfigConstants.html", [

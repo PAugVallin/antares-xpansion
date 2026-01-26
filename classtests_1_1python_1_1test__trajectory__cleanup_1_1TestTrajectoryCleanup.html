@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Antares Xpansion" />
 <meta name="twitter:description" content="Investment simulations for Antares studies." />
 <!-- END twitter metadata -->
-<title>Antares Xpansion: Trajectory investment problem</title>
+<title>Antares Xpansion: tests.python.test_trajectory_cleanup.TestTrajectoryCleanup Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -111,7 +111,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('md_docs_2user-guide_2trajectory-investment_2trajectory-problem.html',''); initResizable(true); });
+$(function(){initNavTree('classtests_1_1python_1_1test__trajectory__cleanup_1_1TestTrajectoryCleanup.html',''); initResizable(true); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -136,49 +136,78 @@ $(function(){initNavTree('md_docs_2user-guide_2trajectory-investment_2trajectory
 </div>
 </div>
 
-<div><div class="header">
-  <div class="headertitle"><div class="title">Trajectory investment problem</div></div>
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="classtests_1_1python_1_1test__trajectory__cleanup_1_1TestTrajectoryCleanup-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">tests.python.test_trajectory_cleanup.TestTrajectoryCleanup Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md297"></a></p>
-<h1><a class="anchor" id="autotoc_md298"></a>
-General description</h1>
-<p>Recall the annual investment problem in Xpansion :</p>
-<p>$$ \min_{x \in \mathcal{X}} \quad C^T x + \text{ANTARES}(x) $$ over a set of investment variables specified by the user, where :</p>
-<ul>
-<li>$x$ is the vector of the capacities installed for each candidate</li>
-<li>$C$ contains the fixed cost annuities of those candidates</li>
-<li>$\text{ANTARES}(x)$ is the operating cost of the system for a given investment level.</li>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ac6c98ecfee9d11f3775bc8b6fa86a4ff" id="r_ac6c98ecfee9d11f3775bc8b6fa86a4ff"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6c98ecfee9d11f3775bc8b6fa86a4ff">test_clean_all_nodes_lp_directories</a> (self, tmp_path)</td></tr>
+<tr class="separator:ac6c98ecfee9d11f3775bc8b6fa86a4ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ebb75bfcd7c2af2acd4fc86fa5ee9ef" id="r_a7ebb75bfcd7c2af2acd4fc86fa5ee9ef"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7ebb75bfcd7c2af2acd4fc86fa5ee9ef">test_read_node_to_studies</a> (self, tmp_path)</td></tr>
+<tr class="separator:a7ebb75bfcd7c2af2acd4fc86fa5ee9ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><pre class="fragment">Test that the trajectory resolution driver correctly cleans lp directories for all nodes
+</pre> </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ac6c98ecfee9d11f3775bc8b6fa86a4ff" name="ac6c98ecfee9d11f3775bc8b6fa86a4ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6c98ecfee9d11f3775bc8b6fa86a4ff">&#9670;&#160;</a></span>test_clean_all_nodes_lp_directories()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">tests.python.test_trajectory_cleanup.TestTrajectoryCleanup.test_clean_all_nodes_lp_directories </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>tmp_path</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Test that _clean_all_nodes_lp_directories correctly identifies and cleans
+the lp directories of all trajectory nodes
+</pre> 
+</div>
+</div>
+<a id="a7ebb75bfcd7c2af2acd4fc86fa5ee9ef" name="a7ebb75bfcd7c2af2acd4fc86fa5ee9ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ebb75bfcd7c2af2acd4fc86fa5ee9ef">&#9670;&#160;</a></span>test_read_node_to_studies()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">tests.python.test_trajectory_cleanup.TestTrajectoryCleanup.test_read_node_to_studies </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>tmp_path</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Test that _read_node_to_studies correctly reads the user input file
+</pre> 
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>tests/python/<b>test_trajectory_cleanup.py</b></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md299"></a>
- Switching to a pluriannual vision</h1>
-<p>We want to switch to a pluriannual vision and optimise the investments over several possible trajectories described on a diverging tree of scenarios</p>
-<p><img src="../../assets/media/trajectory/trajectory.png" alt="Trajectory tree" class="inline"/></p>
-<p><b>Figure 1</b> - Trajectory tree made up of annual Xpansion studies</p>
-<p>The optimisation problem we now want to solve is, denoting by $n \in \mathcal{T}$ a node in the tree:</p>
-<p>$$ \begin{aligned} \min_{x, dx^+, dx^-} \quad &amp; \sum_{n \in \mathcal{T}} wIC_n^T dx_n^+ + wDC_n^T dx_n^- + wOC_n^Tx_{n} + w_{n} \times ANTARES_n(x_n)\\ \text{s.t.} \quad &amp; \forall i,n \quad x_{i,n} = x_{i, \text{parent}(n)} + dx^+_{i,n}</p><ul>
-<li>dx^-_{i,n} \\ &amp; \forall i,n \quad dx^+_{i,n} \geq 0, \quad dx^-_{i,n} \geq 0 \\ &amp; \forall i,n \quad 0 \leq x_{i,n} \leq X_{i,n}^{max} \ \end{aligned} $$</li>
-</ul>
-<p>$wIC_n$ contains the already weighted (for probability of the node) and discounted one-time payment investment costs per MW.</p><ul>
-<li>$wDC_n$ contains the already weighted (for probability of the node) and discounted one-time payment retirement costs per MW.</li>
-<li>$wOC_n$ contains the already weighted (for represented duration of the node &amp; probability) and discounted operation and maintenance fixed costs.</li>
-<li>$w(n) = P(n) \times \sum_{y = y_n}^{y = y_n + d_n - 1} \frac{1}{(1+r)^{y - y_0}}$.</li>
-<li>$P(n)$ is the probability of realisation of node $n$ : $P(n) = P_{\text{parent}(n)}(n) \times P(\text{parent}(n))$.</li>
-<li>$P(root) = 1$.</li>
-</ul>
-<h1><a class="anchor" id="autotoc_md300"></a>
-On the $dx^{+/-}$ variables</h1>
-<p><b>Note</b> : In our model, $x_{i,n}$ is the capacity available during the period represented by $n$, and this means the decisions $dx_{i,n}^{+/-}$ represent the variation of capacity during the period between $\text{parent}(n)$ and $n$ (i.e. the capacity being built or decommisionned during the period represented by $\text{parent}(n)$, with effective entry into service at the beginning of $n$).</p>
-<p>We can impose the decisions to be the same in all children of a given node (see <a href="./merge-master.md#trajectory-constraints">trajectory constraints</a>) if we want the investment decision of a given period to be independent of what scenario will materialize in the next period when the new capacities enter into service.</p>
-<ul>
-<li>In the example from <b>Figure 1</b>, this would mean that the capacity we install in the period [2040, 2050] is independent of wether <code>2050_A</code> or <code>2050_B</code> will be realised. </li>
-</ul>
-</div></div><!-- contents -->
-</div><!-- PageDoc -->
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
+    <li class="navelem"><b>tests</b></li><li class="navelem"><a class="el" href="namespacetests_1_1python.html">python</a></li><li class="navelem"><b>test_trajectory_cleanup</b></li><li class="navelem"><a class="el" href="classtests_1_1python_1_1test__trajectory__cleanup_1_1TestTrajectoryCleanup.html">TestTrajectoryCleanup</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>
