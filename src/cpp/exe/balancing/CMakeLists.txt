@@ -7,14 +7,14 @@
 # ===========================================================================
 
 # ---------------------------------------------------------------------------
-# Problem Generation Exe
+# Balancing Exe
 # ---------------------------------------------------------------------------
 
-add_executable (water_values_exe
+add_executable (balancing_exe
 	${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
 )
 
-target_link_libraries (water_values_exe
+target_link_libraries (balancing_exe
 		PRIVATE
 		${PROJECT_NAME}::lp_namer_input_reader
 		${PROJECT_NAME}::lp_namer_problem_modifier
@@ -26,4 +26,4 @@ target_link_libraries (water_values_exe
 		
 )
 
-install(TARGETS water_values_exe DESTINATION bin)
+install(TARGETS balancing_exe DESTINATION bin)

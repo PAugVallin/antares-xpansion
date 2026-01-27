@@ -3,6 +3,7 @@
 #include "ConstraintsGroup.h"
 #include "CriterionInputDataReader.h"
 #include "VariablesGroup.h"
+#include "antares-xpansion/multisolver_interface/SolverAbstract.h"
 
 namespace Benders::Criterion
 {
@@ -57,17 +58,16 @@ public:
      * based on the provided subproblem weight and solution. It updates the
      * criteria and patterns values vectors accordingly.
      *
+     * @param problem The already solved problem
      * @param subproblem_weight The weight of the subproblem affecting the
      * criteria.
-     * @param sub_problem_solution A vector containing the solutions of the
-     * subproblem.
      * @param criteria A reference to a vector where the computed
      * criteria will be stored.
      * @param patterns_values A reference to a vector where the computed
      * pattern values will be stored.
      */
-    virtual void ComputeCriterion(double subproblem_weight,
-                                  const std::vector<double>& sub_problem_solution,
+    virtual void ComputeCriterion(std::shared_ptr<SolverAbstract> problem,
+                                  double subproblem_weight,
                                   std::vector<double>& criteria,
                                   std::vector<double>& patterns_values)
       = 0;

@@ -5,7 +5,7 @@
 
 #include <antares/api/solver.h>
 
-#include "antares-xpansion/grid_evaluator/Interpolator.h"
+#include "antares-xpansion/evaluator/Interpolator.h"
 
 BellmanValues::BellmanValues(GridEvaluator& gridEvaluator,
                              const ReservoirManagement& reservoirManagement):

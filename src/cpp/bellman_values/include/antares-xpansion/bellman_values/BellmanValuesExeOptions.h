@@ -2,6 +2,7 @@
 #include <filesystem>
 #include <vector>
 
+#include "antares-xpansion/benders/benders_core/CriterionInputDataReader.h"
 #include "antares-xpansion/helpers/OptionsParser.h"
 
 class BellmanValuesExeOptions: public OptionsParser
@@ -16,6 +17,7 @@ private:
     bool antaresFormat_;
     bool writePbFiles_;
     std::string problemFormat_;
+    std::string criterionType_;
 
 public:
     BellmanValuesExeOptions();
@@ -65,5 +67,21 @@ public:
     std::string ProblemFormat() const
     {
         return problemFormat_;
+    }
+
+    Benders::Criterion::Type CriterionType() const
+    {
+        if (criterionType_ == "positive-unsupplied")
+        {
+            return Benders::Criterion::Type::PositiveUnsuppliedEnergy;
+        }
+        else if (criterionType_ == "near-price-cap")
+        {
+            return Benders::Criterion::Type::NearPriceCapHours;
+        }
+        else
+        {
+            throw std::invalid_argument("Unknown criterion type: " + criterionType_);
+        }
     }
 };

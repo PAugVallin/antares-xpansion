@@ -13,7 +13,7 @@
 #include "ConfigurationManager.h"
 #include "ProblemGenerationOptions.h"
 #include "antares-xpansion/core/ProblemFormat.h"
-#include "antares-xpansion/grid_evaluator/GridCollection.h"
+#include "antares-xpansion/evaluator/GridCollection.h"
 #include "antares-xpansion/helpers/ArchiveReader.h"
 #include "antares-xpansion/lpnamer/helper/ProblemGenerationLogger.h"
 #include "antares-xpansion/lpnamer/input_reader/MpsTxtWriter.h"

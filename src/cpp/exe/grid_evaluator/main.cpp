@@ -6,13 +6,10 @@
 #include "antares-xpansion/bellman_values/BellmanValuesExeOptions.h"
 #include "antares-xpansion/bellman_values/PenaltiesConfigReader.h"
 #include "antares-xpansion/benders/factories/LoggerFactories.h"
-#include "antares-xpansion/grid_evaluator/GridEvaluator.h"
-#include "antares-xpansion/helpers/AreaParser.h"
+#include "antares-xpansion/evaluator/GridEvaluator.h"
 #include "antares-xpansion/lpnamer/main/ProblemGenerationForWaterValueCalculation.h"
 #include "antares-xpansion/lpnamer/problem_modifier/XpansionProblemsFromAntaresProvider.h"
 #include "malloc.h"
-
-using namespace PlainData;
 
 std::string formatTime(const std::chrono::system_clock::time_point& timePoint)
 {
@@ -102,47 +99,6 @@ void saveCostsAndDuals(const std::filesystem::path& path,
     }
 }
 
-std::set<std::string> readAreaFile(const std::filesystem::path& areaFile)
-{
-    const auto area_file_data = AreaParser::ReadAreaFile(areaFile);
-    if (const auto& msg = area_file_data.error_message; !msg.empty())
-    {
-        throw std::runtime_error("File " + areaFile.string() + " has not been found");
-        return {};
-    }
-    return {area_file_data.areas.begin(), area_file_data.areas.end()};
-}
-
-Benders::Criterion::CriterionInputData buildPatterns(const Benders::Criterion::Type criterion,
-                                                     const std::filesystem::path& areaFile)
-{
-    std::set<std::string> unique_areas = readAreaFile(areaFile);
-
-    bool isDual;
-    switch (criterion)
-    {
-    case Benders::Criterion::Type::PositiveUnsuppliedEnergy:
-        isDual = false;
-        break;
-    case Benders::Criterion::Type::NearPriceCapHours:
-        isDual = true;
-        break;
-
-    default:
-        isDual = false;
-        break;
-    }
-
-    Benders::Criterion::CriterionInputData ret{isDual, criterion};
-    for (const auto& area: unique_areas)
-    {
-        Benders::Criterion::CriterionSingleInputData singleInputData(getPrefix(criterion), area, 1);
-        ret.AddSingleData(singleInputData);
-    }
-
-    return ret;
-}
-
 int main(int argc, char** argv)
 {
     try
@@ -228,18 +184,8 @@ int main(int argc, char** argv)
             logger->display_message("Elapsed time for problem update: "
                                     + formatDuration(elapsed_update_seconds));
 
-            auto evaluator = GridEvaluator(logger, problems, grid, solverName, nbThreads);
-
-            const auto areaFile = studyPath / "area.txt";
-            // Benders::Criterion::CriterionInputData critInputData = buildPatterns(
-            //   Benders::Criterion::Type::PositiveUnsuppliedEnergy,
-            //   areaFile);
-            Benders::Criterion::CriterionInputData critInputData = buildPatterns(
-              Benders::Criterion::Type::NearPriceCapHours,
-              areaFile);
-            evaluator.setCriterionComputationInputs(critInputData);
-
-            auto res = evaluator.ComputeCostsAndDuals();
+            auto res = GridEvaluator(logger, problems, grid, solverName, nbThreads)
+                         .ComputeCostsAndDuals();
             std::string fileName = "gridPointsValues_" + std::to_string(grid.gridID) + ".csv";
             saveCostsAndDuals(directories.simulation_dir / fileName, grid, res, logger);
         }

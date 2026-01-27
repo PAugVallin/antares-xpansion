@@ -23,6 +23,10 @@ BellmanValuesExeOptions::BellmanValuesExeOptions():
       "nb-levels",
       po::value<int>(&nbLevels_)->default_value(10),
       "Number of levels (optional, default is 10)")(
+      "criterion",
+      po::value<std::string>(&criterionType_)->default_value("positive-unsupplied"),
+      "Criterion type (optional, default is positive-unsupplied). Possible values are: "
+      "positive-unsupplied, near-price-cap")(
       "antares-format",
       po::value<bool>(&antaresFormat_)->default_value(false),
       "Output in Antares format (optional, default is false)")(

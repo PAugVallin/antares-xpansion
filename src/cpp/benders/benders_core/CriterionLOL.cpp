@@ -2,12 +2,22 @@
 
 namespace Benders::Criterion
 {
+CriterionLOL::CriterionLOL(const CriterionInputData& criterion_input_data,
+                           std::shared_ptr<SolverAbstract> problem):
+    CriterionComputation(criterion_input_data)
+{
+    const auto col_names = problem->get_col_names();
+    SearchVariables(col_names);
+}
 
-void CriterionLOL::ComputeCriterion(double subproblem_weight,
-                                    const std::vector<double>& sub_problem_solution,
+void CriterionLOL::ComputeCriterion(std::shared_ptr<SolverAbstract> problem,
+                                    double subproblem_weight,
                                     std::vector<double>& criteria,
                                     std::vector<double>& patterns_values)
 {
+    std::vector<double> varValues(problem->get_ncols());
+    problem->get_lp_sol(varValues.data(), NULL, NULL);
+
     auto criteria_input_size = static_cast<int>(indices_.size()); // num of patterns
     criteria.resize(criteria_input_size, 0.);
     patterns_values.resize(criteria_input_size, 0.);
@@ -21,7 +31,7 @@ void CriterionLOL::ComputeCriterion(double subproblem_weight,
         double criteria_value = criteria[pattern_index];
         for (auto index: pattern_indices)
         {
-            const auto solution = sub_problem_solution[index];
+            const auto solution = varValues[index];
             pattern_value += solution;
             if (solution > criterion_count_threshold)
             {
@@ -32,5 +42,8 @@ void CriterionLOL::ComputeCriterion(double subproblem_weight,
         patterns_values[pattern_index] = pattern_value;
         criteria[pattern_index] = criteria_value;
     }
+
+    std::cout << "UNSP hours : " << criteria[0] << " / " << "UNSP Power : " << patterns_values[0]
+              << "\n";
 }
 } // namespace Benders::Criterion
