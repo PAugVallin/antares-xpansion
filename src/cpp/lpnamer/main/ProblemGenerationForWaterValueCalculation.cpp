@@ -78,11 +78,14 @@ ProblemGenerationForWaterValueCalculation::ProblemGenerationForWaterValueCalcula
     auto solver_log_manager = SolverLogManager(directories.simulation_dir / "solver.log");
     for (const auto& [pbId, _]: results.weeklyProblems)
     {
-        auto problem = adapter.provideProblem(solverName == SolverConfig("xpress") ? "xpress"
-                                                                                   : "CBC",
-                                              solver_log_manager,
-                                              pbId);
-        problems[pbId] = problem;
+        if (startWeek <= pbId.week && pbId.week <= endWeek)
+        {
+            auto problem = adapter.provideProblem(solverName == SolverConfig("xpress") ? "xpress"
+                                                                                       : "CBC",
+                                                  solver_log_manager,
+                                                  pbId);
+            problems[pbId] = problem;
+        }
     }
 
     if (!problems.empty())
@@ -137,30 +140,27 @@ ProblemGenerationForWaterValueCalculation::CleanProblemsForBellmanCalculations(
       [&](auto& pb)
       {
           auto pbId = pb.first;
-          if (startWeek <= pbId.week && pbId.week <= endWeek)
-          {
-              // needed if gridCollection contains multiple gridDefinitions
-              std::shared_ptr<Problem> problem = std::make_shared<Problem>(*(pb.second->clone()));
-              std::string pbName = "problem-" + std::to_string(pbId.year) + "-"
-                                   + std::to_string(pbId.week) + "--optim-nb-1";
-              logger->display_message("Modifying problem: " + pbName);
-              cleanProblemForBellmanCalculations(problem, pbName, gridDefinition, pbId);
-              logger->display_message("Problem: " + pbName + " modified");
-              modifiedProblems[pbId] = problem;
+          // needed if gridCollection contains multiple gridDefinitions
+          std::shared_ptr<Problem> problem = std::make_shared<Problem>(*(pb.second->clone()));
+          std::string pbName = "problem-" + std::to_string(pbId.year) + "-"
+                               + std::to_string(pbId.week) + "--optim-nb-1";
+          logger->display_message("Modifying problem: " + pbName);
+          cleanProblemForBellmanCalculations(problem, pbName, gridDefinition, pbId);
+          logger->display_message("Problem: " + pbName + " modified");
+          modifiedProblems[pbId] = problem;
 
-              if (writePbFiles)
+          if (writePbFiles)
+          {
+              switch (problemFormat)
               {
-                  switch (problemFormat)
-                  {
-                  case ProblemsFormat::MPS_FILE:
-                      problem->write_prob_mps(outputMpsPath / (pbName + ".mps"));
-                      break;
-                  case ProblemsFormat::OPTIMIZED:
-                      problem->save_prob(outputMpsPath / (pbName + ".svf"));
-                      break;
-                      // potential errors are handled by
-                      // problemsFormatFromString in constructor
-                  }
+              case ProblemsFormat::MPS_FILE:
+                  problem->write_prob_mps(outputMpsPath / (pbName + ".mps"));
+                  break;
+              case ProblemsFormat::OPTIMIZED:
+                  problem->save_prob(outputMpsPath / (pbName + ".svf"));
+                  break;
+                  // potential errors are handled by
+                  // problemsFormatFromString in constructor
               }
           }
       });
