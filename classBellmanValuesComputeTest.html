@@ -175,21 +175,30 @@ const std::filesystem::path&#160;</td><td class="memItemRight" valign="bottom"><
 <tr class="memitem:a9ff7ee58efa4488d87fce33f673e28f3" id="r_a9ff7ee58efa4488d87fce33f673e28f3"><td class="memItemLeft" align="right" valign="top"><a id="a9ff7ee58efa4488d87fce33f673e28f3" name="a9ff7ee58efa4488d87fce33f673e28f3"></a>
 const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>solverName</b> = &quot;xpress&quot;</td></tr>
 <tr class="separator:a9ff7ee58efa4488d87fce33f673e28f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae49464237de4dc65d84cb319fd1bc046" id="r_ae49464237de4dc65d84cb319fd1bc046"><td class="memItemLeft" align="right" valign="top"><a id="ae49464237de4dc65d84cb319fd1bc046" name="ae49464237de4dc65d84cb319fd1bc046"></a>
+const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>solverNameMultistock</b> = &quot;coin&quot;</td></tr>
+<tr class="separator:ae49464237de4dc65d84cb319fd1bc046"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
+<tr class="memitem:a53b7d34391f7431c20feb8bfd5e29098" id="r_a53b7d34391f7431c20feb8bfd5e29098"><td class="memItemLeft" align="right" valign="top"><a id="a53b7d34391f7431c20feb8bfd5e29098" name="a53b7d34391f7431c20feb8bfd5e29098"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>saveReferenceValues</b> (const std::filesystem::path &amp;path, const std::vector&lt; std::vector&lt; double &gt; &gt; &amp;values, const Logger &amp;logger, bool usingAntaresFormat=false)</td></tr>
+<tr class="separator:a53b7d34391f7431c20feb8bfd5e29098"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9218b1bf8c819364e31b181e85f73e12" id="r_a9218b1bf8c819364e31b181e85f73e12"><td class="memItemLeft" align="right" valign="top"><a id="a9218b1bf8c819364e31b181e85f73e12" name="a9218b1bf8c819364e31b181e85f73e12"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>SetUp</b> () override</td></tr>
 <tr class="separator:a9218b1bf8c819364e31b181e85f73e12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5fd3dd3d03ce84f51e594ef165e67e1" id="r_af5fd3dd3d03ce84f51e594ef165e67e1"><td class="memItemLeft" align="right" valign="top"><a id="af5fd3dd3d03ce84f51e594ef165e67e1" name="af5fd3dd3d03ce84f51e594ef165e67e1"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>TearDown</b> () override</td></tr>
 <tr class="separator:af5fd3dd3d03ce84f51e594ef165e67e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2be62c3f1f2794145738dc72416cb33" id="r_ac2be62c3f1f2794145738dc72416cb33"><td class="memItemLeft" align="right" valign="top"><a id="ac2be62c3f1f2794145738dc72416cb33" name="ac2be62c3f1f2794145738dc72416cb33"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>copyData</b> ()</td></tr>
-<tr class="separator:ac2be62c3f1f2794145738dc72416cb33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a36050b9bad0db7adc914d6c7c25f0ae2" id="r_a36050b9bad0db7adc914d6c7c25f0ae2"><td class="memItemLeft" align="right" valign="top"><a id="a36050b9bad0db7adc914d6c7c25f0ae2" name="a36050b9bad0db7adc914d6c7c25f0ae2"></a>
-std::map&lt; Antares::Solver::WeeklyProblemId, std::vector&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getOutputCosts</b> (std::string fileName)</td></tr>
-<tr class="separator:a36050b9bad0db7adc914d6c7c25f0ae2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a670b0b6801ca5430284d232f6738c190" id="r_a670b0b6801ca5430284d232f6738c190"><td class="memItemLeft" align="right" valign="top"><a id="a670b0b6801ca5430284d232f6738c190" name="a670b0b6801ca5430284d232f6738c190"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>copyDataOneNodeBase</b> ()</td></tr>
+<tr class="separator:a670b0b6801ca5430284d232f6738c190"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac89d0f8dbca960d5caca8434b3d5ea4a" id="r_ac89d0f8dbca960d5caca8434b3d5ea4a"><td class="memItemLeft" align="right" valign="top"><a id="ac89d0f8dbca960d5caca8434b3d5ea4a" name="ac89d0f8dbca960d5caca8434b3d5ea4a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>copyDataThreeNodes</b> ()</td></tr>
+<tr class="separator:ac89d0f8dbca960d5caca8434b3d5ea4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f63dd1d975f6d95d7ddf8340c6e0788" id="r_a5f63dd1d975f6d95d7ddf8340c6e0788"><td class="memItemLeft" align="right" valign="top"><a id="a5f63dd1d975f6d95d7ddf8340c6e0788" name="a5f63dd1d975f6d95d7ddf8340c6e0788"></a>
+std::map&lt; Antares::Solver::WeeklyProblemId, std::vector&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getOutputCosts</b> (std::string fileName, bool isTransposed=false)</td></tr>
+<tr class="separator:a5f63dd1d975f6d95d7ddf8340c6e0788"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>

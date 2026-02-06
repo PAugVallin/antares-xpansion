@@ -1,5 +1,5 @@
 var classProblemGenerationForWaterValueCalculation =
 [
-    [ "ProblemGenerationForWaterValueCalculation", "classProblemGenerationForWaterValueCalculation.html#a2427d81539b4cf4af2c51496c257beab", null ],
-    [ "updateProblems", "classProblemGenerationForWaterValueCalculation.html#a3df42bb8935c196f8a40def7890baa0c", null ]
+    [ "ProblemGenerationForWaterValueCalculation", "classProblemGenerationForWaterValueCalculation.html#ab610e0201872745103fc27718fc09411", null ],
+    [ "updateProblems", "classProblemGenerationForWaterValueCalculation.html#ad364207e5a03afa50bf5bfd2efd2a22d", null ]
 ];

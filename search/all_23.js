@@ -17,7 +17,7 @@ var searchData=
   ['xpansionstudyreader_14',['XpansionStudyReader',['../classantares__xpansion_1_1xpansion__study__reader_1_1XpansionStudyReader.html',1,'antares_xpansion::xpansion_study_reader']]],
   ['xpansiontrajectoryinvalidarguments_15',['XpansionTrajectoryInvalidArguments',['../classargs__parser__trajectory_1_1TrajectoryArgsParser_1_1XpansionTrajectoryInvalidArguments.html',1,'args_parser_trajectory::TrajectoryArgsParser']]],
   ['xpress_16',['Xpress',['../md_docs_2developer-guide_2install__from__sources_26-Xpress.html#autotoc_md119',1,'How the Code Loads Xpress'],['../md_docs_2developer-guide_2install__from__sources_26-Xpress.html#autotoc_md114',1,'Installing Xpress']]],
-  ['xpress_20coin_20tt_17',['&lt;tt&gt;--solver {xpress, coin}&lt;/tt&gt;',['../md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md245',1,'']]],
+  ['xpress_20coin_20tt_17',['&lt;tt&gt;--solver {xpress, coin}&lt;/tt&gt;',['../md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md252',1,'']]],
   ['xpress_20libraries_18',['Locating Xpress Libraries',['../md_docs_2developer-guide_2install__from__sources_26-Xpress.html#autotoc_md120',1,'']]],
   ['xpress_20solver_20and_20loading_20it_20dynamically_19',['Installing Xpress Solver and Loading it Dynamically',['../md_docs_2developer-guide_2install__from__sources_26-Xpress.html',1,'']]],
   ['xpressiscorrectlyinstalled_20',['XpressIsCorrectlyInstalled',['../classLoadXpress_1_1XpressLoader.html#a3b63466fe650798a2c3498c26220b943',1,'LoadXpress::XpressLoader']]],

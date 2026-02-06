@@ -152,18 +152,24 @@ $(function(){initNavTree('classBellmanValues.html',''); initResizable(true); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a1b31839f9cd73a0c4a7dfc8e337cfa16" id="r_a1b31839f9cd73a0c4a7dfc8e337cfa16"><td class="memItemLeft" align="right" valign="top"><a id="a1b31839f9cd73a0c4a7dfc8e337cfa16" name="a1b31839f9cd73a0c4a7dfc8e337cfa16"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>BellmanValues</b> (<a class="el" href="classGridEvaluator.html">GridEvaluator</a> &amp;<a class="el" href="#a2e0fb954173f6dcf2228b91e1a12035d">gridEvaluator</a>, const <a class="el" href="classReservoirManagement.html">ReservoirManagement</a> &amp;<a class="el" href="#ae01c9dd750be5b5a4183820023ead22d">reservoirManagement</a>)</td></tr>
-<tr class="separator:a1b31839f9cd73a0c4a7dfc8e337cfa16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d3ece1b817db4d740a677732862a0e8" id="r_a9d3ece1b817db4d740a677732862a0e8"><td class="memItemLeft" align="right" valign="top"><a id="a9d3ece1b817db4d740a677732862a0e8" name="a9d3ece1b817db4d740a677732862a0e8"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>BellmanValues</b> (<a class="el" href="classGridEvaluator.html">GridEvaluator</a> &amp;<a class="el" href="#a2e0fb954173f6dcf2228b91e1a12035d">gridEvaluator</a>, const <a class="el" href="classReservoirManagement.html">ReservoirManagement</a> &amp;<a class="el" href="#ae01c9dd750be5b5a4183820023ead22d">reservoirManagement</a>, Logger logger)</td></tr>
+<tr class="separator:a9d3ece1b817db4d740a677732862a0e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2de0fad8531906316b8e0a33d245abee" id="r_a2de0fad8531906316b8e0a33d245abee"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2de0fad8531906316b8e0a33d245abee">compute</a> (int nbLevels=10)</td></tr>
 <tr class="memdesc:a2de0fad8531906316b8e0a33d245abee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the Bellman values.  <br /></td></tr>
 <tr class="separator:a2de0fad8531906316b8e0a33d245abee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aebccc37d3e1b2c5be92d5047555dfd24" id="r_aebccc37d3e1b2c5be92d5047555dfd24"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; double &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aebccc37d3e1b2c5be92d5047555dfd24">getLevels</a> () const</td></tr>
 <tr class="memdesc:aebccc37d3e1b2c5be92d5047555dfd24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the levels of the reservoir.  <br /></td></tr>
 <tr class="separator:aebccc37d3e1b2c5be92d5047555dfd24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacc1bfa3dd82d4e3bc65e679dc3d955f" id="r_aacc1bfa3dd82d4e3bc65e679dc3d955f"><td class="memItemLeft" align="right" valign="top"><a id="aacc1bfa3dd82d4e3bc65e679dc3d955f" name="aacc1bfa3dd82d4e3bc65e679dc3d955f"></a>
+std::vector&lt; std::vector&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>computeOptimalTrajectories</b> ()</td></tr>
+<tr class="separator:aacc1bfa3dd82d4e3bc65e679dc3d955f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
+<tr class="memitem:a782326f35332cddd55f13d9fbe308bd7" id="r_a782326f35332cddd55f13d9fbe308bd7"><td class="memItemLeft" align="right" valign="top"><a id="a782326f35332cddd55f13d9fbe308bd7" name="a782326f35332cddd55f13d9fbe308bd7"></a>
+Logger&#160;</td><td class="memItemRight" valign="bottom"><b>logger</b></td></tr>
+<tr class="separator:a782326f35332cddd55f13d9fbe308bd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e0fb954173f6dcf2228b91e1a12035d" id="r_a2e0fb954173f6dcf2228b91e1a12035d"><td class="memItemLeft" align="right" valign="top"><a id="a2e0fb954173f6dcf2228b91e1a12035d" name="a2e0fb954173f6dcf2228b91e1a12035d"></a>
 <a class="el" href="classGridEvaluator.html">GridEvaluator</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>gridEvaluator</b></td></tr>
 <tr class="memdesc:a2e0fb954173f6dcf2228b91e1a12035d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Grid evaluator. <br /></td></tr>

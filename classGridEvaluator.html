@@ -163,9 +163,9 @@ Inheritance diagram for GridEvaluator:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac8ed65cdfac58c9b8c415b8cdc2d5760" id="r_ac8ed65cdfac58c9b8c415b8cdc2d5760"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8ed65cdfac58c9b8c415b8cdc2d5760">GridEvaluator</a> (Logger logger, std::map&lt; Antares::Solver::WeeklyProblemId, std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; &gt; <a class="el" href="#a0afbedfd9b1ef4f2158f9430279cb33e">problems</a>, <a class="el" href="structGridDefinition.html">GridDefinition</a> &amp;grid_definition, std::string <a class="el" href="#aab7ade345e6d95ed0c4500550ae959ae">solverName</a>, int <a class="el" href="#ace707d90179e06185d6426dc0f007525">nbThreads</a>=1)</td></tr>
-<tr class="memdesc:ac8ed65cdfac58c9b8c415b8cdc2d5760"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
-<tr class="separator:ac8ed65cdfac58c9b8c415b8cdc2d5760"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0c2093b1c7a8d7adb6947e29556f5e7" id="r_ae0c2093b1c7a8d7adb6947e29556f5e7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae0c2093b1c7a8d7adb6947e29556f5e7">GridEvaluator</a> (Logger logger, std::map&lt; Antares::Solver::WeeklyProblemId, std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; &gt; <a class="el" href="#a0afbedfd9b1ef4f2158f9430279cb33e">problems</a>, <a class="el" href="structGridDefinition.html">GridDefinition</a> &amp;grid_definition, std::string <a class="el" href="#aab7ade345e6d95ed0c4500550ae959ae">solverName</a>, std::filesystem::path studyDir, int <a class="el" href="#ace707d90179e06185d6426dc0f007525">nbThreads</a>=1)</td></tr>
+<tr class="memdesc:ae0c2093b1c7a8d7adb6947e29556f5e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
+<tr class="separator:ae0c2093b1c7a8d7adb6947e29556f5e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c9c1f352acc9f6a88745d43fa291bb3" id="r_a0c9c1f352acc9f6a88745d43fa291bb3"><td class="memItemLeft" align="right" valign="top">virtual std::map&lt; <a class="el" href="structOutput_1_1PointWeekScenarioKey.html">Output::PointWeekScenarioKey</a>, <a class="el" href="structGridPointResult.html">GridPointResult</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c9c1f352acc9f6a88745d43fa291bb3">ComputeCostsAndDuals</a> ()</td></tr>
 <tr class="memdesc:a0c9c1f352acc9f6a88745d43fa291bb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Launch the Stock level variation computation.  <br /></td></tr>
 <tr class="separator:a0c9c1f352acc9f6a88745d43fa291bb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -216,6 +216,9 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>nbThreads</b></td></tr
 <tr class="memitem:a12a0f516796ce6a3b4178d0f37b09cee" id="r_a12a0f516796ce6a3b4178d0f37b09cee"><td class="memItemLeft" align="right" valign="top"><a id="a12a0f516796ce6a3b4178d0f37b09cee" name="a12a0f516796ce6a3b4178d0f37b09cee"></a>
 <a class="el" href="classSolverLogManager.html">SolverLogManager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>solver_log_manager</b></td></tr>
 <tr class="separator:a12a0f516796ce6a3b4178d0f37b09cee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7df4f038aa9cca2a38bb4c28f8d69411" id="r_a7df4f038aa9cca2a38bb4c28f8d69411"><td class="memItemLeft" align="right" valign="top"><a id="a7df4f038aa9cca2a38bb4c28f8d69411" name="a7df4f038aa9cca2a38bb4c28f8d69411"></a>
+std::filesystem::path&#160;</td><td class="memItemRight" valign="bottom"><b>studyDir</b></td></tr>
+<tr class="separator:a7df4f038aa9cca2a38bb4c28f8d69411"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa58211934f507ac98a10b0e0979d88cb" id="r_aa58211934f507ac98a10b0e0979d88cb"><td class="memItemLeft" align="right" valign="top"><a id="aa58211934f507ac98a10b0e0979d88cb" name="aa58211934f507ac98a10b0e0979d88cb"></a>
 Logger&#160;</td><td class="memItemRight" valign="bottom"><b>logger</b></td></tr>
 <tr class="separator:aa58211934f507ac98a10b0e0979d88cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -229,8 +232,8 @@ Friends</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class to compute Stock levels variation. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ac8ed65cdfac58c9b8c415b8cdc2d5760" name="ac8ed65cdfac58c9b8c415b8cdc2d5760"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac8ed65cdfac58c9b8c415b8cdc2d5760">&#9670;&#160;</a></span>GridEvaluator()</h2>
+<a id="ae0c2093b1c7a8d7adb6947e29556f5e7" name="ae0c2093b1c7a8d7adb6947e29556f5e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0c2093b1c7a8d7adb6947e29556f5e7">&#9670;&#160;</a></span>GridEvaluator()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -254,6 +257,11 @@ Friends</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>solverName</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::filesystem::path</td>          <td class="paramname"><span class="paramname"><em>studyDir</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>

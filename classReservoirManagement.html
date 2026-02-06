@@ -152,18 +152,21 @@ $(function(){initNavTree('classReservoirManagement.html',''); initResizable(true
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a711b7b8a71c4451841f9291edc3dff6e" id="r_a711b7b8a71c4451841f9291edc3dff6e"><td class="memItemLeft" align="right" valign="top"><a id="a711b7b8a71c4451841f9291edc3dff6e" name="a711b7b8a71c4451841f9291edc3dff6e"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ReservoirManagement</b> (const <a class="el" href="classReservoir.html">Reservoir</a> &amp;reservoir, double penalty_bottom_rule_curve=0, double penalty_upper_rule_curve=0, double penalty_final_level=0, bool force_final_level=false, std::optional&lt; double &gt; final_level=std::nullopt, bool overflow=true)</td></tr>
-<tr class="separator:a711b7b8a71c4451841f9291edc3dff6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12c3884f0ea9d65cd64c5e61dd81bfd5" id="r_a12c3884f0ea9d65cd64c5e61dd81bfd5"><td class="memItemLeft" align="right" valign="top"><a id="a12c3884f0ea9d65cd64c5e61dd81bfd5" name="a12c3884f0ea9d65cd64c5e61dd81bfd5"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ReservoirManagement</b> (<a class="el" href="classReservoir.html">Reservoir</a> &amp;reservoir, double penalty_bottom_rule_curve=0, double penalty_upper_rule_curve=0, double penalty_final_level=0, bool force_final_level=false, std::optional&lt; double &gt; final_level=std::nullopt, double cvar=1.0)</td></tr>
+<tr class="separator:a12c3884f0ea9d65cd64c5e61dd81bfd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae27c8679478838f3f8176bc7842b6232" id="r_ae27c8679478838f3f8176bc7842b6232"><td class="memItemLeft" align="right" valign="top">std::function&lt; double(double)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae27c8679478838f3f8176bc7842b6232">get_penalty</a> (int week, int len_week) const</td></tr>
 <tr class="memdesc:ae27c8679478838f3f8176bc7842b6232"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the penalty function, that can be evaluated by giving a level.  <br /></td></tr>
 <tr class="separator:ae27c8679478838f3f8176bc7842b6232"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa640d577393449b35b2fb23c6e784e03" id="r_aa640d577393449b35b2fb23c6e784e03"><td class="memItemLeft" align="right" valign="top"><a id="aa640d577393449b35b2fb23c6e784e03" name="aa640d577393449b35b2fb23c6e784e03"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setReservoir</b> (<a class="el" href="classReservoir.html">Reservoir</a> &amp;reservoir)</td></tr>
+<tr class="separator:aa640d577393449b35b2fb23c6e784e03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a69338b6b6ab257d25b819faa5721d06f" id="r_a69338b6b6ab257d25b819faa5721d06f"><td class="memItemLeft" align="right" valign="top"><a id="a69338b6b6ab257d25b819faa5721d06f" name="a69338b6b6ab257d25b819faa5721d06f"></a>
-<a class="el" href="classReservoir.html">Reservoir</a>&#160;</td><td class="memItemRight" valign="bottom"><b>reservoir</b></td></tr>
-<tr class="separator:a69338b6b6ab257d25b819faa5721d06f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a579adceea9bfa8e0cb957e15076a253c" id="r_a579adceea9bfa8e0cb957e15076a253c"><td class="memItemLeft" align="right" valign="top"><a id="a579adceea9bfa8e0cb957e15076a253c" name="a579adceea9bfa8e0cb957e15076a253c"></a>
+<a class="el" href="classReservoir.html">Reservoir</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>reservoir</b></td></tr>
+<tr class="separator:a579adceea9bfa8e0cb957e15076a253c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e704ffba597d6f1dc5a0a3fe72c37b1" id="r_a7e704ffba597d6f1dc5a0a3fe72c37b1"><td class="memItemLeft" align="right" valign="top"><a id="a7e704ffba597d6f1dc5a0a3fe72c37b1" name="a7e704ffba597d6f1dc5a0a3fe72c37b1"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>penalty_bottom_rule_curve</b></td></tr>
 <tr class="separator:a7e704ffba597d6f1dc5a0a3fe72c37b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -179,9 +182,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>force_final_level</b>
 <tr class="memitem:a4fdabf7e2fa8aa7ffef3c294c8c0fa4a" id="r_a4fdabf7e2fa8aa7ffef3c294c8c0fa4a"><td class="memItemLeft" align="right" valign="top"><a id="a4fdabf7e2fa8aa7ffef3c294c8c0fa4a" name="a4fdabf7e2fa8aa7ffef3c294c8c0fa4a"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>final_level</b></td></tr>
 <tr class="separator:a4fdabf7e2fa8aa7ffef3c294c8c0fa4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb8d3ade64a64ccf7b632aacb2232f5b" id="r_acb8d3ade64a64ccf7b632aacb2232f5b"><td class="memItemLeft" align="right" valign="top"><a id="acb8d3ade64a64ccf7b632aacb2232f5b" name="acb8d3ade64a64ccf7b632aacb2232f5b"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>overflow</b></td></tr>
-<tr class="separator:acb8d3ade64a64ccf7b632aacb2232f5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1efad117ca96e53abd73897ea24daf3" id="r_ad1efad117ca96e53abd73897ea24daf3"><td class="memItemLeft" align="right" valign="top"><a id="ad1efad117ca96e53abd73897ea24daf3" name="ad1efad117ca96e53abd73897ea24daf3"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>cvar</b></td></tr>
+<tr class="separator:ad1efad117ca96e53abd73897ea24daf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Defines the rules that a reservoir follows. </p>

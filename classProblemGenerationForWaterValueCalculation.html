@@ -138,7 +138,9 @@ $(function(){initNavTree('classProblemGenerationForWaterValueCalculation.html','
 
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="classProblemGenerationForWaterValueCalculation-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">ProblemGenerationForWaterValueCalculation Class Reference</div></div>
 </div><!--header-->
@@ -149,21 +151,75 @@ $(function(){initNavTree('classProblemGenerationForWaterValueCalculation.html','
 
 <p><code>#include &lt;<a class="el" href="ProblemGenerationForWaterValueCalculation_8h_source.html">ProblemGenerationForWaterValueCalculation.h</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:ad8426b5331d3c86b3c6fde3735bd3933" id="r_ad8426b5331d3c86b3c6fde3735bd3933"><td class="memItemLeft" align="right" valign="top"><a id="ad8426b5331d3c86b3c6fde3735bd3933" name="ad8426b5331d3c86b3c6fde3735bd3933"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>WaterValueComputationMode</b> { <b>SEQUENTIAL_UPDATE_TRAJECTORY</b>
+, <b>SEQUENTIAL_IGNORE_TRAJECTORY</b>
+ }</td></tr>
+<tr class="separator:ad8426b5331d3c86b3c6fde3735bd3933"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2427d81539b4cf4af2c51496c257beab" id="r_a2427d81539b4cf4af2c51496c257beab"><td class="memItemLeft" align="right" valign="top"><a id="a2427d81539b4cf4af2c51496c257beab" name="a2427d81539b4cf4af2c51496c257beab"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ProblemGenerationForWaterValueCalculation</b> (<a class="el" href="structConfigurationManager_1_1ConfigDirectories.html">ConfigurationManager::ConfigDirectories</a> directories, const <a class="el" href="classReservoirManagement.html">ReservoirManagement</a> &amp;reservoirManagement, Logger logger, const std::string &amp;solverName=&quot;xpress&quot;, unsigned int startWeek=1, unsigned int endWeek=52, bool savePbFiles=false, const std::string &amp;problemFormat=&quot;OPTIMIZED&quot;)</td></tr>
-<tr class="memdesc:a2427d81539b4cf4af2c51496c257beab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Launch the simulation and save the problems satisfying startWeek &lt;= week &lt;= endweek. <br /></td></tr>
-<tr class="separator:a2427d81539b4cf4af2c51496c257beab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3df42bb8935c196f8a40def7890baa0c" id="r_a3df42bb8935c196f8a40def7890baa0c"><td class="memItemLeft" align="right" valign="top">std::map&lt; Antares::Solver::WeeklyProblemId, std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3df42bb8935c196f8a40def7890baa0c">updateProblems</a> (const <a class="el" href="structGridDefinition.html">GridDefinition</a> &amp;gridDefinition)</td></tr>
-<tr class="memdesc:a3df42bb8935c196f8a40def7890baa0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the problems for the water value calculation.  <br /></td></tr>
-<tr class="separator:a3df42bb8935c196f8a40def7890baa0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab610e0201872745103fc27718fc09411" id="r_ab610e0201872745103fc27718fc09411"><td class="memItemLeft" align="right" valign="top"><a id="ab610e0201872745103fc27718fc09411" name="ab610e0201872745103fc27718fc09411"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ProblemGenerationForWaterValueCalculation</b> (<a class="el" href="structConfigurationManager_1_1ConfigDirectories.html">ConfigurationManager::ConfigDirectories</a> directories, Logger logger, const std::string &amp;solverName=&quot;xpress&quot;, const WaterValueComputationMode &amp;computationMode=WaterValueComputationMode::SEQUENTIAL_IGNORE_TRAJECTORY, unsigned int startWeek=1, unsigned int endWeek=52, bool savePbFiles=false, const std::string &amp;problemFormat=&quot;OPTIMIZED&quot;)</td></tr>
+<tr class="memdesc:ab610e0201872745103fc27718fc09411"><td class="mdescLeft">&#160;</td><td class="mdescRight">Launch the simulation and save the problems satisfying startWeek &lt;= week &lt;= endweek. <br /></td></tr>
+<tr class="separator:ab610e0201872745103fc27718fc09411"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad364207e5a03afa50bf5bfd2efd2a22d" id="r_ad364207e5a03afa50bf5bfd2efd2a22d"><td class="memItemLeft" align="right" valign="top">std::map&lt; Antares::Solver::WeeklyProblemId, std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad364207e5a03afa50bf5bfd2efd2a22d">updateProblems</a> (const <a class="el" href="structGridDefinition.html">GridDefinition</a> &amp;gridDefinition, const std::optional&lt; std::string &gt; &amp;areaName=std::nullopt)</td></tr>
+<tr class="memdesc:ad364207e5a03afa50bf5bfd2efd2a22d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the problems for the water value calculation.  <br /></td></tr>
+<tr class="separator:ad364207e5a03afa50bf5bfd2efd2a22d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa322d9640d1de5e1627da42f6db7ceee" id="r_aa322d9640d1de5e1627da42f6db7ceee"><td class="memItemLeft" align="right" valign="top"><a id="aa322d9640d1de5e1627da42f6db7ceee" name="aa322d9640d1de5e1627da42f6db7ceee"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>initializeOptimalTrajectories</b> (std::shared_ptr&lt; <a class="el" href="classGridCollection.html">GridCollection</a> &gt; gridCollection) const</td></tr>
+<tr class="separator:aa322d9640d1de5e1627da42f6db7ceee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1428af0842846811e90227a87d391cd6" id="r_a1428af0842846811e90227a87d391cd6"><td class="memItemLeft" align="right" valign="top"><a id="a1428af0842846811e90227a87d391cd6" name="a1428af0842846811e90227a87d391cd6"></a>
+WaterValueComputationMode&#160;</td><td class="memItemRight" valign="bottom"><b>getComputationMode</b> () const</td></tr>
+<tr class="separator:a1428af0842846811e90227a87d391cd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ac4ab0985015d03104525c7c9511d5f41" id="r_ac4ab0985015d03104525c7c9511d5f41"><td class="memItemLeft" align="right" valign="top">static WaterValueComputationMode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4ab0985015d03104525c7c9511d5f41">getComputationModeFromGrid</a> (bool useOptimalTrajectory=false)</td></tr>
+<tr class="memdesc:ac4ab0985015d03104525c7c9511d5f41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static function determining the computation mode for water values. Can be multivariate, multistock, sequential.  <br /></td></tr>
+<tr class="separator:ac4ab0985015d03104525c7c9511d5f41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class to generate and modify problems in memory. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a3df42bb8935c196f8a40def7890baa0c" name="a3df42bb8935c196f8a40def7890baa0c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3df42bb8935c196f8a40def7890baa0c">&#9670;&#160;</a></span>updateProblems()</h2>
+<a id="ac4ab0985015d03104525c7c9511d5f41" name="ac4ab0985015d03104525c7c9511d5f41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4ab0985015d03104525c7c9511d5f41">&#9670;&#160;</a></span>getComputationModeFromGrid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ProblemGenerationForWaterValueCalculation::WaterValueComputationMode ProblemGenerationForWaterValueCalculation::getComputationModeFromGrid </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>useOptimalTrajectory</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Static function determining the computation mode for water values. Can be multivariate, multistock, sequential. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">grid</td><td>the <a class="el" href="classGridCollection.html">GridCollection</a> based on which the mode must be determined </td></tr>
+    <tr><td class="paramname">useOptimalTrajectory</td><td>a boolean that specifies whether to use optimal trajectories in a multistock context (default is false) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="ad364207e5a03afa50bf5bfd2efd2a22d" name="ad364207e5a03afa50bf5bfd2efd2a22d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad364207e5a03afa50bf5bfd2efd2a22d">&#9670;&#160;</a></span>updateProblems()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -171,8 +227,12 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">std::map&lt; Antares::Solver::WeeklyProblemId, std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; &gt; ProblemGenerationForWaterValueCalculation::updateProblems </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="structGridDefinition.html">GridDefinition</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>gridDefinition</em></span></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="structGridDefinition.html">GridDefinition</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>gridDefinition</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const std::optional&lt; std::string &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>areaName</em></span><span class="paramdefsep"> = </span><span class="paramdefval">std::nullopt</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">

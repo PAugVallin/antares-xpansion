@@ -257,6 +257,7 @@ var hierarchy =
       [ "BendersLoggerBase", "structBendersLoggerBase.html", null ],
       [ "EmptyLogger", "structEmptyLogger.html", null ],
       [ "ILogger", "classILogger.html", [
+        [ "FilteredLogger", "classFilteredLogger.html", null ],
         [ "SimpleLoggerMock", "classSimpleLoggerMock.html", null ],
         [ "Xpansion::Test::LoggerNOOPStub", "classXpansion_1_1Test_1_1LoggerNOOPStub.html", null ],
         [ "xpansion::logger::Master", "classxpansion_1_1logger_1_1Master.html", null ],

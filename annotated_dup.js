@@ -439,6 +439,7 @@ var annotated_dup =
     [ "FileProblemsProviderAdapter", "classFileProblemsProviderAdapter.html", null ],
     [ "FilesMapper", "classFilesMapper.html", null ],
     [ "FileWriter", "classFileWriter.html", null ],
+    [ "FilteredLogger", "classFilteredLogger.html", "classFilteredLogger" ],
     [ "FixtureMPSFileProblemProviderAdapter", "classFixtureMPSFileProblemProviderAdapter.html", null ],
     [ "FullRunOptionsParser", "classFullRunOptionsParser.html", null ],
     [ "FullRunOptionsParserTest", "classFullRunOptionsParserTest.html", null ],
