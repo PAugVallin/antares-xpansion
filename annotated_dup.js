@@ -555,6 +555,7 @@ var annotated_dup =
     [ "ProblemGenerationLoggerTest", "classProblemGenerationLoggerTest.html", null ],
     [ "ProblemGenerationOptions", "classProblemGenerationOptions.html", "classProblemGenerationOptions" ],
     [ "ProblemGenerationSpyAndMock", "classProblemGenerationSpyAndMock.html", null ],
+    [ "ProblemManager", "classProblemManager.html", "classProblemManager" ],
     [ "ProblemModifier", "classProblemModifier.html", "classProblemModifier" ],
     [ "ProblemModifierCapex", "classProblemModifierCapex.html", null ],
     [ "ProblemModifierProjection", "classProblemModifierProjection.html", null ],

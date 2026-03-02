@@ -419,6 +419,7 @@ var hierarchy =
     ] ],
     [ "antares_xpansion.problem_generator_driver.ProblemGeneratorData", "classantares__xpansion_1_1problem__generator__driver_1_1ProblemGeneratorData.html", null ],
     [ "antares_xpansion.problem_generator_driver.ProblemGeneratorDriver", "classantares__xpansion_1_1problem__generator__driver_1_1ProblemGeneratorDriver.html", null ],
+    [ "ProblemManager", "classProblemManager.html", null ],
     [ "ProblemModifier", "classProblemModifier.html", null ],
     [ "ProblemNameCase", "structProblemNameCase.html", null ],
     [ "ProblemVariables", "structProblemVariables.html", null ],

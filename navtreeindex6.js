@@ -1,5 +1,9 @@
 var NAVTREEINDEX6 =
 {
+"dir_6680cecd65a6c2b92518370619a63cfd.html":[35,0,0,0,7,1,0,0],
+"dir_680465501a7f01ea3db3a9fd10e84022.html":[35,0,0,0,1,9,0,0,0,0],
+"dir_68267d1309a1af8e8297ef4c3efbcdba.html":[35,0,0],
+"dir_6b4847d5f67594431cb62fb4fb98afea.html":[35,0,0,0,10],
 "dir_6c150c98d0e27a7b51b870f3cd25666f.html":[35,0,0,0,12],
 "dir_6da045746347945cd6b3b1131c6bae5a.html":[35,0,0,0,9],
 "dir_6f21443d425e7c68ec7394bc4cf8e7a0.html":[35,0,0,0,10,0],
@@ -245,9 +249,5 @@ var NAVTREEINDEX6 =
 "md_docs_2developer-guide_2install__from__sources_23-Build.html":[6],
 "md_docs_2developer-guide_2install__from__sources_23-Build.html#autotoc_md106":[6,0],
 "md_docs_2developer-guide_2install__from__sources_23-Build.html#autotoc_md107":[6,1],
-"md_docs_2developer-guide_2install__from__sources_23-Build.html#autotoc_md108":[6,2],
-"md_docs_2developer-guide_2install__from__sources_24-Tests.html":[7],
-"md_docs_2developer-guide_2install__from__sources_25-Installer-creation.html":[8],
-"md_docs_2developer-guide_2install__from__sources_26-Xpress.html":[9],
-"md_docs_2developer-guide_2install__from__sources_26-Xpress.html#autotoc_md112":[9,0]
+"md_docs_2developer-guide_2install__from__sources_23-Build.html#autotoc_md108":[6,2]
 };

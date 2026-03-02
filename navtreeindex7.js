@@ -1,5 +1,9 @@
 var NAVTREEINDEX7 =
 {
+"md_docs_2developer-guide_2install__from__sources_24-Tests.html":[7],
+"md_docs_2developer-guide_2install__from__sources_25-Installer-creation.html":[8],
+"md_docs_2developer-guide_2install__from__sources_26-Xpress.html":[9],
+"md_docs_2developer-guide_2install__from__sources_26-Xpress.html#autotoc_md112":[9,0],
 "md_docs_2developer-guide_2install__from__sources_26-Xpress.html#autotoc_md114":[9,1],
 "md_docs_2developer-guide_2install__from__sources_26-Xpress.html#autotoc_md115":[9,1,0],
 "md_docs_2developer-guide_2install__from__sources_26-Xpress.html#autotoc_md116":[9,1,1],
@@ -245,9 +249,5 @@ var NAVTREEINDEX7 =
 "structAdditionalConstraintsReader.html#a1f8c1b7879bb66e4fd3fe80c3ecb3986":[34,0,32,0],
 "structAdditionalConstraintsReader.html#a230f1d868d12475fb7382b0d6db10c50":[34,0,32,4],
 "structAdditionalConstraintsReader.html#a4701fc5d849bbc284c53668de7c2376a":[34,0,32,3],
-"structAdditionalConstraintsReader.html#aac79898cd2b33b32b6b1e7ecc8dc19c1":[34,0,32,2],
-"structAdditionalConstraintsReader.html#ad684d2799f523fd736cc29aeea3afa81":[34,0,32,1],
-"structAreaFileData.html":[34,0,49],
-"structAreaFileError.html":[34,0,50],
-"structAreaParser.html":[34,0,51]
+"structAdditionalConstraintsReader.html#aac79898cd2b33b32b6b1e7ecc8dc19c1":[34,0,32,2]
 };

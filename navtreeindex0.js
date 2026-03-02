@@ -112,6 +112,7 @@ var NAVTREEINDEX0 =
 "ProblemGenerationLogger_8h_source.html":[35,0,0,0,7,0,0,0,0,0,1],
 "ProblemGenerationOptions_8h_source.html":[35,0,0,0,7,2,0,0,0,0,5],
 "ProblemGeneration_8h_source.html":[35,0,0,0,7,2,0,0,0,0,2],
+"ProblemManager_8h_source.html":[35,0,0,0,0,0,0,0,3],
 "ProblemModifierCapex_8h_source.html":[35,0,0,0,11,0,0,0,0],
 "ProblemModifierProjection_8h_source.html":[35,0,0,0,11,0,0,0,1],
 "ProblemModifier_8h_source.html":[35,0,0,0,7,4,0,0,0,0,15],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "classBendersBase.html#a762f7724ccf0b5bed0176744f578d8c2":[34,0,60,9],
 "classBendersBase.html#a805ed56ad6729dd00f5d16dc705af264":[34,0,60,11],
 "classBendersBase.html#ab979fd9e6fd791c6b01d244da33ba849":[34,0,60,12],
-"classBendersBase.html#adb953cbbd95d83ed70de4244f975d436":[34,0,60,15],
-"classBendersBase.html#af938b540f0daa0592257f5fb9fcfc80f":[34,0,60,13]
+"classBendersBase.html#adb953cbbd95d83ed70de4244f975d436":[34,0,60,15]
 };
