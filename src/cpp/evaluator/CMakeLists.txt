@@ -11,10 +11,12 @@ add_library(evaluator_lib STATIC)
 target_sources(evaluator_lib PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/Evaluator.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/GridEvaluator.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/BalancingEvaluator.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/GridCollection.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/ReservoirManagement.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/include/antares-xpansion/evaluator/Evaluator.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/antares-xpansion/evaluator/GridEvaluator.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/antares-xpansion/evaluator/BalancingEvaluator.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/antares-xpansion/evaluator/GridCollection.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/antares-xpansion/evaluator/ReservoirManagement.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/antares-xpansion/evaluator/Interpolator.h
@@ -26,6 +28,7 @@ target_link_libraries(evaluator_lib
         antaresXpansion::output_core
         Antares::solver_api
         antaresXpansion::lp_namer_model
+        antaresXpansion::balancing_lib
 )
 
 target_include_directories(evaluator_lib

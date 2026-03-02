@@ -39,6 +39,7 @@ private:
 protected:
     void ProcessSubproblem(const Antares::Solver::WeeklyProblemId,
                            std::shared_ptr<Problem> subProblem) override;
+
     ConstraintCombos GenerateConstraintProduct(const ConstraintMap& constraints);
     ConstraintCombos GenerateSubPbCombos(const Antares::Solver::WeeklyProblemId subProblemId,
                                          const AreaConstraintMaps& areas);

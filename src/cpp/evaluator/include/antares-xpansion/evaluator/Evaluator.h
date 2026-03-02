@@ -35,7 +35,7 @@ protected:
       = 0;
     void SetConstraintsRHSValues(const std::map<std::string, double>& rhsValues,
                                  std::shared_ptr<Problem> subProblem);
-    SubProblemData SolveSubproblem(std::shared_ptr<Problem> subProblem, Point subPbCombo);
+    SubProblemData SolveSubproblem(std::shared_ptr<Problem> subProblem);
     std::string GetConstraintName(const Antares::Solver::WeeklyProblemId id,
                                   const std::string& area,
                                   const std::string& constraint) const;

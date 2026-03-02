@@ -25,7 +25,7 @@ void CriterionComputation::SetCriterionCountThreshold(double count_threshold)
     criterion_input_data_.SetCriterionCountThreshold(count_threshold);
 }
 
-std::vector<std::vector<int>>& CriterionComputation::getVarIndices()
+std::vector<std::vector<int>>& CriterionComputation::getIndices()
 {
     return indices_;
 }

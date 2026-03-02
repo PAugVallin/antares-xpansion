@@ -80,7 +80,7 @@ public:
      *
      * @return A reference to the vector of variable indices.
      */
-    std::vector<std::vector<int>>& getVarIndices();
+    std::vector<std::vector<int>>& getIndices();
 
     /**
      * @brief Retrieves the criterion input data.

@@ -228,7 +228,15 @@ void GridEvaluator::ProcessSubproblem(const Antares::Solver::WeeklyProblemId sub
                                     LogUtils::LOGLEVEL::DEBUG,
                                     GRID_EVALUATOR_LOGGER_CONTEXT);
         }
-        SubProblemData res = SolveSubproblem(subProblem, subPbCombo);
+        SubProblemData res = SolveSubproblem(subProblem);
+
+        std::vector<double> dualValuesCst(subProblem->get_nrows());
+        subProblem->get_lp_sol(NULL, dualValuesCst.data(), NULL);
+        for (const auto& [constraintName, value]: subPbCombo)
+        {
+            res.dual.emplace(constraintName,
+                             dualValuesCst[subProblem->get_row_index(constraintName)]);
+        }
 
         variationDeNiveauxDeStockResults.insert({subPbCombo, subProblemId.week, subProblemId.year},
                                                 res);

@@ -3,12 +3,12 @@
 #include <iostream>
 #include <ranges>
 
+#include "antares-xpansion/balancing/BalancingParser.h"
 #include "antares-xpansion/bellman_values/BellmanValuesExeOptions.h"
-#include "antares-xpansion/bellman_values/PenaltiesConfigReader.h"
 #include "antares-xpansion/benders/factories/LoggerFactories.h"
-#include "antares-xpansion/evaluator/GridEvaluator.h"
+#include "antares-xpansion/evaluator/BalancingEvaluator.h"
 #include "antares-xpansion/helpers/AreaParser.h"
-#include "antares-xpansion/lpnamer/main/ProblemGenerationForWaterValueCalculation.h"
+#include "antares-xpansion/lpnamer/main/ProblemGenerationForBalancing.h"
 #include "antares-xpansion/lpnamer/problem_modifier/XpansionProblemsFromAntaresProvider.h"
 #include "malloc.h"
 
@@ -47,10 +47,8 @@ std::set<std::string> readAreaFile(const std::filesystem::path& areaFile)
 }
 
 Benders::Criterion::CriterionInputData buildPatterns(const Benders::Criterion::Type criterion,
-                                                     const std::filesystem::path& areaFile)
+                                                     std::set<std::string> unique_areas)
 {
-    std::set<std::string> unique_areas = readAreaFile(areaFile);
-
     Benders::Criterion::CriterionInputData ret{false, criterion};
     for (const auto& area: unique_areas)
     {
@@ -74,7 +72,6 @@ int main(int argc, char** argv)
         int endWeek = optionsParser.EndWeek();
         bool antaresFormat = optionsParser.AntaresFormat();
         bool writePbFiles = optionsParser.WritePbFiles();
-        Benders::Criterion::Type critType = optionsParser.CriterionType();
         const std::string problemFormat = optionsParser.ProblemFormat();
         const auto areaFile = studyPath / "area.txt";
 
@@ -83,8 +80,11 @@ int main(int argc, char** argv)
           .simulation_dir = ConfigurationManager::generateOutputName(studyPath),
         };
 
-        // at this point, the simulation folder is already needed for logs (normally created when
-        // updating problems)
+        const std::filesystem::path balancingConfigFilePath(studyPath
+                                                            / "user/balancing/input_balancing.yml");
+
+        BalancingParser balParser(balancingConfigFilePath);
+
         if (!std::filesystem::exists(directories.simulation_dir))
         {
             std::filesystem::create_directories(directories.simulation_dir);
@@ -97,14 +97,14 @@ int main(int argc, char** argv)
         auto startProblemGeneration = std::chrono::system_clock::now();
         logger->display_message(
           "Generating problems (starting time: " + formatTime(startProblemGeneration) + ")");
-        // ProblemGenerationForWaterValueCalculation pbg(directories,
-        //                                               reservoirManagement,
-        //                                               logger,
-        //                                               solverName,
-        //                                               startWeek,
-        //                                               endWeek,
-        //                                               writePbFiles,
-        //                                               problemFormat);
+        ProblemGenerationForBalancing pbg(directories,
+                                          balParser.areaInvestments,
+                                          logger,
+                                          solverName,
+                                          startWeek,
+                                          endWeek,
+                                          writePbFiles,
+                                          problemFormat);
         auto endProblemGeneration = std::chrono::system_clock::now();
         logger->display_message("Problems generated (end time: " + formatTime(endProblemGeneration)
                                 + ")");
@@ -112,6 +112,39 @@ int main(int argc, char** argv)
                                                         - startProblemGeneration;
         logger->display_message("Elapsed time for problem generation: "
                                 + formatDuration(elapsed_seconds));
+
+        std::map<Antares::Solver::WeeklyProblemId, PbOutput> res;
+        constexpr int MAX_ITERATIONS = 10;
+        int iteration = 0;
+        while (!pbg.isBalanced() && iteration < MAX_ITERATIONS)
+        {
+            iteration++;
+            auto problems = pbg.updateProblems(res);
+            res = BalancingEvaluator(logger,
+                                     balParser.areaInvestments,
+                                     balParser.getReliabilityStandardIndicator(),
+                                     problems,
+                                     solverName,
+                                     nbThreads)
+                    .ComputeCriterionAndPrice();
+            auto startProblemUpdate = std::chrono::system_clock::now();
+            logger->display_message(
+              "Updating problems (starting time: " + formatTime(startProblemUpdate) + ")");
+
+            auto endProblemUpdate = std::chrono::system_clock::now();
+            logger->display_message("Updated problems (end time: " + formatTime(endProblemUpdate)
+                                    + ")");
+
+            std::chrono::duration<double> elapsed_update_seconds = endProblemUpdate
+                                                                   - startProblemUpdate;
+            logger->display_message("Elapsed time for problem update: "
+                                    + formatDuration(elapsed_update_seconds));
+        };
+
+        logger->display_message("Balancing process ended after " + std::to_string(iteration)
+                                + " iterations.");
+        logger->display_message(pbg.isBalanced() ? "The system is balanced."
+                                                 : "The system is not balanced.");
 
         return 0;
     }

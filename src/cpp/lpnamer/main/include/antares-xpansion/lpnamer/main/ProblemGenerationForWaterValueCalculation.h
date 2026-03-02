@@ -18,13 +18,14 @@
 #include "antares-xpansion/lpnamer/helper/ProblemGenerationLogger.h"
 #include "antares-xpansion/lpnamer/input_reader/MpsTxtWriter.h"
 #include "antares-xpansion/lpnamer/main/ProblemGenerationExeOptions.h"
+#include "antares-xpansion/lpnamer/main/ProblemGenerationOptimSimu.h"
 #include "antares-xpansion/lpnamer/model/Problem.h"
 #include "antares-xpansion/lpnamer/model/SimulationInputMode.h"
 #include "antares-xpansion/multisolver_interface/SolverAbstract.h"
 #include "antares-xpansion/multisolver_interface/SolverConfig.h"
 
 /// @brief Class to generate and modify problems in memory
-class ProblemGenerationForWaterValueCalculation
+class ProblemGenerationForWaterValueCalculation: public ProblemGenerationOptimSimu
 {
 public:
     explicit ProblemGenerationForWaterValueCalculation(
@@ -51,15 +52,6 @@ private:
                                             const GridDefinition& gridDefinition,
                                             Antares::Solver::WeeklyProblemId pbId);
 
-    ConfigurationManager::ConfigDirectories
-      directories; /// Directories, used for the original problems generation
-    std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>>
-      problems; /// Problems before any modification
     const ReservoirManagement&
-      reservoirManagement;        /// Reservoir management used for the problems modifications
-    unsigned int startWeek;       /// Start week of the problems to take into account
-    unsigned int endWeek;         /// End week of the problems to take into account
-    bool writePbFiles;            /// Flag to writePbFiles to memory
-    ProblemsFormat problemFormat; /// Problem format to be saved
-    Logger logger;                /// Logger used
+      reservoirManagement; /// Reservoir management used for the problems modifications
 };

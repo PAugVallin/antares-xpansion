@@ -106,33 +106,15 @@ void Evaluator::Run()
 /// @brief Solve the subproblem and return the cost
 /// @param problem The subproblem to solve
 /// @return The data of the solved subproblem : cost and dualValues
-SubProblemData Evaluator::SolveSubproblem(std::shared_ptr<Problem> problem, Point subPbCombo)
+SubProblemData Evaluator::SolveSubproblem(std::shared_ptr<Problem> problem)
 {
     SubProblemData subPbData;
     Timer subproblem_timer;
     problem->solve_lp();
-
-    std::vector<double> dualValuesCst(problem->get_nrows());
-    problem->get_lp_sol(NULL, dualValuesCst.data(), NULL);
-
     subPbData.subproblem_cost = problem->get_lp_value();
-
     subPbData.subproblem_timer = subproblem_timer.elapsed();
     int nbSimplexIter = problem->get_splex_num_of_ite_last();
 
-    for (const auto& [constraintName, value]: subPbCombo)
-    {
-        subPbData.dual.emplace(constraintName,
-                               dualValuesCst[problem->get_row_index(constraintName)]);
-    }
-
-    if (criterion_computation_)
-    {
-        criterion_computation_->ComputeCriterion(problem,
-                                                 1,
-                                                 subPbData.criteria,
-                                                 subPbData.patterns_values);
-    }
     totalSimplexIter += nbSimplexIter;
     totalSubPbTimer += subPbData.subproblem_timer;
 
