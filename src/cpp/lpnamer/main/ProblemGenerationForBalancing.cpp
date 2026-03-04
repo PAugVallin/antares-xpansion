@@ -41,8 +41,51 @@ ProblemGenerationForBalancing::ProblemGenerationForBalancing(
     fillDispProdVarIndicesAndMarginalCosts();
 }
 
+/// @brief Fill the DispatchableProduction variable indices and marginal cost for a given area
+/// @param areaName The name of the area to process
+/// @param clusterName The name of the cluster to process
+/// @param varToIndex A map from variable names to their indices
+/// @param objCoeffs The objective coefficients for each variable
+void ProblemGenerationForBalancing::fillDispProdVarIndicesAndMarginalCostsForArea(
+  const std::string& areaName,
+  const std::string& clusterName,
+  const std::unordered_map<std::string_view, size_t>& varToIndex,
+  const std::vector<double>& objCoeffs)
+{
+    const AreaCluster key{areaName, clusterName};
+
+    for (size_t hour = 0; hour < NUMBER_OF_HOURS_PER_WEEK; ++hour)
+    {
+        const std::string varName = "DispatchableProduction::area<" + areaName
+                                    + ">::ThermalCluster<" + clusterName + ">::hour<"
+                                    + std::to_string(hour) + ">";
+
+        const auto it = varToIndex.find(varName);
+        if (it != varToIndex.end())
+        {
+            balancingData[key].dispProdVarIndices[hour] = it->second;
+
+            if (hour == 0)
+            {
+                balancingData[key].marginalCost = objCoeffs[it->second];
+            }
+        }
+    }
+}
+
+static std::unordered_map<std::string_view, size_t> buildVarToIndex(
+  const std::vector<std::string>& vars)
+{
+    std::unordered_map<std::string_view, size_t> index;
+    index.reserve(vars.size());
+    for (size_t i = 0; i < vars.size(); ++i)
+    {
+        index.emplace(vars[i], i);
+    }
+    return index;
+}
+
 /// @brief Update the problems for the balancing calculation
-/// @param simuValues The simulation values to use for the problems modification
 void ProblemGenerationForBalancing::fillDispProdVarIndicesAndMarginalCosts()
 {
     const auto& firstProblem = problems.begin()->second;
@@ -56,51 +99,52 @@ void ProblemGenerationForBalancing::fillDispProdVarIndicesAndMarginalCosts()
     std::vector<double> objCoeffs(nbVars);
     firstProblem->get_obj(objCoeffs.data(), 0, nbVars - 1);
 
-    const std::unordered_map<std::string_view, size_t> varToIndex(
-      [&]()
-      {
-          std::unordered_map<std::string_view, size_t> index;
-          index.reserve(vars.size());
-          for (size_t i = 0; i < nbVars; ++i)
-          {
-              index.emplace(vars[i], i);
-          }
-          return index;
-      }());
+    const auto varToIndex = buildVarToIndex(vars);
 
     for (const auto& [areaName, areaInvestment]: areaInvestments)
     {
-        const auto processCluster = [&](const std::string& clusterName)
-        {
-            const AreaCluster key{areaName, clusterName};
-
-            for (size_t hour = 0; hour < NUMBER_OF_HOURS_PER_WEEK; ++hour)
-            {
-                const std::string varName = "DispatchableProduction::area<" + areaName
-                                            + ">::ThermalCluster<" + clusterName + ">::hour<"
-                                            + std::to_string(hour) + ">";
-
-                const auto it = varToIndex.find(varName);
-                if (it != varToIndex.end())
-                {
-                    balancingData[key].dispProdVarIndices[hour] = it->second;
-
-                    if (hour == 0)
-                    {
-                        balancingData[key].marginalCost = objCoeffs[it->second];
-                    }
-                }
-            }
-        };
-
         for (const auto& clusterName: areaInvestment.investmentCandidates | std::views::keys)
         {
-            processCluster(clusterName);
+            fillDispProdVarIndicesAndMarginalCostsForArea(areaName,
+                                                          clusterName,
+                                                          varToIndex,
+                                                          objCoeffs);
         }
         for (const auto& clusterName: areaInvestment.decommissioningCandidates | std::views::keys)
         {
-            processCluster(clusterName);
+            fillDispProdVarIndicesAndMarginalCostsForArea(areaName,
+                                                          clusterName,
+                                                          varToIndex,
+                                                          objCoeffs);
         }
+    }
+}
+
+void ProblemGenerationForBalancing::logCriterionAndAreaInvestments(
+  const std::map<std::string, CriterionState>& areaCriteriaState)
+{
+    // For each area, log the criterion state and the DispatchableProduction variable values for the
+    // clusters of the area
+    for (const auto& [areaName, criterionState]: areaCriteriaState)
+    {
+        std::stringstream ss;
+        ss << "Criterion state for area " << areaName << ": " << to_string(criterionState) << "\n";
+
+        const auto& areaInvestment = areaInvestments.at(areaName);
+        for (const auto& [clusterName, candidate]: areaInvestment.investmentCandidates)
+        {
+            ss << "  Investment candidate cluster " << clusterName << ", current : +"
+               << candidate.currentDispatchableProductionValue << "\n";
+        }
+        for (const auto& [clusterName, candidate]: areaInvestment.decommissioningCandidates)
+        {
+            ss << "  Decommissioning candidate cluster " << clusterName << ", current : -"
+               << candidate.currentDispatchableProductionValue << "\n";
+        }
+
+        logger->display_message(ss.str(),
+                                LogUtils::LOGLEVEL::DEBUG,
+                                PROBLEM_GENERATION_LOGGER_CONTEXT);
     }
 }
 
@@ -113,11 +157,12 @@ std::map<AreaCluster, CapacityAction> ProblemGenerationForBalancing::findAreaClu
     std::map<AreaCluster, CapacityAction> areaClusterToModify;
     const auto areaCritState = areaCriteriaState(simuValues);
     updateAreaInvestmentIncrement(areaCritState);
+    logCriterionAndAreaInvestments(areaCritState);
 
     for (const auto& [areaName, areaInvestment]: areaInvestments)
     {
         const CriterionState current = areaCritState.at(areaName);
-        const CriterionState previous = areaInvestment.oldCriterionState.value_or(current);
+        const CriterionState previous = areaInvestment.oldCriterionState;
 
         if (current == CriterionState::VALID)
         {
@@ -159,8 +204,8 @@ CapacityAction ProblemGenerationForBalancing::determineCapacityAction(
     {
         if (current == CriterionState::LOWER && previous == CriterionState::HIGHER)
         {
-            action = areaInvestment.isDevestmentPossible() ? CapacityAction::DIVESTMENT
-                                                           : CapacityAction::DECOMMISSIONING;
+            action = areaInvestment.isDisinvestmentPossible() ? CapacityAction::DISINVESTMENT
+                                                              : CapacityAction::DECOMMISSIONING;
         }
         else
         {
@@ -169,6 +214,56 @@ CapacityAction ProblemGenerationForBalancing::determineCapacityAction(
         }
     }
     return action;
+}
+
+static double extraCost(const Candidate<Investment>& candidate, CapacityAction action)
+{
+    return action == CapacityAction::INVESTMENT ? candidate.candidateParams->investmentCost : 0.0;
+}
+
+static double extraCost(const Candidate<Decommissioning>&, CapacityAction)
+{
+    return 0.0;
+}
+
+template<typename CandidateType>
+std::map<std::string, double> ProblemGenerationForBalancing::computeRentabilityForCandidates(
+  const std::string& areaName,
+  const std::map<std::string, Candidate<CandidateType>>& candidates,
+  const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues,
+  CapacityAction action) const
+{
+    std::map<std::string, double> rentability;
+    for (const auto& [clusterName, candidate]: candidates)
+    {
+        double value = 0.0;
+        for (const auto& [pbId, pbOutput]: simuValues)
+        {
+            value += std::accumulate(pbOutput.areaPrices.at(areaName).begin(),
+                                     pbOutput.areaPrices.at(areaName).end(),
+                                     0.0)
+                     - balancingData.at({areaName, clusterName}).marginalCost;
+        }
+        value -= candidate.candidateParams->fixedOmCosts + extraCost(candidate, action);
+        rentability[clusterName] = value;
+    }
+    return rentability;
+}
+
+static bool shouldSelectMaxRentability(CapacityAction action)
+{
+    return action == CapacityAction::INVESTMENT || action == CapacityAction::RECOMMISSIONING;
+}
+
+static std::string selectBestClusterFromRentability(
+  const std::map<std::string, double>& rentability,
+  CapacityAction action)
+{
+    const auto valueOf = [](const auto& entry) { return entry.second; };
+    const auto best = shouldSelectMaxRentability(action)
+                        ? std::ranges::max_element(rentability, {}, valueOf)
+                        : std::ranges::min_element(rentability, {}, valueOf);
+    return best->first;
 }
 
 /// @brief Find the best cluster for a given area
@@ -183,44 +278,26 @@ std::string ProblemGenerationForBalancing::getBestCluster(
   const AreaInvestment& areaInvestment,
   CapacityAction action)
 {
-    const auto computeRentability = [&](const auto& candidates, const auto& getExtraCost)
+    const bool isInvestmentAction = action == CapacityAction::INVESTMENT
+                                    || action == CapacityAction::DISINVESTMENT;
+
+    std::map<std::string, double> rentability;
+    if (isInvestmentAction)
     {
-        std::map<std::string, double> rentability;
-        for (const auto& [clusterName, candidate]: candidates)
-        {
-            rentability[clusterName] = 0;
-            for (const auto& [pbId, pbOutput]: simuValues)
-            {
-                rentability[clusterName] += std::accumulate(
-                                              pbOutput.areaPrices.at(areaName).begin(),
-                                              pbOutput.areaPrices.at(areaName).end(),
-                                              0.0)
-                                            - balancingData.at({areaName, clusterName})
-                                                .marginalCost;
-            }
-            rentability[clusterName] -= candidate.candidateParams->fixedOmCosts
-                                        + getExtraCost(candidate);
-        }
-        return rentability;
-    };
+        rentability = computeRentabilityForCandidates(areaName,
+                                                      areaInvestment.investmentCandidates,
+                                                      simuValues,
+                                                      action);
+    }
+    else
+    {
+        rentability = computeRentabilityForCandidates(areaName,
+                                                      areaInvestment.decommissioningCandidates,
+                                                      simuValues,
+                                                      action);
+    }
 
-    const std::map<std::string, double>
-      rentability = action == CapacityAction::INVESTMENT || action == CapacityAction::DIVESTMENT
-                      ? computeRentability(areaInvestment.investmentCandidates,
-                                           [action](const auto& c) {
-                                               return action == CapacityAction::INVESTMENT
-                                                        ? c.candidateParams->investmentCost
-                                                        : 0.0;
-                                           })
-                      : computeRentability(areaInvestment.decommissioningCandidates,
-                                           [](const auto&) { return 0.0; });
-
-    const bool selectMax = action == CapacityAction::INVESTMENT
-                           || action == CapacityAction::RECOMMISSIONING;
-    const auto valueOf = [](const auto& entry) { return entry.second; };
-    const auto best = selectMax ? std::ranges::max_element(rentability, {}, valueOf)
-                                : std::ranges::min_element(rentability, {}, valueOf);
-    return best->first;
+    return selectBestClusterFromRentability(rentability, action);
 }
 
 /// @brief Update the the area investment increments based on the criterion states
@@ -319,52 +396,92 @@ std::map<std::string, CriterionState> ProblemGenerationForBalancing::areaCriteri
     return areaCriteriaState;
 }
 
+/// @brief Compute the new bound for a variable and update the candidate's current value
+/// @param problem The problem to get the current bound from
+/// @param varIndex The index of the variable
+/// @param action The action to apply
+/// @param areaInvestment The area investment data to update
+/// @param clusterName The name of the cluster to update
+/// @return The new bound value
+double ProblemGenerationForBalancing::computeNewBoundAndUpdateCandidate(
+  const std::shared_ptr<Problem>& problem,
+  size_t varIndex,
+  CapacityAction action,
+  AreaInvestment& areaInvestment,
+  const std::string& clusterName)
+{
+    double newBound;
+    switch (action)
+    {
+    case CapacityAction::INVESTMENT:
+        problem->get_ub(&newBound, varIndex, varIndex);
+        newBound += areaInvestment.currentInvestmentIncrement;
+        areaInvestment.investmentCandidates.at(clusterName).currentDispatchableProductionValue
+          = newBound;
+        break;
+    case CapacityAction::DISINVESTMENT:
+        problem->get_lb(&newBound, varIndex, varIndex);
+        newBound -= areaInvestment.currentInvestmentIncrement;
+        areaInvestment.investmentCandidates.at(clusterName).currentDispatchableProductionValue
+          = newBound;
+        break;
+    case CapacityAction::DECOMMISSIONING:
+        problem->get_ub(&newBound, varIndex, varIndex);
+        newBound -= areaInvestment.currentDecommissioningIncrement;
+        areaInvestment.decommissioningCandidates.at(clusterName).currentDispatchableProductionValue
+          = newBound;
+        break;
+    case CapacityAction::RECOMMISSIONING:
+        problem->get_lb(&newBound, varIndex, varIndex);
+        newBound += areaInvestment.currentDecommissioningIncrement;
+        areaInvestment.decommissioningCandidates.at(clusterName).currentDispatchableProductionValue
+          = newBound;
+        break;
+    }
+    return newBound;
+}
+
+static char boundTypeForAction(CapacityAction action)
+{
+    switch (action)
+    {
+    case CapacityAction::INVESTMENT:
+    case CapacityAction::DISINVESTMENT:
+        return 'U';
+    case CapacityAction::DECOMMISSIONING:
+    case CapacityAction::RECOMMISSIONING:
+        return 'L';
+    }
+}
+
 /// @brief Apply the action for each area cluster to the problems
 /// @param areaCluster The area cluster to apply the action to
 /// @param action The action to apply
 void ProblemGenerationForBalancing::applyActionToCluster(const AreaCluster& areaCluster,
                                                          CapacityAction action)
 {
-    tbb::parallel_for_each(
-      problems | std::views::values,
-      [&](const std::shared_ptr<Problem>& problem)
-      {
-          const auto& varIndices = balancingData.at(areaCluster).dispProdVarIndices;
-          std::vector<int> vecIndices(varIndices.begin(), varIndices.end());
-          std::vector<double> varValues(varIndices.size());
-          std::vector<char> boundTypes(varIndices.size());
+    const auto& varIndices = balancingData.at(areaCluster).dispProdVarIndices;
+    auto& areaInvestment = areaInvestments.at(areaCluster.first);
+    const char boundType = boundTypeForAction(action);
 
-          for (size_t hour = 0; hour < NUMBER_OF_HOURS_PER_WEEK; ++hour)
-          {
-              const size_t varIndex = varIndices[hour];
-              double newBound;
-              switch (action)
-              {
-              case CapacityAction::INVESTMENT:
-                  boundTypes[hour] = 'U';
-                  problem->get_ub(&newBound, varIndex, varIndex);
-                  newBound += areaInvestments.at(areaCluster.first).currentInvestmentIncrement;
-                  break;
-              case CapacityAction::DIVESTMENT:
-                  boundTypes[hour] = 'U';
-                  problem->get_lb(&newBound, varIndex, varIndex);
-                  newBound -= areaInvestments.at(areaCluster.first).currentInvestmentIncrement;
-                  break;
-              case CapacityAction::DECOMMISSIONING:
-                  boundTypes[hour] = 'L';
-                  problem->get_ub(&newBound, varIndex, varIndex);
-                  newBound -= areaInvestments.at(areaCluster.first).currentDecommissioningIncrement;
-                  break;
-              case CapacityAction::RECOMMISSIONING:
-                  boundTypes[hour] = 'L';
-                  problem->get_lb(&newBound, varIndex, varIndex);
-                  newBound += areaInvestments.at(areaCluster.first).currentDecommissioningIncrement;
-                  break;
-              }
-              varValues[hour] = newBound;
-          }
-          problem->chg_bounds(vecIndices, boundTypes, varValues);
-      });
+    std::vector<int> vecIndices(varIndices.begin(), varIndices.end());
+    std::vector<char> boundTypes(NUMBER_OF_HOURS_PER_WEEK, boundType);
+
+    tbb::parallel_for_each(problems | std::views::values,
+                           [&](const std::shared_ptr<Problem>& problem)
+                           {
+                               std::vector<double> localVarValues(NUMBER_OF_HOURS_PER_WEEK);
+                               for (size_t hour = 0; hour < NUMBER_OF_HOURS_PER_WEEK; ++hour)
+                               {
+                                   localVarValues[hour] = computeNewBoundAndUpdateCandidate(
+                                     problem,
+                                     varIndices[hour],
+                                     action,
+                                     areaInvestment,
+                                     areaCluster.second);
+                               }
+                               problem->chg_bounds(vecIndices, boundTypes, localVarValues);
+                           });
 }
 
 /// @brief Update the problems using the balancing algorithm
@@ -374,20 +491,15 @@ std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>>
 ProblemGenerationForBalancing::updateProblems(
   const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues)
 {
-    if (simuValues.size())
+    // For the first iteration, simuValues is empty and no modification should be applied
+    if (simuValues.empty())
     {
-        for (const auto& [areaCluster, action]: findAreaClustersToModify(simuValues))
-        {
-            applyActionToCluster(areaCluster, action);
-        }
+        return problems;
     }
 
-    else
+    for (const auto& [areaCluster, action]: findAreaClustersToModify(simuValues))
     {
-        for (auto& [area, areaInvestment]: areaInvestments)
-        {
-            areaInvestment.oldCriterionState = CriterionState::INVALID;
-        }
+        applyActionToCluster(areaCluster, action);
     }
     return problems;
 }
@@ -396,8 +508,7 @@ bool ProblemGenerationForBalancing::isBalanced() const
 {
     for (const auto& [area, areaInvestment]: areaInvestments)
     {
-        if (!areaInvestment.oldCriterionState
-            || areaInvestment.oldCriterionState.value() != CriterionState::VALID)
+        if (areaInvestment.oldCriterionState != CriterionState::VALID)
         {
             return false;
         }

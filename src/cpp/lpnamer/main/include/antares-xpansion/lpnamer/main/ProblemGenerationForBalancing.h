@@ -30,7 +30,7 @@ using AreaCluster = std::pair<std::string, std::string>;
 enum class CapacityAction
 {
     INVESTMENT,
-    DIVESTMENT,
+    DISINVESTMENT,
     DECOMMISSIONING,
     RECOMMISSIONING
 };
@@ -81,4 +81,21 @@ private:
     CapacityAction determineCapacityAction(CriterionState current,
                                            CriterionState previous,
                                            const AreaInvestment& areaInvestment);
+    void logCriterionAndAreaInvestments(const std::map<std::string, CriterionState>& areaCritState);
+    template<typename CandidateType>
+    std::map<std::string, double> computeRentabilityForCandidates(
+      const std::string& areaName,
+      const std::map<std::string, Candidate<CandidateType>>& candidates,
+      const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues,
+      CapacityAction action) const;
+    void fillDispProdVarIndicesAndMarginalCostsForArea(
+      const std::string& areaName,
+      const std::string& clusterName,
+      const std::unordered_map<std::string_view, size_t>& varToIndex,
+      const std::vector<double>& objCoeffs);
+    double computeNewBoundAndUpdateCandidate(const std::shared_ptr<Problem>& problem,
+                                             size_t varIndex,
+                                             CapacityAction action,
+                                             AreaInvestment& areaInvestment,
+                                             const std::string& clusterName);
 };

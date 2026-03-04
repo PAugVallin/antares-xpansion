@@ -114,7 +114,7 @@ int main(int argc, char** argv)
                                 + formatDuration(elapsed_seconds));
 
         std::map<Antares::Solver::WeeklyProblemId, PbOutput> res;
-        constexpr int MAX_ITERATIONS = 10;
+        constexpr int MAX_ITERATIONS = 15;
         int iteration = 0;
         while (!pbg.isBalanced() && iteration < MAX_ITERATIONS)
         {

@@ -22,6 +22,8 @@
 #include "antares-xpansion/multisolver_interface/SolverAbstract.h"
 #include "antares-xpansion/multisolver_interface/SolverConfig.h"
 
+constexpr char PROBLEM_GENERATION_LOGGER_CONTEXT[] = "ProblemGeneration";
+
 /// @brief Class to generate and modify problems in memory
 class ProblemGenerationOptimSimu
 {

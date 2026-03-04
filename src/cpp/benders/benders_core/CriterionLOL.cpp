@@ -42,8 +42,5 @@ void CriterionLOL::ComputeCriterion(std::shared_ptr<SolverAbstract> problem,
         patterns_values[pattern_index] = pattern_value;
         criteria[pattern_index] = criteria_value;
     }
-
-    std::cout << "UNSP hours : " << criteria[0] << " / " << "UNSP Power : " << patterns_values[0]
-              << "\n";
 }
 } // namespace Benders::Criterion

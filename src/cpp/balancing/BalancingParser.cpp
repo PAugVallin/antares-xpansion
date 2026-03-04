@@ -2,9 +2,9 @@
 
 #include <stdexcept>
 
-/// @brief Check if divestment is possible for the area
-/// @return true if divestment is possible, false otherwise
-bool AreaInvestment::isDevestmentPossible() const
+/// @brief Check if disinvestment is possible for the area
+/// @return true if disinvestment is possible, false otherwise
+bool AreaInvestment::isDisinvestmentPossible() const
 {
     return std::ranges::any_of(investmentCandidates,
                                [](const auto& entry)

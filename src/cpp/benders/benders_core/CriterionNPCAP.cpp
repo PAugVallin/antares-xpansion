@@ -56,7 +56,5 @@ void CriterionNPCAP::ComputeCriterion(std::shared_ptr<SolverAbstract> problem,
         patterns_values[pattern_index] = pattern_value;
         criteria[pattern_index] = criteria_value;
     }
-    std::cout << "NPCAP hours : " << criteria[0] << " / "
-              << "NPCAP total price : " << patterns_values[0] << "\n";
 }
 } // namespace Benders::Criterion

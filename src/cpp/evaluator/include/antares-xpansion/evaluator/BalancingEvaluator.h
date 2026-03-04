@@ -46,6 +46,10 @@ private:
     std::vector<size_t> getAreaBalanceIndices(std::shared_ptr<Problem> subProblem);
     Output::ConcurrentInsertionMap<Antares::Solver::WeeklyProblemId, PbOutput> balancingResults;
     const std::map<std::string, AreaInvestment>& areaInvestments;
+    void fillAreaCriterionValuesAndPrices(const std::vector<double>& criteria,
+                                          const std::vector<double>& dualValuesCst,
+                                          const std::vector<size_t>& cstIndices,
+                                          PbOutput& output);
 
 protected:
     void ProcessSubproblem(const Antares::Solver::WeeklyProblemId,

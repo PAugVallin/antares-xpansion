@@ -13,8 +13,23 @@ enum class CriterionState
     LOWER,
     VALID,
     HIGHER,
-    INVALID,
+    UNINITIALIZED,
 };
+
+constexpr std::string_view to_string(CriterionState state)
+{
+    switch (state)
+    {
+    case CriterionState::LOWER:
+        return "LOWER";
+    case CriterionState::VALID:
+        return "VALID";
+    case CriterionState::HIGHER:
+        return "HIGHER";
+    case CriterionState::UNINITIALIZED:
+        return "UNINITIALIZED";
+    }
+}
 
 struct Investment
 {
@@ -33,7 +48,6 @@ template<typename Type>
 struct Candidate
 {
     std::shared_ptr<Type> candidateParams;
-    double oldDispatchableProductionValue;
     double currentDispatchableProductionValue;
 };
 
@@ -48,9 +62,9 @@ struct AreaInvestment
     double currentInvestmentIncrement;
     std::map<std::string, Candidate<Decommissioning>> decommissioningCandidates;
     std::map<std::string, Candidate<Investment>> investmentCandidates;
-    std::optional<CriterionState> oldCriterionState;
+    CriterionState oldCriterionState{CriterionState::UNINITIALIZED};
 
-    bool isDevestmentPossible() const;
+    bool isDisinvestmentPossible() const;
     bool isRecommissioningPossible() const;
 };
 

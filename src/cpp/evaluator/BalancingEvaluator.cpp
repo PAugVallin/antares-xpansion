@@ -91,6 +91,30 @@ std::vector<size_t> BalancingEvaluator::getAreaBalanceIndices(std::shared_ptr<Pr
     return indices;
 }
 
+/// @brief Fill the area criterion values and prices from the subproblem results
+/// @param res The subproblem results containing criteria values
+/// @param dualValuesCst The dual values of the constraints
+/// @param cstIndices The indices of the area balance constraints
+/// @param output The output to fill
+void BalancingEvaluator::fillAreaCriterionValuesAndPrices(const std::vector<double>& criteria,
+                                                          const std::vector<double>& dualValuesCst,
+                                                          const std::vector<size_t>& cstIndices,
+                                                          PbOutput& output)
+{
+    for (std::size_t i = 0; i < criteria.size(); ++i)
+    {
+        double value = criteria[i];
+        std::string area = criterion_computation_->getCriterionInputData().PatternBodies()[i];
+        output.areaCriterionValues[area] += value;
+
+        for (size_t j = 0; j < NUMBER_OF_HOURS_PER_WEEK; j++)
+        {
+            output.areaPrices[area][j] = dualValuesCst[cstIndices[i * NUMBER_OF_HOURS_PER_WEEK
+                                                                  + j]];
+        }
+    }
+}
+
 /// @brief Process a single subproblem
 /// @param subProblemId the id of the problem to treat
 /// @param subProblem the problem to treat
@@ -105,22 +129,10 @@ void BalancingEvaluator::ProcessSubproblem(const Antares::Solver::WeeklyProblemI
 
     std::vector<double> dualValuesCst(subProblem->get_nrows());
     subProblem->get_lp_sol(NULL, dualValuesCst.data(), NULL);
-    const auto& cstIndices = getAreaBalanceIndices(subProblem);
+    const auto cstIndices = getAreaBalanceIndices(subProblem);
 
     PbOutput output{};
-    // For each area / for each hour
-    for (std::size_t i = 0; i < res.criteria.size(); ++i)
-    {
-        double value = res.criteria[i];
-        std::string area = criterion_computation_->getCriterionInputData().PatternBodies()[i];
-        output.areaCriterionValues[area] += value;
-
-        for (size_t j = 0; j < NUMBER_OF_HOURS_PER_WEEK; j++)
-        {
-            output.areaPrices[area][j] = dualValuesCst[cstIndices[i * NUMBER_OF_HOURS_PER_WEEK
-                                                                  + j]];
-        }
-    }
+    fillAreaCriterionValuesAndPrices(res.criteria, dualValuesCst, cstIndices, output);
 
     balancingResults.insert(subProblemId, output);
     logger->display_message((std::stringstream() << "Cost: " << res.subproblem_cost).str(),
