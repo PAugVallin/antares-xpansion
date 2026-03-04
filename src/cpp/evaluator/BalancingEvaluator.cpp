@@ -27,8 +27,9 @@ BalancingEvaluator::BalancingEvaluator(
   Benders::Criterion::Type criterion,
   std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>> problems,
   std::string solverName,
+  std::filesystem::path studyDir,
   int nbThreads):
-    Evaluator(logger, problems, solverName, nbThreads),
+    Evaluator(logger, problems, studyDir, solverName, nbThreads),
     areaInvestments(areaInvestments)
 {
     auto criterionInputData = buildPatterns(criterion, areaInvestments);
@@ -166,4 +167,32 @@ std::map<Antares::Solver::WeeklyProblemId, PbOutput> BalancingEvaluator::Compute
                             BALANCING_EVALUATOR_LOGGER_CONTEXT);
 
     return balancingResults.get();
+}
+
+void BalancingEvaluator::setCriterionComputationInputs(
+  const Benders::Criterion::CriterionInputData& criterion_input_data)
+{
+    using enum Benders::Criterion::Type;
+    if (problems.empty())
+    {
+        throw std::runtime_error("No problems available");
+    }
+    auto& [id, problem] = *problems.begin();
+
+    switch (criterion_input_data.criterion)
+    {
+    case PositiveUnsuppliedEnergy:
+        criterion_computation_ = std::make_unique<Benders::Criterion::CriterionLOL>(
+          criterion_input_data,
+          problem);
+        break;
+    case NearPriceCapHours:
+        criterion_computation_ = std::make_unique<Benders::Criterion::CriterionNPCAP>(
+          criterion_input_data,
+          problem);
+        break;
+    default:
+        criterion_computation_.reset();
+        break;
+    }
 }

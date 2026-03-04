@@ -5,6 +5,7 @@
 
 #include "antares-xpansion/balancing/BalancingParser.h"
 #include "antares-xpansion/bellman_values/BellmanValuesExeOptions.h"
+#include "antares-xpansion/bellman_values/ProblemManager.h"
 #include "antares-xpansion/benders/factories/LoggerFactories.h"
 #include "antares-xpansion/evaluator/BalancingEvaluator.h"
 #include "antares-xpansion/helpers/AreaParser.h"
@@ -74,6 +75,9 @@ int main(int argc, char** argv)
         bool writePbFiles = optionsParser.WritePbFiles();
         const std::string problemFormat = optionsParser.ProblemFormat();
         const auto areaFile = studyPath / "area.txt";
+        // this bool needs to be implemented correctly after merging with the more recent use of
+        // YAML setting files
+        bool cacheProblems = optionsParser.CacheProblems();
 
         ConfigurationManager::ConfigDirectories directories{
           .study_dir = studyPath,
@@ -97,14 +101,18 @@ int main(int argc, char** argv)
         auto startProblemGeneration = std::chrono::system_clock::now();
         logger->display_message(
           "Generating problems (starting time: " + formatTime(startProblemGeneration) + ")");
+        auto problemManager = std::make_shared<ProblemManager>(solverName,
+                                                               problemFormat,
+                                                               writePbFiles,
+                                                               cacheProblems,
+                                                               directories.simulation_dir
+                                                                 / "initial_problems");
         ProblemGenerationForBalancing pbg(directories,
                                           balParser.areaInvestments,
                                           logger,
-                                          solverName,
+                                          problemManager,
                                           startWeek,
-                                          endWeek,
-                                          writePbFiles,
-                                          problemFormat);
+                                          endWeek);
         auto endProblemGeneration = std::chrono::system_clock::now();
         logger->display_message("Problems generated (end time: " + formatTime(endProblemGeneration)
                                 + ")");
@@ -125,6 +133,7 @@ int main(int argc, char** argv)
                                      balParser.getReliabilityStandardIndicator(),
                                      problems,
                                      solverName,
+                                     directories.simulation_dir,
                                      nbThreads)
                     .ComputeCriterionAndPrice();
             auto startProblemUpdate = std::chrono::system_clock::now();

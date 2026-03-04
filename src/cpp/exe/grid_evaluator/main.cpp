@@ -5,7 +5,9 @@
 
 #include "antares-xpansion/bellman_values/BellmanValuesExeOptions.h"
 #include "antares-xpansion/bellman_values/PenaltiesConfigReader.h"
+#include "antares-xpansion/bellman_values/ProblemManager.h"
 #include "antares-xpansion/benders/factories/LoggerFactories.h"
+#include "antares-xpansion/benders/logger/FilteredLogger.h"
 #include "antares-xpansion/evaluator/GridEvaluator.h"
 #include "antares-xpansion/lpnamer/main/ProblemGenerationForWaterValueCalculation.h"
 #include "antares-xpansion/lpnamer/problem_modifier/XpansionProblemsFromAntaresProvider.h"
@@ -114,6 +116,11 @@ int main(int argc, char** argv)
         bool antaresFormat = optionsParser.AntaresFormat();
         bool writePbFiles = optionsParser.WritePbFiles();
         const std::string problemFormat = optionsParser.ProblemFormat();
+        const bool useOptimalTrajectory = optionsParser.UseOptimalTrajectory();
+        const std::string verbosity = optionsParser.Verbosity();
+        // this bool needs to be implemented correctly after merging with the more recent use of
+        // YAML setting files
+        bool cacheProblems = optionsParser.CacheProblems();
 
         auto gridCollection = std::make_shared<GridCollection>(studyPath
                                                                / "user/water_values/grid.csv");
@@ -130,8 +137,7 @@ int main(int argc, char** argv)
                                                 pcr.getPenaltyUpperRuleCurve(),
                                                 pcr.getPenaltyFinalLevel(),
                                                 pcr.getForceFinalLevel(),
-                                                pcr.getFinalLevel(),
-                                                pcr.getOverflow());
+                                                pcr.getFinalLevel());
 
         ConfigurationManager::ConfigDirectories directories{
           .study_dir = studyPath,
@@ -147,19 +153,29 @@ int main(int argc, char** argv)
         std::filesystem::path logPath = directories.simulation_dir / "water_values_log.txt";
         std::ofstream{logPath}; // creates log file, since the FileLoggerFactory doesn't
         auto loggerFactory = FileAndStdoutLoggerFactory(logPath, false);
-        Logger logger = loggerFactory.get_logger();
+        Logger masterLogger = loggerFactory.get_logger();
+        std::shared_ptr<FilteredLogger> logger = std::make_shared<FilteredLogger>(
+          masterLogger,
+          LogUtils::StrToLogLevel(verbosity));
+
+        auto problemManager = std::make_shared<ProblemManager>(solverName,
+                                                               problemFormat,
+                                                               writePbFiles,
+                                                               cacheProblems,
+                                                               directories.simulation_dir
+                                                                 / "initial_problems");
 
         auto startProblemGeneration = std::chrono::system_clock::now();
         logger->display_message(
           "Generating problems (starting time: " + formatTime(startProblemGeneration) + ")");
-        ProblemGenerationForWaterValueCalculation pbg(directories,
-                                                      reservoirManagement,
-                                                      logger,
-                                                      solverName,
-                                                      startWeek,
-                                                      endWeek,
-                                                      writePbFiles,
-                                                      problemFormat);
+        ProblemGenerationForWaterValueCalculation pbg(
+          directories,
+          logger,
+          problemManager,
+          ProblemGenerationForWaterValueCalculation::getComputationModeFromGrid(
+            useOptimalTrajectory), // not used in grid_evaluator
+          startWeek,
+          endWeek);
         auto endProblemGeneration = std::chrono::system_clock::now();
         logger->display_message("Problems generated (end time: " + formatTime(endProblemGeneration)
                                 + ")");
@@ -184,10 +200,16 @@ int main(int argc, char** argv)
             logger->display_message("Elapsed time for problem update: "
                                     + formatDuration(elapsed_update_seconds));
 
-            auto res = GridEvaluator(logger, problems, grid, solverName, nbThreads)
+            auto res = GridEvaluator(logger,
+                                     problems,
+                                     grid,
+                                     solverName,
+                                     directories.simulation_dir,
+                                     nbThreads)
                          .ComputeCostsAndDuals();
             std::string fileName = "gridPointsValues_" + std::to_string(grid.gridID) + ".csv";
             saveCostsAndDuals(directories.simulation_dir / fileName, grid, res, logger);
+            logger->display_message("Saved costs and duals to file");
         }
 
         return 0;

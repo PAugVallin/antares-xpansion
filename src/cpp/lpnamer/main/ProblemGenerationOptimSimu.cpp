@@ -17,23 +17,20 @@
 ProblemGenerationOptimSimu::ProblemGenerationOptimSimu(
   ConfigurationManager::ConfigDirectories directories,
   Logger logger,
-  const std::string& solverName,
+  std::shared_ptr<ProblemManager> problemManager,
   unsigned int startWeek,
-  unsigned int endWeek,
-  bool writePbFiles,
-  const std::string& problemFormat):
+  unsigned int endWeek):
     directories(directories),
     logger(std::move(logger)),
+    problemManager(problemManager),
     startWeek(startWeek),
-    endWeek(endWeek),
-    writePbFiles(writePbFiles),
-    problemFormat(problemsFormatFromString(problemFormat))
+    endWeek(endWeek)
 {
     Antares::Solver::Optimization::OptimizationOptions optOptions;
-    optOptions.firstOptimOptions.solverName = solverName;
-    optOptions.secondOptimOptions.solverName = solverName;
+    optOptions.firstOptimOptions.solverName = problemManager->solverName();
+    optOptions.secondOptimOptions.solverName = problemManager->solverName();
 
-    if (solverName == SolverConfig("xpress"))
+    if (problemManager->solverName() == SolverConfig("xpress"))
     {
         optOptions.firstOptimOptions.solverParameters = "PRESOLVE 1";
         optOptions.secondOptimOptions.solverParameters = "PRESOLVE 1";
@@ -56,19 +53,22 @@ ProblemGenerationOptimSimu::ProblemGenerationOptimSimu(
     }
 
     XpansionProblemsFromAntaresProvider adapter(results);
-    auto solver_log_manager = SolverLogManager(directories.simulation_dir / "solver.log");
+    // auto solver_log_manager = SolverLogManager(directories.simulation_dir / "solver.log");
+    // problems opening too many log files, and not writing anything yet.
+    // for now: no log files passed to the problems.
+    // auto solver_log_manager = SolverLogManager();
     for (const auto& [pbId, _]: results.weeklyProblems)
     {
-        if (startWeek <= pbId.week && pbId.week <= endWeek)
-        {
-            auto problem = adapter.provideProblem(solverName == SolverConfig("xpress") ? "xpress"
-                                                                                       : "CBC",
-                                                  solver_log_manager,
-                                                  pbId);
-            problems[pbId] = problem;
-        }
+        auto problem = adapter.provideProblem(problemManager->solverName() == SolverConfig("xpress")
+                                                ? "xpress"
+                                                : "CBC",
+                                              problemManager->solverLogManager(),
+                                              pbId);
+        // problems[pbId] = problem;
+        this->problemManager->setProblem(pbId, problem);
     }
 
+    auto problems = this->problemManager->getProblems();
     if (!problems.empty())
     {
         this->startWeek = std::max(startWeek, problems.begin()->first.week);

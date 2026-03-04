@@ -24,8 +24,9 @@ GridEvaluator::GridEvaluator(
   std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>> problems,
   GridDefinition& gridDefinition,
   std::string solverName,
+  std::filesystem::path studyDir,
   int nbThreads):
-    Evaluator(logger, problems, solverName, nbThreads),
+    Evaluator(logger, problems, solverName, studyDir, nbThreads),
     gridDefinition(gridDefinition)
 {
 }
@@ -222,12 +223,6 @@ void GridEvaluator::ProcessSubproblem(const Antares::Solver::WeeklyProblemId sub
         Timer timer;
         SetConstraintsRHSValues(subPbCombo, subProblem);
         totalPbModifTimer += timer.elapsed();
-        for (const auto& [constraintName, value]: subPbCombo)
-        {
-            logger->display_message((std::stringstream() << constraintName << " " << value).str(),
-                                    LogUtils::LOGLEVEL::DEBUG,
-                                    GRID_EVALUATOR_LOGGER_CONTEXT);
-        }
         SubProblemData res = SolveSubproblem(subProblem);
 
         std::vector<double> dualValuesCst(subProblem->get_nrows());

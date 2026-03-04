@@ -17,6 +17,9 @@ private:
     bool antaresFormat_;
     bool writePbFiles_;
     std::string problemFormat_;
+    bool useOptimalTrajectory_;
+    std::string verbosity_;
+    bool cacheProblems_;
     std::string criterionType_;
 
 public:
@@ -67,6 +70,21 @@ public:
     std::string ProblemFormat() const
     {
         return problemFormat_;
+    }
+
+    bool UseOptimalTrajectory() const
+    {
+        return useOptimalTrajectory_;
+    }
+
+    std::string Verbosity() const
+    {
+        return verbosity_;
+    }
+
+    bool CacheProblems() const
+    {
+        return cacheProblems_;
     }
 
     Benders::Criterion::Type CriterionType() const

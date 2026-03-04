@@ -36,5 +36,18 @@ BellmanValuesExeOptions::BellmanValuesExeOptions():
       "problem-format",
       po::value<std::string>(&problemFormat_)->default_value("OPTIMIZED"),
       "Format to save problem files to (optional, default is OPTIMIZED). Possible values are: MPS, "
-      "OPTIMIZED");
+      "OPTIMIZED")("use-optimal-trajectory",
+                   po::value<bool>(&useOptimalTrajectory_)->default_value(false),
+                   "Specify whether the optimal trajectory must be used in the case of "
+                   "multistock water values (optional, default is false)")(
+      "verbosity",
+      po::value<std::string>(&verbosity_)->default_value("INFO"),
+      "Specify the desired verbosity for logging in the console or log file (optional, default is "
+      "INFO). Possible values are: NONE, TRACE, DEBUG, INFO, WARNING, ERR, FATAL")(
+      "cache-problems",
+      po::value<bool>(&cacheProblems_)->default_value(false),
+      "Write and read problems from disk to reduce memory use (will increase computation time) "
+      "(optional, "
+      "default is false)");
+    ;
 }

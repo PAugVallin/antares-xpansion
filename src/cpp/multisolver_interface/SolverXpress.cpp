@@ -33,8 +33,19 @@ SolverXpress::SolverXpress(const SolverLogManager& log_manager):
     if (log_manager.log_file_path != "")
     {
         _log_file = log_manager.log_file_path;
+        // warning with this: too many problems can open too many files (or too many times the
+        // same file)
+        // TODO: determine whether every instance may log in a separate file, or force all instances
+        // to write in the same file
         _log_stream.open(_log_file, std::ofstream::out | std::ofstream::app);
-        add_stream(_log_stream);
+        if (!_log_stream)
+        {
+            std::cerr << "Error opening logfile: " << std::strerror(errno) << std::endl;
+        }
+        else
+        {
+            add_stream(_log_stream);
+        }
     }
 }
 
@@ -95,9 +106,20 @@ SolverXpress::SolverXpress(const SolverXpress& toCopy):
     _log_file = toCopy._log_file;
     if (_log_file != "")
     {
+        // warning with this: too many problems can open too many files (or too many times the
+        // same file)
+        // TODO: determine whether every instance may log in a separate file, or force all instances
+        // to write in the same file
         _log_stream.open(_log_file, std::ofstream::out | std::ofstream::app);
-        add_stream(_log_stream);
-        set_output_log_level(0); // to connect the log file and solver
+        if (!_log_stream)
+        {
+            std::cerr << "Error opening logfile: " << std::strerror(errno) << std::endl;
+        }
+        else
+        {
+            add_stream(_log_stream);
+            set_output_log_level(0); // to connect the log file and solver
+        }
     }
 }
 

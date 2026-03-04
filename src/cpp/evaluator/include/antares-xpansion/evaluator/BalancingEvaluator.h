@@ -35,11 +35,15 @@ public:
       Benders::Criterion::Type criterion,
       std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>> problems,
       std::string solverName,
+      std::filesystem::path studyDir,
       int nbThreads = 1);
 
     std::map<Antares::Solver::WeeklyProblemId, PbOutput> ComputeCriterionAndPrice();
+    void setCriterionComputationInputs(
+      const Benders::Criterion::CriterionInputData& criterion_input_data);
 
 private:
+    std::unique_ptr<Benders::Criterion::CriterionComputation> criterion_computation_;
     Benders::Criterion::CriterionInputData buildPatterns(
       Benders::Criterion::Type criterion,
       const std::map<std::string, AreaInvestment>& areaInvestments);

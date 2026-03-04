@@ -4,9 +4,6 @@
 
 #include <antares/solver/lps/LpsFromAntares.h>
 
-#include "antares-xpansion/benders/benders_core/CriterionComputation.h"
-#include "antares-xpansion/benders/benders_core/CriterionLOL.h"
-#include "antares-xpansion/benders/benders_core/CriterionNPCAP.h"
 #include "antares-xpansion/benders/benders_core/SubproblemWorker.h"
 #include "antares-xpansion/benders/output/JsonWriter.h"
 #include "antares-xpansion/lpnamer/model/Problem.h"
@@ -22,11 +19,9 @@ class Evaluator
 public:
     Evaluator(Logger logger,
               std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>> problems,
+              std::filesystem::path studyDir,
               std::string solverName,
               int nbThreads = 1);
-
-    void setCriterionComputationInputs(
-      const Benders::Criterion::CriterionInputData& criterion_input_data);
 
 protected:
     void Run();
@@ -43,10 +38,9 @@ protected:
 protected:
     Logger logger;
     std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>>
-      problems;             ///< map of subproblems
-    std::string solverName; ///< Solver name
-
-    std::unique_ptr<Benders::Criterion::CriterionComputation> criterion_computation_;
+      problems;                     ///< map of subproblems
+    std::string solverName;         ///< Solver name
+    std::filesystem::path studyDir; ///< Path to the study, used to save MPS files in case of error
 
     int nbThreads; ///< Number of threads to use
 

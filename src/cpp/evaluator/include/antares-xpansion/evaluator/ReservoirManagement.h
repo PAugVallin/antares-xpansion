@@ -25,9 +25,12 @@ public:
     double initial_level;                    // initial level of the reservoir
     std::vector<double> max_generating;      // max_generating power for each week
     std::vector<double> max_pumping;         // max_pumping power for each week
-    std::vector<std::vector<double>> inflow; // inflow for hour of each week
+    std::vector<std::vector<double>> inflow; // inflow for hour of each week // week, scenario
     std::vector<double> bottom_rule_curve; // lowest level accepted without penalties for each week
     std::vector<double> upper_rule_curve;  // highest level accepted without penalties for each week
+    std::vector<std::vector<double>> optimal_trajectory; // week, scenario
+
+    void initializeOptimalTrajectory(int startWeek, int endWeek);
 
 private:
     void loadRuleCurves(const std::filesystem::path& inputPath);
@@ -51,9 +54,10 @@ private:
         initial_level(initial_level),
         max_generating(std::move(max_generating)),
         max_pumping(std::move(max_pumping)),
-        inflow(std::move(inflow)),
+        inflow(inflow),
         bottom_rule_curve(std::move(bottom_rule_curve)),
-        upper_rule_curve(std::move(upper_rule_curve))
+        upper_rule_curve(std::move(upper_rule_curve)),
+        optimal_trajectory(std::move(inflow)) // initializing the optimal trajectory here
     {
     }
 
@@ -64,22 +68,29 @@ private:
 class ReservoirManagement
 {
 public:
-    ReservoirManagement(const Reservoir& reservoir,
+    ReservoirManagement(Reservoir& reservoir,
                         double penalty_bottom_rule_curve = 0,
                         double penalty_upper_rule_curve = 0,
                         double penalty_final_level = 0,
                         bool force_final_level = false,
                         std::optional<double> final_level = std::nullopt,
-                        bool overflow = true);
+                        double cvar = 1.0);
 
     std::function<double(double)> get_penalty(int week, int len_week) const;
 
-    Reservoir reservoir;              // Current reservoir
+    void setReservoir(Reservoir& reservoir)
+    {
+        this->reservoir = reservoir;
+    }
+
+    Reservoir& reservoir;             // Current reservoir
     double penalty_bottom_rule_curve; // penalty per MWh if bottom curve is violated
     double penalty_upper_rule_curve;  // penalty per MWh if upper curve is violated
     double penalty_final_level;       // penalty per MWh if final level is not reached
     bool force_final_level;           // true -> final level is forced to final_level
     double final_level; // value of the final level to reached if forces. If not given, default
                         // value is reservoir.inital_level
-    bool overflow;      // true -> allow overflow of the reservoir
+    double cvar; // proportion of scenarios to take into account, sorted by cost. 1.0 -> take all
+                 // scenarios into account, 0.5 -> take only the 50% most expensive scenarios into
+                 // account, 0.0 -> take only the most expensive scenario into account.
 };

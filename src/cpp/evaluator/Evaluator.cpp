@@ -20,41 +20,15 @@ using namespace PlainData;
 /// @param nbThreads Number of threads to use
 Evaluator::Evaluator(Logger logger,
                      std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>> problems,
+                     std::filesystem::path studyDir,
                      std::string solverName,
                      int nbThreads):
     logger{std::move(logger)},
     problems(problems),
     solverName(solverName),
+    studyDir(studyDir),
     nbThreads(nbThreads)
 {
-}
-
-void Evaluator::setCriterionComputationInputs(
-  const Benders::Criterion::CriterionInputData& criterion_input_data)
-{
-    using enum Benders::Criterion::Type;
-    if (problems.empty())
-    {
-        throw std::runtime_error("No problems available");
-    }
-    auto& [id, problem] = *problems.begin();
-
-    switch (criterion_input_data.criterion)
-    {
-    case PositiveUnsuppliedEnergy:
-        criterion_computation_ = std::make_unique<Benders::Criterion::CriterionLOL>(
-          criterion_input_data,
-          problem);
-        break;
-    case NearPriceCapHours:
-        criterion_computation_ = std::make_unique<Benders::Criterion::CriterionNPCAP>(
-          criterion_input_data,
-          problem);
-        break;
-    default:
-        criterion_computation_.reset();
-        break;
-    }
 }
 
 /// @brief Set the constraints RHS values for a given subproblem
@@ -110,7 +84,21 @@ SubProblemData Evaluator::SolveSubproblem(std::shared_ptr<Problem> problem)
 {
     SubProblemData subPbData;
     Timer subproblem_timer;
-    problem->solve_lp();
+    int status = problem->solve_lp();
+    if (status != 0)
+    {
+        logger->display_message("ERROR: status for this problem was not 0. MPS file saved to disk "
+                                "in output folder for analysis.",
+                                LogUtils::LOGLEVEL::ERR,
+                                EVALUATOR_LOGGER_CONTEXT);
+        std::filesystem::path problemFileName("illformed_problem_year_"
+                                              + std::to_string(problem->mc_year) + "_week_"
+                                              + std::to_string(problem->week) + ".mps");
+        problem->write_prob_mps(studyDir / problemFileName);
+        logger->display_message("File saved at: " + studyDir.string(),
+                                LogUtils::LOGLEVEL::ERR,
+                                EVALUATOR_LOGGER_CONTEXT);
+    }
     subPbData.subproblem_cost = problem->get_lp_value();
     subPbData.subproblem_timer = subproblem_timer.elapsed();
     int nbSimplexIter = problem->get_splex_num_of_ite_last();

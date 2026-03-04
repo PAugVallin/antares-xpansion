@@ -323,20 +323,20 @@ void Reservoir::loadMaxPower(const std::filesystem::path& dir_study)
     }
 }
 
-ReservoirManagement::ReservoirManagement(const Reservoir& reservoir,
+ReservoirManagement::ReservoirManagement(Reservoir& reservoir,
                                          double penalty_bottom_rule_curve,
                                          double penalty_upper_rule_curve,
                                          double penalty_final_level,
                                          bool force_final_level,
                                          std::optional<double> final_level,
-                                         bool overflow):
+                                         double cvar):
     reservoir(reservoir),
     penalty_bottom_rule_curve(penalty_bottom_rule_curve),
     penalty_upper_rule_curve(penalty_upper_rule_curve),
     penalty_final_level(penalty_final_level),
     force_final_level(force_final_level),
     final_level(final_level.value_or(reservoir.initial_level)),
-    overflow(overflow)
+    cvar(cvar)
 {
 }
 
@@ -367,4 +367,16 @@ std::function<double(double)> ReservoirManagement::get_penalty(int week, int len
                                    * (reservoir.capacity - reservoir.upper_rule_curve[week])};
         return Interpolator::linearInterpolation(x, y);
     }
+}
+
+void Reservoir::initializeOptimalTrajectory(int startWeek, int endWeek)
+{
+    int nbWeeks = endWeek - startWeek + 2; // nb of week + 1
+    // inflow holds values for all possible MCYears, which can be a
+    // lot, but they are necessary at this point
+    int nbMCYears = inflow[0].size();
+    // initialize with initial levels
+    std::vector<std::vector<double>> initTraj(nbWeeks,
+                                              std::vector<double>(nbMCYears, initial_level));
+    optimal_trajectory = std::move(initTraj);
 }

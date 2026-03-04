@@ -86,7 +86,7 @@ GridCollection::GridCollection(const std::filesystem::path& filePath)
 
         if (!gridDefinitions.contains(gridID))
         {
-            GridDefinition gridDef{gridID, reservoirs, {}, {}};
+            GridDefinition gridDef{gridID, {}, {}, {}};
             gridDefinitions.emplace(gridID, gridDef);
         }
         gridDefinitions.at(gridID).addGridElement(pbName, type, cstName, areaName, min, max, step);
@@ -96,10 +96,10 @@ GridCollection::GridCollection(const std::filesystem::path& filePath)
             loadReservoirManagement(filePath.parent_path().parent_path().parent_path(), areaName);
         }
     }
-
+    // it is still required to set default reservoirs, which will generate grid values
     for (auto& gridDefinition: gridDefinitions | std::views::values)
     {
-        gridDefinition.generateGridValues();
+        gridDefinition.setReservoirs(reservoirs);
     }
 }
 
@@ -115,6 +115,7 @@ void GridCollection::loadReservoirManagement(const std::filesystem::path& studyP
 /// @brief Generate Grid values for all gridElements
 void GridDefinition::generateGridValues()
 {
+    // weekAreaConstraints.clear();
     for (auto& gridElement: gridElements)
     {
         adjustBoundaryValues(gridElement);

@@ -28,6 +28,7 @@ public:
                   std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>> problems,
                   GridDefinition& grid_definition,
                   std::string solverName,
+                  std::filesystem::path studyDir,
                   int nbThreads = 1);
     // virtual function to be overridable for the tests
     virtual std::map<Output::PointWeekScenarioKey, SubProblemData> ComputeCostsAndDuals();

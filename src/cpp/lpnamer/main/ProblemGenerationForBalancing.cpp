@@ -24,18 +24,10 @@ ProblemGenerationForBalancing::ProblemGenerationForBalancing(
   ConfigurationManager::ConfigDirectories directories,
   std::map<std::string, AreaInvestment>& areaInvestments,
   Logger logger,
-  const std::string& solverName,
+  std::shared_ptr<ProblemManager> problemManager,
   unsigned int startWeek,
-  unsigned int endWeek,
-  bool writePbFiles,
-  const std::string& problemFormat):
-    ProblemGenerationOptimSimu(directories,
-                               logger,
-                               solverName,
-                               startWeek,
-                               endWeek,
-                               writePbFiles,
-                               problemFormat),
+  unsigned int endWeek):
+    ProblemGenerationOptimSimu(directories, logger, problemManager, startWeek, endWeek),
     areaInvestments(areaInvestments)
 {
     fillDispProdVarIndicesAndMarginalCosts();
@@ -88,7 +80,7 @@ static std::unordered_map<std::string_view, size_t> buildVarToIndex(
 /// @brief Update the problems for the balancing calculation
 void ProblemGenerationForBalancing::fillDispProdVarIndicesAndMarginalCosts()
 {
-    const auto& firstProblem = problems.begin()->second;
+    const auto& firstProblem = problemManager->getProblems().begin()->second;
     auto vars = firstProblem->get_col_names();
     for (auto& s: vars)
     {
@@ -467,7 +459,7 @@ void ProblemGenerationForBalancing::applyActionToCluster(const AreaCluster& area
     std::vector<int> vecIndices(varIndices.begin(), varIndices.end());
     std::vector<char> boundTypes(NUMBER_OF_HOURS_PER_WEEK, boundType);
 
-    tbb::parallel_for_each(problems | std::views::values,
+    tbb::parallel_for_each(problemManager->getProblems() | std::views::values,
                            [&](const std::shared_ptr<Problem>& problem)
                            {
                                std::vector<double> localVarValues(NUMBER_OF_HOURS_PER_WEEK);
@@ -494,14 +486,14 @@ ProblemGenerationForBalancing::updateProblems(
     // For the first iteration, simuValues is empty and no modification should be applied
     if (simuValues.empty())
     {
-        return problems;
+        return problemManager->getProblems();
     }
 
     for (const auto& [areaCluster, action]: findAreaClustersToModify(simuValues))
     {
         applyActionToCluster(areaCluster, action);
     }
-    return problems;
+    return problemManager->getProblems();
 }
 
 bool ProblemGenerationForBalancing::isBalanced() const

@@ -37,12 +37,21 @@ struct GridElement
 struct GridDefinition
 {
     int gridID;
-    const std::map<std::string, Reservoir>& reservoirs;
+    std::map<std::string, Reservoir> reservoirs; // in the case of multistock, each gridDefinition
+                                                 // needs its own copy of the reservoirs that will
+                                                 // be modified as the computation goes
     std::vector<GridElement> gridElements;
     std::map<Week, AreaConstraintMaps>
       weekAreaConstraints; // key week, value map (key area name, value vector of rhs values)
 
     void generateGridValues();
+
+    void setReservoirs(const std::map<std::string, Reservoir>& reservoirs)
+    {
+        this->reservoirs = reservoirs;
+        generateGridValues();
+    }
+
     void addGridElement(const std::string& pbName,
                         const std::string& type,
                         const std::string& cstName,

@@ -39,9 +39,18 @@ public:
         return getValueFromKey<std::optional<double>>(finalLevelKey);
     }
 
-    bool getOverflow() const
+    double getCvar() const
     {
-        return getValueFromKey<bool>(overflowKey);
+        // lower and upper boundaries can be members of the Penalty class, if the need for more
+        // boundaries arises
+        double cvar = getValueFromKey<double>(cvarKey);
+        if (cvar < 0.0 || cvar > 1.0)
+        {
+            std::cout << "CVaR was read as " << cvar << "; it will be clamped to 0.0 or 1.0."
+                      << std::endl;
+            cvar = std::max(0.0, std::min(1.0, cvar));
+        }
+        return cvar;
     }
 
 private:
@@ -86,7 +95,7 @@ private:
     inline static const std::string penaltyFinalLevelKey = "penalty_final_level";
     inline static const std::string forceFinalLevelKey = "force_final_level";
     inline static const std::string finalLevelKey = "final_level";
-    inline static const std::string overflowKey = "overflow";
+    inline static const std::string cvarKey = "cvar";
 
     std::map<std::string, Penalty> penalties;
 

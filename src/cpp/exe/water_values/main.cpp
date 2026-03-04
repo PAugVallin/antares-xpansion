@@ -1,11 +1,14 @@
 
+#include <cerrno>
 #include <chrono>
 #include <iostream>
 
 #include "antares-xpansion/bellman_values/BellmanValues.h"
 #include "antares-xpansion/bellman_values/BellmanValuesExeOptions.h"
 #include "antares-xpansion/bellman_values/PenaltiesConfigReader.h"
+#include "antares-xpansion/bellman_values/ProblemManager.h"
 #include "antares-xpansion/benders/factories/LoggerFactories.h"
+#include "antares-xpansion/benders/logger/FilteredLogger.h"
 #include "antares-xpansion/lpnamer/main/ProblemGenerationForWaterValueCalculation.h"
 #include "antares-xpansion/lpnamer/problem_modifier/XpansionProblemsFromAntaresProvider.h"
 #include "malloc.h"
@@ -93,6 +96,9 @@ void saveValues(const std::filesystem::path& path,
         logger->display_message("Failed to open file: " + path.string(),
                                 LogUtils::LOGLEVEL::ERR,
                                 "Water Values");
+        logger->display_message("Error opening file: " + std::string(std::strerror(errno)),
+                                LogUtils::LOGLEVEL::ERR,
+                                "Water Values");
         return;
     }
 
@@ -169,6 +175,18 @@ std::vector<std::vector<double>> computeWaterValues(
     return derivatives;
 }
 
+void checkForValidGrid(std::shared_ptr<GridCollection> gridCollection)
+{
+    for (auto& grid: gridCollection->gridDefinitions | std::views::values)
+    {
+        if (grid.gridElements.size() > 1)
+        {
+            throw std::domain_error(
+              "Water values can currently only be computed for one gridElement per gridId.");
+        }
+    }
+}
+
 int main(int argc, char** argv)
 {
     try
@@ -184,32 +202,31 @@ int main(int argc, char** argv)
         bool antaresFormat = optionsParser.AntaresFormat();
         bool writePbFiles = optionsParser.WritePbFiles();
         const std::string problemFormat = optionsParser.ProblemFormat();
+        const bool useOptimalTrajectory = optionsParser.UseOptimalTrajectory();
+        const std::string verbosity = optionsParser.Verbosity();
+        // this bool needs to be implemented correctly after merging with the more recent use of
+        // YAML setting files
+        bool cacheProblems = optionsParser.CacheProblems();
 
         auto gridCollection = std::make_shared<GridCollection>(studyPath
                                                                / "user/water_values/grid.csv");
 
+        checkForValidGrid(gridCollection);
+
         const std::filesystem::path penaltiesConfigFilePath(studyPath
                                                             / "user/water_values/penalties.yaml");
 
-        // PenaltiesConfigReader will check whether the file exists and return default values if
-        // needed
+        // PenaltiesConfigReader will check whether the file exists and return default
+        // values if needed
         PenaltiesConfigReader pcr(penaltiesConfigFilePath);
-
-        ReservoirManagement reservoirManagement(gridCollection->reservoirs.begin()->second,
-                                                pcr.getPenaltyBottomRuleCurve(),
-                                                pcr.getPenaltyUpperRuleCurve(),
-                                                pcr.getPenaltyFinalLevel(),
-                                                pcr.getForceFinalLevel(),
-                                                pcr.getFinalLevel(),
-                                                pcr.getOverflow());
 
         ConfigurationManager::ConfigDirectories directories{
           .study_dir = studyPath,
           .simulation_dir = ConfigurationManager::generateOutputName(studyPath),
         };
 
-        // at this point, the simulation folder is already needed for logs (normally created when
-        // updating problems)
+        // at this point, the simulation folder is already needed for logs (normally created
+        // when updating problems)
         if (!std::filesystem::exists(directories.simulation_dir))
         {
             std::filesystem::create_directories(directories.simulation_dir);
@@ -217,19 +234,31 @@ int main(int argc, char** argv)
         std::filesystem::path logPath = directories.simulation_dir / "water_values_log.txt";
         std::ofstream{logPath}; // creates log file, since the FileLoggerFactory doesn't
         auto loggerFactory = FileAndStdoutLoggerFactory(logPath, false);
-        Logger logger = loggerFactory.get_logger();
+        Logger masterLogger = loggerFactory.get_logger();
+        std::shared_ptr<FilteredLogger> logger = std::make_shared<FilteredLogger>(
+          masterLogger,
+          LogUtils::StrToLogLevel(verbosity));
+
+        auto problemManager = std::make_shared<ProblemManager>(solverName,
+                                                               problemFormat,
+                                                               writePbFiles,
+                                                               cacheProblems,
+                                                               directories.simulation_dir
+                                                                 / "initial_problems");
 
         auto startProblemGeneration = std::chrono::system_clock::now();
-        logger->display_message(
-          "Generating problems (starting time: " + formatTime(startProblemGeneration) + ")");
-        ProblemGenerationForWaterValueCalculation pbg(directories,
-                                                      reservoirManagement,
-                                                      logger,
-                                                      solverName,
-                                                      startWeek,
-                                                      endWeek,
-                                                      writePbFiles,
-                                                      problemFormat);
+        logger->display_message("Generating problems (starting time: "
+                                  + formatTime(startProblemGeneration) + ")",
+                                LogUtils::LOGLEVEL::INFO,
+                                logger->CONTEXT);
+        ProblemGenerationForWaterValueCalculation pbg(
+          directories,
+          logger,
+          problemManager,
+          ProblemGenerationForWaterValueCalculation::getComputationModeFromGrid(
+            useOptimalTrajectory),
+          startWeek,
+          endWeek);
         auto endProblemGeneration = std::chrono::system_clock::now();
         logger->display_message("Problems generated (end time: " + formatTime(endProblemGeneration)
                                 + ")");
@@ -239,12 +268,40 @@ int main(int argc, char** argv)
                                 + formatDuration(elapsed_seconds));
 
         Output::VariationDeNiveauxDeStockData variationDeNiveauxDeStockData;
+
+        // initialize all reservoirs for the grid collection here with optimal trajectories
+        pbg.initializeOptimalTrajectories(gridCollection);
+
+        // here: loop on all grids
         for (auto& grid: gridCollection->gridDefinitions | std::views::values)
         {
+            logger->display_message("## GridDefinition ID: " + std::to_string(grid.gridID) + " ##");
+
+            // hypothesis: all gridElements are linked to a reservoir.
+            grid.setReservoirs(gridCollection->reservoirs);
+
+            // In the case of multistock, there should only be one reservoir per
+            // gridDefinition; in the case of multivariate (which we cannot compute water values
+            // for, yet), there would be more than one reservoir per gridDefinition
+            auto& gridElement = grid.gridElements[0];
+
+            logger->display_message("### Grid element area: " + gridElement.area + " ###");
+            // multistock here
+            // update the reservoir in ReservoirManagement based on the considered area
+            ReservoirManagement reservoirManagement(grid.reservoirs.at(gridElement.area),
+                                                    pcr.getPenaltyBottomRuleCurve(),
+                                                    pcr.getPenaltyUpperRuleCurve(),
+                                                    pcr.getPenaltyFinalLevel(),
+                                                    pcr.getForceFinalLevel(),
+                                                    pcr.getFinalLevel(),
+                                                    pcr.getCvar());
+            // this is also where we will update penalties if they need to be
+
             auto startProblemUpdate = std::chrono::system_clock::now();
             logger->display_message(
               "Updating problems (starting time: " + formatTime(startProblemUpdate) + ")");
-            auto problems = pbg.updateProblems(grid);
+
+            auto problems = pbg.updateProblems(grid, gridElement.area);
 
             auto endProblemUpdate = std::chrono::system_clock::now();
             logger->display_message("Updated problems (end time: " + formatTime(endProblemUpdate)
@@ -255,19 +312,69 @@ int main(int argc, char** argv)
             logger->display_message("Elapsed time for problem update: "
                                     + formatDuration(elapsed_update_seconds));
 
-            auto evaluator = GridEvaluator(logger, problems, grid, solverName, nbThreads);
-            auto bellmanValuesEvaluator = BellmanValues(evaluator, reservoirManagement);
+            logger->display_message("Instantiating GridEvaluator",
+                                    LogUtils::LOGLEVEL::DEBUG,
+                                    logger->CONTEXT);
+            auto evaluator = GridEvaluator(logger,
+                                           problems,
+                                           grid,
+                                           solverName,
+                                           directories.simulation_dir,
+                                           nbThreads);
+
+            logger->display_message("Instantiating BellmanValues",
+                                    LogUtils::LOGLEVEL::DEBUG,
+                                    logger->CONTEXT);
+            auto bellmanValuesEvaluator = BellmanValues(evaluator, reservoirManagement, logger);
+
+            logger->display_message("Computing Bellman values...");
             auto bellmanValues = bellmanValuesEvaluator.compute(nbLevels);
+            logger->display_message("Computed Bellman values");
+
+            std::string bellmanValuesFileName = std::to_string(grid.gridID) + "_" + gridElement.area
+                                                + "_bellman_values.csv";
+            saveValues(directories.simulation_dir / bellmanValuesFileName,
+                       bellmanValues,
+                       logger,
+                       false);
+
             auto levels = bellmanValuesEvaluator.getLevels();
             if (antaresFormat)
             {
                 bellmanValues = interpolateWeekVector(bellmanValues, 101);
                 levels = interpolateVector(levels, 101);
             }
+
+            logger->display_message("Computing water values...");
             auto waterValues = computeWaterValues(bellmanValues, levels);
-            std::string fileName = std::to_string(grid.gridID) + "_water_values.csv";
+            logger->display_message("Computed water values");
+
+            std::string fileName = std::to_string(grid.gridID) + "_" + gridElement.area
+                                   + "_water_values.csv";
             saveValues(directories.simulation_dir / fileName, waterValues, logger, antaresFormat);
+            logger->display_message("Saved water values to file");
+
+            if (pbg.getComputationMode()
+                == ProblemGenerationForWaterValueCalculation::WaterValueComputationMode::
+                  SEQUENTIAL_UPDATE_TRAJECTORY)
+            {
+                logger->display_message("Computing optimal trajectory...");
+
+                gridCollection->reservoirs.at(gridElement.area).optimal_trajectory
+                  = bellmanValuesEvaluator.computeOptimalTrajectories();
+
+                logger->display_message("Computed optimal trajectory");
+
+                std::string optimalTrajectoriesFileName = std::to_string(grid.gridID) + "_"
+                                                          + gridElement.area
+                                                          + "_optimal_trajectory.csv";
+                saveValues(directories.simulation_dir / optimalTrajectoriesFileName,
+                           gridCollection->reservoirs.at(gridElement.area).optimal_trajectory,
+                           logger,
+                           false);
+            }
         }
+        logger->display_message("Computing water values: Done!");
 
         return 0;
     }

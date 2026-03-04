@@ -30,24 +30,32 @@ static void CreateDirectories(const std::filesystem::path& output_path)
     }
 }
 
+/// @brief Static function determining the computation mode for water values. Can be multivariate,
+/// multistock, sequential
+/// @param grid the GridCollection based on which the mode must be determined
+/// @param useOptimalTrajectory a boolean that specifies whether to use optimal trajectories in a
+/// multistock context (default is false)
+/// @return
+ProblemGenerationForWaterValueCalculation::WaterValueComputationMode
+ProblemGenerationForWaterValueCalculation::getComputationModeFromGrid(bool useOptimalTrajectory)
+{
+    if (useOptimalTrajectory)
+    {
+        return WaterValueComputationMode::SEQUENTIAL_UPDATE_TRAJECTORY;
+    }
+    return WaterValueComputationMode::SEQUENTIAL_IGNORE_TRAJECTORY;
+}
+
 /// @brief Launch the simulation and save the problems satisfying startWeek <= week <= endweek
 ProblemGenerationForWaterValueCalculation::ProblemGenerationForWaterValueCalculation(
   ConfigurationManager::ConfigDirectories directories,
-  const ReservoirManagement& reservoirManagement,
   Logger logger,
-  const std::string& solverName,
+  std::shared_ptr<ProblemManager> problemManager,
+  const WaterValueComputationMode& computationMode,
   unsigned int startWeek,
-  unsigned int endWeek,
-  bool writePbFiles,
-  const std::string& problemFormat):
-    ProblemGenerationOptimSimu(directories,
-                               logger,
-                               solverName,
-                               startWeek,
-                               endWeek,
-                               writePbFiles,
-                               problemFormat),
-    reservoirManagement(reservoirManagement)
+  unsigned int endWeek):
+    ProblemGenerationOptimSimu(directories, logger, problemManager, startWeek, endWeek),
+    computationMode(computationMode)
 {
 }
 
@@ -55,20 +63,46 @@ ProblemGenerationForWaterValueCalculation::ProblemGenerationForWaterValueCalcula
 /// @param gridDefinition
 /// @return The modified problems
 std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>>
-ProblemGenerationForWaterValueCalculation::updateProblems(const GridDefinition& gridDefinition)
+ProblemGenerationForWaterValueCalculation::updateProblems(
+  const GridDefinition& gridDefinition,
+  const std::optional<std::string>& areaName)
 {
     using namespace std::string_literals;
 
     const auto log_file_path = directories.simulation_dir / "lp"s / "ProblemGenerationLog.txt"s;
 
     CreateDirectories(directories.simulation_dir);
-    auto logger = ProblemGenerationLog::BuildLogger(log_file_path,
-                                                    std::cout,
-                                                    "Problem Modification"s);
 
-    auto modifiedProblems = CleanProblemsForBellmanCalculations(directories.simulation_dir,
-                                                                log_file_path,
-                                                                gridDefinition);
+    logger->display_message("Updating problems");
+    logger->display_message(
+      "for area: " + areaName.value_or(gridDefinition.gridElements[0].area + " (assumed)"));
+    // check added instead of passing the entire reservoirManagement, in a multistock context
+    if (computationMode == WaterValueComputationMode::SEQUENTIAL_UPDATE_TRAJECTORY)
+    {
+        if (areaName == std::nullopt)
+        {
+            logger->display_message(
+              "The areaName for the current reservoir must be provided in the "
+              "context of a multistock computation. First element is assumed: "
+                + gridDefinition.gridElements[0].area,
+              LogUtils::LOGLEVEL::WARNING,
+              logger->CONTEXT);
+        }
+        logger->display_message("The optimal trajectories for the following reservoirs will be "
+                                "taken into account in problems:");
+        for (auto& reservoir: gridDefinition.reservoirs)
+        {
+            if (reservoir.second.area != areaName)
+            {
+                logger->display_message(reservoir.second.area);
+            }
+        }
+    }
+    auto modifiedProblems = cleanProblemsForBellmanCalculations(
+      directories.simulation_dir,
+      log_file_path,
+      gridDefinition,
+      areaName.value_or(gridDefinition.gridElements[0].area));
 
     return modifiedProblems;
 }
@@ -79,44 +113,46 @@ ProblemGenerationForWaterValueCalculation::updateProblems(const GridDefinition& 
 /// @param gridDefinition The gridDefinition
 /// @return The modified problems
 std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>>
-ProblemGenerationForWaterValueCalculation::CleanProblemsForBellmanCalculations(
+ProblemGenerationForWaterValueCalculation::cleanProblemsForBellmanCalculations(
   const std::filesystem::path& xpansion_output_dir,
   const std::filesystem::path& log_file_path,
-  const GridDefinition& gridDefinition)
+  const GridDefinition& gridDefinition,
+  const std::string& areaName)
 {
-    auto solver_log_manager = SolverLogManager(log_file_path);
+    logger->display_message("Cleaning problems for Bellman calculations");
     std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>> modifiedProblems;
 
     // Create directory for Bellman problems
     auto outputMpsPath = xpansion_output_dir / ("mps_" + std::to_string(gridDefinition.gridID));
     std::filesystem::create_directory(outputMpsPath);
+    auto problems = problemManager->getProblemIds();
     tbb::parallel_for_each(
       problems.begin(),
       problems.end(),
-      [&](auto& pb)
+      [&](auto& pbId)
       {
-          auto pbId = pb.first;
-          // needed if gridCollection contains multiple gridDefinitions
-          std::shared_ptr<Problem> problem = std::make_shared<Problem>(*(pb.second->clone()));
-          std::string pbName = "problem-" + std::to_string(pbId.year) + "-"
-                               + std::to_string(pbId.week) + "--optim-nb-1";
-          logger->display_message("Modifying problem: " + pbName);
-          cleanProblemForBellmanCalculations(problem, pbName, gridDefinition, pbId);
-          logger->display_message("Problem: " + pbName + " modified");
-          modifiedProblems[pbId] = problem;
-
-          if (writePbFiles)
+          //   auto pbId = pb.first;
+          if (startWeek <= pbId.week && pbId.week <= endWeek)
           {
-              switch (problemFormat)
+              // copy of the problem needed if gridCollection contains multiple
+              // gridDefinitions, and for multistock
+              // make_shared will be wrong about the counter here, resulting in a memory leak
+              // use shared_ptr instead
+              std::shared_ptr<Problem> problem = problemManager->getProblemCloneFromId(pbId);
+              std::string pbName = problemManager->getPbNameFromId(pbId);
+              logger->display_message("Modifying problem: " + pbName,
+                                      LogUtils::LOGLEVEL::DEBUG,
+                                      logger->CONTEXT);
+              cleanProblemForBellmanCalculations(problem, gridDefinition, areaName, pbName, pbId);
+              logger->display_message("Problem: " + pbName + " modified",
+                                      LogUtils::LOGLEVEL::DEBUG,
+                                      logger->CONTEXT);
+              modifiedProblems[pbId] = problem;
+
+              if (problemManager->writePbFiles())
               {
-              case ProblemsFormat::MPS_FILE:
-                  problem->write_prob_mps(outputMpsPath / (pbName + ".mps"));
-                  break;
-              case ProblemsFormat::OPTIMIZED:
-                  problem->save_prob(outputMpsPath / (pbName + ".svf"));
-                  break;
-                  // potential errors are handled by
-                  // problemsFormatFromString in constructor
+                  logger->display_message("Writing problem " + pbName + " to disk...");
+                  problemManager->saveProblemToFile(pbId, problem, outputMpsPath);
               }
           }
       });
@@ -151,8 +187,9 @@ inline std::string trimTrailingSpaces(const std::string& str)
 /// @param pbID The problem ID (year/week)
 void ProblemGenerationForWaterValueCalculation::cleanProblemForBellmanCalculations(
   std::shared_ptr<Problem> problem,
-  std::string& pbName,
   const GridDefinition& gridDefinition,
+  const std::string& areaName,
+  std::string& pbName,
   Antares::Solver::WeeklyProblemId pbID)
 {
     // Build index maps once
@@ -162,92 +199,142 @@ void ProblemGenerationForWaterValueCalculation::cleanProblemForBellmanCalculatio
     std::vector<std::string> colNames = problem->get_col_names(0, ncols - 1);
     std::vector<std::string> rowNames = problem->get_row_names(0, nrows - 1);
 
-    std::unordered_map<std::string, int> colNameToIndex;
-    std::unordered_map<std::string, int> rowNameToIndex;
+    // Collect indices to delete and bounds to change
+    AffectedColsAndRows affectedColsAndRows;
 
     for (int i = 0; i < ncols; ++i)
     {
-        colNameToIndex[trimTrailingSpaces(colNames[i])] = i;
+        affectedColsAndRows.colNameToIndex[trimTrailingSpaces(colNames[i])] = i;
     }
 
     for (int i = 0; i < nrows; ++i)
     {
-        rowNameToIndex[trimTrailingSpaces(rowNames[i])] = i;
+        affectedColsAndRows.rowNameToIndex[trimTrailingSpaces(rowNames[i])] = i;
     }
 
-    // Collect indices to delete and bounds to change
-    std::vector<int> colsToDelete;
-    std::vector<int> rowsToDelete;
-    std::vector<int> hydroProdCols;
-    std::vector<double> hydroProdBounds;
-
     int weekStart = (pbID.week - 1) * 168;
+
     int weekEnd = pbID.week * 168;
 
     for (const auto& gridElement: gridDefinition.gridElements)
     {
         if (gridElement.problemName == "all" || gridElement.problemName == pbName)
         {
-            double maxGen = gridDefinition.reservoirs.at(gridElement.area)
-                              .max_generating[pbID.week - 1]
-                            / Reservoir::hours_in_week;
-
-            for (int hour = weekStart; hour < weekEnd; ++hour)
-            {
-                std::string hourStr = std::to_string(hour);
-                const std::string& area = gridElement.area;
-
-                // ==== DELETE HydroLevel ====
-                {
-                    std::string name = "HydroLevel::area<" + area + ">::hour<" + hourStr + ">";
-                    int idx = checkedMapLookup(colNameToIndex, name, pbID);
-                    colsToDelete.push_back(idx);
-                }
-
-                // ==== DELETE Overflow ====
-                {
-                    std::string name = "Overflow::area<" + area + ">::hour<" + hourStr + ">";
-                    int idx = checkedMapLookup(colNameToIndex, name, pbID);
-                    colsToDelete.push_back(idx);
-                }
-
-                // ==== DELETE AreaHydroLevel constraint ====
-                {
-                    std::string name = "AreaHydroLevel::area<" + area + ">::hour<" + hourStr + ">";
-                    int idx = checkedMapLookup(rowNameToIndex, name, pbID);
-                    rowsToDelete.push_back(idx);
-                }
-
-                // ==== RESET HydroProd bounds ====
-                {
-                    std::string name = "HydProd::area<" + area + ">::hour<" + hourStr + ">";
-                    int idx = checkedMapLookup(colNameToIndex, name, pbID);
-                    hydroProdCols.push_back(idx);
-                    hydroProdBounds.push_back(maxGen);
-                }
-            }
+            // it was checked earlier that there is only one area in gridDefinition
+            cleanReservoirConstraints(problem,
+                                      gridDefinition.reservoirs.at(gridElement.area),
+                                      pbID,
+                                      affectedColsAndRows);
         }
     }
 
+    // other gridElements/reservoirs in a multistock context must be updated with their optimal
+    // trajectories, for this specific flag
+    if (gridDefinition.gridElements.size() == 1
+        && this->computationMode == WaterValueComputationMode::SEQUENTIAL_UPDATE_TRAJECTORY
+        && (gridDefinition.gridElements[0].problemName == "all"
+            || gridDefinition.gridElements[0].problemName == pbName))
+    {
+        for (auto& reservoir: gridDefinition.reservoirs)
+        {
+            if (reservoir.second.area != areaName)
+            {
+                cleanReservoirConstraints(problem, reservoir.second, pbID, affectedColsAndRows);
+                updateReservoirWithOptimalTrajectory(problem, reservoir.second, pbID);
+            }
+        }
+    }
     // Sort in descending order to preserve indices during deletion
-    std::sort(colsToDelete.rbegin(), colsToDelete.rend());
-    std::sort(rowsToDelete.rbegin(), rowsToDelete.rend());
+    std::sort(affectedColsAndRows.colsToDelete.rbegin(), affectedColsAndRows.colsToDelete.rend());
+    std::sort(affectedColsAndRows.rowsToDelete.rbegin(), affectedColsAndRows.rowsToDelete.rend());
 
     // Batch change bounds (must be done before deletions to preserve indices)
-    if (!hydroProdCols.empty())
+    if (!affectedColsAndRows.hydroProdCols.empty())
     {
-        problem->chg_bounds(hydroProdCols,
-                            std::vector<char>(hydroProdCols.size(), 'U'),
-                            hydroProdBounds);
+        problem->chg_bounds(affectedColsAndRows.hydroProdCols,
+                            std::vector<char>(affectedColsAndRows.hydroProdCols.size(), 'U'),
+                            affectedColsAndRows.hydroProdBounds);
     }
 
-    for (int idx: colsToDelete)
+    for (int idx: affectedColsAndRows.colsToDelete)
     {
         problem->del_cols(idx, idx);
     }
 
-    for (int idx: rowsToDelete)
+    for (int idx: affectedColsAndRows.rowsToDelete)
     {
         problem->del_rows(idx, idx);
+    }
+}
+
+void ProblemGenerationForWaterValueCalculation::cleanReservoirConstraints(
+  std::shared_ptr<Problem> problem,
+  const Reservoir& reservoir,
+  Antares::Solver::WeeklyProblemId pbID,
+  AffectedColsAndRows& affectedColsAndRows)
+{
+    double maxGen = reservoir.max_generating[pbID.week - 1] / Reservoir::hours_in_week;
+    const std::string& area = reservoir.area;
+    for (int hour = (pbID.week - 1) * 168; hour < pbID.week * 168; ++hour)
+    {
+        std::string hourStr = std::to_string(hour);
+        // ==== DELETE HydroLevel ===
+        {
+            std::string name = "HydroLevel::area<" + reservoir.area + ">::hour<"
+                               + std::to_string(hour) + ">";
+            int idx = checkedMapLookup(affectedColsAndRows.colNameToIndex, name, pbID);
+            affectedColsAndRows.colsToDelete.push_back(idx);
+        }
+
+        // ==== DELETE AreaHydroLevel constraint ====
+        {
+            std::string name = "AreaHydroLevel::area<" + area + ">::hour<" + hourStr + ">";
+            int idx = checkedMapLookup(affectedColsAndRows.rowNameToIndex, name, pbID);
+            affectedColsAndRows.rowsToDelete.push_back(idx);
+        }
+
+        // ==== RESET HydroProd bounds ====
+        {
+            std::string name = "HydProd::area<" + area + ">::hour<" + hourStr + ">";
+            int idx = checkedMapLookup(affectedColsAndRows.colNameToIndex, name, pbID);
+            affectedColsAndRows.hydroProdCols.push_back(idx);
+            affectedColsAndRows.hydroProdBounds.push_back(maxGen);
+        }
+    }
+}
+
+void ProblemGenerationForWaterValueCalculation::updateReservoirWithOptimalTrajectory(
+  std::shared_ptr<Problem> problem,
+  const Reservoir& reservoir,
+  Antares::Solver::WeeklyProblemId pbID)
+{
+    logger->display_message("Optimal trajectory size: "
+                              + std::to_string(reservoir.optimal_trajectory.size()),
+                            LogUtils::LOGLEVEL::DEBUG,
+                            logger->CONTEXT);
+    double optimalTrajectoryValue = -reservoir.optimal_trajectory[pbID.week][pbID.year - 1]
+                                    + reservoir.optimal_trajectory[pbID.week - 1][pbID.year - 1]
+                                    + reservoir.inflow[pbID.week - 1][pbID.year - 1];
+    logger->display_message("Optimal trajectory value: " + std::to_string(optimalTrajectoryValue),
+                            LogUtils::LOGLEVEL::DEBUG,
+                            logger->CONTEXT);
+    problem->fix_rhs_to("HydroPower::area<" + reservoir.area + ">::week<"
+                          + std::to_string(pbID.week - 1) + ">",
+                        optimalTrajectoryValue);
+}
+
+void ProblemGenerationForWaterValueCalculation::initializeOptimalTrajectories(
+  std::shared_ptr<GridCollection> gridCollection) const
+{
+    for (auto& reservoir: gridCollection->reservoirs | std::views::values)
+    {
+        logger->display_message("Initializing optimal trajectory for reservoir " + reservoir.area);
+        reservoir.initializeOptimalTrajectory(startWeek, endWeek);
+        logger->display_message("Reservoir " + reservoir.area + " has been initialized with "
+                                  + std::to_string(reservoir.optimal_trajectory.size()) + " by "
+                                  + std::to_string(reservoir.optimal_trajectory[0].size())
+                                  + " elements",
+                                LogUtils::LOGLEVEL::DEBUG,
+                                logger->CONTEXT);
     }
 }

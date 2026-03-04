@@ -12,6 +12,7 @@
 
 #include "ConfigurationManager.h"
 #include "ProblemGenerationOptions.h"
+#include "antares-xpansion/bellman_values/ProblemManager.h"
 #include "antares-xpansion/core/ProblemFormat.h"
 #include "antares-xpansion/helpers/ArchiveReader.h"
 #include "antares-xpansion/lpnamer/helper/ProblemGenerationLogger.h"
@@ -30,19 +31,15 @@ class ProblemGenerationOptimSimu
 public:
     explicit ProblemGenerationOptimSimu(ConfigurationManager::ConfigDirectories directories,
                                         Logger logger,
-                                        const std::string& solverName = "xpress",
+                                        std::shared_ptr<ProblemManager> problemManager,
                                         unsigned int startWeek = 1,
-                                        unsigned int endWeek = 52,
-                                        bool savePbFiles = false,
-                                        const std::string& problemFormat = "OPTIMIZED");
+                                        unsigned int endWeek = 52);
     virtual ~ProblemGenerationOptimSimu() = default;
     ConfigurationManager::ConfigDirectories
-      directories; /// Directories, used for the original problems generation
-    Logger logger; /// Logger used
-    std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>>
-      problems;                   /// Problems before any modification
-    unsigned int startWeek;       /// Start week of the problems to take into account
-    unsigned int endWeek;         /// End week of the problems to take into account
-    bool writePbFiles;            /// Flag to writePbFiles to memory
-    ProblemsFormat problemFormat; /// Problem format to be saved
+      directories;          /// Directories, used for the original problems generation
+    unsigned int startWeek; /// Start week of the problems to take into account
+    unsigned int endWeek;   /// End week of the problems to take into account
+    std::shared_ptr<ProblemManager> problemManager; /// The manager taking care of reading problems
+                                                    /// from disk, problem formats, etc.
+    Logger logger;                                  /// Logger used
 };

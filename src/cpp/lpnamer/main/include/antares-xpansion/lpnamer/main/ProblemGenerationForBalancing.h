@@ -49,11 +49,9 @@ public:
     explicit ProblemGenerationForBalancing(ConfigurationManager::ConfigDirectories directories,
                                            std::map<std::string, AreaInvestment>& areaInvestments,
                                            Logger logger,
-                                           const std::string& solverName = "xpress",
+                                           std::shared_ptr<ProblemManager> problemManager,
                                            unsigned int startWeek = 1,
-                                           unsigned int endWeek = 52,
-                                           bool savePbFiles = false,
-                                           const std::string& problemFormat = "OPTIMIZED");
+                                           unsigned int endWeek = 52);
     virtual ~ProblemGenerationForBalancing() = default;
     std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>> updateProblems(
       const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues);
