@@ -159,19 +159,18 @@ Inheritance diagram for BendersByBatch:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aad31473849cc7f9078dbcefc240bbf9e" id="r_aad31473849cc7f9078dbcefc240bbf9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aad31473849cc7f9078dbcefc240bbf9e">Run</a> () override</td></tr>
 <tr class="separator:aad31473849cc7f9078dbcefc240bbf9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a055a28f871d97cba325ece39c9c41c" id="r_a3a055a28f871d97cba325ece39c9c41c"><td class="memItemLeft" align="right" valign="top"><a id="a3a055a28f871d97cba325ece39c9c41c" name="a3a055a28f871d97cba325ece39c9c41c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>BuildCut</b> (const std::vector&lt; std::string &gt; &amp;batch_sub_problems, double *sum, std::vector&lt; double &gt; &amp;external_loop_criterion_current_batch)</td></tr>
-<tr class="memdesc:a3a055a28f871d97cba325ece39c9c41c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build subproblem cut Method to build subproblem cuts and add them to the Master problem. <br /></td></tr>
-<tr class="separator:a3a055a28f871d97cba325ece39c9c41c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace54013be6464114b46dddd0ab84a720" id="r_ace54013be6464114b46dddd0ab84a720"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ace54013be6464114b46dddd0ab84a720">BuildCut</a> (const std::vector&lt; std::string &gt; &amp;batch_sub_problems, double *batch_contribution_in_gap, std::vector&lt; double &gt; &amp;external_loop_criterion_current_batch, int &amp;local_solved)</td></tr>
+<tr class="memdesc:ace54013be6464114b46dddd0ab84a720"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build subproblem cut.  <br /></td></tr>
+<tr class="separator:ace54013be6464114b46dddd0ab84a720"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a594ae928909eba0fe12d8cfb4a723453" id="r_a594ae928909eba0fe12d8cfb4a723453"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a594ae928909eba0fe12d8cfb4a723453">BendersName</a> () const override</td></tr>
 <tr class="separator:a594ae928909eba0fe12d8cfb4a723453"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6f34aab301c559ab94f5de1ef615f54" id="r_ae6f34aab301c559ab94f5de1ef615f54"><td class="memItemLeft" align="right" valign="top"><a id="ae6f34aab301c559ab94f5de1ef615f54" name="ae6f34aab301c559ab94f5de1ef615f54"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>BendersMpi</b> (const <a class="el" href="structBendersBaseOptions.html">BendersBaseOptions</a> &amp;options, std::shared_ptr&lt; <a class="el" href="classILogger.html">ILogger</a> &gt; logger, std::shared_ptr&lt; <a class="el" href="classOutput_1_1OutputWriter.html">Output::OutputWriter</a> &gt; writer, mpi::environment &amp;env, mpi::communicator &amp;world, std::shared_ptr&lt; <a class="el" href="classMathLoggerDriver.html">MathLoggerDriver</a> &gt; mathLoggerDriver)</td></tr>
-<tr class="separator:ae6f34aab301c559ab94f5de1ef615f54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8383c8e81a533020ee71deb40c9e0a14" id="r_a8383c8e81a533020ee71deb40c9e0a14"><td class="memItemLeft" align="right" valign="top"><a id="a8383c8e81a533020ee71deb40c9e0a14" name="a8383c8e81a533020ee71deb40c9e0a14"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>BendersMpi</b> (const <a class="el" href="structBendersBaseOptions.html">BendersBaseOptions</a> &amp;options, std::shared_ptr&lt; <a class="el" href="classILogger.html">ILogger</a> &gt; logger, std::shared_ptr&lt; <a class="el" href="classOutput_1_1OutputWriter.html">Output::OutputWriter</a> &gt; writer, mpi::communicator &amp;world, std::shared_ptr&lt; <a class="el" href="classMathLoggerDriver.html">MathLoggerDriver</a> &gt; mathLoggerDriver)</td></tr>
+<tr class="separator:a8383c8e81a533020ee71deb40c9e0a14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classBendersMpi"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classBendersMpi')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classBendersMpi.html">BendersMpi</a></td></tr>
-<tr class="memitem:ae6f34aab301c559ab94f5de1ef615f54 inherit pub_methods_classBendersMpi" id="r_ae6f34aab301c559ab94f5de1ef615f54"><td class="memItemLeft" align="right" valign="top">
-&#160;</td><td class="memItemRight" valign="bottom"><b>BendersMpi</b> (const <a class="el" href="structBendersBaseOptions.html">BendersBaseOptions</a> &amp;options, std::shared_ptr&lt; <a class="el" href="classILogger.html">ILogger</a> &gt; logger, std::shared_ptr&lt; <a class="el" href="classOutput_1_1OutputWriter.html">Output::OutputWriter</a> &gt; writer, mpi::environment &amp;env, mpi::communicator &amp;world, std::shared_ptr&lt; <a class="el" href="classMathLoggerDriver.html">MathLoggerDriver</a> &gt; mathLoggerDriver)</td></tr>
-<tr class="separator:ae6f34aab301c559ab94f5de1ef615f54 inherit pub_methods_classBendersMpi"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8383c8e81a533020ee71deb40c9e0a14 inherit pub_methods_classBendersMpi" id="r_a8383c8e81a533020ee71deb40c9e0a14"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><b>BendersMpi</b> (const <a class="el" href="structBendersBaseOptions.html">BendersBaseOptions</a> &amp;options, std::shared_ptr&lt; <a class="el" href="classILogger.html">ILogger</a> &gt; logger, std::shared_ptr&lt; <a class="el" href="classOutput_1_1OutputWriter.html">Output::OutputWriter</a> &gt; writer, mpi::communicator &amp;world, std::shared_ptr&lt; <a class="el" href="classMathLoggerDriver.html">MathLoggerDriver</a> &gt; mathLoggerDriver)</td></tr>
+<tr class="separator:a8383c8e81a533020ee71deb40c9e0a14 inherit pub_methods_classBendersMpi"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afcf6259727ddfb67257174022337b25d inherit pub_methods_classBendersMpi" id="r_afcf6259727ddfb67257174022337b25d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBendersMpi.html#afcf6259727ddfb67257174022337b25d">launch</a> () override</td></tr>
 <tr class="separator:afcf6259727ddfb67257174022337b25d inherit pub_methods_classBendersMpi"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c55993b8d58a3d29c571947c5c13a93 inherit pub_methods_classBendersMpi" id="r_a5c55993b8d58a3d29c571947c5c13a93"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBendersMpi.html#a5c55993b8d58a3d29c571947c5c13a93">BendersName</a> () const override</td></tr>
@@ -326,6 +325,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>BroadcastSingleSubpbC
 <tr class="memitem:a0462daaecc499e043bb71ca885534581 inherit pro_methods_classBendersMpi" id="r_a0462daaecc499e043bb71ca885534581"><td class="memItemLeft" align="right" valign="top">
 void&#160;</td><td class="memItemRight" valign="bottom"><b>BroadcastXCut</b> ()</td></tr>
 <tr class="separator:a0462daaecc499e043bb71ca885534581 inherit pro_methods_classBendersMpi"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0688259b07752bfddb22b5b7f4d1e530 inherit pro_methods_classBendersMpi" id="r_a0688259b07752bfddb22b5b7f4d1e530"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>master_build_cuts</b> (const std::vector&lt; SubProblemDataMap &gt; &amp;gathered_subproblem_map)</td></tr>
+<tr class="separator:a0688259b07752bfddb22b5b7f4d1e530 inherit pro_methods_classBendersMpi"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0dd3342882fc0934b2d4fc00761e9c39 inherit pro_methods_classBendersMpi" id="r_a0dd3342882fc0934b2d4fc00761e9c39"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetSubproblemDataCostAndSimplexIter</b> (const std::vector&lt; SubProblemDataMap &gt; &amp;gathered_subproblem_map)</td></tr>
+<tr class="separator:a0dd3342882fc0934b2d4fc00761e9c39 inherit pro_methods_classBendersMpi"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aabf23b594567b46b3c5b39579d744fbf inherit pro_methods_classBendersMpi" id="r_aabf23b594567b46b3c5b39579d744fbf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBendersMpi.html#aabf23b594567b46b3c5b39579d744fbf">shouldParallelize</a> () const final</td></tr>
 <tr class="separator:aabf23b594567b46b3c5b39579d744fbf inherit pro_methods_classBendersMpi"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab495e10bbdb47e3ea330d16b416323fb inherit pro_methods_classBendersMpi" id="r_ab495e10bbdb47e3ea330d16b416323fb"><td class="memItemLeft" align="right" valign="top">
@@ -378,9 +383,9 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>ComputeSubpro
 void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateMaxCriterionArea</b> ()</td></tr>
 <tr class="separator:af51a498055d49e5fbfb1fb1464aebe3f inherit pro_methods_classBendersMpi"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classBendersBase"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_classBendersBase')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classBendersBase.html">BendersBase</a></td></tr>
-<tr class="memitem:a53da1aebd37b2d41f2df8c456580288d inherit pro_methods_classBendersBase" id="r_a53da1aebd37b2d41f2df8c456580288d"><td class="memItemLeft" align="right" valign="top">
-std::vector&lt; SubProblemNamesInCut &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>split_subproblem_data_pairs</b> (std::vector&lt; SubProblemDataMap &gt; &amp;gathered_subproblem_map, int n_cuts)</td></tr>
-<tr class="separator:a53da1aebd37b2d41f2df8c456580288d inherit pro_methods_classBendersBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad98097a9099ab7bb4072b4f0995cc9dd inherit pro_methods_classBendersBase" id="r_ad98097a9099ab7bb4072b4f0995cc9dd"><td class="memItemLeft" align="right" valign="top">
+std::vector&lt; SubProblemNamesInCut &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>split_subproblem_data_pairs</b> (const std::vector&lt; SubProblemDataMap &gt; &amp;gathered_subproblem_map, int n_cuts) const</td></tr>
+<tr class="separator:ad98097a9099ab7bb4072b4f0995cc9dd inherit pro_methods_classBendersBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af938b540f0daa0592257f5fb9fcfc80f inherit pro_methods_classBendersBase" id="r_af938b540f0daa0592257f5fb9fcfc80f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBendersBase.html#af938b540f0daa0592257f5fb9fcfc80f">update_best_ub</a> ()</td></tr>
 <tr class="memdesc:af938b540f0daa0592257f5fb9fcfc80f inherit pro_methods_classBendersBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update best upper bound and best optimal variables.  <br /></td></tr>
 <tr class="separator:af938b540f0daa0592257f5fb9fcfc80f inherit pro_methods_classBendersBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -424,6 +429,9 @@ std::pair&lt; std::vector&lt; int &gt;, std::vector&lt; int &gt; &gt;&#160;</td>
 <tr class="memitem:a860857ca470bee39de5a861716e9a81d inherit pro_methods_classBendersBase" id="r_a860857ca470bee39de5a861716e9a81d"><td class="memItemLeft" align="right" valign="top">
 std::shared_ptr&lt; <a class="el" href="classSubproblemWorker.html">SubproblemWorker</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>makeSubproblemWorker</b> (const std::pair&lt; std::string, VariableMap &gt; &amp;kvp) const</td></tr>
 <tr class="separator:a860857ca470bee39de5a861716e9a81d inherit pro_methods_classBendersBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93f2b5f28e7ebca4d3a64aa01afa378e inherit pro_methods_classBendersBase" id="r_a93f2b5f28e7ebca4d3a64aa01afa378e"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetBasisForSubproblem</b> (const std::string &amp;name, const std::vector&lt; int &gt; &amp;rstatus, const std::vector&lt; int &gt; &amp;cstatus)</td></tr>
+<tr class="separator:a93f2b5f28e7ebca4d3a64aa01afa378e inherit pro_methods_classBendersBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5602268b76294f5062fe654b656a462f inherit pro_methods_classBendersBase" id="r_a5602268b76294f5062fe654b656a462f"><td class="memItemLeft" align="right" valign="top">
 void&#160;</td><td class="memItemRight" valign="bottom"><b>GetSubproblemCutCache</b> (SubProblemDataMap &amp;subproblem_data_map)</td></tr>
 <tr class="separator:a5602268b76294f5062fe654b656a462f inherit pro_methods_classBendersBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -695,6 +703,40 @@ SubproblemsMapPtr&#160;</td><td class="memItemRight" valign="bottom"><b>subprobl
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classBendersBase.html">BendersBase</a>.</p>
+
+</div>
+</div>
+<a id="ace54013be6464114b46dddd0ab84a720" name="ace54013be6464114b46dddd0ab84a720"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace54013be6464114b46dddd0ab84a720">&#9670;&#160;</a></span>BuildCut()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BendersByBatch::BuildCut </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::string &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>batch_sub_problems</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *</td>          <td class="paramname"><span class="paramname"><em>batch_contribution_in_gap</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; double &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>external_loop_criterion_current_batch</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;</td>          <td class="paramname"><span class="paramname"><em>local_solved</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Build subproblem cut. </p>
+<p>Method to build subproblem cuts and add them to the Master problem </p>
 
 </div>
 </div>

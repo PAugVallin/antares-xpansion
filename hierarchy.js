@@ -86,6 +86,7 @@ var hierarchy =
     [ "Benders::Criterion::CriterionPattern", "classBenders_1_1Criterion_1_1CriterionPattern.html", null ],
     [ "Benders::Criterion::CriterionSingleInputData", "classBenders_1_1Criterion_1_1CriterionSingleInputData.html", null ],
     [ "CurrentIterationData", "structCurrentIterationData.html", null ],
+    [ "BendersFactory::Dependencies", "structBendersFactory_1_1Dependencies.html", null ],
     [ "DirectAccessScenarioToChronicleProvider", "classDirectAccessScenarioToChronicleProvider.html", null ],
     [ "Solver::DynamicLibrary", "classSolver_1_1DynamicLibrary.html", null ],
     [ "std::enable_shared_from_this", null, [
