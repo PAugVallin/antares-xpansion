@@ -13,7 +13,7 @@ var searchData=
   ['set_5fsimplex_5fiter_10',['set_simplex_iter',['../classProblem.html#ae9ba517850933fd58e17a3577a1d5e47',1,'Problem::set_simplex_iter()'],['../classSolverAbstract.html#a97f44df1f487cf071dc02da3c61c18c6',1,'SolverAbstract::set_simplex_iter()'],['../classSolverXpress.html#ae05ef3b1c62d0c167b42c6a705a123a7',1,'SolverXpress::set_simplex_iter()'],['../classSolverCbc.html#a68718ab7aa3ff1fd4ebc7c7130d9e827',1,'SolverCbc::set_simplex_iter()'],['../classSolverClp.html#aa97f77674fc7b9d90f67ea5c7dc5a100',1,'SolverClp::set_simplex_iter()'],['../classNOOPSolver.html#a2d05cd75df0d79c7efa58bdfefb65c20',1,'NOOPSolver::set_simplex_iter()']]],
   ['set_5fthreads_11',['set_threads',['../classProblem.html#a4c2bc9d5b720e92404bfb9179a0b0194',1,'Problem::set_threads()'],['../classSolverAbstract.html#aa674498f3551a95f52709836164eb08d',1,'SolverAbstract::set_threads()'],['../classSolverXpress.html#af52039f789a9248de6577e8df8c3d221',1,'SolverXpress::set_threads()'],['../classSolverCbc.html#ae74eff3a7eec1b18176540899f972776',1,'SolverCbc::set_threads()'],['../classSolverClp.html#a014b8e12d2ec5afb0acd45f0b87ec0a2',1,'SolverClp::set_threads()'],['../classNOOPSolver.html#a18a6262adb840a58647b7c41c4fdfbc7',1,'NOOPSolver::set_threads()']]],
   ['setcoeff_12',['setCoeff',['../classAdditionalConstraint.html#aa88a0b0d0dc79999ae5e92ae200183a9',1,'AdditionalConstraint']]],
-  ['setconstraintsrhsvalues_13',['SetConstraintsRHSValues',['../classGridEvaluator.html#ab2ded9fe41cc2f3643262aa231c99168',1,'GridEvaluator']]],
+  ['setconstraintsrhsvalues_13',['SetConstraintsRHSValues',['../classEvaluator.html#afdf233a75b89cadb5c9423a9624f00b6',1,'Evaluator']]],
   ['setproblems_14',['setProblems',['../classProblemManager.html#a11cea24674022be0a9569476544935de',1,'ProblemManager']]],
   ['setsubproblemsvariablesindices_15',['SetSubproblemsVariablesIndices',['../classBendersBase.html#a5845635a9719841fc3abdb70312dd389',1,'BendersBase']]],
   ['settingsreader_16',['SettingsReader',['../classSettingsReader.html#a626e85953b4356ea49a4686577fb3a8a',1,'SettingsReader']]],
@@ -27,7 +27,7 @@ var searchData=
   ['solverclp_24',['SolverClp',['../classSolverClp.html#a2187e8b150f471557445330c9942424d',1,'SolverClp']]],
   ['solverfactory_25',['SolverFactory',['../classSolverFactory.html#ad70db765e0de8baa6de02b29295dfce7',1,'SolverFactory']]],
   ['solverxpress_26',['SolverXpress',['../classSolverXpress.html#a3fa04264091ce029e091b1c3eac8c560',1,'SolverXpress']]],
-  ['solvesubproblem_27',['SolveSubproblem',['../classGridEvaluator.html#a3709c4f7f11e7927d5d1880a5b9913ba',1,'GridEvaluator']]],
+  ['solvesubproblem_27',['SolveSubproblem',['../classEvaluator.html#a738151112dc02e46641ba9b36235f72d',1,'Evaluator']]],
   ['studyupdater_28',['StudyUpdater',['../classStudyUpdater.html#ac386a6ced87a6a4315ed2c46f574601e',1,'StudyUpdater']]],
   ['subproblemweight_29',['SubproblemWeight',['../classBendersBase.html#ab979fd9e6fd791c6b01d244da33ba849',1,'BendersBase']]],
   ['subproblemworker_30',['SubproblemWorker',['../classSubproblemWorker.html#a4353df6111363aa803afcfa82c21bd2d',1,'SubproblemWorker']]]

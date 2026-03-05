@@ -1,0 +1,449 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Antares Xpansion" />
+<meta property="og:image" content="https://github.com/AntaresSimulatorTeam/antares-xpansion/blob/develop/docs/assets/logo.png" />
+<meta property="og:description" content="Investment simulations for Antares studies." />
+<meta property="og:url" content="https://github.com/AntaresSimulatorTeam/antares-xpansion/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://github.com/AntaresSimulatorTeam/antares-xpansion/blob/develop/docs/assets/logo.png" />
+<meta name="twitter:title" content="Antares Xpansion" />
+<meta name="twitter:description" content="Investment simulations for Antares studies." />
+<!-- END twitter metadata -->
+<title>Antares Xpansion: Evaluator Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://github.com/AntaresSimulatorTeam/antares-xpansion/ -->
+<a href="https://github.com/AntaresSimulatorTeam/antares-xpansion" class="github-corner" title="View source on GitHub" target="_blank">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Antares Xpansion
+   </div>
+   <div id="projectbrief">Investment simulations for Antares studies</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classEvaluator.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#friends">Friends</a> &#124;
+<a href="classEvaluator-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Evaluator Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Class to compute Stock levels variation.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Evaluator_8h_source.html">Evaluator.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for Evaluator:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classEvaluator.png" usemap="#Evaluator_map" alt=""/>
+  <map id="Evaluator_map" name="Evaluator_map">
+<area href="classGridEvaluator.html" title="Class to compute Stock levels variation." alt="GridEvaluator" shape="rect" coords="0,56,282,80"/>
+<area href="structBellmanValuesComputeTest_1_1GridEvaluatorMock.html" alt="BellmanValuesComputeTest::GridEvaluatorMock" shape="rect" coords="0,112,282,136"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a2311bc2e0eef4270d9305d482b377569" id="r_a2311bc2e0eef4270d9305d482b377569"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2311bc2e0eef4270d9305d482b377569">Evaluator</a> (Logger logger, std::map&lt; Antares::Solver::WeeklyProblemId, std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; &gt; <a class="el" href="#aa63c020e9d9fdaabb50ab973abe80484">problems</a>, std::filesystem::path <a class="el" href="#a6d3017bf2eb75191c62a95885a7aff78">studyDir</a>, std::string <a class="el" href="#abb5b4a4369b84c93a65c657d80967964">solverName</a>, int <a class="el" href="#ab38f95115602148511c854f0a4562dec">nbThreads</a>=1)</td></tr>
+<tr class="memdesc:a2311bc2e0eef4270d9305d482b377569"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
+<tr class="separator:a2311bc2e0eef4270d9305d482b377569"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a57bdb4d18583dbfbb1b4a89053ed9892" id="r_a57bdb4d18583dbfbb1b4a89053ed9892"><td class="memItemLeft" align="right" valign="top"><a id="a57bdb4d18583dbfbb1b4a89053ed9892" name="a57bdb4d18583dbfbb1b4a89053ed9892"></a>
+std::atomic&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>totalSimplexIter</b> = 0</td></tr>
+<tr class="memdesc:a57bdb4d18583dbfbb1b4a89053ed9892"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total number of simplex iterations. <br /></td></tr>
+<tr class="separator:a57bdb4d18583dbfbb1b4a89053ed9892"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06b16a7387ce34c6608d7ec459a6febc" id="r_a06b16a7387ce34c6608d7ec459a6febc"><td class="memItemLeft" align="right" valign="top"><a id="a06b16a7387ce34c6608d7ec459a6febc" name="a06b16a7387ce34c6608d7ec459a6febc"></a>
+std::atomic&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>totalSubPbTimer</b> = 0</td></tr>
+<tr class="memdesc:a06b16a7387ce34c6608d7ec459a6febc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total time spent solving subproblems. <br /></td></tr>
+<tr class="separator:a06b16a7387ce34c6608d7ec459a6febc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefe36433ac4de788260f9943e9b59f0a" id="r_aefe36433ac4de788260f9943e9b59f0a"><td class="memItemLeft" align="right" valign="top"><a id="aefe36433ac4de788260f9943e9b59f0a" name="aefe36433ac4de788260f9943e9b59f0a"></a>
+std::atomic&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>totalPbModifTimer</b> = 0</td></tr>
+<tr class="memdesc:aefe36433ac4de788260f9943e9b59f0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total time spent modifying subproblems. <br /></td></tr>
+<tr class="separator:aefe36433ac4de788260f9943e9b59f0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:ab01955a82723ce73c9c5af70524bc7e6" id="r_ab01955a82723ce73c9c5af70524bc7e6"><td class="memItemLeft" align="right" valign="top"><a id="ab01955a82723ce73c9c5af70524bc7e6" name="ab01955a82723ce73c9c5af70524bc7e6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Run</b> ()</td></tr>
+<tr class="memdesc:ab01955a82723ce73c9c5af70524bc7e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the ProcessSubproblem method in parallel for each subproblem. <br /></td></tr>
+<tr class="separator:ab01955a82723ce73c9c5af70524bc7e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef12ec1b38f890fa0d760312b98793da" id="r_aef12ec1b38f890fa0d760312b98793da"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef12ec1b38f890fa0d760312b98793da">ProcessSubproblem</a> (const Antares::Solver::WeeklyProblemId, std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; subProblem)=0</td></tr>
+<tr class="separator:aef12ec1b38f890fa0d760312b98793da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdf233a75b89cadb5c9423a9624f00b6" id="r_afdf233a75b89cadb5c9423a9624f00b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afdf233a75b89cadb5c9423a9624f00b6">SetConstraintsRHSValues</a> (const std::map&lt; std::string, double &gt; &amp;rhsValues, std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; subProblem)</td></tr>
+<tr class="memdesc:afdf233a75b89cadb5c9423a9624f00b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the constraints RHS values for a given subproblem.  <br /></td></tr>
+<tr class="separator:afdf233a75b89cadb5c9423a9624f00b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a738151112dc02e46641ba9b36235f72d" id="r_a738151112dc02e46641ba9b36235f72d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structPlainData_1_1SubProblemData.html">SubProblemData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a738151112dc02e46641ba9b36235f72d">SolveSubproblem</a> (std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; subProblem)</td></tr>
+<tr class="memdesc:a738151112dc02e46641ba9b36235f72d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solve the subproblem and return the cost.  <br /></td></tr>
+<tr class="separator:a738151112dc02e46641ba9b36235f72d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfb7da49e3103d3d9264dde453ec7ac0" id="r_adfb7da49e3103d3d9264dde453ec7ac0"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adfb7da49e3103d3d9264dde453ec7ac0">GetConstraintName</a> (const Antares::Solver::WeeklyProblemId id, const std::string &amp;area, const std::string &amp;constraint) const</td></tr>
+<tr class="memdesc:adfb7da49e3103d3d9264dde453ec7ac0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the constraint in the mps file.  <br /></td></tr>
+<tr class="separator:adfb7da49e3103d3d9264dde453ec7ac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a14f958bb81d8847e3c1166b5ef902b03" id="r_a14f958bb81d8847e3c1166b5ef902b03"><td class="memItemLeft" align="right" valign="top"><a id="a14f958bb81d8847e3c1166b5ef902b03" name="a14f958bb81d8847e3c1166b5ef902b03"></a>
+Logger&#160;</td><td class="memItemRight" valign="bottom"><b>logger</b></td></tr>
+<tr class="separator:a14f958bb81d8847e3c1166b5ef902b03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa63c020e9d9fdaabb50ab973abe80484" id="r_aa63c020e9d9fdaabb50ab973abe80484"><td class="memItemLeft" align="right" valign="top"><a id="aa63c020e9d9fdaabb50ab973abe80484" name="aa63c020e9d9fdaabb50ab973abe80484"></a>
+std::map&lt; Antares::Solver::WeeklyProblemId, std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>problems</b></td></tr>
+<tr class="memdesc:aa63c020e9d9fdaabb50ab973abe80484"><td class="mdescLeft">&#160;</td><td class="mdescRight">map of subproblems <br /></td></tr>
+<tr class="separator:aa63c020e9d9fdaabb50ab973abe80484"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb5b4a4369b84c93a65c657d80967964" id="r_abb5b4a4369b84c93a65c657d80967964"><td class="memItemLeft" align="right" valign="top"><a id="abb5b4a4369b84c93a65c657d80967964" name="abb5b4a4369b84c93a65c657d80967964"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>solverName</b></td></tr>
+<tr class="memdesc:abb5b4a4369b84c93a65c657d80967964"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solver name. <br /></td></tr>
+<tr class="separator:abb5b4a4369b84c93a65c657d80967964"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d3017bf2eb75191c62a95885a7aff78" id="r_a6d3017bf2eb75191c62a95885a7aff78"><td class="memItemLeft" align="right" valign="top"><a id="a6d3017bf2eb75191c62a95885a7aff78" name="a6d3017bf2eb75191c62a95885a7aff78"></a>
+std::filesystem::path&#160;</td><td class="memItemRight" valign="bottom"><b>studyDir</b></td></tr>
+<tr class="memdesc:a6d3017bf2eb75191c62a95885a7aff78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path to the study, used to save MPS files in case of error. <br /></td></tr>
+<tr class="separator:a6d3017bf2eb75191c62a95885a7aff78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab38f95115602148511c854f0a4562dec" id="r_ab38f95115602148511c854f0a4562dec"><td class="memItemLeft" align="right" valign="top"><a id="ab38f95115602148511c854f0a4562dec" name="ab38f95115602148511c854f0a4562dec"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>nbThreads</b></td></tr>
+<tr class="memdesc:ab38f95115602148511c854f0a4562dec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of threads to use. <br /></td></tr>
+<tr class="separator:ab38f95115602148511c854f0a4562dec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d934d52d6065609102251fa68deb859" id="r_a6d934d52d6065609102251fa68deb859"><td class="memItemLeft" align="right" valign="top"><a id="a6d934d52d6065609102251fa68deb859" name="a6d934d52d6065609102251fa68deb859"></a>
+<a class="el" href="classSolverLogManager.html">SolverLogManager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>solver_log_manager</b></td></tr>
+<tr class="separator:a6d934d52d6065609102251fa68deb859"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:a0afc96580776fee8e951326fee49bc37" id="r_a0afc96580776fee8e951326fee49bc37"><td class="memItemLeft" align="right" valign="top"><a id="a0afc96580776fee8e951326fee49bc37" name="a0afc96580776fee8e951326fee49bc37"></a>
+<a class="el" href="classclass.html">class</a>&#160;</td><td class="memItemRight" valign="bottom"><b>BellmanValues</b></td></tr>
+<tr class="separator:a0afc96580776fee8e951326fee49bc37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class to compute Stock levels variation. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a2311bc2e0eef4270d9305d482b377569" name="a2311bc2e0eef4270d9305d482b377569"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2311bc2e0eef4270d9305d482b377569">&#9670;&#160;</a></span>Evaluator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Evaluator::Evaluator </td>
+          <td>(</td>
+          <td class="paramtype">Logger</td>          <td class="paramname"><span class="paramname"><em>logger</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::map&lt; Antares::Solver::WeeklyProblemId, std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; &gt;</td>          <td class="paramname"><span class="paramname"><em>problems</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::filesystem::path</td>          <td class="paramname"><span class="paramname"><em>studyDir</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>solverName</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>nbThreads</em></span><span class="paramdefsep"> = </span><span class="paramdefval">1</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">logger</td><td>Logger </td></tr>
+    <tr><td class="paramname">problems</td><td>map of subproblems to evaluate </td></tr>
+    <tr><td class="paramname">solverName</td><td>Name of the solver to use </td></tr>
+    <tr><td class="paramname">nbThreads</td><td>Number of threads to use </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="adfb7da49e3103d3d9264dde453ec7ac0" name="adfb7da49e3103d3d9264dde453ec7ac0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfb7da49e3103d3d9264dde453ec7ac0">&#9670;&#160;</a></span>GetConstraintName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Evaluator::GetConstraintName </td>
+          <td>(</td>
+          <td class="paramtype">const Antares::Solver::WeeklyProblemId</td>          <td class="paramname"><span class="paramname"><em>id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>area</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>constraint</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the name of the constraint in the mps file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>ID of the subproblem </td></tr>
+    <tr><td class="paramname">area</td><td>The name of the area </td></tr>
+    <tr><td class="paramname">constraint</td><td>The name of the constraint </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The name of the constraint in the mps file </dd></dl>
+
+</div>
+</div>
+<a id="aef12ec1b38f890fa0d760312b98793da" name="aef12ec1b38f890fa0d760312b98793da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef12ec1b38f890fa0d760312b98793da">&#9670;&#160;</a></span>ProcessSubproblem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Evaluator::ProcessSubproblem </td>
+          <td>(</td>
+          <td class="paramtype">const Antares::Solver::WeeklyProblemId</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>subProblem</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classGridEvaluator.html#ad3ccc5fd1e5153603477bec1b846254f">GridEvaluator</a>.</p>
+
+</div>
+</div>
+<a id="afdf233a75b89cadb5c9423a9624f00b6" name="afdf233a75b89cadb5c9423a9624f00b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdf233a75b89cadb5c9423a9624f00b6">&#9670;&#160;</a></span>SetConstraintsRHSValues()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Evaluator::SetConstraintsRHSValues </td>
+          <td>(</td>
+          <td class="paramtype">const std::map&lt; std::string, double &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>rhsValues</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>subProblem</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the constraints RHS values for a given subproblem. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rhsValues</td><td>The RHS values to set </td></tr>
+    <tr><td class="paramname">subProblem</td><td>The subproblem </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a738151112dc02e46641ba9b36235f72d" name="a738151112dc02e46641ba9b36235f72d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a738151112dc02e46641ba9b36235f72d">&#9670;&#160;</a></span>SolveSubproblem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structPlainData_1_1SubProblemData.html">SubProblemData</a> Evaluator::SolveSubproblem </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>problem</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Solve the subproblem and return the cost. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">problem</td><td>The subproblem to solve </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The data of the solved subproblem : cost and dualValues </dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>src/cpp/evaluator/include/antares-xpansion/evaluator/<a class="el" href="Evaluator_8h_source.html">Evaluator.h</a></li>
+<li>src/cpp/evaluator/<b>Evaluator.cpp</b></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classEvaluator.html">Evaluator</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -22,7 +22,7 @@ var searchData=
   ['compute_19',['compute',['../classBellmanValues.html#a2de0fad8531906316b8e0a33d245abee',1,'BellmanValues']]],
   ['compute_5fnode_5fduration_20',['compute_node_duration',['../classuser__input__translation_1_1UserInputTranslator.html#ad05f72e31d614d355f4bdb566d95f00a',1,'user_input_translation::UserInputTranslator']]],
   ['compute_5fnode_5ffull_5fprobability_21',['compute_node_full_probability',['../classuser__input__translation_1_1UserInputTranslator.html#a2b2f4498f69554ce1805d0bfdab6a90c',1,'user_input_translation::UserInputTranslator']]],
-  ['computecostsandduals_22',['ComputeCostsAndDuals',['../classGridEvaluator.html#a0c9c1f352acc9f6a88745d43fa291bb3',1,'GridEvaluator::ComputeCostsAndDuals()'],['../structBellmanValuesComputeTest_1_1GridEvaluatorMock.html#ab8833854eeb733e4efaab0bd3c118aec',1,'BellmanValuesComputeTest::GridEvaluatorMock::ComputeCostsAndDuals()']]],
+  ['computecostsandduals_22',['ComputeCostsAndDuals',['../classGridEvaluator.html#ab80834dbbb3439c7da1b376f7245c891',1,'GridEvaluator::ComputeCostsAndDuals()'],['../structBellmanValuesComputeTest_1_1GridEvaluatorMock.html#a107a207fde69cbafc066e0f74f341e88',1,'BellmanValuesComputeTest::GridEvaluatorMock::ComputeCostsAndDuals()']]],
   ['computecriterion_23',['ComputeCriterion',['../classBenders_1_1Criterion_1_1CriterionComputation.html#ab2bde9110d81505551c5f526bc840535',1,'Benders::Criterion::CriterionComputation']]],
   ['computenewcapacities_24',['computeNewCapacities',['../classStudyUpdateLinkParameterStrategy.html#a7bc3dca99fbf78003a2438a394afcef0',1,'StudyUpdateLinkParameterStrategy']]],
   ['constructadditionalconstraints_25',['constructAdditionalConstraints',['../classAdditionalConstraints.html#a0616e02d19f02fc94b1c26fe40265278',1,'AdditionalConstraints']]],

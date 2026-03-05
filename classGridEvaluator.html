@@ -157,83 +157,107 @@ Inheritance diagram for GridEvaluator:</div>
  <div class="center">
   <img src="classGridEvaluator.png" usemap="#GridEvaluator_map" alt=""/>
   <map id="GridEvaluator_map" name="GridEvaluator_map">
-<area href="structBellmanValuesComputeTest_1_1GridEvaluatorMock.html" alt="BellmanValuesComputeTest::GridEvaluatorMock" shape="rect" coords="0,56,282,80"/>
+<area href="classEvaluator.html" title="Class to compute Stock levels variation." alt="Evaluator" shape="rect" coords="0,0,282,24"/>
+<area href="structBellmanValuesComputeTest_1_1GridEvaluatorMock.html" alt="BellmanValuesComputeTest::GridEvaluatorMock" shape="rect" coords="0,112,282,136"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae0c2093b1c7a8d7adb6947e29556f5e7" id="r_ae0c2093b1c7a8d7adb6947e29556f5e7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae0c2093b1c7a8d7adb6947e29556f5e7">GridEvaluator</a> (Logger logger, std::map&lt; Antares::Solver::WeeklyProblemId, std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; &gt; <a class="el" href="#a0afbedfd9b1ef4f2158f9430279cb33e">problems</a>, <a class="el" href="structGridDefinition.html">GridDefinition</a> &amp;grid_definition, std::string <a class="el" href="#aab7ade345e6d95ed0c4500550ae959ae">solverName</a>, std::filesystem::path studyDir, int <a class="el" href="#ace707d90179e06185d6426dc0f007525">nbThreads</a>=1)</td></tr>
-<tr class="memdesc:ae0c2093b1c7a8d7adb6947e29556f5e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
-<tr class="separator:ae0c2093b1c7a8d7adb6947e29556f5e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c9c1f352acc9f6a88745d43fa291bb3" id="r_a0c9c1f352acc9f6a88745d43fa291bb3"><td class="memItemLeft" align="right" valign="top">virtual std::map&lt; <a class="el" href="structOutput_1_1PointWeekScenarioKey.html">Output::PointWeekScenarioKey</a>, <a class="el" href="structGridPointResult.html">GridPointResult</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c9c1f352acc9f6a88745d43fa291bb3">ComputeCostsAndDuals</a> ()</td></tr>
-<tr class="memdesc:a0c9c1f352acc9f6a88745d43fa291bb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Launch the Stock level variation computation.  <br /></td></tr>
-<tr class="separator:a0c9c1f352acc9f6a88745d43fa291bb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcfd944e98b5b613fd26b8aa18bcbd67" id="r_adcfd944e98b5b613fd26b8aa18bcbd67"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adcfd944e98b5b613fd26b8aa18bcbd67">GridEvaluator</a> (Logger logger, std::map&lt; Antares::Solver::WeeklyProblemId, std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; &gt; <a class="el" href="classEvaluator.html#aa63c020e9d9fdaabb50ab973abe80484">problems</a>, <a class="el" href="structGridDefinition.html">GridDefinition</a> &amp;grid_definition, std::filesystem::path <a class="el" href="classEvaluator.html#a6d3017bf2eb75191c62a95885a7aff78">studyDir</a>, std::string <a class="el" href="classEvaluator.html#abb5b4a4369b84c93a65c657d80967964">solverName</a>, int <a class="el" href="classEvaluator.html#ab38f95115602148511c854f0a4562dec">nbThreads</a>=1)</td></tr>
+<tr class="memdesc:adcfd944e98b5b613fd26b8aa18bcbd67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
+<tr class="separator:adcfd944e98b5b613fd26b8aa18bcbd67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab80834dbbb3439c7da1b376f7245c891" id="r_ab80834dbbb3439c7da1b376f7245c891"><td class="memItemLeft" align="right" valign="top">virtual std::map&lt; <a class="el" href="structOutput_1_1PointWeekScenarioKey.html">Output::PointWeekScenarioKey</a>, <a class="el" href="structPlainData_1_1SubProblemData.html">SubProblemData</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab80834dbbb3439c7da1b376f7245c891">ComputeCostsAndDuals</a> ()</td></tr>
+<tr class="memdesc:ab80834dbbb3439c7da1b376f7245c891"><td class="mdescLeft">&#160;</td><td class="mdescRight">Launch the Stock level variation computation.  <br /></td></tr>
+<tr class="separator:ab80834dbbb3439c7da1b376f7245c891"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classEvaluator"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classEvaluator')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classEvaluator.html">Evaluator</a></td></tr>
+<tr class="memitem:a2311bc2e0eef4270d9305d482b377569 inherit pub_methods_classEvaluator" id="r_a2311bc2e0eef4270d9305d482b377569"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEvaluator.html#a2311bc2e0eef4270d9305d482b377569">Evaluator</a> (Logger logger, std::map&lt; Antares::Solver::WeeklyProblemId, std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; &gt; <a class="el" href="classEvaluator.html#aa63c020e9d9fdaabb50ab973abe80484">problems</a>, std::filesystem::path <a class="el" href="classEvaluator.html#a6d3017bf2eb75191c62a95885a7aff78">studyDir</a>, std::string <a class="el" href="classEvaluator.html#abb5b4a4369b84c93a65c657d80967964">solverName</a>, int <a class="el" href="classEvaluator.html#ab38f95115602148511c854f0a4562dec">nbThreads</a>=1)</td></tr>
+<tr class="memdesc:a2311bc2e0eef4270d9305d482b377569 inherit pub_methods_classEvaluator"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
+<tr class="separator:a2311bc2e0eef4270d9305d482b377569 inherit pub_methods_classEvaluator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a4169b6309b4d927bc21c0b620919013c" id="r_a4169b6309b4d927bc21c0b620919013c"><td class="memItemLeft" align="right" valign="top"><a id="a4169b6309b4d927bc21c0b620919013c" name="a4169b6309b4d927bc21c0b620919013c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Run</b> ()</td></tr>
-<tr class="memdesc:a4169b6309b4d927bc21c0b620919013c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the ProcessSubproblem method in parallel for each subproblem. <br /></td></tr>
-<tr class="separator:a4169b6309b4d927bc21c0b620919013c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab921c875492b884aac1f35889dfee7ab" id="r_ab921c875492b884aac1f35889dfee7ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab921c875492b884aac1f35889dfee7ab">ProcessSubproblem</a> (const Antares::Solver::WeeklyProblemId, std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; subProblem)</td></tr>
-<tr class="memdesc:ab921c875492b884aac1f35889dfee7ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process a single subproblem.  <br /></td></tr>
-<tr class="separator:ab921c875492b884aac1f35889dfee7ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2ded9fe41cc2f3643262aa231c99168" id="r_ab2ded9fe41cc2f3643262aa231c99168"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab2ded9fe41cc2f3643262aa231c99168">SetConstraintsRHSValues</a> (const std::map&lt; std::string, double &gt; &amp;rhsValues, std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; subProblem)</td></tr>
-<tr class="memdesc:ab2ded9fe41cc2f3643262aa231c99168"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the constraints RHS values for a given subproblem.  <br /></td></tr>
-<tr class="separator:ab2ded9fe41cc2f3643262aa231c99168"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3709c4f7f11e7927d5d1880a5b9913ba" id="r_a3709c4f7f11e7927d5d1880a5b9913ba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structGridPointResult.html">GridPointResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3709c4f7f11e7927d5d1880a5b9913ba">SolveSubproblem</a> (std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; subProblem, Point subPbCombo)</td></tr>
-<tr class="memdesc:a3709c4f7f11e7927d5d1880a5b9913ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solve the subproblem and return the cost.  <br /></td></tr>
-<tr class="separator:a3709c4f7f11e7927d5d1880a5b9913ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7db823135a4095d8997e4d03cb63ab30" id="r_a7db823135a4095d8997e4d03cb63ab30"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7db823135a4095d8997e4d03cb63ab30">GetConstraintName</a> (const Antares::Solver::WeeklyProblemId id, const std::string &amp;area, const std::string &amp;constraint) const</td></tr>
-<tr class="memdesc:a7db823135a4095d8997e4d03cb63ab30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the constraint in the mps file.  <br /></td></tr>
-<tr class="separator:a7db823135a4095d8997e4d03cb63ab30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3ccc5fd1e5153603477bec1b846254f" id="r_ad3ccc5fd1e5153603477bec1b846254f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3ccc5fd1e5153603477bec1b846254f">ProcessSubproblem</a> (const Antares::Solver::WeeklyProblemId, std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; subProblem) override</td></tr>
+<tr class="memdesc:ad3ccc5fd1e5153603477bec1b846254f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process a single subproblem.  <br /></td></tr>
+<tr class="separator:ad3ccc5fd1e5153603477bec1b846254f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a183df8c46b0b9cc3c8e767bbd3cae924" id="r_a183df8c46b0b9cc3c8e767bbd3cae924"><td class="memItemLeft" align="right" valign="top">ConstraintCombos&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a183df8c46b0b9cc3c8e767bbd3cae924">GenerateConstraintProduct</a> (const ConstraintMap &amp;constraints)</td></tr>
 <tr class="memdesc:a183df8c46b0b9cc3c8e767bbd3cae924"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates all combinations of constraint values (Cartesian product).  <br /></td></tr>
 <tr class="separator:a183df8c46b0b9cc3c8e767bbd3cae924"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f51e8ed1ba1d57de4af8661bea95bae" id="r_a7f51e8ed1ba1d57de4af8661bea95bae"><td class="memItemLeft" align="right" valign="top">ConstraintCombos&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f51e8ed1ba1d57de4af8661bea95bae">GenerateSubPbCombos</a> (const Antares::Solver::WeeklyProblemId subProblemId, const AreaConstraintMaps &amp;areas)</td></tr>
 <tr class="memdesc:a7f51e8ed1ba1d57de4af8661bea95bae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates all combinations of constraint values for all areas in a subproblem.  <br /></td></tr>
 <tr class="separator:a7f51e8ed1ba1d57de4af8661bea95bae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classEvaluator"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_classEvaluator')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classEvaluator.html">Evaluator</a></td></tr>
+<tr class="memitem:ab01955a82723ce73c9c5af70524bc7e6 inherit pro_methods_classEvaluator" id="r_ab01955a82723ce73c9c5af70524bc7e6"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Run</b> ()</td></tr>
+<tr class="memdesc:ab01955a82723ce73c9c5af70524bc7e6 inherit pro_methods_classEvaluator"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the ProcessSubproblem method in parallel for each subproblem. <br /></td></tr>
+<tr class="separator:ab01955a82723ce73c9c5af70524bc7e6 inherit pro_methods_classEvaluator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdf233a75b89cadb5c9423a9624f00b6 inherit pro_methods_classEvaluator" id="r_afdf233a75b89cadb5c9423a9624f00b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEvaluator.html#afdf233a75b89cadb5c9423a9624f00b6">SetConstraintsRHSValues</a> (const std::map&lt; std::string, double &gt; &amp;rhsValues, std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; subProblem)</td></tr>
+<tr class="memdesc:afdf233a75b89cadb5c9423a9624f00b6 inherit pro_methods_classEvaluator"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the constraints RHS values for a given subproblem.  <br /></td></tr>
+<tr class="separator:afdf233a75b89cadb5c9423a9624f00b6 inherit pro_methods_classEvaluator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a738151112dc02e46641ba9b36235f72d inherit pro_methods_classEvaluator" id="r_a738151112dc02e46641ba9b36235f72d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structPlainData_1_1SubProblemData.html">SubProblemData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEvaluator.html#a738151112dc02e46641ba9b36235f72d">SolveSubproblem</a> (std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; subProblem)</td></tr>
+<tr class="memdesc:a738151112dc02e46641ba9b36235f72d inherit pro_methods_classEvaluator"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solve the subproblem and return the cost.  <br /></td></tr>
+<tr class="separator:a738151112dc02e46641ba9b36235f72d inherit pro_methods_classEvaluator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfb7da49e3103d3d9264dde453ec7ac0 inherit pro_methods_classEvaluator" id="r_adfb7da49e3103d3d9264dde453ec7ac0"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEvaluator.html#adfb7da49e3103d3d9264dde453ec7ac0">GetConstraintName</a> (const Antares::Solver::WeeklyProblemId id, const std::string &amp;area, const std::string &amp;constraint) const</td></tr>
+<tr class="memdesc:adfb7da49e3103d3d9264dde453ec7ac0 inherit pro_methods_classEvaluator"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the constraint in the mps file.  <br /></td></tr>
+<tr class="separator:adfb7da49e3103d3d9264dde453ec7ac0 inherit pro_methods_classEvaluator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a0afbedfd9b1ef4f2158f9430279cb33e" id="r_a0afbedfd9b1ef4f2158f9430279cb33e"><td class="memItemLeft" align="right" valign="top"><a id="a0afbedfd9b1ef4f2158f9430279cb33e" name="a0afbedfd9b1ef4f2158f9430279cb33e"></a>
-std::map&lt; Antares::Solver::WeeklyProblemId, std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>problems</b></td></tr>
-<tr class="memdesc:a0afbedfd9b1ef4f2158f9430279cb33e"><td class="mdescLeft">&#160;</td><td class="mdescRight">map of subproblems <br /></td></tr>
-<tr class="separator:a0afbedfd9b1ef4f2158f9430279cb33e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a768398463bcb678dbbdbc20d82200be9" id="r_a768398463bcb678dbbdbc20d82200be9"><td class="memItemLeft" align="right" valign="top"><a id="a768398463bcb678dbbdbc20d82200be9" name="a768398463bcb678dbbdbc20d82200be9"></a>
 <a class="el" href="structGridDefinition.html">GridDefinition</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>gridDefinition</b></td></tr>
 <tr class="memdesc:a768398463bcb678dbbdbc20d82200be9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Grid definition. <br /></td></tr>
 <tr class="separator:a768398463bcb678dbbdbc20d82200be9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab7ade345e6d95ed0c4500550ae959ae" id="r_aab7ade345e6d95ed0c4500550ae959ae"><td class="memItemLeft" align="right" valign="top"><a id="aab7ade345e6d95ed0c4500550ae959ae" name="aab7ade345e6d95ed0c4500550ae959ae"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>solverName</b></td></tr>
-<tr class="memdesc:aab7ade345e6d95ed0c4500550ae959ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solver name. <br /></td></tr>
-<tr class="separator:aab7ade345e6d95ed0c4500550ae959ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace707d90179e06185d6426dc0f007525" id="r_ace707d90179e06185d6426dc0f007525"><td class="memItemLeft" align="right" valign="top"><a id="ace707d90179e06185d6426dc0f007525" name="ace707d90179e06185d6426dc0f007525"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>nbThreads</b></td></tr>
-<tr class="memdesc:ace707d90179e06185d6426dc0f007525"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of threads to use. <br /></td></tr>
-<tr class="separator:ace707d90179e06185d6426dc0f007525"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12a0f516796ce6a3b4178d0f37b09cee" id="r_a12a0f516796ce6a3b4178d0f37b09cee"><td class="memItemLeft" align="right" valign="top"><a id="a12a0f516796ce6a3b4178d0f37b09cee" name="a12a0f516796ce6a3b4178d0f37b09cee"></a>
-<a class="el" href="classSolverLogManager.html">SolverLogManager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>solver_log_manager</b></td></tr>
-<tr class="separator:a12a0f516796ce6a3b4178d0f37b09cee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7df4f038aa9cca2a38bb4c28f8d69411" id="r_a7df4f038aa9cca2a38bb4c28f8d69411"><td class="memItemLeft" align="right" valign="top"><a id="a7df4f038aa9cca2a38bb4c28f8d69411" name="a7df4f038aa9cca2a38bb4c28f8d69411"></a>
-std::filesystem::path&#160;</td><td class="memItemRight" valign="bottom"><b>studyDir</b></td></tr>
-<tr class="separator:a7df4f038aa9cca2a38bb4c28f8d69411"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa58211934f507ac98a10b0e0979d88cb" id="r_aa58211934f507ac98a10b0e0979d88cb"><td class="memItemLeft" align="right" valign="top"><a id="aa58211934f507ac98a10b0e0979d88cb" name="aa58211934f507ac98a10b0e0979d88cb"></a>
+<tr class="inherit_header pro_attribs_classEvaluator"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classEvaluator')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classEvaluator.html">Evaluator</a></td></tr>
+<tr class="memitem:a14f958bb81d8847e3c1166b5ef902b03 inherit pro_attribs_classEvaluator" id="r_a14f958bb81d8847e3c1166b5ef902b03"><td class="memItemLeft" align="right" valign="top">
 Logger&#160;</td><td class="memItemRight" valign="bottom"><b>logger</b></td></tr>
-<tr class="separator:aa58211934f507ac98a10b0e0979d88cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a14f958bb81d8847e3c1166b5ef902b03 inherit pro_attribs_classEvaluator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa63c020e9d9fdaabb50ab973abe80484 inherit pro_attribs_classEvaluator" id="r_aa63c020e9d9fdaabb50ab973abe80484"><td class="memItemLeft" align="right" valign="top">
+std::map&lt; Antares::Solver::WeeklyProblemId, std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>problems</b></td></tr>
+<tr class="memdesc:aa63c020e9d9fdaabb50ab973abe80484 inherit pro_attribs_classEvaluator"><td class="mdescLeft">&#160;</td><td class="mdescRight">map of subproblems <br /></td></tr>
+<tr class="separator:aa63c020e9d9fdaabb50ab973abe80484 inherit pro_attribs_classEvaluator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb5b4a4369b84c93a65c657d80967964 inherit pro_attribs_classEvaluator" id="r_abb5b4a4369b84c93a65c657d80967964"><td class="memItemLeft" align="right" valign="top">
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>solverName</b></td></tr>
+<tr class="memdesc:abb5b4a4369b84c93a65c657d80967964 inherit pro_attribs_classEvaluator"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solver name. <br /></td></tr>
+<tr class="separator:abb5b4a4369b84c93a65c657d80967964 inherit pro_attribs_classEvaluator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d3017bf2eb75191c62a95885a7aff78 inherit pro_attribs_classEvaluator" id="r_a6d3017bf2eb75191c62a95885a7aff78"><td class="memItemLeft" align="right" valign="top">
+std::filesystem::path&#160;</td><td class="memItemRight" valign="bottom"><b>studyDir</b></td></tr>
+<tr class="memdesc:a6d3017bf2eb75191c62a95885a7aff78 inherit pro_attribs_classEvaluator"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path to the study, used to save MPS files in case of error. <br /></td></tr>
+<tr class="separator:a6d3017bf2eb75191c62a95885a7aff78 inherit pro_attribs_classEvaluator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab38f95115602148511c854f0a4562dec inherit pro_attribs_classEvaluator" id="r_ab38f95115602148511c854f0a4562dec"><td class="memItemLeft" align="right" valign="top">
+int&#160;</td><td class="memItemRight" valign="bottom"><b>nbThreads</b></td></tr>
+<tr class="memdesc:ab38f95115602148511c854f0a4562dec inherit pro_attribs_classEvaluator"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of threads to use. <br /></td></tr>
+<tr class="separator:ab38f95115602148511c854f0a4562dec inherit pro_attribs_classEvaluator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d934d52d6065609102251fa68deb859 inherit pro_attribs_classEvaluator" id="r_a6d934d52d6065609102251fa68deb859"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="classSolverLogManager.html">SolverLogManager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>solver_log_manager</b></td></tr>
+<tr class="separator:a6d934d52d6065609102251fa68deb859 inherit pro_attribs_classEvaluator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
 <tr class="memitem:a0afc96580776fee8e951326fee49bc37" id="r_a0afc96580776fee8e951326fee49bc37"><td class="memItemLeft" align="right" valign="top"><a id="a0afc96580776fee8e951326fee49bc37" name="a0afc96580776fee8e951326fee49bc37"></a>
 <a class="el" href="classclass.html">class</a>&#160;</td><td class="memItemRight" valign="bottom"><b>BellmanValues</b></td></tr>
 <tr class="separator:a0afc96580776fee8e951326fee49bc37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_attribs_classEvaluator"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_classEvaluator')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classEvaluator.html">Evaluator</a></td></tr>
+<tr class="memitem:a57bdb4d18583dbfbb1b4a89053ed9892 inherit pub_attribs_classEvaluator" id="r_a57bdb4d18583dbfbb1b4a89053ed9892"><td class="memItemLeft" align="right" valign="top">
+std::atomic&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>totalSimplexIter</b> = 0</td></tr>
+<tr class="memdesc:a57bdb4d18583dbfbb1b4a89053ed9892 inherit pub_attribs_classEvaluator"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total number of simplex iterations. <br /></td></tr>
+<tr class="separator:a57bdb4d18583dbfbb1b4a89053ed9892 inherit pub_attribs_classEvaluator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06b16a7387ce34c6608d7ec459a6febc inherit pub_attribs_classEvaluator" id="r_a06b16a7387ce34c6608d7ec459a6febc"><td class="memItemLeft" align="right" valign="top">
+std::atomic&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>totalSubPbTimer</b> = 0</td></tr>
+<tr class="memdesc:a06b16a7387ce34c6608d7ec459a6febc inherit pub_attribs_classEvaluator"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total time spent solving subproblems. <br /></td></tr>
+<tr class="separator:a06b16a7387ce34c6608d7ec459a6febc inherit pub_attribs_classEvaluator"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefe36433ac4de788260f9943e9b59f0a inherit pub_attribs_classEvaluator" id="r_aefe36433ac4de788260f9943e9b59f0a"><td class="memItemLeft" align="right" valign="top">
+std::atomic&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>totalPbModifTimer</b> = 0</td></tr>
+<tr class="memdesc:aefe36433ac4de788260f9943e9b59f0a inherit pub_attribs_classEvaluator"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total time spent modifying subproblems. <br /></td></tr>
+<tr class="separator:aefe36433ac4de788260f9943e9b59f0a inherit pub_attribs_classEvaluator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class to compute Stock levels variation. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ae0c2093b1c7a8d7adb6947e29556f5e7" name="ae0c2093b1c7a8d7adb6947e29556f5e7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae0c2093b1c7a8d7adb6947e29556f5e7">&#9670;&#160;</a></span>GridEvaluator()</h2>
+<a id="adcfd944e98b5b613fd26b8aa18bcbd67" name="adcfd944e98b5b613fd26b8aa18bcbd67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcfd944e98b5b613fd26b8aa18bcbd67">&#9670;&#160;</a></span>GridEvaluator()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -256,12 +280,12 @@ Friends</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>solverName</em></span>, </td>
+          <td class="paramtype">std::filesystem::path</td>          <td class="paramname"><span class="paramname"><em>studyDir</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::filesystem::path</td>          <td class="paramname"><span class="paramname"><em>studyDir</em></span>, </td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>solverName</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -277,6 +301,7 @@ Friends</h2></td></tr>
     <tr><td class="paramname">logger</td><td>Logger </td></tr>
     <tr><td class="paramname">problems</td><td>map of subproblems to evaluate </td></tr>
     <tr><td class="paramname">gridDefinition</td><td><a class="el" href="classGridCollection.html">GridCollection</a> containing the grids to evaluate </td></tr>
+    <tr><td class="paramname">studyDir</td><td>Path to the study, used to save MPS files in case of error </td></tr>
     <tr><td class="paramname">solverName</td><td>Name of the solver to use </td></tr>
     <tr><td class="paramname">nbThreads</td><td>Number of threads to use </td></tr>
   </table>
@@ -286,8 +311,8 @@ Friends</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a0c9c1f352acc9f6a88745d43fa291bb3" name="a0c9c1f352acc9f6a88745d43fa291bb3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0c9c1f352acc9f6a88745d43fa291bb3">&#9670;&#160;</a></span>ComputeCostsAndDuals()</h2>
+<a id="ab80834dbbb3439c7da1b376f7245c891" name="ab80834dbbb3439c7da1b376f7245c891"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab80834dbbb3439c7da1b376f7245c891">&#9670;&#160;</a></span>ComputeCostsAndDuals()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -296,7 +321,7 @@ Friends</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt; <a class="el" href="structOutput_1_1PointWeekScenarioKey.html">Output::PointWeekScenarioKey</a>, <a class="el" href="structGridPointResult.html">GridPointResult</a> &gt; GridEvaluator::ComputeCostsAndDuals </td>
+          <td class="memname">std::map&lt; <a class="el" href="structOutput_1_1PointWeekScenarioKey.html">Output::PointWeekScenarioKey</a>, <a class="el" href="structPlainData_1_1SubProblemData.html">SubProblemData</a> &gt; GridEvaluator::ComputeCostsAndDuals </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -312,7 +337,7 @@ Friends</h2></td></tr>
 <p>Launch the Stock level variation computation. </p>
 <dl class="section return"><dt>Returns</dt><dd>The stock level variation results </dd></dl>
 
-<p>Reimplemented in <a class="el" href="structBellmanValuesComputeTest_1_1GridEvaluatorMock.html#ab8833854eeb733e4efaab0bd3c118aec">BellmanValuesComputeTest::GridEvaluatorMock</a>.</p>
+<p>Reimplemented in <a class="el" href="structBellmanValuesComputeTest_1_1GridEvaluatorMock.html#a107a207fde69cbafc066e0f74f341e88">BellmanValuesComputeTest::GridEvaluatorMock</a>.</p>
 
 </div>
 </div>
@@ -389,53 +414,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="a7db823135a4095d8997e4d03cb63ab30" name="a7db823135a4095d8997e4d03cb63ab30"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7db823135a4095d8997e4d03cb63ab30">&#9670;&#160;</a></span>GetConstraintName()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string GridEvaluator::GetConstraintName </td>
-          <td>(</td>
-          <td class="paramtype">const Antares::Solver::WeeklyProblemId</td>          <td class="paramname"><span class="paramname"><em>id</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>area</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>constraint</em></span>&#160;) const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get the name of the constraint in the mps file. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">id</td><td>ID of the subproblem </td></tr>
-    <tr><td class="paramname">area</td><td>The name of the area </td></tr>
-    <tr><td class="paramname">constraint</td><td>The name of the constraint </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The name of the constraint in the mps file </dd></dl>
-
-</div>
-</div>
-<a id="ab921c875492b884aac1f35889dfee7ab" name="ab921c875492b884aac1f35889dfee7ab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab921c875492b884aac1f35889dfee7ab">&#9670;&#160;</a></span>ProcessSubproblem()</h2>
+<a id="ad3ccc5fd1e5153603477bec1b846254f" name="ad3ccc5fd1e5153603477bec1b846254f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3ccc5fd1e5153603477bec1b846254f">&#9670;&#160;</a></span>ProcessSubproblem()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -456,7 +436,7 @@ Friends</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -470,87 +450,13 @@ Friends</h2></td></tr>
   </dd>
 </dl>
 
-</div>
-</div>
-<a id="ab2ded9fe41cc2f3643262aa231c99168" name="ab2ded9fe41cc2f3643262aa231c99168"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab2ded9fe41cc2f3643262aa231c99168">&#9670;&#160;</a></span>SetConstraintsRHSValues()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void GridEvaluator::SetConstraintsRHSValues </td>
-          <td>(</td>
-          <td class="paramtype">const std::map&lt; std::string, double &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>rhsValues</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>subProblem</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Set the constraints RHS values for a given subproblem. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">rhsValues</td><td>The RHS values to set </td></tr>
-    <tr><td class="paramname">subProblem</td><td>The subproblem </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a3709c4f7f11e7927d5d1880a5b9913ba" name="a3709c4f7f11e7927d5d1880a5b9913ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3709c4f7f11e7927d5d1880a5b9913ba">&#9670;&#160;</a></span>SolveSubproblem()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structGridPointResult.html">GridPointResult</a> GridEvaluator::SolveSubproblem </td>
-          <td>(</td>
-          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>problem</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Point</td>          <td class="paramname"><span class="paramname"><em>subPbCombo</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Solve the subproblem and return the cost. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">problem</td><td>The subproblem to solve </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The data of the solved subproblem : cost and dualValues </dd></dl>
+<p>Implements <a class="el" href="classEvaluator.html">Evaluator</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/cpp/grid_evaluator/include/antares-xpansion/grid_evaluator/<a class="el" href="GridEvaluator_8h_source.html">GridEvaluator.h</a></li>
-<li>src/cpp/grid_evaluator/<b>GridEvaluator.cpp</b></li>
+<li>src/cpp/evaluator/include/antares-xpansion/evaluator/<a class="el" href="GridEvaluator_8h_source.html">GridEvaluator.h</a></li>
+<li>src/cpp/evaluator/<b>GridEvaluator.cpp</b></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

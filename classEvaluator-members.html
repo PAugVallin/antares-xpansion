@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Antares Xpansion" />
 <meta name="twitter:description" content="Investment simulations for Antares studies." />
 <!-- END twitter metadata -->
-<title>Antares Xpansion: GridPointResult Struct Reference</title>
+<title>Antares Xpansion: Member List</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -111,7 +111,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('structGridPointResult.html',''); initResizable(true); });
+$(function(){initNavTree('classEvaluator.html',''); initResizable(true); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -137,31 +137,33 @@ $(function(){initNavTree('structGridPointResult.html',''); initResizable(true); 
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="structGridPointResult-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">GridPointResult Struct Reference</div></div>
+  <div class="headertitle"><div class="title">Evaluator Member List</div></div>
 </div><!--header-->
 <div class="contents">
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:a4f99928754fba7c458b0709dde4f771e" id="r_a4f99928754fba7c458b0709dde4f771e"><td class="memItemLeft" align="right" valign="top"><a id="a4f99928754fba7c458b0709dde4f771e" name="a4f99928754fba7c458b0709dde4f771e"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>cost</b></td></tr>
-<tr class="separator:a4f99928754fba7c458b0709dde4f771e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a195a0e2d1d4b13cad9c14835d4a36b57" id="r_a195a0e2d1d4b13cad9c14835d4a36b57"><td class="memItemLeft" align="right" valign="top"><a id="a195a0e2d1d4b13cad9c14835d4a36b57" name="a195a0e2d1d4b13cad9c14835d4a36b57"></a>
-std::map&lt; AreaName, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>dual</b> {}</td></tr>
-<tr class="separator:a195a0e2d1d4b13cad9c14835d4a36b57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-<hr/>The documentation for this struct was generated from the following file:<ul>
-<li>src/cpp/grid_evaluator/include/antares-xpansion/grid_evaluator/<a class="el" href="GridEvaluator_8h_source.html">GridEvaluator.h</a></li>
-</ul>
-</div><!-- contents -->
+
+<p>This is the complete list of members for <a class="el" href="classEvaluator.html">Evaluator</a>, including all inherited members.</p>
+<table class="directory">
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>BellmanValues</b> (defined in <a class="el" href="classEvaluator.html">Evaluator</a>)</td><td class="entry"><a class="el" href="classEvaluator.html">Evaluator</a></td><td class="entry"><span class="mlabel">friend</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classEvaluator.html#a2311bc2e0eef4270d9305d482b377569">Evaluator</a>(Logger logger, std::map&lt; Antares::Solver::WeeklyProblemId, std::shared_ptr&lt; Problem &gt; &gt; problems, std::filesystem::path studyDir, std::string solverName, int nbThreads=1)</td><td class="entry"><a class="el" href="classEvaluator.html">Evaluator</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classEvaluator.html#adfb7da49e3103d3d9264dde453ec7ac0">GetConstraintName</a>(const Antares::Solver::WeeklyProblemId id, const std::string &amp;area, const std::string &amp;constraint) const</td><td class="entry"><a class="el" href="classEvaluator.html">Evaluator</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>logger</b> (defined in <a class="el" href="classEvaluator.html">Evaluator</a>)</td><td class="entry"><a class="el" href="classEvaluator.html">Evaluator</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classEvaluator.html#ab38f95115602148511c854f0a4562dec">nbThreads</a></td><td class="entry"><a class="el" href="classEvaluator.html">Evaluator</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classEvaluator.html#aa63c020e9d9fdaabb50ab973abe80484">problems</a></td><td class="entry"><a class="el" href="classEvaluator.html">Evaluator</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>ProcessSubproblem</b>(const Antares::Solver::WeeklyProblemId, std::shared_ptr&lt; Problem &gt; subProblem)=0 (defined in <a class="el" href="classEvaluator.html">Evaluator</a>)</td><td class="entry"><a class="el" href="classEvaluator.html">Evaluator</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classEvaluator.html#ab01955a82723ce73c9c5af70524bc7e6">Run</a>()</td><td class="entry"><a class="el" href="classEvaluator.html">Evaluator</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classEvaluator.html#afdf233a75b89cadb5c9423a9624f00b6">SetConstraintsRHSValues</a>(const std::map&lt; std::string, double &gt; &amp;rhsValues, std::shared_ptr&lt; Problem &gt; subProblem)</td><td class="entry"><a class="el" href="classEvaluator.html">Evaluator</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>solver_log_manager</b> (defined in <a class="el" href="classEvaluator.html">Evaluator</a>)</td><td class="entry"><a class="el" href="classEvaluator.html">Evaluator</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classEvaluator.html#abb5b4a4369b84c93a65c657d80967964">solverName</a></td><td class="entry"><a class="el" href="classEvaluator.html">Evaluator</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classEvaluator.html#a738151112dc02e46641ba9b36235f72d">SolveSubproblem</a>(std::shared_ptr&lt; Problem &gt; subProblem)</td><td class="entry"><a class="el" href="classEvaluator.html">Evaluator</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classEvaluator.html#a6d3017bf2eb75191c62a95885a7aff78">studyDir</a></td><td class="entry"><a class="el" href="classEvaluator.html">Evaluator</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classEvaluator.html#aefe36433ac4de788260f9943e9b59f0a">totalPbModifTimer</a></td><td class="entry"><a class="el" href="classEvaluator.html">Evaluator</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classEvaluator.html#a57bdb4d18583dbfbb1b4a89053ed9892">totalSimplexIter</a></td><td class="entry"><a class="el" href="classEvaluator.html">Evaluator</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classEvaluator.html#a06b16a7387ce34c6608d7ec459a6febc">totalSubPbTimer</a></td><td class="entry"><a class="el" href="classEvaluator.html">Evaluator</a></td><td class="entry"></td></tr>
+</table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="structGridPointResult.html">GridPointResult</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>

@@ -4,7 +4,7 @@ var searchData=
   ['n_20np_20tt_1',['&lt;tt&gt;-n, --np&lt;/tt&gt;',['../md_docs_2user-guide_2get-started_2launching-optimization.html#autotoc_md192',1,'']]],
   ['name_20tt_2',['&lt;tt&gt;name&lt;/tt&gt;',['../md_docs_2user-guide_2get-started_2candidate-definition.html#autotoc_md164',1,'']]],
   ['nb_20levels_20number_20tt_3',['&lt;tt&gt;--nb-levels \&lt;number\&gt;&lt;/tt&gt;',['../md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md261',1,'']]],
-  ['nbthreads_4',['nbThreads',['../classGridEvaluator.html#ace707d90179e06185d6426dc0f007525',1,'GridEvaluator']]],
+  ['nbthreads_4',['nbThreads',['../classEvaluator.html#ab38f95115602148511c854f0a4562dec',1,'Evaluator']]],
   ['need_20custom_20weights_5',['Why we need custom weights',['../md_docs_2user-guide_2trajectory-investment_2merge-weights.html#autotoc_md296',1,'']]],
   ['new_20contributors_6',['New Contributors',['../md_docs_2changelog_2CHANGELOG.html#autotoc_md34',1,'']]],
   ['nodal_20lp_20info_20file_7',['Output : Nodal Lp Info file',['../md_docs_2user-guide_2trajectory-investment_2multiple-problem-generation.html#autotoc_md303',1,'']]],

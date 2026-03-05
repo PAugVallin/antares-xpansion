@@ -156,96 +156,94 @@ $(function(){initNavTree('ProblemGenerationForWaterValueCalculation_8h_source.ht
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;ProblemGenerationOptions.h&quot;</span></div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;antares-xpansion/bellman_values/ProblemManager.h&quot;</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;antares-xpansion/core/ProblemFormat.h&quot;</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;antares-xpansion/grid_evaluator/GridCollection.h&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;antares-xpansion/evaluator/GridCollection.h&quot;</span></div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &quot;antares-xpansion/helpers/ArchiveReader.h&quot;</span></div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &quot;antares-xpansion/lpnamer/helper/ProblemGenerationLogger.h&quot;</span></div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &quot;antares-xpansion/lpnamer/input_reader/MpsTxtWriter.h&quot;</span></div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &quot;antares-xpansion/lpnamer/main/ProblemGenerationExeOptions.h&quot;</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;antares-xpansion/lpnamer/model/Problem.h&quot;</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;antares-xpansion/lpnamer/model/SimulationInputMode.h&quot;</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;antares-xpansion/multisolver_interface/SolverAbstract.h&quot;</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;antares-xpansion/multisolver_interface/SolverConfig.h&quot;</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="foldopen" id="foldopen00028" data-start="{" data-end="};">
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classProblemGenerationForWaterValueCalculation.html">   28</a></span><span class="keyword">class </span><a class="code hl_class" href="classProblemGenerationForWaterValueCalculation.html">ProblemGenerationForWaterValueCalculation</a></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>{</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">enum class</span> WaterValueComputationMode</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    {</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        SEQUENTIAL_UPDATE_TRAJECTORY, <span class="comment">// default multistock-ready approach</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        SEQUENTIAL_IGNORE_TRAJECTORY, <span class="comment">// without optimal trajectories</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    };</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classProblemGenerationForWaterValueCalculation.html#a3684ac0496acdddb95b15c51357f774b">ProblemGenerationForWaterValueCalculation</a>(</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>      <a class="code hl_struct" href="structConfigurationManager_1_1ConfigDirectories.html">ConfigurationManager::ConfigDirectories</a> directories,</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>      Logger logger,</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>      std::shared_ptr&lt;ProblemManager&gt; problemManager,</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>      <span class="keyword">const</span> WaterValueComputationMode&amp; computationMode = WaterValueComputationMode::</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        SEQUENTIAL_IGNORE_TRAJECTORY,</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>      <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> startWeek = 1,</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>      <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> endWeek = 52);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classProblemGenerationForWaterValueCalculation.html">~ProblemGenerationForWaterValueCalculation</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    std::map&lt;Antares::Solver::WeeklyProblemId, std::shared_ptr&lt;Problem&gt;&gt; <a class="code hl_function" href="classProblemGenerationForWaterValueCalculation.html#ad364207e5a03afa50bf5bfd2efd2a22d">updateProblems</a>(</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>      <span class="keyword">const</span> <a class="code hl_struct" href="structGridDefinition.html">GridDefinition</a>&amp; gridDefinition,</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>      <span class="keyword">const</span> std::optional&lt;std::string&gt;&amp; areaName = std::nullopt);</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">void</span> initializeOptimalTrajectories(std::shared_ptr&lt;GridCollection&gt; gridCollection) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keyword">static</span> WaterValueComputationMode <a class="code hl_function" href="classProblemGenerationForWaterValueCalculation.html#ac4ab0985015d03104525c7c9511d5f41">getComputationModeFromGrid</a>(<span class="keywordtype">bool</span> useOptimalTrajectory = <span class="keyword">false</span>);</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    WaterValueComputationMode getComputationMode()<span class="keyword"> const</span></div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordflow">return</span> computationMode;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    }</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keyword">struct </span>AffectedColsAndRows </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    {</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        std::unordered_map&lt;std::string, int&gt; colNameToIndex;</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        std::unordered_map&lt;std::string, int&gt; rowNameToIndex;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        std::vector&lt;int&gt; colsToDelete;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        std::vector&lt;int&gt; rowsToDelete;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        std::vector&lt;int&gt; hydroProdCols;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        std::vector&lt;double&gt; hydroProdBounds;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    };</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    std::map&lt;Antares::Solver::WeeklyProblemId, std::shared_ptr&lt;Problem&gt;&gt;</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    cleanProblemsForBellmanCalculations(<span class="keyword">const</span> std::filesystem::path&amp; xpansion_output_dir,</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>                                        <span class="keyword">const</span> std::filesystem::path&amp; log_file_path,</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                                        <span class="keyword">const</span> <a class="code hl_struct" href="structGridDefinition.html">GridDefinition</a>&amp; gridDefinition,</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>                                        <span class="keyword">const</span> std::string&amp; areaName);</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordtype">void</span> cleanProblemForBellmanCalculations(std::shared_ptr&lt;Problem&gt; problem,</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>                                            <span class="keyword">const</span> <a class="code hl_struct" href="structGridDefinition.html">GridDefinition</a>&amp; gridDefinition,</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>                                            <span class="keyword">const</span> std::string&amp; areaName,</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>                                            std::string&amp; pbName,</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>                                            Antares::Solver::WeeklyProblemId pbId);</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordtype">void</span> cleanReservoirConstraints(std::shared_ptr&lt;Problem&gt; problem,</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                                   <span class="keyword">const</span> <a class="code hl_class" href="classReservoir.html">Reservoir</a>&amp; reservoir,</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                                   Antares::Solver::WeeklyProblemId pbId,</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>                                   AffectedColsAndRows&amp; affectedColsAndRows);</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keywordtype">void</span> updateReservoirWithOptimalTrajectory(std::shared_ptr&lt;Problem&gt; problem,</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>                                              <span class="keyword">const</span> <a class="code hl_class" href="classReservoir.html">Reservoir</a>&amp; reservoir,</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                                              Antares::Solver::WeeklyProblemId pbId);</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keywordtype">void</span> setComputationMode(<span class="keyword">const</span> WaterValueComputationMode&amp; mode)</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    {</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        computationMode = mode;</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    }</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <a class="code hl_struct" href="structConfigurationManager_1_1ConfigDirectories.html">ConfigurationManager::ConfigDirectories</a></div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>      directories; </div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="comment">// std::map&lt;Antares::Solver::WeeklyProblemId, std::shared_ptr&lt;Problem&gt;&gt;</span></div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="comment">//   problems;             /// Problems before any modification</span></div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> startWeek; </div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> endWeek;   </div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    std::shared_ptr&lt;ProblemManager&gt; problemManager; </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    WaterValueComputationMode computationMode = WaterValueComputationMode::</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>      SEQUENTIAL_IGNORE_TRAJECTORY; </div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    Logger logger;                  </div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>};</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;antares-xpansion/lpnamer/main/ProblemGenerationOptimSimu.h&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;antares-xpansion/lpnamer/model/Problem.h&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;antares-xpansion/lpnamer/model/SimulationInputMode.h&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;antares-xpansion/multisolver_interface/SolverAbstract.h&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;antares-xpansion/multisolver_interface/SolverConfig.h&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="foldopen" id="foldopen00029" data-start="{" data-end="};">
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="classProblemGenerationForWaterValueCalculation.html">   29</a></span><span class="keyword">class </span><a class="code hl_class" href="classProblemGenerationForWaterValueCalculation.html">ProblemGenerationForWaterValueCalculation</a>: <span class="keyword">public</span> <a class="code hl_class" href="classProblemGenerationOptimSimu.html">ProblemGenerationOptimSimu</a></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>{</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">enum class</span> WaterValueComputationMode</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    {</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        SEQUENTIAL_UPDATE_TRAJECTORY, <span class="comment">// default multistock-ready approach</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        SEQUENTIAL_IGNORE_TRAJECTORY, <span class="comment">// without optimal trajectories</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    };</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classProblemGenerationForWaterValueCalculation.html#a3684ac0496acdddb95b15c51357f774b">ProblemGenerationForWaterValueCalculation</a>(</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>      <a class="code hl_struct" href="structConfigurationManager_1_1ConfigDirectories.html">ConfigurationManager::ConfigDirectories</a> directories,</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>      Logger <a class="code hl_variable" href="classProblemGenerationOptimSimu.html#a903868661fe7cb18e86ab4b161c430fc">logger</a>,</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>      std::shared_ptr&lt;ProblemManager&gt; <a class="code hl_variable" href="classProblemGenerationOptimSimu.html#ab4bcde1d1d02eeb85f51093fa0e7b418">problemManager</a>,</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>      <span class="keyword">const</span> WaterValueComputationMode&amp; computationMode = WaterValueComputationMode::</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        SEQUENTIAL_IGNORE_TRAJECTORY,</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>      <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classProblemGenerationOptimSimu.html#a3dde1d5c3044aa88d8cdee46e013e81e">startWeek</a> = 1,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>      <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classProblemGenerationOptimSimu.html#a50faa43fbf3d2c8342505a95713c5125">endWeek</a> = 52);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classProblemGenerationForWaterValueCalculation.html">~ProblemGenerationForWaterValueCalculation</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    std::map&lt;Antares::Solver::WeeklyProblemId, std::shared_ptr&lt;Problem&gt;&gt; <a class="code hl_function" href="classProblemGenerationForWaterValueCalculation.html#ad364207e5a03afa50bf5bfd2efd2a22d">updateProblems</a>(</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>      <span class="keyword">const</span> <a class="code hl_struct" href="structGridDefinition.html">GridDefinition</a>&amp; gridDefinition,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>      <span class="keyword">const</span> std::optional&lt;std::string&gt;&amp; areaName = std::nullopt);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">void</span> initializeOptimalTrajectories(std::shared_ptr&lt;GridCollection&gt; gridCollection) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keyword">static</span> WaterValueComputationMode <a class="code hl_function" href="classProblemGenerationForWaterValueCalculation.html#ac4ab0985015d03104525c7c9511d5f41">getComputationModeFromGrid</a>(<span class="keywordtype">bool</span> useOptimalTrajectory = <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    WaterValueComputationMode getComputationMode()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordflow">return</span> computationMode;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    }</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keyword">struct </span>AffectedColsAndRows </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    {</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        std::unordered_map&lt;std::string, int&gt; colNameToIndex;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        std::unordered_map&lt;std::string, int&gt; rowNameToIndex;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        std::vector&lt;int&gt; colsToDelete;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        std::vector&lt;int&gt; rowsToDelete;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        std::vector&lt;int&gt; hydroProdCols;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        std::vector&lt;double&gt; hydroProdBounds;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    };</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    std::map&lt;Antares::Solver::WeeklyProblemId, std::shared_ptr&lt;Problem&gt;&gt;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    cleanProblemsForBellmanCalculations(<span class="keyword">const</span> std::filesystem::path&amp; xpansion_output_dir,</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                                        <span class="keyword">const</span> std::filesystem::path&amp; log_file_path,</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>                                        <span class="keyword">const</span> <a class="code hl_struct" href="structGridDefinition.html">GridDefinition</a>&amp; gridDefinition,</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>                                        <span class="keyword">const</span> std::string&amp; areaName);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordtype">void</span> cleanProblemForBellmanCalculations(std::shared_ptr&lt;Problem&gt; problem,</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>                                            <span class="keyword">const</span> <a class="code hl_struct" href="structGridDefinition.html">GridDefinition</a>&amp; gridDefinition,</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>                                            <span class="keyword">const</span> std::string&amp; areaName,</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>                                            std::string&amp; pbName,</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>                                            Antares::Solver::WeeklyProblemId pbId);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keywordtype">void</span> cleanReservoirConstraints(std::shared_ptr&lt;Problem&gt; problem,</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                                   <span class="keyword">const</span> <a class="code hl_class" href="classReservoir.html">Reservoir</a>&amp; reservoir,</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>                                   Antares::Solver::WeeklyProblemId pbId,</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>                                   AffectedColsAndRows&amp; affectedColsAndRows);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keywordtype">void</span> updateReservoirWithOptimalTrajectory(std::shared_ptr&lt;Problem&gt; problem,</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                                              <span class="keyword">const</span> <a class="code hl_class" href="classReservoir.html">Reservoir</a>&amp; reservoir,</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>                                              Antares::Solver::WeeklyProblemId pbId);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordtype">void</span> setComputationMode(<span class="keyword">const</span> WaterValueComputationMode&amp; mode)</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    {</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        computationMode = mode;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    }</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    WaterValueComputationMode computationMode = WaterValueComputationMode::</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>      SEQUENTIAL_IGNORE_TRAJECTORY; </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>};</div>
 </div>
-<div class="ttc" id="aclassProblemGenerationForWaterValueCalculation_html"><div class="ttname"><a href="classProblemGenerationForWaterValueCalculation.html">ProblemGenerationForWaterValueCalculation</a></div><div class="ttdoc">Class to generate and modify problems in memory.</div><div class="ttdef"><b>Definition</b> ProblemGenerationForWaterValueCalculation.h:29</div></div>
+<div class="ttc" id="aclassProblemGenerationForWaterValueCalculation_html"><div class="ttname"><a href="classProblemGenerationForWaterValueCalculation.html">ProblemGenerationForWaterValueCalculation</a></div><div class="ttdoc">Class to generate and modify problems in memory.</div><div class="ttdef"><b>Definition</b> ProblemGenerationForWaterValueCalculation.h:30</div></div>
 <div class="ttc" id="aclassProblemGenerationForWaterValueCalculation_html_a3684ac0496acdddb95b15c51357f774b"><div class="ttname"><a href="classProblemGenerationForWaterValueCalculation.html#a3684ac0496acdddb95b15c51357f774b">ProblemGenerationForWaterValueCalculation::ProblemGenerationForWaterValueCalculation</a></div><div class="ttdeci">ProblemGenerationForWaterValueCalculation(ConfigurationManager::ConfigDirectories directories, Logger logger, std::shared_ptr&lt; ProblemManager &gt; problemManager, const WaterValueComputationMode &amp;computationMode=WaterValueComputationMode::SEQUENTIAL_IGNORE_TRAJECTORY, unsigned int startWeek=1, unsigned int endWeek=52)</div><div class="ttdoc">Launch the simulation and save the problems satisfying startWeek &lt;= week &lt;= endweek.</div><div class="ttdef"><b>Definition</b> ProblemGenerationForWaterValueCalculation.cpp:50</div></div>
 <div class="ttc" id="aclassProblemGenerationForWaterValueCalculation_html_ac4ab0985015d03104525c7c9511d5f41"><div class="ttname"><a href="classProblemGenerationForWaterValueCalculation.html#ac4ab0985015d03104525c7c9511d5f41">ProblemGenerationForWaterValueCalculation::getComputationModeFromGrid</a></div><div class="ttdeci">static WaterValueComputationMode getComputationModeFromGrid(bool useOptimalTrajectory=false)</div><div class="ttdoc">Static function determining the computation mode for water values. Can be multivariate,...</div><div class="ttdef"><b>Definition</b> ProblemGenerationForWaterValueCalculation.cpp:40</div></div>
-<div class="ttc" id="aclassProblemGenerationForWaterValueCalculation_html_ad364207e5a03afa50bf5bfd2efd2a22d"><div class="ttname"><a href="classProblemGenerationForWaterValueCalculation.html#ad364207e5a03afa50bf5bfd2efd2a22d">ProblemGenerationForWaterValueCalculation::updateProblems</a></div><div class="ttdeci">std::map&lt; Antares::Solver::WeeklyProblemId, std::shared_ptr&lt; Problem &gt; &gt; updateProblems(const GridDefinition &amp;gridDefinition, const std::optional&lt; std::string &gt; &amp;areaName=std::nullopt)</div><div class="ttdoc">Update the problems for the water value calculation.</div><div class="ttdef"><b>Definition</b> ProblemGenerationForWaterValueCalculation.cpp:118</div></div>
+<div class="ttc" id="aclassProblemGenerationForWaterValueCalculation_html_ad364207e5a03afa50bf5bfd2efd2a22d"><div class="ttname"><a href="classProblemGenerationForWaterValueCalculation.html#ad364207e5a03afa50bf5bfd2efd2a22d">ProblemGenerationForWaterValueCalculation::updateProblems</a></div><div class="ttdeci">std::map&lt; Antares::Solver::WeeklyProblemId, std::shared_ptr&lt; Problem &gt; &gt; updateProblems(const GridDefinition &amp;gridDefinition, const std::optional&lt; std::string &gt; &amp;areaName=std::nullopt)</div><div class="ttdoc">Update the problems for the water value calculation.</div><div class="ttdef"><b>Definition</b> ProblemGenerationForWaterValueCalculation.cpp:66</div></div>
+<div class="ttc" id="aclassProblemGenerationOptimSimu_html"><div class="ttname"><a href="classProblemGenerationOptimSimu.html">ProblemGenerationOptimSimu</a></div><div class="ttdoc">Class to generate and modify problems in memory.</div><div class="ttdef"><b>Definition</b> ProblemGenerationOptimSimu.h:28</div></div>
+<div class="ttc" id="aclassProblemGenerationOptimSimu_html_a3dde1d5c3044aa88d8cdee46e013e81e"><div class="ttname"><a href="classProblemGenerationOptimSimu.html#a3dde1d5c3044aa88d8cdee46e013e81e">ProblemGenerationOptimSimu::startWeek</a></div><div class="ttdeci">unsigned int startWeek</div><div class="ttdoc">Directories, used for the original problems generation.</div><div class="ttdef"><b>Definition</b> ProblemGenerationOptimSimu.h:38</div></div>
+<div class="ttc" id="aclassProblemGenerationOptimSimu_html_a50faa43fbf3d2c8342505a95713c5125"><div class="ttname"><a href="classProblemGenerationOptimSimu.html#a50faa43fbf3d2c8342505a95713c5125">ProblemGenerationOptimSimu::endWeek</a></div><div class="ttdeci">unsigned int endWeek</div><div class="ttdoc">Start week of the problems to take into account.</div><div class="ttdef"><b>Definition</b> ProblemGenerationOptimSimu.h:39</div></div>
+<div class="ttc" id="aclassProblemGenerationOptimSimu_html_a903868661fe7cb18e86ab4b161c430fc"><div class="ttname"><a href="classProblemGenerationOptimSimu.html#a903868661fe7cb18e86ab4b161c430fc">ProblemGenerationOptimSimu::logger</a></div><div class="ttdeci">Logger logger</div><div class="ttdef"><b>Definition</b> ProblemGenerationOptimSimu.h:42</div></div>
+<div class="ttc" id="aclassProblemGenerationOptimSimu_html_ab4bcde1d1d02eeb85f51093fa0e7b418"><div class="ttname"><a href="classProblemGenerationOptimSimu.html#ab4bcde1d1d02eeb85f51093fa0e7b418">ProblemGenerationOptimSimu::problemManager</a></div><div class="ttdeci">std::shared_ptr&lt; ProblemManager &gt; problemManager</div><div class="ttdoc">End week of the problems to take into account.</div><div class="ttdef"><b>Definition</b> ProblemGenerationOptimSimu.h:40</div></div>
 <div class="ttc" id="aclassReservoir_html"><div class="ttname"><a href="classReservoir.html">Reservoir</a></div><div class="ttdoc">Represents a Reservoir loaded from a study.</div><div class="ttdef"><b>Definition</b> ReservoirManagement.h:12</div></div>
 <div class="ttc" id="astructConfigurationManager_1_1ConfigDirectories_html"><div class="ttname"><a href="structConfigurationManager_1_1ConfigDirectories.html">ConfigurationManager::ConfigDirectories</a></div><div class="ttdef"><b>Definition</b> ConfigurationManager.h:14</div></div>
 <div class="ttc" id="astructGridDefinition_html"><div class="ttname"><a href="structGridDefinition.html">GridDefinition</a></div><div class="ttdoc">Contains multiple gridElements.</div><div class="ttdef"><b>Definition</b> GridCollection.h:38</div></div>

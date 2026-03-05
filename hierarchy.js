@@ -62,7 +62,7 @@ var hierarchy =
     ] ],
     [ "ColumnToChange", "structColumnToChange.html", null ],
     [ "Output::ConcurrentInsertionMap< Key, Value >", "structOutput_1_1ConcurrentInsertionMap.html", null ],
-    [ "Output::ConcurrentInsertionMap< Output::PointWeekScenarioKey, GridPointResult >", "structOutput_1_1ConcurrentInsertionMap.html", null ],
+    [ "Output::ConcurrentInsertionMap< Output::PointWeekScenarioKey, PlainData::SubProblemData >", "structOutput_1_1ConcurrentInsertionMap.html", null ],
     [ "ConfigurationManager::ConfigDirectories", "structConfigurationManager_1_1ConfigDirectories.html", null ],
     [ "antares_xpansion.config_file_parser.ConfigFileParser", "classantares__xpansion_1_1config__file__parser_1_1ConfigFileParser.html", null ],
     [ "antares_xpansion.xpansionConfig.ConfigParameters", "classantares__xpansion_1_1xpansionConfig_1_1ConfigParameters.html", null ],
@@ -105,6 +105,11 @@ var hierarchy =
     ] ],
     [ "LpFilesExtractor::ErrorWithAreaFile", "classLpFilesExtractor_1_1ErrorWithAreaFile.html", null ],
     [ "LpFilesExtractor::ErrorWithIntercosFile", "classLpFilesExtractor_1_1ErrorWithIntercosFile.html", null ],
+    [ "Evaluator", "classEvaluator.html", [
+      [ "GridEvaluator", "classGridEvaluator.html", [
+        [ "BellmanValuesComputeTest::GridEvaluatorMock", "structBellmanValuesComputeTest_1_1GridEvaluatorMock.html", null ]
+      ] ]
+    ] ],
     [ "Exception", null, [
       [ "antares_xpansion.antares_driver.AntaresDriver.AntaresExecutionError", "classantares__xpansion_1_1antares__driver_1_1AntaresDriver_1_1AntaresExecutionError.html", null ],
       [ "antares_xpansion.antares_driver.AntaresDriver.Error", "classantares__xpansion_1_1antares__driver_1_1AntaresDriver_1_1Error.html", null ],
@@ -234,11 +239,7 @@ var hierarchy =
     [ "GridCollection", "classGridCollection.html", null ],
     [ "GridDefinition", "structGridDefinition.html", null ],
     [ "GridElement", "structGridElement.html", null ],
-    [ "GridEvaluator", "classGridEvaluator.html", [
-      [ "BellmanValuesComputeTest::GridEvaluatorMock", "structBellmanValuesComputeTest_1_1GridEvaluatorMock.html", null ]
-    ] ],
     [ "Output::GridPointData", "structOutput_1_1GridPointData.html", null ],
-    [ "GridPointResult", "structGridPointResult.html", null ],
     [ "GridSearch", "classGridSearch.html", null ],
     [ "HeadersManager", "structHeadersManager.html", [
       [ "HeadersManagerExternalLoop", "structHeadersManagerExternalLoop.html", null ]
@@ -414,7 +415,9 @@ var hierarchy =
     [ "ProblemGeneration", "classProblemGeneration.html", [
       [ "ProblemGenerationSpyAndMock", "classProblemGenerationSpyAndMock.html", null ]
     ] ],
-    [ "ProblemGenerationForWaterValueCalculation", "classProblemGenerationForWaterValueCalculation.html", null ],
+    [ "ProblemGenerationOptimSimu", "classProblemGenerationOptimSimu.html", [
+      [ "ProblemGenerationForWaterValueCalculation", "classProblemGenerationForWaterValueCalculation.html", null ]
+    ] ],
     [ "ProblemGenerationOptions", "classProblemGenerationOptions.html", [
       [ "ProblemGenerationExeOptions", "classProblemGenerationExeOptions.html", null ]
     ] ],

@@ -55,7 +55,7 @@ var searchData=
   ['get_5fx_5fcut_52',['get_x_cut',['../classWorkerMasterData.html#ab607ad86ef5badf22f0ed51e097aad77',1,'WorkerMasterData']]],
   ['getbestiteration_53',['getBestIteration',['../classJsonXpansionReader.html#a1a1188ab2ccef59b556d14dab8c14dd8',1,'JsonXpansionReader']]],
   ['getcomputationmodefromgrid_54',['getComputationModeFromGrid',['../classProblemGenerationForWaterValueCalculation.html#ac4ab0985015d03104525c7c9511d5f41',1,'ProblemGenerationForWaterValueCalculation']]],
-  ['getconstraintname_55',['GetConstraintName',['../classGridEvaluator.html#a7db823135a4095d8997e4d03cb63ab30',1,'GridEvaluator']]],
+  ['getconstraintname_55',['GetConstraintName',['../classEvaluator.html#adfb7da49e3103d3d9264dde453ec7ac0',1,'Evaluator']]],
   ['getcriterioninputdata_56',['getCriterionInputData',['../classBenders_1_1Criterion_1_1CriterionComputation.html#ad97d8c7c6e6aee8f78805840f4932ad1',1,'Benders::Criterion::CriterionComputation']]],
   ['getdirectprofile_57',['getDirectProfile',['../classLinkProfile.html#ab19dbbb3f99b2f8877bc657c8776093a',1,'LinkProfile']]],
   ['getindirectprofile_58',['getIndirectProfile',['../classLinkProfile.html#a30c74a7ab017b95f2c305c5ed2b5fe86',1,'LinkProfile']]],
@@ -77,5 +77,5 @@ var searchData=
   ['getvariablestobinarise_74',['getVariablesToBinarise',['../classAdditionalConstraints.html#a43550c0da9e6561336d9486308bc921e',1,'AdditionalConstraints']]],
   ['getvarindices_75',['getVarIndices',['../classBenders_1_1Criterion_1_1CriterionComputation.html#adf80b3ed1467ee37074bec423ff7cbe6',1,'Benders::Criterion::CriterionComputation']]],
   ['gridcollection_76',['GridCollection',['../classGridCollection.html#ad14e655f17b7cbb43192888562d07f05',1,'GridCollection']]],
-  ['gridevaluator_77',['GridEvaluator',['../classGridEvaluator.html#ae0c2093b1c7a8d7adb6947e29556f5e7',1,'GridEvaluator']]]
+  ['gridevaluator_77',['GridEvaluator',['../classGridEvaluator.html#adcfd944e98b5b613fd26b8aa18bcbd67',1,'GridEvaluator']]]
 ];

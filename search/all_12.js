@@ -68,7 +68,7 @@ var searchData=
   ['get_5fx_5fcut_65',['get_x_cut',['../classWorkerMasterData.html#ab607ad86ef5badf22f0ed51e097aad77',1,'WorkerMasterData']]],
   ['getbestiteration_66',['getBestIteration',['../classJsonXpansionReader.html#a1a1188ab2ccef59b556d14dab8c14dd8',1,'JsonXpansionReader']]],
   ['getcomputationmodefromgrid_67',['getComputationModeFromGrid',['../classProblemGenerationForWaterValueCalculation.html#ac4ab0985015d03104525c7c9511d5f41',1,'ProblemGenerationForWaterValueCalculation']]],
-  ['getconstraintname_68',['GetConstraintName',['../classGridEvaluator.html#a7db823135a4095d8997e4d03cb63ab30',1,'GridEvaluator']]],
+  ['getconstraintname_68',['GetConstraintName',['../classEvaluator.html#adfb7da49e3103d3d9264dde453ec7ac0',1,'Evaluator']]],
   ['getcriterioninputdata_69',['getCriterionInputData',['../classBenders_1_1Criterion_1_1CriterionComputation.html#ad97d8c7c6e6aee8f78805840f4932ad1',1,'Benders::Criterion::CriterionComputation']]],
   ['getdirectprofile_70',['getDirectProfile',['../classLinkProfile.html#ab19dbbb3f99b2f8877bc657c8776093a',1,'LinkProfile']]],
   ['getindirectprofile_71',['getIndirectProfile',['../classLinkProfile.html#a30c74a7ab017b95f2c305c5ed2b5fe86',1,'LinkProfile']]],
@@ -98,12 +98,11 @@ var searchData=
   ['griddefinition_95',['GridDefinition',['../structGridDefinition.html',1,'']]],
   ['griddefinition_96',['gridDefinition',['../classGridEvaluator.html#a768398463bcb678dbbdbc20d82200be9',1,'GridEvaluator']]],
   ['gridelement_97',['GridElement',['../structGridElement.html',1,'']]],
-  ['gridevaluator_98',['GridEvaluator',['../classGridEvaluator.html',1,'GridEvaluator'],['../classGridEvaluator.html#ae0c2093b1c7a8d7adb6947e29556f5e7',1,'GridEvaluator::GridEvaluator()']]],
+  ['gridevaluator_98',['GridEvaluator',['../classGridEvaluator.html',1,'GridEvaluator'],['../classGridEvaluator.html#adcfd944e98b5b613fd26b8aa18bcbd67',1,'GridEvaluator::GridEvaluator()']]],
   ['gridevaluator_99',['gridEvaluator',['../classBellmanValues.html#a2e0fb954173f6dcf2228b91e1a12035d',1,'BellmanValues']]],
   ['gridevaluatormock_100',['GridEvaluatorMock',['../structBellmanValuesComputeTest_1_1GridEvaluatorMock.html',1,'BellmanValuesComputeTest']]],
   ['gridpointdata_101',['GridPointData',['../structOutput_1_1GridPointData.html',1,'Output']]],
-  ['gridpointresult_102',['GridPointResult',['../structGridPointResult.html',1,'']]],
-  ['gridsearch_103',['GridSearch',['../classGridSearch.html',1,'']]],
-  ['gridsearchtest_104',['GridSearchTest',['../classGridSearchTest.html',1,'']]],
-  ['guidelines_105',['Documention generation guidelines',['../md_docs_2how__to.html',1,'']]]
+  ['gridsearch_102',['GridSearch',['../classGridSearch.html',1,'']]],
+  ['gridsearchtest_103',['GridSearchTest',['../classGridSearchTest.html',1,'']]],
+  ['guidelines_104',['Documention generation guidelines',['../md_docs_2how__to.html',1,'']]]
 ];

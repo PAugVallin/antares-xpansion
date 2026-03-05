@@ -150,6 +150,15 @@ $(function(){initNavTree('classProblemGenerationForWaterValueCalculation.html','
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="ProblemGenerationForWaterValueCalculation_8h_source.html">ProblemGenerationForWaterValueCalculation.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for ProblemGenerationForWaterValueCalculation:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classProblemGenerationForWaterValueCalculation.png" usemap="#ProblemGenerationForWaterValueCalculation_map" alt=""/>
+  <map id="ProblemGenerationForWaterValueCalculation_map" name="ProblemGenerationForWaterValueCalculation_map">
+<area href="classProblemGenerationOptimSimu.html" title="Class to generate and modify problems in memory." alt="ProblemGenerationOptimSimu" shape="rect" coords="0,0,269,24"/>
+  </map>
+</div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -161,7 +170,7 @@ Public Types</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a3684ac0496acdddb95b15c51357f774b" id="r_a3684ac0496acdddb95b15c51357f774b"><td class="memItemLeft" align="right" valign="top"><a id="a3684ac0496acdddb95b15c51357f774b" name="a3684ac0496acdddb95b15c51357f774b"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ProblemGenerationForWaterValueCalculation</b> (<a class="el" href="structConfigurationManager_1_1ConfigDirectories.html">ConfigurationManager::ConfigDirectories</a> directories, Logger logger, std::shared_ptr&lt; <a class="el" href="classProblemManager.html">ProblemManager</a> &gt; problemManager, const WaterValueComputationMode &amp;computationMode=WaterValueComputationMode::SEQUENTIAL_IGNORE_TRAJECTORY, unsigned int startWeek=1, unsigned int endWeek=52)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ProblemGenerationForWaterValueCalculation</b> (<a class="el" href="structConfigurationManager_1_1ConfigDirectories.html">ConfigurationManager::ConfigDirectories</a> directories, Logger <a class="el" href="classProblemGenerationOptimSimu.html#a903868661fe7cb18e86ab4b161c430fc">logger</a>, std::shared_ptr&lt; <a class="el" href="classProblemManager.html">ProblemManager</a> &gt; <a class="el" href="classProblemGenerationOptimSimu.html#ab4bcde1d1d02eeb85f51093fa0e7b418">problemManager</a>, const WaterValueComputationMode &amp;computationMode=WaterValueComputationMode::SEQUENTIAL_IGNORE_TRAJECTORY, unsigned int <a class="el" href="classProblemGenerationOptimSimu.html#a3dde1d5c3044aa88d8cdee46e013e81e">startWeek</a>=1, unsigned int <a class="el" href="classProblemGenerationOptimSimu.html#a50faa43fbf3d2c8342505a95713c5125">endWeek</a>=52)</td></tr>
 <tr class="memdesc:a3684ac0496acdddb95b15c51357f774b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Launch the simulation and save the problems satisfying startWeek &lt;= week &lt;= endweek. <br /></td></tr>
 <tr class="separator:a3684ac0496acdddb95b15c51357f774b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad364207e5a03afa50bf5bfd2efd2a22d" id="r_ad364207e5a03afa50bf5bfd2efd2a22d"><td class="memItemLeft" align="right" valign="top">std::map&lt; Antares::Solver::WeeklyProblemId, std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad364207e5a03afa50bf5bfd2efd2a22d">updateProblems</a> (const <a class="el" href="structGridDefinition.html">GridDefinition</a> &amp;gridDefinition, const std::optional&lt; std::string &gt; &amp;areaName=std::nullopt)</td></tr>
@@ -173,12 +182,38 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>initializeOptimalTraj
 <tr class="memitem:a1428af0842846811e90227a87d391cd6" id="r_a1428af0842846811e90227a87d391cd6"><td class="memItemLeft" align="right" valign="top"><a id="a1428af0842846811e90227a87d391cd6" name="a1428af0842846811e90227a87d391cd6"></a>
 WaterValueComputationMode&#160;</td><td class="memItemRight" valign="bottom"><b>getComputationMode</b> () const</td></tr>
 <tr class="separator:a1428af0842846811e90227a87d391cd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classProblemGenerationOptimSimu"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classProblemGenerationOptimSimu')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classProblemGenerationOptimSimu.html">ProblemGenerationOptimSimu</a></td></tr>
+<tr class="memitem:a302177625f4425c6faa517109be5407a inherit pub_methods_classProblemGenerationOptimSimu" id="r_a302177625f4425c6faa517109be5407a"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><b>ProblemGenerationOptimSimu</b> (<a class="el" href="structConfigurationManager_1_1ConfigDirectories.html">ConfigurationManager::ConfigDirectories</a> directories, Logger <a class="el" href="classProblemGenerationOptimSimu.html#a903868661fe7cb18e86ab4b161c430fc">logger</a>, std::shared_ptr&lt; <a class="el" href="classProblemManager.html">ProblemManager</a> &gt; <a class="el" href="classProblemGenerationOptimSimu.html#ab4bcde1d1d02eeb85f51093fa0e7b418">problemManager</a>, unsigned int <a class="el" href="classProblemGenerationOptimSimu.html#a3dde1d5c3044aa88d8cdee46e013e81e">startWeek</a>=1, unsigned int <a class="el" href="classProblemGenerationOptimSimu.html#a50faa43fbf3d2c8342505a95713c5125">endWeek</a>=52)</td></tr>
+<tr class="memdesc:a302177625f4425c6faa517109be5407a inherit pub_methods_classProblemGenerationOptimSimu"><td class="mdescLeft">&#160;</td><td class="mdescRight">Launch the simulation and save the problems satisfying startWeek &lt;= week &lt;= endweek. <br /></td></tr>
+<tr class="separator:a302177625f4425c6faa517109be5407a inherit pub_methods_classProblemGenerationOptimSimu"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ac4ab0985015d03104525c7c9511d5f41" id="r_ac4ab0985015d03104525c7c9511d5f41"><td class="memItemLeft" align="right" valign="top">static WaterValueComputationMode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4ab0985015d03104525c7c9511d5f41">getComputationModeFromGrid</a> (bool useOptimalTrajectory=false)</td></tr>
 <tr class="memdesc:ac4ab0985015d03104525c7c9511d5f41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static function determining the computation mode for water values. Can be multivariate, multistock, sequential.  <br /></td></tr>
 <tr class="separator:ac4ab0985015d03104525c7c9511d5f41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_attribs_classProblemGenerationOptimSimu"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_classProblemGenerationOptimSimu')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classProblemGenerationOptimSimu.html">ProblemGenerationOptimSimu</a></td></tr>
+<tr class="memitem:a05abe5425357c4e1820063287dc1b3ae inherit pub_attribs_classProblemGenerationOptimSimu" id="r_a05abe5425357c4e1820063287dc1b3ae"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="structConfigurationManager_1_1ConfigDirectories.html">ConfigurationManager::ConfigDirectories</a>&#160;</td><td class="memItemRight" valign="bottom"><b>directories</b></td></tr>
+<tr class="separator:a05abe5425357c4e1820063287dc1b3ae inherit pub_attribs_classProblemGenerationOptimSimu"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3dde1d5c3044aa88d8cdee46e013e81e inherit pub_attribs_classProblemGenerationOptimSimu" id="r_a3dde1d5c3044aa88d8cdee46e013e81e"><td class="memItemLeft" align="right" valign="top">
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>startWeek</b></td></tr>
+<tr class="memdesc:a3dde1d5c3044aa88d8cdee46e013e81e inherit pub_attribs_classProblemGenerationOptimSimu"><td class="mdescLeft">&#160;</td><td class="mdescRight">Directories, used for the original problems generation. <br /></td></tr>
+<tr class="separator:a3dde1d5c3044aa88d8cdee46e013e81e inherit pub_attribs_classProblemGenerationOptimSimu"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50faa43fbf3d2c8342505a95713c5125 inherit pub_attribs_classProblemGenerationOptimSimu" id="r_a50faa43fbf3d2c8342505a95713c5125"><td class="memItemLeft" align="right" valign="top">
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>endWeek</b></td></tr>
+<tr class="memdesc:a50faa43fbf3d2c8342505a95713c5125 inherit pub_attribs_classProblemGenerationOptimSimu"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start week of the problems to take into account. <br /></td></tr>
+<tr class="separator:a50faa43fbf3d2c8342505a95713c5125 inherit pub_attribs_classProblemGenerationOptimSimu"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4bcde1d1d02eeb85f51093fa0e7b418 inherit pub_attribs_classProblemGenerationOptimSimu" id="r_ab4bcde1d1d02eeb85f51093fa0e7b418"><td class="memItemLeft" align="right" valign="top">
+std::shared_ptr&lt; <a class="el" href="classProblemManager.html">ProblemManager</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>problemManager</b></td></tr>
+<tr class="memdesc:ab4bcde1d1d02eeb85f51093fa0e7b418 inherit pub_attribs_classProblemGenerationOptimSimu"><td class="mdescLeft">&#160;</td><td class="mdescRight">End week of the problems to take into account. <br /></td></tr>
+<tr class="separator:ab4bcde1d1d02eeb85f51093fa0e7b418 inherit pub_attribs_classProblemGenerationOptimSimu"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a903868661fe7cb18e86ab4b161c430fc inherit pub_attribs_classProblemGenerationOptimSimu" id="r_a903868661fe7cb18e86ab4b161c430fc"><td class="memItemLeft" align="right" valign="top">Logger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classProblemGenerationOptimSimu.html#a903868661fe7cb18e86ab4b161c430fc">logger</a></td></tr>
+<tr class="separator:a903868661fe7cb18e86ab4b161c430fc inherit pub_attribs_classProblemGenerationOptimSimu"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class to generate and modify problems in memory. </p>
