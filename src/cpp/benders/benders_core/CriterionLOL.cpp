@@ -2,12 +2,9 @@
 
 namespace Benders::Criterion
 {
-CriterionLOL::CriterionLOL(const CriterionInputData& criterion_input_data,
-                           std::shared_ptr<SolverAbstract> problem):
+CriterionLOL::CriterionLOL(const CriterionInputData& criterion_input_data):
     CriterionComputation(criterion_input_data)
 {
-    const auto col_names = problem->get_col_names();
-    SearchVariables(col_names);
 }
 
 void CriterionLOL::ComputeCriterion(std::shared_ptr<SolverAbstract> problem,
@@ -15,6 +12,12 @@ void CriterionLOL::ComputeCriterion(std::shared_ptr<SolverAbstract> problem,
                                     std::vector<double>& criteria,
                                     std::vector<double>& patterns_values)
 {
+    if (indices_.empty())
+    {
+        const auto col_names = problem->get_col_names();
+        SearchVariables(col_names);
+    }
+
     std::vector<double> varValues(problem->get_ncols());
     problem->get_lp_sol(varValues.data(), NULL, NULL);
 

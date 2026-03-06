@@ -183,8 +183,7 @@ void BalancingEvaluator::setCriterionComputationInputs(
     {
     case PositiveUnsuppliedEnergy:
         criterion_computation_ = std::make_unique<Benders::Criterion::CriterionLOL>(
-          criterion_input_data,
-          problem);
+          criterion_input_data);
         break;
     case NearPriceCapHours:
         criterion_computation_ = std::make_unique<Benders::Criterion::CriterionNPCAP>(

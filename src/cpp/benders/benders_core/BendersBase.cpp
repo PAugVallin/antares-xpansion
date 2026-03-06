@@ -1476,13 +1476,7 @@ void BendersBase::SetBilevelBestub(double bilevel_best_ub)
 void BendersBase::setCriterionComputationInputs(
   const Benders::Criterion::CriterionInputData& criterion_input_data)
 {
-    if (subproblem_map.empty())
-    {
-        throw std::runtime_error("No problems available");
-    }
-    auto& [id, problem] = *subproblem_map.begin();
-    criterion_computation_ = Benders::Criterion::CriterionLOL(criterion_input_data,
-                                                              problem->_solver);
+    criterion_computation_ = Benders::Criterion::CriterionLOL(criterion_input_data);
 }
 
 /*!

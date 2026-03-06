@@ -10,8 +10,7 @@ class CriterionLOL final: public CriterionComputation
 public:
     explicit CriterionLOL() = default;
 
-    explicit CriterionLOL(const CriterionInputData& criterion_input_data,
-                          std::shared_ptr<SolverAbstract> problem);
+    explicit CriterionLOL(const CriterionInputData& criterion_input_data);
 
     void ComputeCriterion(std::shared_ptr<SolverAbstract> problem,
                           double subproblem_weight,
