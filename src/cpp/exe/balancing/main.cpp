@@ -50,7 +50,7 @@ std::set<std::string> readAreaFile(const std::filesystem::path& areaFile)
 Benders::Criterion::CriterionInputData buildPatterns(const Benders::Criterion::Type criterion,
                                                      std::set<std::string> unique_areas)
 {
-    Benders::Criterion::CriterionInputData ret{false, criterion};
+    Benders::Criterion::CriterionInputData ret{criterion};
     for (const auto& area: unique_areas)
     {
         Benders::Criterion::CriterionSingleInputData singleInputData(getPrefix(criterion), area, 1);
@@ -122,7 +122,7 @@ int main(int argc, char** argv)
                                 + formatDuration(elapsed_seconds));
 
         std::map<Antares::Solver::WeeklyProblemId, PbOutput> res;
-        constexpr int MAX_ITERATIONS = 15;
+        constexpr int MAX_ITERATIONS = 30;
         int iteration = 0;
         while (!pbg.isBalanced() && iteration < MAX_ITERATIONS)
         {

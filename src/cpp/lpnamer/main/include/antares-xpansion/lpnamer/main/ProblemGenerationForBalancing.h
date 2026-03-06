@@ -39,7 +39,6 @@ struct BalancingData
 {
     double marginalCost;
     std::array<size_t, NUMBER_OF_HOURS_PER_WEEK> dispProdVarIndices;
-    double currentBound;
 };
 
 /// @brief Class to generate and modify problems in memory
@@ -62,6 +61,7 @@ private:
     std::map<AreaCluster, BalancingData> balancingData;
 
     void fillDispProdVarIndicesAndMarginalCosts();
+    void getDispProdValuesForDecommissioningCandidates();
 
     std::map<AreaCluster, CapacityAction> findAreaClustersToModify(
       const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues);

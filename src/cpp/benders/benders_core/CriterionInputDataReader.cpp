@@ -75,11 +75,6 @@ void CriterionInputData::AddSingleData(const CriterionSingleInputData& data)
     criterion_vector_.push_back(data);
 }
 
-bool CriterionInputData::isDual() const
-{
-    return isDual_;
-}
-
 const std::vector<CriterionSingleInputData>& CriterionInputData::Criteria() const
 {
     return criterion_vector_;

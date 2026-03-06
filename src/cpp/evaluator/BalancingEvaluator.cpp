@@ -44,7 +44,7 @@ Benders::Criterion::CriterionInputData BalancingEvaluator::buildPatterns(
   Benders::Criterion::Type criterion,
   const std::map<std::string, AreaInvestment>& areaInvestments)
 {
-    Benders::Criterion::CriterionInputData ret{false, criterion};
+    Benders::Criterion::CriterionInputData ret{criterion};
     for (const auto& area: areaInvestments | std::views::keys)
     {
         Benders::Criterion::CriterionSingleInputData singleInputData(getPrefix(criterion), area, 1);

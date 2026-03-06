@@ -2,6 +2,28 @@
 
 #include <stdexcept>
 
+/// @brief Check if investment is possible for the area
+/// @return true if investment is possible, false otherwise
+bool AreaInvestment::isInvestmentPossible() const
+{
+    return std::ranges::any_of(investmentCandidates,
+                               [](const auto& entry)
+                               {
+                                   return entry.second.currentDispatchableProductionValue
+                                          < entry.second.candidateParams->expansionPotential;
+                               });
+}
+
+bool AreaInvestment::isDecommissioningPossible() const
+{
+    return std::ranges::any_of(decommissioningCandidates,
+                               [](const auto& entry)
+                               {
+                                   return entry.second.currentDispatchableProductionValue
+                                          < entry.second.candidateParams->expansionPotential;
+                               });
+}
+
 /// @brief Check if disinvestment is possible for the area
 /// @return true if disinvestment is possible, false otherwise
 bool AreaInvestment::isDisinvestmentPossible() const

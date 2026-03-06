@@ -31,6 +31,7 @@ ProblemGenerationForBalancing::ProblemGenerationForBalancing(
     areaInvestments(areaInvestments)
 {
     fillDispProdVarIndicesAndMarginalCosts();
+    getDispProdValuesForDecommissioningCandidates();
 }
 
 /// @brief Fill the DispatchableProduction variable indices and marginal cost for a given area
@@ -61,6 +62,29 @@ void ProblemGenerationForBalancing::fillDispProdVarIndicesAndMarginalCostsForAre
             {
                 balancingData[key].marginalCost = objCoeffs[it->second];
             }
+        }
+    }
+}
+
+void ProblemGenerationForBalancing::getDispProdValuesForDecommissioningCandidates()
+{
+    for (auto& [areaName, areaInvestment]: areaInvestments)
+    {
+        for (auto& [clusterName, candidate]: areaInvestment.decommissioningCandidates)
+        {
+            const AreaCluster key{areaName, clusterName};
+            const auto& dispProdVarIndices = balancingData[key].dispProdVarIndices;
+
+            double totalDispProd = 0.0;
+            for (size_t hour = 0; hour < NUMBER_OF_HOURS_PER_WEEK; ++hour)
+            {
+                double pmax;
+                problemManager->getProblems().begin()->second->get_ub(&pmax,
+                                                                      dispProdVarIndices[hour],
+                                                                      dispProdVarIndices[hour]);
+                totalDispProd += pmax;
+            }
+            candidate.candidateParams->expansionPotential = totalDispProd;
         }
     }
 }
@@ -125,12 +149,12 @@ void ProblemGenerationForBalancing::logCriterionAndAreaInvestments(
         const auto& areaInvestment = areaInvestments.at(areaName);
         for (const auto& [clusterName, candidate]: areaInvestment.investmentCandidates)
         {
-            ss << "  Investment candidate cluster " << clusterName << ", current : +"
+            ss << "  Investment candidate cluster " << clusterName << " : +"
                << candidate.currentDispatchableProductionValue << "\n";
         }
         for (const auto& [clusterName, candidate]: areaInvestment.decommissioningCandidates)
         {
-            ss << "  Decommissioning candidate cluster " << clusterName << ", current : -"
+            ss << "  Decommissioning candidate cluster " << clusterName << " : -"
                << candidate.currentDispatchableProductionValue << "\n";
         }
 
@@ -186,11 +210,13 @@ CapacityAction ProblemGenerationForBalancing::determineCapacityAction(
     CapacityAction action;
     if (current == CriterionState::HIGHER && previous == CriterionState::HIGHER)
     {
-        action = CapacityAction::INVESTMENT;
+        action = areaInvestment.isInvestmentPossible() ? CapacityAction::INVESTMENT
+                                                       : CapacityAction::DECOMMISSIONING;
     }
     else if (current == CriterionState::LOWER && previous == CriterionState::LOWER)
     {
-        action = CapacityAction::DECOMMISSIONING;
+        action = areaInvestment.isDecommissioningPossible() ? CapacityAction::DECOMMISSIONING
+                                                            : CapacityAction::INVESTMENT;
     }
     else
     {
@@ -208,14 +234,20 @@ CapacityAction ProblemGenerationForBalancing::determineCapacityAction(
     return action;
 }
 
-static double extraCost(const Candidate<Investment>& candidate, CapacityAction action)
+template<typename CandidateType>
+static double extraCost(const Candidate<CandidateType>& candidate)
 {
-    return action == CapacityAction::INVESTMENT ? candidate.candidateParams->investmentCost : 0.0;
-}
-
-static double extraCost(const Candidate<Decommissioning>&, CapacityAction)
-{
-    return 0.0;
+    if constexpr (std::is_same_v<CandidateType, Investment>)
+    {
+        return candidate.currentDispatchableProductionValue
+               * (candidate.candidateParams->investmentCost
+                  + candidate.candidateParams->fixedOmCosts);
+    }
+    else
+    {
+        return candidate.currentDispatchableProductionValue
+               * candidate.candidateParams->fixedOmCosts;
+    }
 }
 
 template<typename CandidateType>
@@ -229,6 +261,38 @@ std::map<std::string, double> ProblemGenerationForBalancing::computeRentabilityF
     for (const auto& [clusterName, candidate]: candidates)
     {
         double value = 0.0;
+        if constexpr (std::is_same_v<CandidateType, Investment>)
+        {
+            if (action == CapacityAction::INVESTMENT
+                && candidate.currentDispatchableProductionValue
+                     == candidate.candidateParams->expansionPotential)
+            {
+                rentability[clusterName] = std::numeric_limits<double>::min();
+                continue;
+            }
+            else if (action == CapacityAction::DISINVESTMENT
+                     && candidate.currentDispatchableProductionValue == 0.0)
+            {
+                rentability[clusterName] = std::numeric_limits<double>::max();
+                continue;
+            }
+        }
+        else
+        {
+            if (action == CapacityAction::DECOMMISSIONING
+                && candidate.currentDispatchableProductionValue == 0.0)
+            {
+                rentability[clusterName] = std::numeric_limits<double>::max();
+                continue;
+            }
+            else if (action == CapacityAction::RECOMMISSIONING
+                     && candidate.currentDispatchableProductionValue
+                          == candidate.candidateParams->expansionPotential)
+            {
+                rentability[clusterName] = std::numeric_limits<double>::min();
+                continue;
+            }
+        }
         for (const auto& [pbId, pbOutput]: simuValues)
         {
             value += std::accumulate(pbOutput.areaPrices.at(areaName).begin(),
@@ -236,7 +300,7 @@ std::map<std::string, double> ProblemGenerationForBalancing::computeRentabilityF
                                      0.0)
                      - balancingData.at({areaName, clusterName}).marginalCost;
         }
-        value -= candidate.candidateParams->fixedOmCosts + extraCost(candidate, action);
+        value -= extraCost(candidate);
         rentability[clusterName] = value;
     }
     return rentability;
@@ -324,7 +388,8 @@ void ProblemGenerationForBalancing::updateOldCriterionState(
     }
 }
 
-/// @brief Compute the criterion state from the area investment parameters and the criterion value
+/// @brief Compute the criterion state from the area investment parameters and the criterion
+/// value
 /// @param areaInvestment The area investment parameters to use for the computation
 /// @param value The criterion value to use for the computation
 /// @return The criterion state computed
@@ -407,25 +472,29 @@ double ProblemGenerationForBalancing::computeNewBoundAndUpdateCandidate(
     {
     case CapacityAction::INVESTMENT:
         problem->get_ub(&newBound, varIndex, varIndex);
-        newBound += areaInvestment.currentInvestmentIncrement;
+        newBound = std::min(
+          newBound + areaInvestment.currentInvestmentIncrement,
+          areaInvestment.investmentCandidates.at(clusterName).candidateParams->expansionPotential);
         areaInvestment.investmentCandidates.at(clusterName).currentDispatchableProductionValue
           = newBound;
         break;
     case CapacityAction::DISINVESTMENT:
-        problem->get_lb(&newBound, varIndex, varIndex);
-        newBound -= areaInvestment.currentInvestmentIncrement;
+        problem->get_ub(&newBound, varIndex, varIndex);
+        newBound = std::max(newBound - areaInvestment.currentInvestmentIncrement, 0.0);
         areaInvestment.investmentCandidates.at(clusterName).currentDispatchableProductionValue
           = newBound;
         break;
     case CapacityAction::DECOMMISSIONING:
-        problem->get_ub(&newBound, varIndex, varIndex);
-        newBound -= areaInvestment.currentDecommissioningIncrement;
+        problem->get_lb(&newBound, varIndex, varIndex);
+        newBound = std::max(newBound - areaInvestment.currentDecommissioningIncrement, 0.0);
         areaInvestment.decommissioningCandidates.at(clusterName).currentDispatchableProductionValue
           = newBound;
         break;
     case CapacityAction::RECOMMISSIONING:
         problem->get_lb(&newBound, varIndex, varIndex);
-        newBound += areaInvestment.currentDecommissioningIncrement;
+        newBound = std::min(
+          newBound + areaInvestment.currentDecommissioningIncrement,
+          areaInvestment.investmentCandidates.at(clusterName).candidateParams->expansionPotential);
         areaInvestment.decommissioningCandidates.at(clusterName).currentDispatchableProductionValue
           = newBound;
         break;

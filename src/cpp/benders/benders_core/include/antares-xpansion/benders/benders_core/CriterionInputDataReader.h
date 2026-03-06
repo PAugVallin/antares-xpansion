@@ -98,8 +98,7 @@ private:
 class CriterionInputData
 {
 public:
-    CriterionInputData(bool isDual = false, const Type criterion = Type::PositiveUnsuppliedEnergy):
-        isDual_(isDual),
+    CriterionInputData(const Type criterion = Type::PositiveUnsuppliedEnergy):
         criterion(criterion)
     {
     }
@@ -112,14 +111,12 @@ public:
     void SetCriterionCountThreshold(double count_threshold);
     [[nodiscard]] double CriterionCountThreshold() const;
     void AddSingleData(const CriterionSingleInputData& data);
-    [[nodiscard]] bool isDual() const;
 
     Type criterion{Type::PositiveUnsuppliedEnergy};
 
 private:
     std::vector<CriterionSingleInputData> criterion_vector_;
     double count_threshold_ = 1;
-    bool isDual_{false};
 };
 
 /// @brief this class contains all data read from user input file

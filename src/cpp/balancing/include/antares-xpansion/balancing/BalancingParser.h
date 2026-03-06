@@ -41,6 +41,7 @@ struct Investment
 
 struct Decommissioning
 {
+    double expansionPotential;
     double fixedOmCosts;
 };
 
@@ -64,6 +65,8 @@ struct AreaInvestment
     std::map<std::string, Candidate<Investment>> investmentCandidates;
     CriterionState oldCriterionState{CriterionState::UNINITIALIZED};
 
+    bool isInvestmentPossible() const;
+    bool isDecommissioningPossible() const;
     bool isDisinvestmentPossible() const;
     bool isRecommissioningPossible() const;
 };
