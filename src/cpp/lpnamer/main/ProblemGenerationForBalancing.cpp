@@ -1,37 +1,33 @@
 
 #include "antares-xpansion/lpnamer/main/ProblemGenerationForBalancing.h"
 
-#include <execution>
 #include <iostream>
+#include <numeric>
 #include <tbb/parallel_for_each.h>
 #include <utility>
 
 #include <antares/api/solver.h>
-
-#include "antares-xpansion/benders/output/OutputWriter.h"
-#include "antares-xpansion/helpers/solver_utils.h"
-#include "antares-xpansion/lpnamer/problem_modifier/XpansionProblemsFromAntaresProvider.h"
-#include "malloc.h"
+#include <antares/solver/lps/LpsFromAntares.h>
 
 /// @brief Launch the simulation and save the problems satisfying startWeek <= week <= endweek
 /// @param directories The directories to use for the problems generation
-/// @param areaInvestments The area investments to use for the problems modification
+/// @param areaSettings The area investments to use for the problems modification
 /// @param logger The logger to use
 /// @param solverName The name of the solver to use
 /// @param startWeek The start week of the problems to take into account
 /// @param endWeek The end week of the problems to take into account
 ProblemGenerationForBalancing::ProblemGenerationForBalancing(
   ConfigurationManager::ConfigDirectories directories,
-  std::map<std::string, AreaInvestment>& areaInvestments,
+  std::map<std::string, AreaSettings>& areasSettings,
   Logger logger,
   std::shared_ptr<ProblemManager> problemManager,
   unsigned int startWeek,
   unsigned int endWeek):
     ProblemGenerationOptimSimu(directories, logger, problemManager, startWeek, endWeek),
-    areaInvestments(areaInvestments)
+    areasSettings(areasSettings)
 {
     fillDispProdVarIndicesAndMarginalCosts();
-    getDispProdValuesForDecommissioningCandidates();
+    getInitialCapacitiesForDecommissioningCandidates();
 }
 
 /// @brief Fill the DispatchableProduction variable indices and marginal cost for a given area
@@ -66,25 +62,19 @@ void ProblemGenerationForBalancing::fillDispProdVarIndicesAndMarginalCostsForAre
     }
 }
 
-void ProblemGenerationForBalancing::getDispProdValuesForDecommissioningCandidates()
+void ProblemGenerationForBalancing::getInitialCapacitiesForDecommissioningCandidates()
 {
-    for (auto& [areaName, areaInvestment]: areaInvestments)
+    for (auto& [areaName, areaSetting]: areasSettings)
     {
-        for (auto& [clusterName, candidate]: areaInvestment.decommissioningCandidates)
+        for (auto& [clusterName, decommissioningCandidate]: areaSetting.decommissioningCandidates)
         {
             const AreaCluster key{areaName, clusterName};
             const auto& dispProdVarIndices = balancingData[key].dispProdVarIndices;
 
-            double totalDispProd = 0.0;
-            for (size_t hour = 0; hour < NUMBER_OF_HOURS_PER_WEEK; ++hour)
-            {
-                double pmax;
-                problemManager->getProblems().begin()->second->get_ub(&pmax,
-                                                                      dispProdVarIndices[hour],
-                                                                      dispProdVarIndices[hour]);
-                totalDispProd += pmax;
-            }
-            candidate.candidateParams->expansionPotential = totalDispProd;
+            problemManager->getProblems().begin()->second->get_ub(
+              &decommissioningCandidate.currentCapacity,
+              dispProdVarIndices[0],
+              dispProdVarIndices[0]);
         }
     }
 }
@@ -117,16 +107,16 @@ void ProblemGenerationForBalancing::fillDispProdVarIndicesAndMarginalCosts()
 
     const auto varToIndex = buildVarToIndex(vars);
 
-    for (const auto& [areaName, areaInvestment]: areaInvestments)
+    for (const auto& [areaName, areaSettings]: areasSettings)
     {
-        for (const auto& clusterName: areaInvestment.investmentCandidates | std::views::keys)
+        for (const auto& clusterName: areaSettings.investmentCandidates | std::views::keys)
         {
             fillDispProdVarIndicesAndMarginalCostsForArea(areaName,
                                                           clusterName,
                                                           varToIndex,
                                                           objCoeffs);
         }
-        for (const auto& clusterName: areaInvestment.decommissioningCandidates | std::views::keys)
+        for (const auto& clusterName: areaSettings.decommissioningCandidates | std::views::keys)
         {
             fillDispProdVarIndicesAndMarginalCostsForArea(areaName,
                                                           clusterName,
@@ -136,7 +126,7 @@ void ProblemGenerationForBalancing::fillDispProdVarIndicesAndMarginalCosts()
     }
 }
 
-void ProblemGenerationForBalancing::logCriterionAndAreaInvestments(
+void ProblemGenerationForBalancing::logCriterionAndAreaSettingss(
   const std::map<std::string, CriterionState>& areaCriteriaState)
 {
     // For each area, log the criterion state and the DispatchableProduction variable values for the
@@ -146,16 +136,17 @@ void ProblemGenerationForBalancing::logCriterionAndAreaInvestments(
         std::stringstream ss;
         ss << "Criterion state for area " << areaName << ": " << to_string(criterionState) << "\n";
 
-        const auto& areaInvestment = areaInvestments.at(areaName);
-        for (const auto& [clusterName, candidate]: areaInvestment.investmentCandidates)
+        const auto& areaSettings = areasSettings.at(areaName);
+        for (const auto& [clusterName, investmentCandidate]: areaSettings.investmentCandidates)
         {
             ss << "  Investment candidate cluster " << clusterName << " : +"
-               << candidate.currentDispatchableProductionValue << "\n";
+               << investmentCandidate.currentCapacity << "\n";
         }
-        for (const auto& [clusterName, candidate]: areaInvestment.decommissioningCandidates)
+        for (const auto& [clusterName, decommissioningCandidate]:
+             areaSettings.decommissioningCandidates)
         {
             ss << "  Decommissioning candidate cluster " << clusterName << " : -"
-               << candidate.currentDispatchableProductionValue << "\n";
+               << decommissioningCandidate.currentCapacity << "\n";
         }
 
         logger->display_message(ss.str(),
@@ -172,24 +163,21 @@ std::map<AreaCluster, CapacityAction> ProblemGenerationForBalancing::findAreaClu
 {
     std::map<AreaCluster, CapacityAction> areaClusterToModify;
     const auto areaCritState = areaCriteriaState(simuValues);
-    updateAreaInvestmentIncrement(areaCritState);
-    logCriterionAndAreaInvestments(areaCritState);
+    updateAreaSettingsIncrement(areaCritState);
+    logCriterionAndAreaSettingss(areaCritState);
 
-    for (const auto& [areaName, areaInvestment]: areaInvestments)
+    for (const auto& [areaName, areaSettings]: areasSettings)
     {
         const CriterionState current = areaCritState.at(areaName);
-        const CriterionState previous = areaInvestment.oldCriterionState;
+        const CriterionState previous = areaSettings.oldCriterionState;
 
         if (current == CriterionState::VALID)
         {
             continue;
         }
 
-        CapacityAction action = determineCapacityAction(current, previous, areaInvestment);
-        const std::string clusterName = getBestCluster(simuValues,
-                                                       areaName,
-                                                       areaInvestment,
-                                                       action);
+        CapacityAction action = determineCapacityAction(areaName, current, areaSettings);
+        const std::string clusterName = getBestCluster(simuValues, areaName, areaSettings, action);
         areaClusterToModify[{areaName, clusterName}] = action;
     }
 
@@ -198,40 +186,73 @@ std::map<AreaCluster, CapacityAction> ProblemGenerationForBalancing::findAreaClu
 }
 
 /// @brief Find the action to apply from the criterion states and area investment parameters
-/// @param current The current criterion state
-/// @param previous The previous criterion state
-/// @param areaInvestment The area investment parameters
+/// @param areaName The name of the area
+/// @param currentState The current criterion state
+/// @param areaSettings The area investment parameters
 /// @return The action to apply
 CapacityAction ProblemGenerationForBalancing::determineCapacityAction(
-  CriterionState current,
-  CriterionState previous,
-  const AreaInvestment& areaInvestment)
+  const std::string& areaName,
+  CriterionState currentState,
+  const AreaSettings& areaSettings)
 {
-    CapacityAction action;
-    if (current == CriterionState::HIGHER && previous == CriterionState::HIGHER)
+    std::optional<CapacityAction> previousAction;
+    if (lastActionForArea.find(areaName) != lastActionForArea.end())
     {
-        action = areaInvestment.isInvestmentPossible() ? CapacityAction::INVESTMENT
-                                                       : CapacityAction::DECOMMISSIONING;
+        previousAction = lastActionForArea.at(areaName);
     }
-    else if (current == CriterionState::LOWER && previous == CriterionState::LOWER)
+
+    const bool isHigher = currentState == CriterionState::HIGHER;
+    const bool isInvestmentCycle = previousAction == CapacityAction::INVESTMENT
+                                   || previousAction == CapacityAction::DISINVESTMENT
+                                   || (!previousAction.has_value() && isHigher);
+
+    if (isInvestmentCycle && isHigher)
     {
-        action = areaInvestment.isDecommissioningPossible() ? CapacityAction::DECOMMISSIONING
-                                                            : CapacityAction::INVESTMENT;
+        if (areaSettings.isInvestmentPossible())
+        {
+            return CapacityAction::INVESTMENT;
+        }
+        if (areaSettings.isDecommissioningPossible())
+        {
+            return CapacityAction::DECOMMISSIONING;
+        }
+    }
+    else if (isInvestmentCycle && !isHigher)
+    {
+        if (areaSettings.isDisinvestmentPossible())
+        {
+            return CapacityAction::DISINVESTMENT;
+        }
+        if (areaSettings.isRecommissioningPossible())
+        {
+            return CapacityAction::RECOMMISSIONING;
+        }
+    }
+    else if (isHigher)
+    {
+        if (areaSettings.isDecommissioningPossible())
+        {
+            return CapacityAction::DECOMMISSIONING;
+        }
+        if (areaSettings.isInvestmentPossible())
+        {
+            return CapacityAction::INVESTMENT;
+        }
     }
     else
     {
-        if (current == CriterionState::LOWER && previous == CriterionState::HIGHER)
+        if (areaSettings.isInvestmentPossible())
         {
-            action = areaInvestment.isDisinvestmentPossible() ? CapacityAction::DISINVESTMENT
-                                                              : CapacityAction::DECOMMISSIONING;
+            return CapacityAction::INVESTMENT;
         }
-        else
+        if (areaSettings.isDecommissioningPossible())
         {
-            action = areaInvestment.isRecommissioningPossible() ? CapacityAction::RECOMMISSIONING
-                                                                : CapacityAction::INVESTMENT;
+            return CapacityAction::DECOMMISSIONING;
         }
     }
-    return action;
+
+    throw std::runtime_error("Area " + areaName
+                             + " is not balanced but no modification is possible");
 }
 
 template<typename CandidateType>
@@ -239,14 +260,12 @@ static double extraCost(const Candidate<CandidateType>& candidate)
 {
     if constexpr (std::is_same_v<CandidateType, Investment>)
     {
-        return candidate.currentDispatchableProductionValue
-               * (candidate.candidateParams->investmentCost
-                  + candidate.candidateParams->fixedOmCosts);
+        return candidate.currentCapacity
+               * (candidate.params->investmentCost + candidate.params->fixedOmCosts);
     }
     else
     {
-        return candidate.currentDispatchableProductionValue
-               * candidate.candidateParams->fixedOmCosts;
+        return candidate.currentCapacity * candidate.params->fixedOmCosts;
     }
 }
 
@@ -264,14 +283,12 @@ std::map<std::string, double> ProblemGenerationForBalancing::computeRentabilityF
         if constexpr (std::is_same_v<CandidateType, Investment>)
         {
             if (action == CapacityAction::INVESTMENT
-                && candidate.currentDispatchableProductionValue
-                     == candidate.candidateParams->expansionPotential)
+                && candidate.currentCapacity == candidate.params->expansionPotential)
             {
                 rentability[clusterName] = std::numeric_limits<double>::min();
                 continue;
             }
-            else if (action == CapacityAction::DISINVESTMENT
-                     && candidate.currentDispatchableProductionValue == 0.0)
+            else if (action == CapacityAction::DISINVESTMENT && candidate.currentCapacity == 0.0)
             {
                 rentability[clusterName] = std::numeric_limits<double>::max();
                 continue;
@@ -279,15 +296,13 @@ std::map<std::string, double> ProblemGenerationForBalancing::computeRentabilityF
         }
         else
         {
-            if (action == CapacityAction::DECOMMISSIONING
-                && candidate.currentDispatchableProductionValue == 0.0)
+            if (action == CapacityAction::DECOMMISSIONING && candidate.currentCapacity == 0.0)
             {
                 rentability[clusterName] = std::numeric_limits<double>::max();
                 continue;
             }
             else if (action == CapacityAction::RECOMMISSIONING
-                     && candidate.currentDispatchableProductionValue
-                          == candidate.candidateParams->expansionPotential)
+                     && candidate.currentCapacity == candidate.params->decommissioningPotential)
             {
                 rentability[clusterName] = std::numeric_limits<double>::min();
                 continue;
@@ -325,13 +340,13 @@ static std::string selectBestClusterFromRentability(
 /// @brief Find the best cluster for a given area
 /// @param simuValues The simulation values to look for the cluster selection
 /// @param areaName The name of the area to find the best cluster for
-/// @param areaInvestment The area investment parameters
+/// @param areaSettings The area investment parameters
 /// @param action The action to apply for which the best cluster is looked for
 /// @return The name of the best cluster for the given area and action
 std::string ProblemGenerationForBalancing::getBestCluster(
   const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues,
   const std::string& areaName,
-  const AreaInvestment& areaInvestment,
+  const AreaSettings& areaSettings,
   CapacityAction action)
 {
     const bool isInvestmentAction = action == CapacityAction::INVESTMENT
@@ -341,14 +356,14 @@ std::string ProblemGenerationForBalancing::getBestCluster(
     if (isInvestmentAction)
     {
         rentability = computeRentabilityForCandidates(areaName,
-                                                      areaInvestment.investmentCandidates,
+                                                      areaSettings.investmentCandidates,
                                                       simuValues,
                                                       action);
     }
     else
     {
         rentability = computeRentabilityForCandidates(areaName,
-                                                      areaInvestment.decommissioningCandidates,
+                                                      areaSettings.decommissioningCandidates,
                                                       simuValues,
                                                       action);
     }
@@ -358,21 +373,21 @@ std::string ProblemGenerationForBalancing::getBestCluster(
 
 /// @brief Update the the area investment increments based on the criterion states
 /// @param areaCritState The criterion states to use for the update
-void ProblemGenerationForBalancing::updateAreaInvestmentIncrement(
+void ProblemGenerationForBalancing::updateAreaSettingsIncrement(
   const std::map<std::string, CriterionState>& areaCritState)
 {
-    for (auto& [area, areaInvestment]: areaInvestments)
+    for (auto& [area, areaSettings]: areasSettings)
     {
-        if (areaInvestment.oldCriterionState != areaCritState.at(area)
+        if (areaSettings.oldCriterionState != areaCritState.at(area)
             && areaCritState.at(area) != CriterionState::VALID)
         {
-            areaInvestment.currentInvestmentIncrement = std::max(
-              areaInvestment.investmentIncrement * 0.1,
-              areaInvestment.currentInvestmentIncrement - 0.1 * areaInvestment.investmentIncrement);
-            areaInvestment.currentDecommissioningIncrement = std::max(
-              areaInvestment.decommissioningIncrement * 0.1,
-              areaInvestment.currentDecommissioningIncrement
-                - 0.1 * areaInvestment.decommissioningIncrement);
+            areaSettings.currentInvestmentIncrement = std::max(
+              areaSettings.investmentIncrement * 0.1,
+              areaSettings.currentInvestmentIncrement - 0.1 * areaSettings.investmentIncrement);
+            areaSettings.currentDecommissioningIncrement = std::max(
+              areaSettings.decommissioningIncrement * 0.1,
+              areaSettings.currentDecommissioningIncrement
+                - 0.1 * areaSettings.decommissioningIncrement);
         }
     }
 }
@@ -382,26 +397,25 @@ void ProblemGenerationForBalancing::updateAreaInvestmentIncrement(
 void ProblemGenerationForBalancing::updateOldCriterionState(
   const std::map<std::string, CriterionState>& areaCritState)
 {
-    for (auto& [area, areaInvestment]: areaInvestments)
+    for (auto& [area, areaSettings]: areasSettings)
     {
-        areaInvestment.oldCriterionState = areaCritState.at(area);
+        areaSettings.oldCriterionState = areaCritState.at(area);
     }
 }
 
 /// @brief Compute the criterion state from the area investment parameters and the criterion
 /// value
-/// @param areaInvestment The area investment parameters to use for the computation
+/// @param areaSettings The area investment parameters to use for the computation
 /// @param value The criterion value to use for the computation
 /// @return The criterion state computed
-CriterionState ProblemGenerationForBalancing::criterionState(AreaInvestment& areaInvestment,
+CriterionState ProblemGenerationForBalancing::criterionState(AreaSettings& areaSettings,
                                                              double value)
 {
-    if (value < areaInvestment.reliabilityStandard - areaInvestment.reliabilityStandardDeadBandDown)
+    if (value < areaSettings.reliabilityStandard - areaSettings.reliabilityStandardDeadBandDown)
     {
         return CriterionState::LOWER;
     }
-    else if (value
-             > areaInvestment.reliabilityStandard + areaInvestment.reliabilityStandardDeadBandUp)
+    else if (value > areaSettings.reliabilityStandard + areaSettings.reliabilityStandardDeadBandUp)
     {
         return CriterionState::HIGHER;
     }
@@ -448,7 +462,7 @@ std::map<std::string, CriterionState> ProblemGenerationForBalancing::areaCriteri
     const auto avgAreaCriteria = computeAverageAreaCriteriaValues(simuValues);
     for (const auto& [area, value]: avgAreaCriteria)
     {
-        areaCriteriaState[area] = criterionState(areaInvestments[area], value);
+        areaCriteriaState[area] = criterionState(areasSettings[area], value);
     }
     return areaCriteriaState;
 }
@@ -457,14 +471,14 @@ std::map<std::string, CriterionState> ProblemGenerationForBalancing::areaCriteri
 /// @param problem The problem to get the current bound from
 /// @param varIndex The index of the variable
 /// @param action The action to apply
-/// @param areaInvestment The area investment data to update
+/// @param areaSettings The area investment data to update
 /// @param clusterName The name of the cluster to update
 /// @return The new bound value
 double ProblemGenerationForBalancing::computeNewBoundAndUpdateCandidate(
   const std::shared_ptr<Problem>& problem,
   size_t varIndex,
   CapacityAction action,
-  AreaInvestment& areaInvestment,
+  AreaSettings& areaSettings,
   const std::string& clusterName)
 {
     double newBound;
@@ -473,30 +487,26 @@ double ProblemGenerationForBalancing::computeNewBoundAndUpdateCandidate(
     case CapacityAction::INVESTMENT:
         problem->get_ub(&newBound, varIndex, varIndex);
         newBound = std::min(
-          newBound + areaInvestment.currentInvestmentIncrement,
-          areaInvestment.investmentCandidates.at(clusterName).candidateParams->expansionPotential);
-        areaInvestment.investmentCandidates.at(clusterName).currentDispatchableProductionValue
-          = newBound;
+          newBound + areaSettings.currentInvestmentIncrement,
+          areaSettings.investmentCandidates.at(clusterName).params->expansionPotential);
+        areaSettings.investmentCandidates.at(clusterName).currentCapacity = newBound;
         break;
     case CapacityAction::DISINVESTMENT:
         problem->get_ub(&newBound, varIndex, varIndex);
-        newBound = std::max(newBound - areaInvestment.currentInvestmentIncrement, 0.0);
-        areaInvestment.investmentCandidates.at(clusterName).currentDispatchableProductionValue
-          = newBound;
+        newBound = std::max(newBound - areaSettings.currentInvestmentIncrement, 0.0);
+        areaSettings.investmentCandidates.at(clusterName).currentCapacity = newBound;
         break;
     case CapacityAction::DECOMMISSIONING:
         problem->get_lb(&newBound, varIndex, varIndex);
-        newBound = std::max(newBound - areaInvestment.currentDecommissioningIncrement, 0.0);
-        areaInvestment.decommissioningCandidates.at(clusterName).currentDispatchableProductionValue
-          = newBound;
+        newBound = std::max(newBound - areaSettings.currentDecommissioningIncrement, 0.0);
+        areaSettings.decommissioningCandidates.at(clusterName).currentCapacity = newBound;
         break;
     case CapacityAction::RECOMMISSIONING:
         problem->get_lb(&newBound, varIndex, varIndex);
         newBound = std::min(
-          newBound + areaInvestment.currentDecommissioningIncrement,
-          areaInvestment.investmentCandidates.at(clusterName).candidateParams->expansionPotential);
-        areaInvestment.decommissioningCandidates.at(clusterName).currentDispatchableProductionValue
-          = newBound;
+          newBound + areaSettings.currentDecommissioningIncrement,
+          areaSettings.decommissioningCandidates.at(clusterName).params->decommissioningPotential);
+        areaSettings.decommissioningCandidates.at(clusterName).currentCapacity = newBound;
         break;
     }
     return newBound;
@@ -521,8 +531,9 @@ static char boundTypeForAction(CapacityAction action)
 void ProblemGenerationForBalancing::applyActionToCluster(const AreaCluster& areaCluster,
                                                          CapacityAction action)
 {
+    lastActionForArea[areaCluster.first] = action;
     const auto& varIndices = balancingData.at(areaCluster).dispProdVarIndices;
-    auto& areaInvestment = areaInvestments.at(areaCluster.first);
+    auto& areaSettings = areasSettings.at(areaCluster.first);
     const char boundType = boundTypeForAction(action);
 
     std::vector<int> vecIndices(varIndices.begin(), varIndices.end());
@@ -538,7 +549,7 @@ void ProblemGenerationForBalancing::applyActionToCluster(const AreaCluster& area
                                      problem,
                                      varIndices[hour],
                                      action,
-                                     areaInvestment,
+                                     areaSettings,
                                      areaCluster.second);
                                }
                                problem->chg_bounds(vecIndices, boundTypes, localVarValues);
@@ -567,9 +578,9 @@ ProblemGenerationForBalancing::updateProblems(
 
 bool ProblemGenerationForBalancing::isBalanced() const
 {
-    for (const auto& [area, areaInvestment]: areaInvestments)
+    for (const auto& [area, areaSettings]: areasSettings)
     {
-        if (areaInvestment.oldCriterionState != CriterionState::VALID)
+        if (areaSettings.oldCriterionState != CriterionState::VALID)
         {
             return false;
         }

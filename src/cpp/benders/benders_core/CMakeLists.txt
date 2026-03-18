@@ -77,7 +77,6 @@ target_link_libraries(benders_core
         antaresXpansion::outer_loop_lib
         antaresXpansion::core
         fmt::fmt
-        antaresXpansion::lp_namer_model
 )
 
 target_link_libraries(benders_core PRIVATE TBB::tbb)

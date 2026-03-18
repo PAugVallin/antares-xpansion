@@ -10,8 +10,6 @@
 #include "antares-xpansion/benders/factories/LoggerFactories.h"
 #include "antares-xpansion/benders/logger/FilteredLogger.h"
 #include "antares-xpansion/lpnamer/main/ProblemGenerationForWaterValueCalculation.h"
-#include "antares-xpansion/lpnamer/problem_modifier/XpansionProblemsFromAntaresProvider.h"
-#include "malloc.h"
 
 std::vector<double> interpolateVector(const std::vector<double>& originalValues, int targetSize)
 {

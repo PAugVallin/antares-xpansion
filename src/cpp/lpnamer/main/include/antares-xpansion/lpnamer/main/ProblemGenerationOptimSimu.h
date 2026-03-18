@@ -4,24 +4,8 @@
 
 #pragma once
 
-#include <filesystem>
-#include <optional>
-#include <string>
-
-#include <antares/solver/lps/LpsFromAntares.h>
-
 #include "ConfigurationManager.h"
-#include "ProblemGenerationOptions.h"
 #include "antares-xpansion/bellman_values/ProblemManager.h"
-#include "antares-xpansion/core/ProblemFormat.h"
-#include "antares-xpansion/helpers/ArchiveReader.h"
-#include "antares-xpansion/lpnamer/helper/ProblemGenerationLogger.h"
-#include "antares-xpansion/lpnamer/input_reader/MpsTxtWriter.h"
-#include "antares-xpansion/lpnamer/main/ProblemGenerationExeOptions.h"
-#include "antares-xpansion/lpnamer/model/Problem.h"
-#include "antares-xpansion/lpnamer/model/SimulationInputMode.h"
-#include "antares-xpansion/multisolver_interface/SolverAbstract.h"
-#include "antares-xpansion/multisolver_interface/SolverConfig.h"
 
 constexpr char PROBLEM_GENERATION_LOGGER_CONTEXT[] = "ProblemGeneration";
 

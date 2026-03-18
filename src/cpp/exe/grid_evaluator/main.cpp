@@ -10,8 +10,6 @@
 #include "antares-xpansion/benders/logger/FilteredLogger.h"
 #include "antares-xpansion/evaluator/GridEvaluator.h"
 #include "antares-xpansion/lpnamer/main/ProblemGenerationForWaterValueCalculation.h"
-#include "antares-xpansion/lpnamer/problem_modifier/XpansionProblemsFromAntaresProvider.h"
-#include "malloc.h"
 
 std::string formatTime(const std::chrono::system_clock::time_point& timePoint)
 {

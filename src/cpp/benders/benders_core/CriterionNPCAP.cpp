@@ -1,5 +1,7 @@
 #include "antares-xpansion/benders/benders_core/CriterionNPCAP.h"
 
+#include "antares-xpansion/xpansion_interfaces/StringManip.h"
+
 namespace Benders::Criterion
 {
 CriterionNPCAP::CriterionNPCAP(const CriterionInputData& criterion_input_data,
@@ -9,19 +11,22 @@ CriterionNPCAP::CriterionNPCAP(const CriterionInputData& criterion_input_data,
     const auto row_names = problem->get_row_names();
     SearchConstraints(row_names);
 
-    double unspEnergyObj{0};
-    const auto col_names = problem->get_col_names();
+    auto col_names = problem->get_col_names();
     for (size_t index = 0; index < col_names.size(); ++index)
     {
-        const auto& name = col_names[index];
-        // The hour is not important as it is the same value for every hours
-        if (name.starts_with("PositiveUnsuppliedEnergy::area<area>"))
+        double unspEnergyObj{0};
+        // remove end spaces
+        const auto& name = StringManip::removeTrailingSpacesInPlace(col_names[index]);
+
+        if (name.starts_with("PositiveUnsuppliedEnergy::area<") && name.ends_with(">::hour<0>"))
         {
+            std::string area = StringManip::split(StringManip::split(name, "area<")[1],
+                                                  ">::hour")[0];
             problem->get_obj(&unspEnergyObj, index, index);
-            break;
+            unspEnergyObj -= 5;
+            criterionThreasholdByArea[area] = unspEnergyObj;
         }
     }
-    SetCriterionCountThreshold(unspEnergyObj);
 }
 
 void CriterionNPCAP::ComputeCriterion(std::shared_ptr<SolverAbstract> problem,
@@ -36,8 +41,6 @@ void CriterionNPCAP::ComputeCriterion(std::shared_ptr<SolverAbstract> problem,
     std::vector<double> dualValuesCst(problem->get_nrows());
     problem->get_lp_sol(NULL, dualValuesCst.data(), NULL);
 
-    double criterion_count_threshold = criterion_input_data_.CriterionCountThreshold();
-
     for (int pattern_index(0); pattern_index < criteria_input_size; ++pattern_index)
     {
         auto pattern_indices = indices_[pattern_index];
@@ -47,7 +50,8 @@ void CriterionNPCAP::ComputeCriterion(std::shared_ptr<SolverAbstract> problem,
         {
             const auto solution = -dualValuesCst[index];
             pattern_value += solution;
-            if (solution > criterion_count_threshold - 5)
+            if (solution > criterionThreasholdByArea.at(std::string(
+                  criterion_input_data_.Criteria()[pattern_index].Pattern().GetBody())))
             {
                 // 1h were criterion is satisfied
                 criteria_value += subproblem_weight;

@@ -22,6 +22,7 @@ target_link_libraries (grid_evaluator_exe
 		${PROJECT_NAME}::lp_namer_helper
 		${PROJECT_NAME}::evaluator_lib
 		${PROJECT_NAME}::bellman_values_lib
+		${PROJECT_NAME}::exe_options_lib
 		${PROJECT_NAME}::factories
 		
 )

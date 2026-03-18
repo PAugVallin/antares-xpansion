@@ -19,5 +19,7 @@ public:
                           std::vector<double>& patterns_values) override;
 
     ~CriterionNPCAP() override = default;
+
+    std::map<std::string, double> criterionThreasholdByArea;
 };
 } // namespace Benders::Criterion

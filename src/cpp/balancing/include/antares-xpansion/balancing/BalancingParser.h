@@ -1,13 +1,10 @@
 #pragma once
 #include <filesystem>
-#include <iostream>
 #include <map>
 #include <memory>
-#include <optional>
 #include <string>
 
 #include "antares-xpansion/benders/benders_core/CriterionInputDataReader.h"
-#include "yaml-cpp/yaml.h"
 enum class CriterionState
 {
     LOWER,
@@ -41,18 +38,18 @@ struct Investment
 
 struct Decommissioning
 {
-    double expansionPotential;
+    double decommissioningPotential;
     double fixedOmCosts;
 };
 
 template<typename Type>
 struct Candidate
 {
-    std::shared_ptr<Type> candidateParams;
-    double currentDispatchableProductionValue;
+    std::shared_ptr<Type> params;
+    double currentCapacity;
 };
 
-struct AreaInvestment
+struct AreaSettings
 {
     double reliabilityStandard;
     double reliabilityStandardDeadBandUp;
@@ -82,11 +79,7 @@ public:
     double getReliabilityStandardDeadBandDown() const;
     Benders::Criterion::Type getReliabilityStandardIndicator() const;
 
-    const std::map<std::string, AreaInvestment>& getAreas() const;
-    bool hasArea(const std::string& areaName) const;
-    const AreaInvestment* getArea(const std::string& areaName) const;
-
-    std::map<std::string, AreaInvestment> areaInvestments;
+    std::map<std::string, AreaSettings> areaSettings;
 
 private:
     std::filesystem::path pathToYamlConfigFile;
@@ -94,13 +87,13 @@ private:
 
     double reliabilityStandardDeadBandUp;
     double reliabilityStandardDeadBandDown;
-    Benders::Criterion::Type criterion;
+    Benders::Criterion::Type reliabilityStandardIndicator;
 
     std::map<std::string, std::shared_ptr<Decommissioning>> decommissioningCandidatesTypes;
     std::map<std::string, std::shared_ptr<Investment>> investmentCandidatesTypes;
 
     void parseGlobalSettings();
-    void parseAreas();
+    void parseAreasSettings();
     void parseDecommissioningCandidatesTypes();
     void parseInvestmentCandidatesTypes();
 };

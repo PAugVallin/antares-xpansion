@@ -1,17 +1,13 @@
 
 #include <chrono>
 #include <iostream>
-#include <ranges>
 
 #include "antares-xpansion/balancing/BalancingParser.h"
-#include "antares-xpansion/bellman_values/BellmanValuesExeOptions.h"
 #include "antares-xpansion/bellman_values/ProblemManager.h"
 #include "antares-xpansion/benders/factories/LoggerFactories.h"
-#include "antares-xpansion/evaluator/BalancingEvaluator.h"
-#include "antares-xpansion/helpers/AreaParser.h"
+#include "antares-xpansion/evaluator/GreedyBalancingFinder.h"
+#include "antares-xpansion/exe_options/CommonExeOptions.h"
 #include "antares-xpansion/lpnamer/main/ProblemGenerationForBalancing.h"
-#include "antares-xpansion/lpnamer/problem_modifier/XpansionProblemsFromAntaresProvider.h"
-#include "malloc.h"
 
 using namespace PlainData;
 
@@ -36,35 +32,11 @@ std::string formatDuration(std::chrono::duration<T> duration)
       .str();
 }
 
-std::set<std::string> readAreaFile(const std::filesystem::path& areaFile)
-{
-    const auto area_file_data = AreaParser::ReadAreaFile(areaFile);
-    if (const auto& msg = area_file_data.error_message; !msg.empty())
-    {
-        throw std::runtime_error("File " + areaFile.string() + " has not been found");
-        return {};
-    }
-    return {area_file_data.areas.begin(), area_file_data.areas.end()};
-}
-
-Benders::Criterion::CriterionInputData buildPatterns(const Benders::Criterion::Type criterion,
-                                                     std::set<std::string> unique_areas)
-{
-    Benders::Criterion::CriterionInputData ret{criterion};
-    for (const auto& area: unique_areas)
-    {
-        Benders::Criterion::CriterionSingleInputData singleInputData(getPrefix(criterion), area, 1);
-        ret.AddSingleData(singleInputData);
-    }
-
-    return ret;
-}
-
 int main(int argc, char** argv)
 {
     try
     {
-        auto optionsParser = BellmanValuesExeOptions();
+        auto optionsParser = CommonExeOptions();
         optionsParser.Parse(argc, argv);
         auto studyPath = optionsParser.StudyPath();
         auto solverName = optionsParser.SolverName();
@@ -94,7 +66,6 @@ int main(int argc, char** argv)
             std::filesystem::create_directories(directories.simulation_dir);
         }
         std::filesystem::path logPath = directories.simulation_dir / "balancing_log.txt";
-        std::ofstream{logPath}; // creates log file, since the FileLoggerFactory doesn't
         auto loggerFactory = FileAndStdoutLoggerFactory(logPath, false);
         Logger logger = loggerFactory.get_logger();
 
@@ -108,7 +79,7 @@ int main(int argc, char** argv)
                                                                directories.simulation_dir
                                                                  / "initial_problems");
         ProblemGenerationForBalancing pbg(directories,
-                                          balParser.areaInvestments,
+                                          balParser.areaSettings,
                                           logger,
                                           problemManager,
                                           startWeek,
@@ -124,34 +95,30 @@ int main(int argc, char** argv)
         std::map<Antares::Solver::WeeklyProblemId, PbOutput> res;
         constexpr int MAX_ITERATIONS = 30;
         int iteration = 0;
+        auto startProblemUpdate = std::chrono::system_clock::now();
+        logger->display_message(
+          "Balancing process (starting time: " + formatTime(startProblemUpdate) + ")");
         while (!pbg.isBalanced() && iteration < MAX_ITERATIONS)
         {
             iteration++;
             auto problems = pbg.updateProblems(res);
-            res = BalancingEvaluator(logger,
-                                     balParser.areaInvestments,
-                                     balParser.getReliabilityStandardIndicator(),
-                                     problems,
-                                     solverName,
-                                     directories.simulation_dir,
-                                     nbThreads)
+
+            res = GreedyBalancingFinder(logger,
+                                        balParser.areaSettings,
+                                        balParser.getReliabilityStandardIndicator(),
+                                        problems,
+                                        solverName,
+                                        directories.simulation_dir,
+                                        nbThreads)
                     .ComputeCriterionAndPrice();
-            auto startProblemUpdate = std::chrono::system_clock::now();
-            logger->display_message(
-              "Updating problems (starting time: " + formatTime(startProblemUpdate) + ")");
-
-            auto endProblemUpdate = std::chrono::system_clock::now();
-            logger->display_message("Updated problems (end time: " + formatTime(endProblemUpdate)
-                                    + ")");
-
-            std::chrono::duration<double> elapsed_update_seconds = endProblemUpdate
-                                                                   - startProblemUpdate;
-            logger->display_message("Elapsed time for problem update: "
-                                    + formatDuration(elapsed_update_seconds));
         };
-
+        auto endProblemUpdate = std::chrono::system_clock::now();
+        logger->display_message("Balancing process (end time: " + formatTime(endProblemUpdate)
+                                + ")");
+        std::chrono::duration<double> elapsed_update_seconds = endProblemUpdate
+                                                               - startProblemUpdate;
         logger->display_message("Balancing process ended after " + std::to_string(iteration)
-                                + " iterations.");
+                                + " iterations. In " + formatDuration(elapsed_update_seconds));
         logger->display_message(pbg.isBalanced() ? "The system is balanced."
                                                  : "The system is not balanced.");
 

@@ -1,51 +1,50 @@
 
-#include "antares-xpansion/evaluator/BalancingEvaluator.h"
+#include "antares-xpansion/evaluator/GreedyBalancingFinder.h"
 
 #include <fmt/core.h>
-#include <regex>
 #include <sstream>
 #include <tbb/global_control.h>
 #include <tbb/parallel_for_each.h>
 #include <unordered_set>
-#include <utility>
 
-#include "antares-xpansion/benders/benders_core/BendersProblemFromFile.h"
+#include "antares-xpansion/benders/benders_core/CriterionLOL.h"
+#include "antares-xpansion/benders/benders_core/CriterionNPCAP.h"
 #include "antares-xpansion/helpers/Timer.h"
 
 using namespace PlainData;
 
-/// @brief Constructor of the BalancingEvaluator class
+/// @brief Constructor of the GreedyBalancingFinder class
 /// @param logger The logger to use for the evaluation
-/// @param areaInvestments The area investments to use for the evaluation
+/// @param areaSettings The area investments to use for the evaluation
 /// @param criterion The criterion to evaluate
 /// @param problems The problems to evaluate on
 /// @param solverName The name of the solver to use for the evaluation
 /// @param nbThreads The number of threads to use for the evaluation
-BalancingEvaluator::BalancingEvaluator(
+GreedyBalancingFinder::GreedyBalancingFinder(
   Logger logger,
-  const std::map<std::string, AreaInvestment>& areaInvestments,
+  const std::map<std::string, AreaSettings>& areaSettings,
   Benders::Criterion::Type criterion,
   std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>> problems,
   std::string solverName,
   std::filesystem::path studyDir,
   int nbThreads):
     Evaluator(logger, problems, studyDir, solverName, nbThreads),
-    areaInvestments(areaInvestments)
+    areaSettings(areaSettings)
 {
-    auto criterionInputData = buildPatterns(criterion, areaInvestments);
+    auto criterionInputData = buildPatterns(criterion, areaSettings);
     setCriterionComputationInputs(criterionInputData);
 }
 
 /// @brief Build the patterns to use for the criterion computation
 /// @param criterion The criterion to evaluate
-/// @param areaInvestments The area investments to use for the evaluation
+/// @param areaSettings The area investments to use for the evaluation
 /// @return The criterion input data containing the patterns to use for the criterion computation
-Benders::Criterion::CriterionInputData BalancingEvaluator::buildPatterns(
+Benders::Criterion::CriterionInputData GreedyBalancingFinder::buildPatterns(
   Benders::Criterion::Type criterion,
-  const std::map<std::string, AreaInvestment>& areaInvestments)
+  const std::map<std::string, AreaSettings>& areaSettings)
 {
     Benders::Criterion::CriterionInputData ret{criterion};
-    for (const auto& area: areaInvestments | std::views::keys)
+    for (const auto& area: areaSettings | std::views::keys)
     {
         Benders::Criterion::CriterionSingleInputData singleInputData(getPrefix(criterion), area, 1);
         ret.AddSingleData(singleInputData);
@@ -57,7 +56,8 @@ Benders::Criterion::CriterionInputData BalancingEvaluator::buildPatterns(
 /// @brief Get the indices of the area balance constraints in the problem
 /// @param subProblem The problem to get the indices from
 /// @return The indices of the area balance constraints in the problem
-std::vector<size_t> BalancingEvaluator::getAreaBalanceIndices(std::shared_ptr<Problem> subProblem)
+std::vector<size_t> GreedyBalancingFinder::getAreaBalanceIndices(
+  std::shared_ptr<Problem> subProblem)
 {
     const auto& constraints = subProblem->get_row_names();
 
@@ -65,7 +65,7 @@ std::vector<size_t> BalancingEvaluator::getAreaBalanceIndices(std::shared_ptr<Pr
     constexpr std::string_view hourTag = "::hour";
 
     std::unordered_set<std::string_view> areas;
-    for (const auto& [name, _]: areaInvestments)
+    for (const auto& [name, _]: areaSettings)
     {
         areas.insert(name);
     }
@@ -97,10 +97,11 @@ std::vector<size_t> BalancingEvaluator::getAreaBalanceIndices(std::shared_ptr<Pr
 /// @param dualValuesCst The dual values of the constraints
 /// @param cstIndices The indices of the area balance constraints
 /// @param output The output to fill
-void BalancingEvaluator::fillAreaCriterionValuesAndPrices(const std::vector<double>& criteria,
-                                                          const std::vector<double>& dualValuesCst,
-                                                          const std::vector<size_t>& cstIndices,
-                                                          PbOutput& output)
+void GreedyBalancingFinder::fillAreaCriterionValuesAndPrices(
+  const std::vector<double>& criteria,
+  const std::vector<double>& dualValuesCst,
+  const std::vector<size_t>& cstIndices,
+  PbOutput& output)
 {
     for (std::size_t i = 0; i < criteria.size(); ++i)
     {
@@ -119,8 +120,8 @@ void BalancingEvaluator::fillAreaCriterionValuesAndPrices(const std::vector<doub
 /// @brief Process a single subproblem
 /// @param subProblemId the id of the problem to treat
 /// @param subProblem the problem to treat
-void BalancingEvaluator::ProcessSubproblem(const Antares::Solver::WeeklyProblemId subProblemId,
-                                           std::shared_ptr<Problem> subProblem)
+void GreedyBalancingFinder::ProcessSubproblem(const Antares::Solver::WeeklyProblemId subProblemId,
+                                              std::shared_ptr<Problem> subProblem)
 {
     Timer timer;
     totalPbModifTimer += timer.elapsed();
@@ -143,7 +144,8 @@ void BalancingEvaluator::ProcessSubproblem(const Antares::Solver::WeeklyProblemI
 
 /// @brief Compute the criterion and the price for each subproblem
 /// @return A map associating each subproblem id to the computed criterion and price
-std::map<Antares::Solver::WeeklyProblemId, PbOutput> BalancingEvaluator::ComputeCriterionAndPrice()
+std::map<Antares::Solver::WeeklyProblemId, PbOutput>
+GreedyBalancingFinder::ComputeCriterionAndPrice()
 {
     logger->display_message(
       (std::stringstream() << "Launching criterion and price evaluation").str(),
@@ -169,7 +171,7 @@ std::map<Antares::Solver::WeeklyProblemId, PbOutput> BalancingEvaluator::Compute
     return balancingResults.get();
 }
 
-void BalancingEvaluator::setCriterionComputationInputs(
+void GreedyBalancingFinder::setCriterionComputationInputs(
   const Benders::Criterion::CriterionInputData& criterion_input_data)
 {
     using enum Benders::Criterion::Type;

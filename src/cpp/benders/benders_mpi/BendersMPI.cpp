@@ -234,7 +234,6 @@ void BendersMpi::SolveSubproblem(PlainData::SubProblemData& subproblem_data,
 {
     BendersBase::SolveSubproblem(subproblem_data, name, worker);
 
-    std::vector<double> solution = worker->get_solution();
     criterion_computation_.ComputeCriterion(worker->_solver,
                                             SubproblemWeight(_data.nsubproblem, name),
                                             subproblem_data.criteria,

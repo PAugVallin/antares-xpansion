@@ -4,42 +4,38 @@
 
 /// @brief Check if investment is possible for the area
 /// @return true if investment is possible, false otherwise
-bool AreaInvestment::isInvestmentPossible() const
+bool AreaSettings::isInvestmentPossible() const
 {
     return std::ranges::any_of(investmentCandidates,
-                               [](const auto& entry)
-                               {
-                                   return entry.second.currentDispatchableProductionValue
-                                          < entry.second.candidateParams->expansionPotential;
+                               [](const auto& entry) {
+                                   return entry.second.currentCapacity
+                                          < entry.second.params->expansionPotential;
                                });
 }
 
-bool AreaInvestment::isDecommissioningPossible() const
+bool AreaSettings::isDecommissioningPossible() const
 {
     return std::ranges::any_of(decommissioningCandidates,
-                               [](const auto& entry)
-                               {
-                                   return entry.second.currentDispatchableProductionValue
-                                          < entry.second.candidateParams->expansionPotential;
-                               });
+                               [](const auto& entry) { return entry.second.currentCapacity > 0; });
 }
 
 /// @brief Check if disinvestment is possible for the area
 /// @return true if disinvestment is possible, false otherwise
-bool AreaInvestment::isDisinvestmentPossible() const
+bool AreaSettings::isDisinvestmentPossible() const
 {
     return std::ranges::any_of(investmentCandidates,
-                               [](const auto& entry)
-                               { return entry.second.currentDispatchableProductionValue > 0; });
+                               [](const auto& entry) { return entry.second.currentCapacity > 0; });
 }
 
 /// @brief Check if recommissioning is possible for the area
 /// @return true if recommissioning is possible, false otherwise
-bool AreaInvestment::isRecommissioningPossible() const
+bool AreaSettings::isRecommissioningPossible() const
 {
     return std::ranges::any_of(decommissioningCandidates,
-                               [](const auto& entry)
-                               { return entry.second.currentDispatchableProductionValue > 0; });
+                               [](const auto& entry) {
+                                   return entry.second.currentCapacity
+                                          < entry.second.params->decommissioningPotential;
+                               });
 }
 
 /// @brief Constructor of the BalancingParser class
@@ -71,11 +67,22 @@ void BalancingParser::parse()
         parseGlobalSettings();
         parseDecommissioningCandidatesTypes();
         parseInvestmentCandidatesTypes();
-        parseAreas();
+        parseAreasSettings();
     }
     catch (const YAML::Exception& e)
     {
         throw std::runtime_error("YAML parsing error: " + std::string(e.what()));
+    }
+}
+
+/// @brief Throws if a required YAML field is missing, with a descriptive message
+static void requireField(const YAML::Node& node,
+                         const std::string& field,
+                         const std::string& context)
+{
+    if (!node[field])
+    {
+        throw std::runtime_error("Missing '" + field + "' for " + context);
     }
 }
 
@@ -99,16 +106,17 @@ void BalancingParser::parseGlobalSettings()
         auto criterionStr = config["reliability_standard_indicator"].as<std::string>();
         if (criterionStr == "LOLE")
         {
-            criterion = Benders::Criterion::Type::PositiveUnsuppliedEnergy;
+            reliabilityStandardIndicator = Benders::Criterion::Type::PositiveUnsuppliedEnergy;
         }
         else if (criterionStr == "NPCAP_HOURS")
         {
-            criterion = Benders::Criterion::Type::NearPriceCapHours;
+            reliabilityStandardIndicator = Benders::Criterion::Type::NearPriceCapHours;
         }
         else
         {
-            throw std::runtime_error("YAML parsing error: " + criterionStr
-                                     + " is not a correct criterion (LOLE or NPCAP_HOURS)");
+            throw std::runtime_error(
+              "YAML parsing error: " + criterionStr
+              + " is not a correct reliabilityStandardIndicator (LOLE or NPCAP_HOURS)");
         }
     }
 }
@@ -125,16 +133,12 @@ void BalancingParser::parseDecommissioningCandidatesTypes()
     for (const auto& typeNode: config["decommissioning_candidates_types"])
     {
         std::string typeName = typeNode.first.as<std::string>();
-
-        if (!typeNode.second["fixed_om_costs"])
-        {
-            throw std::runtime_error("Missing 'fixed_om_costs' for decommissioning type: "
-                                     + typeName);
-        }
+        requireField(typeNode.second,
+                     "fixed_om_costs",
+                     "decommissioning candidate of type: " + typeName);
 
         auto type = std::make_shared<Decommissioning>();
         type->fixedOmCosts = typeNode.second["fixed_om_costs"].as<double>();
-
         decommissioningCandidatesTypes[typeName] = std::move(type);
     }
 }
@@ -152,41 +156,64 @@ void BalancingParser::parseInvestmentCandidatesTypes()
     {
         std::string typeName = typeNode.first.as<std::string>();
         YAML::Node typeData = typeNode.second;
+        const std::string context = "investment candidate of type: " + typeName;
+
+        requireField(typeData, "derating", context);
+        requireField(typeData, "expansion_potential", context);
+        requireField(typeData, "investment_cost", context);
+        requireField(typeData, "fixed_om_costs", context);
 
         auto type = std::make_shared<Investment>();
-
-        if (!typeData["derating"])
-        {
-            throw std::runtime_error("Missing 'derating' for investment type: " + typeName);
-        }
         type->derating = typeData["derating"].as<double>();
-
-        if (!typeData["expansion_potential"])
-        {
-            throw std::runtime_error("Missing 'expansion_potential' for investment type: "
-                                     + typeName);
-        }
         type->expansionPotential = typeData["expansion_potential"].as<double>();
-
-        if (!typeData["investment_cost"])
-        {
-            throw std::runtime_error("Missing 'investment_cost' for investment type: " + typeName);
-        }
         type->investmentCost = typeData["investment_cost"].as<double>();
-
-        if (!typeData["fixed_om_costs"])
-        {
-            throw std::runtime_error("Missing 'fixed_om_costs' for investment type: " + typeName);
-        }
         type->fixedOmCosts = typeData["fixed_om_costs"].as<double>();
 
         investmentCandidatesTypes[typeName] = std::move(type);
     }
 }
 
+/// @brief Parse a mapping of candidate names to their type from a YAML area node, and populate
+///        the target map with the resolved type data.
+/// @param areaData    YAML node representing a single area's configuration.
+/// @param yamlKey     Key under @p areaData that holds the candidate-to-type mapping.
+/// @param candidateTypes Registry mapping type name strings to their shared parameter objects,
+///                     used to resolve each candidate's type.
+/// @param label       Human-readable category label (e.g. "investment", "decommissioning"),
+///                    used in error messages.
+/// @param areaName    Name of the area being parsed, used in error messages.
+/// @param candidates   Destination map to populate, keyed by candidate name.
+///
+/// @throws std::runtime_error If a candidate references a type name not found in @p typeRegistry.
+static void parseCandidatesToType(const YAML::Node& areaData,
+                                  const std::string& yamlKey,
+                                  const auto& candidateTypes,
+                                  const std::string& label,
+                                  const std::string& areaName,
+                                  auto& candidates)
+{
+    const std::string context = "investment candidate of type: " + yamlKey;
+    requireField(areaData, yamlKey, context);
+
+    for (const auto& candidate: areaData[yamlKey])
+    {
+        const std::string candidateName = candidate.first.as<std::string>();
+        const std::string typeName = candidate.second.as<std::string>();
+
+        auto it = candidateTypes.find(typeName);
+        if (it == candidateTypes.end())
+        {
+            throw std::runtime_error("Unknown " + label + " type '" + typeName + "' for candidate '"
+                                     + candidateName + "' in area '" + areaName + "'");
+        }
+
+        candidates[candidateName] = {it->second, 0};
+    }
+}
+
 /// @brief Parse the areas from the YAML configuration file : reliability standard, decommissioning
 /// and investment increments, candidates to type mapping
-void BalancingParser::parseAreas()
+void BalancingParser::parseAreasSettings()
 {
     if (!config["areas"])
     {
@@ -197,26 +224,16 @@ void BalancingParser::parseAreas()
     {
         std::string areaName = areaNode.first.as<std::string>();
         YAML::Node areaData = areaNode.second;
+        const std::string context = "area: " + areaName;
 
-        AreaInvestment area;
+        requireField(areaData, "reliability_standard", context);
+        requireField(areaData, "decommissioning_increment", context);
+        requireField(areaData, "investment_increment", context);
 
-        if (!areaData["reliability_standard"])
-        {
-            throw std::runtime_error("Missing 'reliability_standard' for area: " + areaName);
-        }
+        AreaSettings area;
         area.reliabilityStandard = areaData["reliability_standard"].as<double>();
-
-        if (!areaData["decommissioning_increment"])
-        {
-            throw std::runtime_error("Missing 'decommissioning_increment' for area: " + areaName);
-        }
         area.decommissioningIncrement = areaData["decommissioning_increment"].as<double>();
         area.currentDecommissioningIncrement = area.decommissioningIncrement;
-
-        if (!areaData["investment_increment"])
-        {
-            throw std::runtime_error("Missing 'investment_increment' for area: " + areaName);
-        }
         area.investmentIncrement = areaData["investment_increment"].as<double>();
         area.currentInvestmentIncrement = area.investmentIncrement;
 
@@ -230,45 +247,21 @@ void BalancingParser::parseAreas()
                                                      .as<double>()
                                                  : reliabilityStandardDeadBandDown;
 
-        if (areaData["decommissioning_candidates_to_type"])
-        {
-            for (const auto& candidate: areaData["decommissioning_candidates_to_type"])
-            {
-                const std::string candidate_name = candidate.first.as<std::string>();
-                const std::string typeName = candidate.second.as<std::string>();
+        parseCandidatesToType(areaData,
+                              "decommissioning_candidates_to_type",
+                              decommissioningCandidatesTypes,
+                              "decommissioning",
+                              areaName,
+                              area.decommissioningCandidates);
 
-                auto it = decommissioningCandidatesTypes.find(typeName);
-                if (it == decommissioningCandidatesTypes.end())
-                {
-                    throw std::runtime_error("Unknown decommissioning type '" + typeName
-                                             + "' for candidate '" + candidate_name + "' in area '"
-                                             + areaName + "'");
-                }
+        parseCandidatesToType(areaData,
+                              "investment_candidates_to_type",
+                              investmentCandidatesTypes,
+                              "investment",
+                              areaName,
+                              area.investmentCandidates);
 
-                area.decommissioningCandidates[candidate_name].candidateParams = it->second;
-            }
-        }
-
-        if (areaData["investment_candidates_to_type"])
-        {
-            for (const auto& candidate: areaData["investment_candidates_to_type"])
-            {
-                const std::string candidate_name = candidate.first.as<std::string>();
-                const std::string typeName = candidate.second.as<std::string>();
-
-                auto it = investmentCandidatesTypes.find(typeName);
-                if (it == investmentCandidatesTypes.end())
-                {
-                    throw std::runtime_error("Unknown investment type '" + typeName
-                                             + "' for candidate '" + candidate_name + "' in area '"
-                                             + areaName + "'");
-                }
-
-                area.investmentCandidates[candidate_name] = {it->second, 0};
-            }
-        }
-
-        areaInvestments[areaName] = std::move(area);
+        areaSettings[areaName] = std::move(area);
     }
 }
 
@@ -290,33 +283,5 @@ double BalancingParser::getReliabilityStandardDeadBandDown() const
 /// @return The reliability standard indicator
 Benders::Criterion::Type BalancingParser::getReliabilityStandardIndicator() const
 {
-    return criterion;
-}
-
-/// @brief Get the areas with their investment parameters
-/// @return The areas with their investment parameters
-const std::map<std::string, AreaInvestment>& BalancingParser::getAreas() const
-{
-    return areaInvestments;
-}
-
-/// @brief Check if the area with the given name is defined in the configuration file
-/// @param areaName The name of the area to check
-/// @return true if the area is defined in the configuration file, false otherwise
-bool BalancingParser::hasArea(const std::string& areaName) const
-{
-    return areaInvestments.find(areaName) != areaInvestments.end();
-}
-
-/// @brief Get the area investment parameters for the area with the given name
-/// @param areaName The name of the area to get the parameters for
-/// @return A pointer to the area investment parameters if the area is defined in the configuration
-const AreaInvestment* BalancingParser::getArea(const std::string& areaName) const
-{
-    auto it = areaInvestments.find(areaName);
-    if (it != areaInvestments.end())
-    {
-        return &(it->second);
-    }
-    return nullptr;
+    return reliabilityStandardIndicator;
 }

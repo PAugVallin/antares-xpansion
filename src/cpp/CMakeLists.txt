@@ -33,5 +33,6 @@ add_subdirectory ("${CMAKE_CURRENT_SOURCE_DIR}/grid_search")
 add_subdirectory ("${CMAKE_CURRENT_SOURCE_DIR}/evaluator")
 add_subdirectory ("${CMAKE_CURRENT_SOURCE_DIR}/bellman_values")
 add_subdirectory ("${CMAKE_CURRENT_SOURCE_DIR}/balancing")
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/exe_options")
 
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/exe")
