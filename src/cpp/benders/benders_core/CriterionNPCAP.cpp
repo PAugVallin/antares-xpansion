@@ -50,8 +50,8 @@ void CriterionNPCAP::ComputeCriterion(std::shared_ptr<SolverAbstract> problem,
         {
             const auto solution = -dualValuesCst[index];
             pattern_value += solution;
-            if (solution > criterionThreasholdByArea.at(std::string(
-                  criterion_input_data_.Criteria()[pattern_index].Pattern().GetBody())))
+            if (solution > criterionThreasholdByArea.at(
+                  std::string(criterion_input_data_.Criteria()[pattern_index].Pattern().GetBody())))
             {
                 // 1h were criterion is satisfied
                 criteria_value += subproblem_weight;
