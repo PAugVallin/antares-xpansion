@@ -57,6 +57,8 @@ xwiki_source
 
 # vscode
 .vscode
+.cache
+.clangd
 
 # Local env
 .venv

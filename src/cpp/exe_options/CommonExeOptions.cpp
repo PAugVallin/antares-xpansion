@@ -20,14 +20,6 @@ CommonExeOptions::CommonExeOptions(const std::string& description):
       "threads",
       po::value<int>(&nbThreads_)->default_value(1),
       "Number of threads to use (optional, default is 1)")(
-      "start-week",
-      po::value<int>(&startWeek_)->default_value(1),
-      "Start week (optional, default is 1)")("end-week",
-                                             po::value<int>(&endWeek_)->default_value(52),
-                                             "End week (optional, default is 52)")(
-      "antares-format",
-      po::value<bool>(&antaresFormat_)->default_value(false),
-      "Output in Antares format (optional, default is false)")(
       "keepMps",
       po::value<bool>(&writePbFiles_)->default_value(false),
       "Write MPS or SVF files to disk (optional, default is false)")(

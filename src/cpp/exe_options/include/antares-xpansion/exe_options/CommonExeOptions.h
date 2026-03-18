@@ -9,9 +9,6 @@ protected:
     std::filesystem::path studyPath_;
     std::string solverName_;
     int nbThreads_;
-    int startWeek_;
-    int endWeek_;
-    bool antaresFormat_;
     bool writePbFiles_;
     std::string problemFormat_;
     std::string verbosity_;
@@ -35,21 +32,6 @@ public:
     int NbThreads() const
     {
         return nbThreads_;
-    }
-
-    int StartWeek() const
-    {
-        return startWeek_;
-    }
-
-    int EndWeek() const
-    {
-        return endWeek_;
-    }
-
-    bool AntaresFormat() const
-    {
-        return antaresFormat_;
     }
 
     bool WritePbFiles() const

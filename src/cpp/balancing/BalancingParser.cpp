@@ -13,6 +13,8 @@ bool AreaSettings::isInvestmentPossible() const
                                });
 }
 
+/// @brief Check if decommissioning is possible for the area
+/// @return true if decommissioning is possible, false otherwise
 bool AreaSettings::isDecommissioningPossible() const
 {
     return std::ranges::any_of(decommissioningCandidates,

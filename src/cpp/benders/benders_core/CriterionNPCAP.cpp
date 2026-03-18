@@ -1,5 +1,7 @@
 #include "antares-xpansion/benders/benders_core/CriterionNPCAP.h"
 
+#include <string>
+
 #include "antares-xpansion/xpansion_interfaces/StringManip.h"
 
 namespace Benders::Criterion
@@ -50,8 +52,9 @@ void CriterionNPCAP::ComputeCriterion(std::shared_ptr<SolverAbstract> problem,
         {
             const auto solution = -dualValuesCst[index];
             pattern_value += solution;
-            if (solution > criterionThreasholdByArea.at(
-                  std::string(criterion_input_data_.Criteria()[pattern_index].Pattern().GetBody())))
+            std::string area = std::string(
+              criterion_input_data_.Criteria()[pattern_index].Pattern().GetBody());
+            if (solution > criterionThreasholdByArea.at(area))
             {
                 // 1h were criterion is satisfied
                 criteria_value += subproblem_weight;

@@ -18,6 +18,21 @@ enum class CapacityAction
     RECOMMISSIONING
 };
 
+constexpr std::string_view to_string(CapacityAction action)
+{
+    switch (action)
+    {
+    case CapacityAction::INVESTMENT:
+        return "INVESTMENT";
+    case CapacityAction::DISINVESTMENT:
+        return "DISINVESTMENT";
+    case CapacityAction::DECOMMISSIONING:
+        return "DECOMMISSIONING";
+    case CapacityAction::RECOMMISSIONING:
+        return "RECOMMISSIONING";
+    }
+}
+
 struct BalancingData
 {
     double marginalCost;
@@ -31,9 +46,7 @@ public:
     explicit ProblemGenerationForBalancing(ConfigurationManager::ConfigDirectories directories,
                                            std::map<std::string, AreaSettings>& areasSettings,
                                            Logger logger,
-                                           std::shared_ptr<ProblemManager> problemManager,
-                                           unsigned int startWeek = 1,
-                                           unsigned int endWeek = 52);
+                                           std::shared_ptr<ProblemManager> problemManager);
     virtual ~ProblemGenerationForBalancing() = default;
     std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>> updateProblems(
       const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues);

@@ -9,21 +9,17 @@
 #include <antares/api/solver.h>
 #include <antares/solver/lps/LpsFromAntares.h>
 
-/// @brief Launch the simulation and save the problems satisfying startWeek <= week <= endweek
+/// @brief Launch the simulation and save the problems
 /// @param directories The directories to use for the problems generation
 /// @param areaSettings The area investments to use for the problems modification
 /// @param logger The logger to use
 /// @param solverName The name of the solver to use
-/// @param startWeek The start week of the problems to take into account
-/// @param endWeek The end week of the problems to take into account
 ProblemGenerationForBalancing::ProblemGenerationForBalancing(
   ConfigurationManager::ConfigDirectories directories,
   std::map<std::string, AreaSettings>& areasSettings,
   Logger logger,
-  std::shared_ptr<ProblemManager> problemManager,
-  unsigned int startWeek,
-  unsigned int endWeek):
-    ProblemGenerationOptimSimu(directories, logger, problemManager, startWeek, endWeek),
+  std::shared_ptr<ProblemManager> problemManager):
+    ProblemGenerationOptimSimu(directories, logger, problemManager),
     areasSettings(areasSettings)
 {
     fillDispProdVarIndicesAndMarginalCosts();
@@ -134,7 +130,8 @@ void ProblemGenerationForBalancing::logCriterionAndAreaSettingss(
     for (const auto& [areaName, criterionState]: areaCriteriaState)
     {
         std::stringstream ss;
-        ss << "Criterion state for area " << areaName << ": " << to_string(criterionState) << "\n";
+        ss << "\n  Criterion state for area " << areaName << ": " << to_string(criterionState)
+           << "\n";
 
         const auto& areaSettings = areasSettings.at(areaName);
         for (const auto& [clusterName, investmentCandidate]: areaSettings.investmentCandidates)
@@ -202,6 +199,8 @@ CapacityAction ProblemGenerationForBalancing::determineCapacityAction(
     }
 
     const bool isHigher = currentState == CriterionState::HIGHER;
+    // Investment cycle if the previous action was investment or disinvestment, or if it's the first
+    // iteration and the criterion is higher than the target
     const bool isInvestmentCycle = previousAction == CapacityAction::INVESTMENT
                                    || previousAction == CapacityAction::DISINVESTMENT
                                    || (!previousAction.has_value() && isHigher);
@@ -212,9 +211,9 @@ CapacityAction ProblemGenerationForBalancing::determineCapacityAction(
         {
             return CapacityAction::INVESTMENT;
         }
-        if (areaSettings.isDecommissioningPossible())
+        if (areaSettings.isRecommissioningPossible())
         {
-            return CapacityAction::DECOMMISSIONING;
+            return CapacityAction::RECOMMISSIONING;
         }
     }
     else if (isInvestmentCycle && !isHigher)
@@ -223,16 +222,16 @@ CapacityAction ProblemGenerationForBalancing::determineCapacityAction(
         {
             return CapacityAction::DISINVESTMENT;
         }
-        if (areaSettings.isRecommissioningPossible())
+        if (areaSettings.isDecommissioningPossible())
         {
-            return CapacityAction::RECOMMISSIONING;
+            return CapacityAction::DECOMMISSIONING;
         }
     }
     else if (isHigher)
     {
-        if (areaSettings.isDecommissioningPossible())
+        if (areaSettings.isRecommissioningPossible())
         {
-            return CapacityAction::DECOMMISSIONING;
+            return CapacityAction::RECOMMISSIONING;
         }
         if (areaSettings.isInvestmentPossible())
         {
@@ -241,18 +240,22 @@ CapacityAction ProblemGenerationForBalancing::determineCapacityAction(
     }
     else
     {
-        if (areaSettings.isInvestmentPossible())
-        {
-            return CapacityAction::INVESTMENT;
-        }
         if (areaSettings.isDecommissioningPossible())
         {
             return CapacityAction::DECOMMISSIONING;
         }
+        if (areaSettings.isDisinvestmentPossible())
+        {
+            return CapacityAction::DISINVESTMENT;
+        }
     }
 
-    throw std::runtime_error("Area " + areaName
-                             + " is not balanced but no modification is possible");
+    std::ostringstream oss;
+    oss << "Area " << areaName << " is not balanced but no modification is possible\n"
+        << " Current criterion state: " << to_string(currentState) << "\n"
+        << "Previous action: "
+        << (previousAction.has_value() ? to_string(previousAction.value()) : "None");
+    throw std::runtime_error(oss.str());
 }
 
 template<typename CandidateType>

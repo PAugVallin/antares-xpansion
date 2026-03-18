@@ -41,9 +41,6 @@ int main(int argc, char** argv)
         auto studyPath = optionsParser.StudyPath();
         auto solverName = optionsParser.SolverName();
         int nbThreads = optionsParser.NbThreads();
-        int startWeek = optionsParser.StartWeek();
-        int endWeek = optionsParser.EndWeek();
-        bool antaresFormat = optionsParser.AntaresFormat();
         bool writePbFiles = optionsParser.WritePbFiles();
         const std::string problemFormat = optionsParser.ProblemFormat();
         const auto areaFile = studyPath / "area.txt";
@@ -81,12 +78,9 @@ int main(int argc, char** argv)
         ProblemGenerationForBalancing pbg(directories,
                                           balParser.areaSettings,
                                           logger,
-                                          problemManager,
-                                          startWeek,
-                                          endWeek);
+                                          problemManager);
         auto endProblemGeneration = std::chrono::system_clock::now();
-        logger->display_message("Problems generated (end time: " + formatTime(endProblemGeneration)
-                                + ")");
+        logger->display_message("Problems generated");
         std::chrono::duration<double> elapsed_seconds = endProblemGeneration
                                                         - startProblemGeneration;
         logger->display_message("Elapsed time for problem generation: "
@@ -95,11 +89,12 @@ int main(int argc, char** argv)
         std::map<Antares::Solver::WeeklyProblemId, PbOutput> res;
         constexpr int MAX_ITERATIONS = 30;
         int iteration = 0;
-        auto startProblemUpdate = std::chrono::system_clock::now();
-        logger->display_message(
-          "Balancing process (starting time: " + formatTime(startProblemUpdate) + ")");
+        auto startBalancingProcess = std::chrono::system_clock::now();
+        logger->display_message("Starting balancing process");
         while (!pbg.isBalanced() && iteration < MAX_ITERATIONS)
         {
+            auto startIteration = std::chrono::system_clock::now();
+            logger->display_message("Iteration " + std::to_string(iteration));
             iteration++;
             auto problems = pbg.updateProblems(res);
 
@@ -111,12 +106,14 @@ int main(int argc, char** argv)
                                         directories.simulation_dir,
                                         nbThreads)
                     .ComputeCriterionAndPrice();
+            auto endIteration = std::chrono::system_clock::now();
+            std::chrono::duration<double> elapsed_iteration_seconds = endIteration - startIteration;
+            logger->display_message("Elapsed time for iteration " + std::to_string(iteration) + ": "
+                                    + formatDuration(elapsed_iteration_seconds));
         };
         auto endProblemUpdate = std::chrono::system_clock::now();
-        logger->display_message("Balancing process (end time: " + formatTime(endProblemUpdate)
-                                + ")");
         std::chrono::duration<double> elapsed_update_seconds = endProblemUpdate
-                                                               - startProblemUpdate;
+                                                               - startBalancingProcess;
         logger->display_message("Balancing process ended after " + std::to_string(iteration)
                                 + " iterations. In " + formatDuration(elapsed_update_seconds));
         logger->display_message(pbg.isBalanced() ? "The system is balanced."
