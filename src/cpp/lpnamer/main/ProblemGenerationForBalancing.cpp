@@ -316,6 +316,7 @@ std::map<std::string, double> ProblemGenerationForBalancing::computeRentabilityF
             value += std::accumulate(pbOutput.areaPrices.at(areaName).begin(),
                                      pbOutput.areaPrices.at(areaName).end(),
                                      0.0)
+                       * candidate.currentCapacity
                      - balancingData.at({areaName, clusterName}).marginalCost;
         }
         value -= extraCost(candidate);

@@ -16,7 +16,7 @@ CriterionNPCAP::CriterionNPCAP(const CriterionInputData& criterion_input_data,
     auto col_names = problem->get_col_names();
     for (size_t index = 0; index < col_names.size(); ++index)
     {
-        double unspEnergyObj{0};
+        double unspEnergyCost{0};
         // remove end spaces
         const auto& name = StringManip::removeTrailingSpacesInPlace(col_names[index]);
 
@@ -24,9 +24,9 @@ CriterionNPCAP::CriterionNPCAP(const CriterionInputData& criterion_input_data,
         {
             std::string area = StringManip::split(StringManip::split(name, "area<")[1],
                                                   ">::hour")[0];
-            problem->get_obj(&unspEnergyObj, index, index);
-            unspEnergyObj -= 5;
-            criterionThreasholdByArea[area] = unspEnergyObj;
+            problem->get_obj(&unspEnergyCost, index, index);
+            unspEnergyCost -= 5;
+            criterionThreasholdByArea[area] = unspEnergyCost;
         }
     }
 }

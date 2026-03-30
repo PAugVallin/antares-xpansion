@@ -41,12 +41,7 @@ int main(int argc, char** argv)
         auto studyPath = optionsParser.StudyPath();
         auto solverName = optionsParser.SolverName();
         int nbThreads = optionsParser.NbThreads();
-        bool writePbFiles = optionsParser.WritePbFiles();
-        const std::string problemFormat = optionsParser.ProblemFormat();
         const auto areaFile = studyPath / "area.txt";
-        // this bool needs to be implemented correctly after merging with the more recent use of
-        // YAML setting files
-        bool cacheProblems = optionsParser.CacheProblems();
 
         ConfigurationManager::ConfigDirectories directories{
           .study_dir = studyPath,
@@ -69,12 +64,7 @@ int main(int argc, char** argv)
         auto startProblemGeneration = std::chrono::system_clock::now();
         logger->display_message(
           "Generating problems (starting time: " + formatTime(startProblemGeneration) + ")");
-        auto problemManager = std::make_shared<ProblemManager>(solverName,
-                                                               problemFormat,
-                                                               writePbFiles,
-                                                               cacheProblems,
-                                                               directories.simulation_dir
-                                                                 / "initial_problems");
+        auto problemManager = std::make_shared<ProblemManager>(solverName);
         ProblemGenerationForBalancing pbg(directories,
                                           balParser.areaSettings,
                                           logger,
