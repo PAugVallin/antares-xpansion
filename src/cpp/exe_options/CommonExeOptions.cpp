@@ -19,20 +19,5 @@ CommonExeOptions::CommonExeOptions(const std::string& description):
       "Solver to use (optional, default is xpress). Possible values are: xpress, coin")(
       "threads",
       po::value<int>(&nbThreads_)->default_value(1),
-      "Number of threads to use (optional, default is 1)")(
-      "keepMps",
-      po::value<bool>(&writePbFiles_)->default_value(false),
-      "Write MPS or SVF files to disk (optional, default is false)")(
-      "problem-format",
-      po::value<std::string>(&problemFormat_)->default_value("OPTIMIZED"),
-      "Format to save problem files to (optional, default is OPTIMIZED). Possible values are: MPS, "
-      "OPTIMIZED")("verbosity",
-                   po::value<std::string>(&verbosity_)->default_value("INFO"),
-                   "Specify the desired verbosity for logging in the console or log file "
-                   "(optional, default is INFO). "
-                   "Possible values are: NONE, TRACE, DEBUG, INFO, WARNING, ERR, FATAL")(
-      "cache-problems",
-      po::value<bool>(&cacheProblems_)->default_value(false),
-      "Write and read problems from disk to reduce memory use (will increase computation time) "
-      "(optional, default is false)");
+      "Number of threads to use (optional, default is 1)");
 }

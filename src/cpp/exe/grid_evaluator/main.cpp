@@ -3,7 +3,6 @@
 #include <iostream>
 #include <ranges>
 
-#include "antares-xpansion/bellman_values/BellmanValuesExeOptions.h"
 #include "antares-xpansion/bellman_values/PenaltiesConfigReader.h"
 #include "antares-xpansion/bellman_values/ProblemManager.h"
 #include "antares-xpansion/benders/factories/LoggerFactories.h"
