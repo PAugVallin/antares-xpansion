@@ -50,7 +50,7 @@ public:
     virtual ~ProblemGenerationForBalancing() = default;
     std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>> updateProblems(
       const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues);
-    bool isBalanced() const;
+    bool isBalanced(const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues) const;
 
 private:
     std::map<std::string, AreaSettings>& areasSettings;
@@ -62,20 +62,20 @@ private:
 
     std::map<AreaCluster, CapacityAction> findAreaClustersToModify(
       const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues);
-    CriterionState criterionState(AreaSettings& areaSettings, double value);
+    CriterionState criterionState(AreaSettings& areaSettings, double value) const;
     std::map<std::string, CriterionState> areaCriteriaState(
-      const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues);
+      const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues) const;
     void updateAreaSettingsIncrement(const std::map<std::string, CriterionState>& areaCritState);
     void applyActionToCluster(const AreaCluster& areaCluster, CapacityAction action);
     std::string getBestCluster(
       const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues,
       const std::string& areaName,
       const AreaSettings& areaSettings,
-      CapacityAction action);
+      CapacityAction action) const;
     void updateOldCriterionState(const std::map<std::string, CriterionState>& areaCritState);
     CapacityAction determineCapacityAction(const std::string& areaName,
                                            CriterionState currentState,
-                                           const AreaSettings& areaSettings);
+                                           const AreaSettings& areaSettings) const;
     void logCriterionAndAreaSettingss(const std::map<std::string, CriterionState>& areaCritState);
     template<typename CandidateType>
     std::map<std::string, double> computeRentabilityForCandidates(
@@ -92,5 +92,5 @@ private:
                                              size_t varIndex,
                                              CapacityAction action,
                                              AreaSettings& areaSettings,
-                                             const std::string& clusterName);
+                                             const std::string& clusterName) const;
 };

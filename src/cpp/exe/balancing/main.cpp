@@ -81,7 +81,7 @@ int main(int argc, char** argv)
         int iteration = 0;
         auto startBalancingProcess = std::chrono::system_clock::now();
         logger->display_message("Starting balancing process");
-        while (!pbg.isBalanced() && iteration < MAX_ITERATIONS)
+        while (!pbg.isBalanced(res) && iteration < MAX_ITERATIONS)
         {
             auto startIteration = std::chrono::system_clock::now();
             logger->display_message("Iteration " + std::to_string(iteration));
@@ -106,8 +106,8 @@ int main(int argc, char** argv)
                                                                - startBalancingProcess;
         logger->display_message("Balancing process ended after " + std::to_string(iteration)
                                 + " iterations. In " + formatDuration(elapsed_update_seconds));
-        logger->display_message(pbg.isBalanced() ? "The system is balanced."
-                                                 : "The system is not balanced.");
+        logger->display_message(pbg.isBalanced(res) ? "The system is balanced."
+                                                    : "The system is not balanced.");
 
         return 0;
     }

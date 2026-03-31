@@ -190,7 +190,7 @@ std::map<AreaCluster, CapacityAction> ProblemGenerationForBalancing::findAreaClu
 CapacityAction ProblemGenerationForBalancing::determineCapacityAction(
   const std::string& areaName,
   CriterionState currentState,
-  const AreaSettings& areaSettings)
+  const AreaSettings& areaSettings) const
 {
     std::optional<CapacityAction> previousAction;
     if (lastActionForArea.find(areaName) != lastActionForArea.end())
@@ -351,7 +351,7 @@ std::string ProblemGenerationForBalancing::getBestCluster(
   const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues,
   const std::string& areaName,
   const AreaSettings& areaSettings,
-  CapacityAction action)
+  CapacityAction action) const
 {
     const bool isInvestmentAction = action == CapacityAction::INVESTMENT
                                     || action == CapacityAction::DISINVESTMENT;
@@ -413,7 +413,7 @@ void ProblemGenerationForBalancing::updateOldCriterionState(
 /// @param value The criterion value to use for the computation
 /// @return The criterion state computed
 CriterionState ProblemGenerationForBalancing::criterionState(AreaSettings& areaSettings,
-                                                             double value)
+                                                             double value) const
 {
     if (value < areaSettings.reliabilityStandard - areaSettings.reliabilityStandardDeadBandDown)
     {
@@ -460,7 +460,7 @@ std::map<std::string, double> computeAverageAreaCriteriaValues(
 /// @param simuValues The simulation values to use for the computation
 /// @return The criterion state for each area
 std::map<std::string, CriterionState> ProblemGenerationForBalancing::areaCriteriaState(
-  const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues)
+  const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues) const
 {
     std::map<std::string, CriterionState> areaCriteriaState;
     const auto avgAreaCriteria = computeAverageAreaCriteriaValues(simuValues);
@@ -483,7 +483,7 @@ double ProblemGenerationForBalancing::computeNewBoundAndUpdateCandidate(
   size_t varIndex,
   CapacityAction action,
   AreaSettings& areaSettings,
-  const std::string& clusterName)
+  const std::string& clusterName) const
 {
     double newBound;
     switch (action)
@@ -580,14 +580,15 @@ ProblemGenerationForBalancing::updateProblems(
     return problemManager->getProblems();
 }
 
-bool ProblemGenerationForBalancing::isBalanced() const
+/// @brief Check if the system is balanced from the simulation values
+/// @param simuValues The simulation values to use for the computation
+/// @return true if the system is balanced, false otherwise
+bool ProblemGenerationForBalancing::isBalanced(
+  const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues) const
 {
-    for (const auto& [area, areaSettings]: areasSettings)
-    {
-        if (areaSettings.oldCriterionState != CriterionState::VALID)
-        {
-            return false;
-        }
-    }
-    return true;
+    const auto areaCritState = areaCriteriaState(simuValues);
+    return !areaCritState.empty()
+           && std::ranges::all_of(areaCritState | std::views::values,
+                                  [](const auto& critState)
+                                  { return critState == CriterionState::VALID; });
 }
