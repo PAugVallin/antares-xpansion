@@ -101,6 +101,7 @@ int main(int argc, char** argv)
             logger->display_message("Elapsed time for iteration " + std::to_string(iteration) + ": "
                                     + formatDuration(elapsed_iteration_seconds));
         };
+        pbg.logCriterionAndAreaSettings(res);
         auto endProblemUpdate = std::chrono::system_clock::now();
         std::chrono::duration<double> elapsed_update_seconds = endProblemUpdate
                                                                - startBalancingProcess;

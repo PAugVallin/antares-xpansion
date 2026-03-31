@@ -23,7 +23,7 @@ ProblemGenerationForBalancing::ProblemGenerationForBalancing(
     areasSettings(areasSettings)
 {
     fillDispProdVarIndicesAndMarginalCosts();
-    getInitialCapacitiesForDecommissioningCandidates();
+    getInitialCapacitiesForCandidates();
 }
 
 /// @brief Fill the DispatchableProduction variable indices and marginal cost for a given area
@@ -58,19 +58,28 @@ void ProblemGenerationForBalancing::fillDispProdVarIndicesAndMarginalCostsForAre
     }
 }
 
-void ProblemGenerationForBalancing::getInitialCapacitiesForDecommissioningCandidates()
+void ProblemGenerationForBalancing::getInitialCapacitiesForCandidates()
 {
+    auto updateCapacity =
+      [&](const std::string& areaName, const std::string& clusterName, auto& candidate)
+    {
+        const AreaCluster key{areaName, clusterName};
+        const auto& dispProdVarIndices = balancingData[key].dispProdVarIndices;
+        problemManager->getProblems().begin()->second->get_ub(&candidate.currentCapacity,
+                                                              dispProdVarIndices[0],
+                                                              dispProdVarIndices[0]);
+    };
+
     for (auto& [areaName, areaSetting]: areasSettings)
     {
-        for (auto& [clusterName, decommissioningCandidate]: areaSetting.decommissioningCandidates)
+        for (auto& [clusterName, candidate]: areaSetting.investmentCandidates)
         {
-            const AreaCluster key{areaName, clusterName};
-            const auto& dispProdVarIndices = balancingData[key].dispProdVarIndices;
+            updateCapacity(areaName, clusterName, candidate);
+        }
 
-            problemManager->getProblems().begin()->second->get_ub(
-              &decommissioningCandidate.currentCapacity,
-              dispProdVarIndices[0],
-              dispProdVarIndices[0]);
+        for (auto& [clusterName, candidate]: areaSetting.decommissioningCandidates)
+        {
+            updateCapacity(areaName, clusterName, candidate);
         }
     }
 }
@@ -122,12 +131,13 @@ void ProblemGenerationForBalancing::fillDispProdVarIndicesAndMarginalCosts()
     }
 }
 
-void ProblemGenerationForBalancing::logCriterionAndAreaSettingss(
-  const std::map<std::string, CriterionState>& areaCriteriaState)
+void ProblemGenerationForBalancing::logCriterionAndAreaSettings(
+  const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues) const
 {
+    const auto areaCritState = areaCriteriaState(simuValues);
     // For each area, log the criterion state and the DispatchableProduction variable values for the
     // clusters of the area
-    for (const auto& [areaName, criterionState]: areaCriteriaState)
+    for (const auto& [areaName, criterionState]: areaCritState)
     {
         std::stringstream ss;
         ss << "\n  Criterion state for area " << areaName << ": " << to_string(criterionState)
@@ -161,7 +171,7 @@ std::map<AreaCluster, CapacityAction> ProblemGenerationForBalancing::findAreaClu
     std::map<AreaCluster, CapacityAction> areaClusterToModify;
     const auto areaCritState = areaCriteriaState(simuValues);
     updateAreaSettingsIncrement(areaCritState);
-    logCriterionAndAreaSettingss(areaCritState);
+    logCriterionAndAreaSettings(simuValues);
 
     for (const auto& [areaName, areaSettings]: areasSettings)
     {

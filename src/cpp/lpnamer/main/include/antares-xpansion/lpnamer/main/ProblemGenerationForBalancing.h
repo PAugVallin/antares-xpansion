@@ -51,6 +51,8 @@ public:
     std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>> updateProblems(
       const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues);
     bool isBalanced(const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues) const;
+    void logCriterionAndAreaSettings(
+      const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues) const;
 
 private:
     std::map<std::string, AreaSettings>& areasSettings;
@@ -58,7 +60,7 @@ private:
     std::map<std::string, CapacityAction> lastActionForArea;
 
     void fillDispProdVarIndicesAndMarginalCosts();
-    void getInitialCapacitiesForDecommissioningCandidates();
+    void getInitialCapacitiesForCandidates();
 
     std::map<AreaCluster, CapacityAction> findAreaClustersToModify(
       const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues);
@@ -76,7 +78,6 @@ private:
     CapacityAction determineCapacityAction(const std::string& areaName,
                                            CriterionState currentState,
                                            const AreaSettings& areaSettings) const;
-    void logCriterionAndAreaSettingss(const std::map<std::string, CriterionState>& areaCritState);
     template<typename CandidateType>
     std::map<std::string, double> computeRentabilityForCandidates(
       const std::string& areaName,

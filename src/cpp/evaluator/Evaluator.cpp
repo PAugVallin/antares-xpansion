@@ -2,13 +2,11 @@
 #include "antares-xpansion/evaluator/Evaluator.h"
 
 #include <fmt/core.h>
-#include <regex>
 #include <sstream>
 #include <tbb/global_control.h>
 #include <tbb/parallel_for_each.h>
 #include <utility>
 
-#include "antares-xpansion/benders/benders_core/BendersProblemFromFile.h"
 #include "antares-xpansion/helpers/Timer.h"
 
 using namespace PlainData;
