@@ -24,6 +24,7 @@ target_link_libraries (grid_evaluator
 		${PROJECT_NAME}::bellman_values_lib
 		${PROJECT_NAME}::exe_options_lib
 		${PROJECT_NAME}::factories
+		${PROJECT_NAME}::exe_options_lib
 		
 )
 

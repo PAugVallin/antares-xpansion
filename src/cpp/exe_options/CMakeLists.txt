@@ -15,7 +15,7 @@ target_sources(exe_options_lib PRIVATE
 
 target_link_libraries(exe_options_lib
         PUBLIC
-        antaresXpansion::helpers
+        ${PROJECT_NAME}::helpers
 )
 
 target_include_directories(exe_options_lib
