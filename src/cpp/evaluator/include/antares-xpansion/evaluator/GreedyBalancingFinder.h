@@ -38,11 +38,12 @@ public:
 
 private:
     std::unique_ptr<Benders::Criterion::CriterionComputation> criterion_computation_;
+    Output::ConcurrentInsertionMap<Antares::Solver::WeeklyProblemId, PbOutput> balancingResults;
+
     Benders::Criterion::CriterionInputData buildPatterns(
       Benders::Criterion::Type criterion,
       const std::map<std::string, AreaSettings>& areaSettings);
     std::vector<size_t> getAreaBalanceIndices(std::shared_ptr<Problem> subProblem);
-    Output::ConcurrentInsertionMap<Antares::Solver::WeeklyProblemId, PbOutput> balancingResults;
     const std::map<std::string, AreaSettings>& areaSettings;
     void fillAreaCriterionValuesAndPrices(const std::vector<double>& criteria,
                                           const std::vector<double>& dualValuesCst,

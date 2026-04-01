@@ -140,6 +140,8 @@ int main(int argc, char** argv)
                                     logger->CONTEXT);
         };
         pbg.logCriterionAndAreaSettings(res);
+        pbg.saveCriterionAndAreaSettingsToCSV(res,
+                                              directories.simulation_dir / "balancing_results.csv");
         auto endProblemUpdate = std::chrono::system_clock::now();
         std::chrono::duration<double> elapsed_update_seconds = endProblemUpdate
                                                                - startBalancingProcess;

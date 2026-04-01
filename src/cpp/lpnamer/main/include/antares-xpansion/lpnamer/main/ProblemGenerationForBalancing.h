@@ -53,6 +53,9 @@ public:
     bool isBalanced(const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues) const;
     void logCriterionAndAreaSettings(
       const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues) const;
+    void saveCriterionAndAreaSettingsToCSV(
+      const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues,
+      const std::filesystem::path& outputPath) const;
 
 private:
     std::map<std::string, AreaSettings>& areasSettings;

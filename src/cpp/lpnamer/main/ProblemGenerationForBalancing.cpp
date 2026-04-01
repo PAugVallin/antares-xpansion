@@ -162,6 +162,36 @@ void ProblemGenerationForBalancing::logCriterionAndAreaSettings(
     }
 }
 
+void ProblemGenerationForBalancing::saveCriterionAndAreaSettingsToCSV(
+  const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues,
+  const std::filesystem::path& outputPath) const
+{
+    std::ofstream file(outputPath);
+    if (!file.is_open())
+    {
+        throw std::runtime_error("Failed to open file for writing: " + outputPath.string());
+    }
+
+    file << "areaName,candidateName,capacity\n";
+
+    const auto areaCritState = areaCriteriaState(simuValues);
+    for (const auto& [areaName, criterionState]: areaCritState)
+    {
+        const auto& areaSettings = areasSettings.at(areaName);
+        for (const auto& [clusterName, investmentCandidate]: areaSettings.investmentCandidates)
+        {
+            file << areaName << "," << clusterName << "," << investmentCandidate.currentCapacity
+                 << "\n";
+        }
+        for (const auto& [clusterName, decommissioningCandidate]:
+             areaSettings.decommissioningCandidates)
+        {
+            file << areaName << "," << clusterName << ","
+                 << decommissioningCandidate.currentCapacity << "\n";
+        }
+    }
+}
+
 /// @brief Find the action to apply for each area cluster
 /// @param simuValues The simulation values to use for the problems modification
 /// @return A map associating each area cluster to the action to apply
