@@ -2,21 +2,30 @@
 
 #include <cstdio>
 #include <filesystem>
-#include <fstream>
-#include <ostream>
+#include <map>
+#include <optional>
+#include <tbb/task_arena.h>
 
 #include "antares-xpansion/xpansion_interfaces/ILogger.h"
 
 /**
  * \class
- * \brief a decorator class to filter out logs under a specified level
+ * \brief a decorator class to log in separate files for separate threads, with a given verbosity
+ * level
  */
-class FilteredLogger: public ILogger
+class MultithreadTBBLogger: public ILogger
 {
 public:
-    explicit FilteredLogger(Logger logger,
-                            LogUtils::LOGLEVEL minimumLogLevel = LogUtils::LOGLEVEL::INFO);
-    ~FilteredLogger() = default;
+    /// @brief constructor for the MultithreadTBBLogger class
+    /// @param logFolder the folder where all log files will be
+    /// @param logFileName the basename of all log files, which will be prefixed by the thread id
+    /// @param nbThreads the number of desired threads
+    /// @param verbosity the lowest verbosity desired
+    explicit MultithreadTBBLogger(const std::filesystem::path& logFolder,
+                                  const std::string& logFileName,
+                                  int nbThreads,
+                                  std::optional<LogUtils::LOGLEVEL> verbosity = std::nullopt);
+    ~MultithreadTBBLogger() = default;
 
     void display_message(const std::string& str) override;
     void display_message(const std::string& str,
@@ -53,7 +62,11 @@ public:
     void LogAtSwitchToInteger() override;
     void cumulative_number_of_sub_problem_solved(int number) override;
 
+    Logger operator[](int threadId);
+
 private:
-    Logger _logger;
-    LogUtils::LOGLEVEL _minimumLogLevel;
+    std::map<int, Logger>
+      _loggers;         /// the collection of all loggers, 0 being used for single thread logging
+    int _nbThreads = 1; /// the maximum number of threads
+    LogUtils::LOGLEVEL _verbosity = LogUtils::LOGLEVEL::INFO; /// the lowest desired verbosity
 };

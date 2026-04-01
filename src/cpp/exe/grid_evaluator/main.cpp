@@ -3,11 +3,13 @@
 #include <iostream>
 #include <ranges>
 
-#include "antares-xpansion/bellman_values/PenaltiesConfigReader.h"
+#include "antares-xpansion/bellman_values/DynamicProgrammingConfigReader.h"
 #include "antares-xpansion/bellman_values/ProblemManager.h"
+#include "antares-xpansion/bellman_values/SettingsConfigReader.h"
 #include "antares-xpansion/benders/factories/LoggerFactories.h"
 #include "antares-xpansion/benders/logger/FilteredLogger.h"
 #include "antares-xpansion/evaluator/GridEvaluator.h"
+#include "antares-xpansion/exe_options/CommonExeOptions.h"
 #include "antares-xpansion/lpnamer/main/ProblemGenerationForWaterValueCalculation.h"
 
 std::string formatTime(const std::chrono::system_clock::time_point& timePoint)
@@ -102,39 +104,33 @@ int main(int argc, char** argv)
 {
     try
     {
-        auto optionsParser = BellmanValuesExeOptions();
+        auto optionsParser = CommonExeOptions();
         optionsParser.Parse(argc, argv);
         auto studyPath = optionsParser.StudyPath();
-        auto solverName = optionsParser.SolverName();
         int nbThreads = optionsParser.NbThreads();
-        int startWeek = optionsParser.StartWeek();
-        int endWeek = optionsParser.EndWeek();
-        int nbLevels = optionsParser.NbLevels();
-        bool antaresFormat = optionsParser.AntaresFormat();
-        bool writePbFiles = optionsParser.WritePbFiles();
-        const std::string problemFormat = optionsParser.ProblemFormat();
-        const bool useOptimalTrajectory = optionsParser.UseOptimalTrajectory();
-        const std::string verbosity = optionsParser.Verbosity();
-        // this bool needs to be implemented correctly after merging with the more recent use of
-        // YAML setting files
-        bool cacheProblems = optionsParser.CacheProblems();
 
-        auto gridCollection = std::make_shared<GridCollection>(studyPath
-                                                               / "user/water_values/grid.csv");
+        const std::filesystem::path bellmanConfigFilePath(
+          studyPath / "user/water_values/dynamic_programming.yaml");
+        const std::filesystem::path settingsConfigFilePath(studyPath
+                                                           / "user/water_values/settings.yaml");
 
-        const std::filesystem::path penaltiesConfigFilePath(studyPath
-                                                            / "user/water_values/penalties.yaml");
+        // DynamicProgrammingConfigReader will check whether the dynamic_programming.yaml file
+        // exists and return default values if needed
+        DynamicProgrammingConfigReader dpcr(bellmanConfigFilePath);
+        int startWeek = dpcr.getStartWeek();
+        int endWeek = dpcr.getEndWeek();
+        int nbLevels = dpcr.getNbLevels();
+        bool antaresFormat = dpcr.getAntaresFormat();
+        bool useOptimalTrajectory = dpcr.getUseOptimalTrajectory();
 
-        // PenaltiesConfigReader will check whether the file exists and return default values if
-        // needed
-        PenaltiesConfigReader pcr(penaltiesConfigFilePath);
-
-        ReservoirManagement reservoirManagement(gridCollection->reservoirs.begin()->second,
-                                                pcr.getPenaltyBottomRuleCurve(),
-                                                pcr.getPenaltyUpperRuleCurve(),
-                                                pcr.getPenaltyFinalLevel(),
-                                                pcr.getForceFinalLevel(),
-                                                pcr.getFinalLevel());
+        // SettingsConfigReader will check whether the settings.yaml file exists and
+        // return default values if needed
+        SettingsConfigReader scr(settingsConfigFilePath);
+        std::string solverName = scr.getSolver();
+        bool writePbFiles = scr.getKeepMps();
+        const std::string problemFormat = scr.getProblemFormat();
+        const std::string verbosity = scr.getVerbosity();
+        const bool cacheProblems = scr.getCacheProblems();
 
         ConfigurationManager::ConfigDirectories directories{
           .study_dir = studyPath,
@@ -154,6 +150,17 @@ int main(int argc, char** argv)
         std::shared_ptr<FilteredLogger> logger = std::make_shared<FilteredLogger>(
           masterLogger,
           LogUtils::StrToLogLevel(verbosity));
+
+        auto gridCollection = std::make_shared<GridCollection>(studyPath
+                                                                 / "user/water_values/grid.csv",
+                                                               logger);
+
+        ReservoirManagement reservoirManagement(gridCollection->reservoirs.begin()->second,
+                                                dpcr.getPenaltyBottomRuleCurve(),
+                                                dpcr.getPenaltyUpperRuleCurve(),
+                                                dpcr.getPenaltyFinalLevel(),
+                                                dpcr.getForceFinalLevel(),
+                                                dpcr.getFinalLevel());
 
         auto problemManager = std::make_shared<ProblemManager>(solverName,
                                                                problemFormat,

@@ -215,7 +215,8 @@ protected:
 TEST_F(BellmanValuesComputeTest, unitTestNoPenalties)
 {
     ReservoirManagement reservoirManagement(evaluatorMock.reservoirMock, 0, 0, 0);
-    auto bellmanValues = BellmanValues(evaluatorMock, reservoirManagement, logger).compute(6);
+    auto [bellmanValues, costs] = BellmanValues(evaluatorMock, reservoirManagement, logger)
+                                    .compute(6);
 
     std::vector<std::vector<double>> expected = {{180, 140, 100, 60, 60, 60},
                                                  {120, 80, 40, 40, 40, 40},
@@ -228,7 +229,8 @@ TEST_F(BellmanValuesComputeTest, unitTestNoPenalties)
 TEST_F(BellmanValuesComputeTest, unitTestPenalties)
 {
     ReservoirManagement reservoirManagement(evaluatorMock.reservoirMock, 10, 10, 0);
-    auto bellmanValues = BellmanValues(evaluatorMock, reservoirManagement, logger).compute(6);
+    auto [bellmanValues, costs] = BellmanValues(evaluatorMock, reservoirManagement, logger)
+                                    .compute(6);
 
     std::vector<std::vector<double>> expected = {{1220, 180, 140, 100, 60, 1060},
                                                  {1160, 120, 80, 40, 40, 1040},
@@ -241,7 +243,8 @@ TEST_F(BellmanValuesComputeTest, unitTestPenalties)
 TEST_F(BellmanValuesComputeTest, unitTestPenaltiesWithFinalLevel)
 {
     ReservoirManagement reservoirManagement(evaluatorMock.reservoirMock, 10, 10, 30, true, 400);
-    auto bellmanValues = BellmanValues(evaluatorMock, reservoirManagement, logger).compute(6);
+    auto [bellmanValues, costs] = BellmanValues(evaluatorMock, reservoirManagement, logger)
+                                    .compute(6);
 
     std::vector<std::vector<double>> expected = {{4300, 300, 260, 220, 180, 1140},
                                                  {7200, 3200, 200, 160, 120, 1080},
@@ -256,7 +259,7 @@ TEST_F(BellmanValuesComputeTest, OneNodeBaseCaseNoPenalties)
     copyDataOneNodeBase();
     auto expected_costs = getOutputCosts("result_bellman_values_no_penalties.csv");
 
-    auto grid_collection = GridCollection(tmpDir / "user/water_values/grid.csv");
+    auto grid_collection = GridCollection(tmpDir / "user/water_values/grid.csv", logger);
     auto grid = grid_collection.gridDefinitions.at(0);
     ReservoirManagement reservoir_management(grid_collection.reservoirs.begin()->second, 0, 0, 0);
 
@@ -280,7 +283,7 @@ TEST_F(BellmanValuesComputeTest, OneNodeBaseCaseNoPenalties)
                                    config_dirs.simulation_dir,
                                    solverName,
                                    8);
-    auto res = BellmanValues(evaluator, reservoir_management, logger).compute(11);
+    auto [res, costs] = BellmanValues(evaluator, reservoir_management, logger).compute(11);
 
     for (unsigned int week = 1; week < res.size(); week++)
     {
@@ -299,7 +302,7 @@ TEST_F(BellmanValuesComputeTest, OneNodeBaseCasePenalties)
     copyDataOneNodeBase();
     auto expected_costs = getOutputCosts("result_bellman_values_penalties.csv");
 
-    auto grid_collection = GridCollection(tmpDir / "user/water_values/grid.csv");
+    auto grid_collection = GridCollection(tmpDir / "user/water_values/grid.csv", logger);
     auto grid = grid_collection.gridDefinitions.at(0);
     ReservoirManagement reservoir_management(grid_collection.reservoirs.begin()->second,
                                              3000,
@@ -326,7 +329,7 @@ TEST_F(BellmanValuesComputeTest, OneNodeBaseCasePenalties)
                                    config_dirs.simulation_dir,
                                    solverName,
                                    8);
-    auto res = BellmanValues(evaluator, reservoir_management, logger).compute(11);
+    auto [res, costs] = BellmanValues(evaluator, reservoir_management, logger).compute(11);
 
     for (unsigned int week = 1; week < res.size(); week++)
     {
@@ -345,7 +348,7 @@ TEST_F(BellmanValuesComputeTest, OneNodeBaseCasePenaltiesWithFinalLevel)
     copyDataOneNodeBase();
     auto expected_costs = getOutputCosts("result_bellman_values_penalties_final_level.csv");
 
-    auto grid_collection = GridCollection(tmpDir / "user/water_values/grid.csv");
+    auto grid_collection = GridCollection(tmpDir / "user/water_values/grid.csv", logger);
     auto grid = grid_collection.gridDefinitions.at(0);
     ReservoirManagement reservoir_management(grid_collection.reservoirs.begin()->second,
                                              3000,
@@ -373,7 +376,7 @@ TEST_F(BellmanValuesComputeTest, OneNodeBaseCasePenaltiesWithFinalLevel)
                                    config_dirs.simulation_dir,
                                    solverName,
                                    8);
-    auto res = BellmanValues(evaluator, reservoir_management, logger).compute(11);
+    auto [res, costs] = BellmanValues(evaluator, reservoir_management, logger).compute(11);
 
     for (unsigned int week = 1; week < res.size(); week++)
     {
@@ -392,7 +395,7 @@ TEST_F(BellmanValuesComputeTest, ThreeNodesCaseNoPenalties)
     copyDataThreeNodes();
 
     auto grid_collection = std::make_shared<GridCollection>(
-      GridCollection(tmpDir / "user/water_values/grid.csv"));
+      GridCollection(tmpDir / "user/water_values/grid.csv", logger));
 
     ConfigurationManager::ConfigDirectories config_dirs{
       .study_dir = tmpDir,
@@ -450,7 +453,7 @@ TEST_F(BellmanValuesComputeTest, ThreeNodesCaseNoPenalties)
 
             auto bellmanValues = BellmanValues(evaluator, reservoir_management, logger);
             logger->display_message("Computing Bellman values...");
-            auto res = bellmanValues.compute(11);
+            auto [res, costs] = bellmanValues.compute(11);
             logger->display_message("Computed Bellman values");
 
             for (unsigned int week = 1; week < res.size(); week++)
@@ -480,7 +483,7 @@ TEST_F(BellmanValuesComputeTest, ThreeNodesCaseWithPenalties)
     copyDataThreeNodes();
 
     auto grid_collection = std::make_shared<GridCollection>(
-      GridCollection(tmpDir / "user/water_values/grid.csv"));
+      GridCollection(tmpDir / "user/water_values/grid.csv", logger));
 
     ConfigurationManager::ConfigDirectories config_dirs{
       .study_dir = tmpDir,
@@ -541,7 +544,7 @@ TEST_F(BellmanValuesComputeTest, ThreeNodesCaseWithPenalties)
 
             auto bellmanValues = BellmanValues(evaluator, reservoir_management, logger);
             logger->display_message("Computing Bellman values...");
-            auto res = bellmanValues.compute(11);
+            auto [res, costs] = bellmanValues.compute(11);
             logger->display_message("Computed Bellman values");
 
             for (unsigned int week = 1; week < res.size(); week++)
@@ -571,7 +574,7 @@ TEST_F(BellmanValuesComputeTest, ThreeNodesCaseWithPenaltiesFinalLevel)
     copyDataThreeNodes();
 
     auto grid_collection = std::make_shared<GridCollection>(
-      GridCollection(tmpDir / "user/water_values/grid.csv"));
+      GridCollection(tmpDir / "user/water_values/grid.csv", logger));
 
     ConfigurationManager::ConfigDirectories config_dirs{
       .study_dir = tmpDir,
@@ -633,7 +636,7 @@ TEST_F(BellmanValuesComputeTest, ThreeNodesCaseWithPenaltiesFinalLevel)
 
             auto bellmanValues = BellmanValues(evaluator, reservoir_management, logger);
             logger->display_message("Computing Bellman values...");
-            auto res = bellmanValues.compute(11);
+            auto [res, costs] = bellmanValues.compute(11);
             logger->display_message("Computed Bellman values");
 
             for (unsigned int week = 1; week < res.size(); week++)

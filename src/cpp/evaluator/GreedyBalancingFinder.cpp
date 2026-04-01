@@ -149,7 +149,7 @@ GreedyBalancingFinder::ComputeCriterionAndPrice()
 {
     logger->display_message(
       (std::stringstream() << "Launching criterion and price evaluation").str(),
-      LogUtils::LOGLEVEL::INFO,
+      LogUtils::LOGLEVEL::DEBUG,
       BALANCING_EVALUATOR_LOGGER_CONTEXT);
 
     Timer run_timer;
@@ -159,13 +159,13 @@ GreedyBalancingFinder::ComputeCriterionAndPrice()
     auto run_time = run_timer.elapsed();
     logger->display_message(
       (std::stringstream() << "Evaluation done in " << run_time << " seconds").str(),
-      LogUtils::LOGLEVEL::INFO,
+      LogUtils::LOGLEVEL::DEBUG,
       BALANCING_EVALUATOR_LOGGER_CONTEXT);
     logger->display_message((std::stringstream()
                              << "Time solving subproblems (accumulated by each thread) : "
                              << totalSubPbTimer << " seconds")
                               .str(),
-                            LogUtils::LOGLEVEL::INFO,
+                            LogUtils::LOGLEVEL::DEBUG,
                             BALANCING_EVALUATOR_LOGGER_CONTEXT);
 
     return balancingResults.get();

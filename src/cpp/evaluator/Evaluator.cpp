@@ -69,7 +69,7 @@ void Evaluator::Run()
                                                         << yearWeekId.year << " week "
                                                         << yearWeekId.week)
                                                          .str(),
-                                                       LogUtils::LOGLEVEL::INFO,
+                                                       LogUtils::LOGLEVEL::DEBUG,
                                                        EVALUATOR_LOGGER_CONTEXT);
                                ProcessSubproblem(yearWeekId, subPb);
                            });

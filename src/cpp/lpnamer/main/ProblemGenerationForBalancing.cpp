@@ -157,7 +157,7 @@ void ProblemGenerationForBalancing::logCriterionAndAreaSettings(
         }
 
         logger->display_message(ss.str(),
-                                LogUtils::LOGLEVEL::DEBUG,
+                                LogUtils::LOGLEVEL::INFO,
                                 PROBLEM_GENERATION_LOGGER_CONTEXT);
     }
 }

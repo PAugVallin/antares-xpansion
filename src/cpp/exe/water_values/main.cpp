@@ -2,12 +2,14 @@
 #include <cerrno>
 #include <chrono>
 #include <iostream>
+#include <tbb/global_control.h>
 
 #include "antares-xpansion/bellman_values/BellmanValues.h"
-#include "antares-xpansion/bellman_values/PenaltiesConfigReader.h"
+#include "antares-xpansion/bellman_values/DynamicProgrammingConfigReader.h"
 #include "antares-xpansion/bellman_values/ProblemManager.h"
-#include "antares-xpansion/benders/factories/LoggerFactories.h"
-#include "antares-xpansion/benders/logger/FilteredLogger.h"
+#include "antares-xpansion/bellman_values/SettingsConfigReader.h"
+#include "antares-xpansion/benders/logger/MultithreadTBBLogger.h"
+#include "antares-xpansion/exe_options/CommonExeOptions.h"
 #include "antares-xpansion/lpnamer/main/ProblemGenerationForWaterValueCalculation.h"
 
 std::vector<double> interpolateVector(const std::vector<double>& originalValues, int targetSize)
@@ -172,50 +174,45 @@ std::vector<std::vector<double>> computeWaterValues(
     return derivatives;
 }
 
-void checkForValidGrid(std::shared_ptr<GridCollection> gridCollection)
-{
-    for (auto& grid: gridCollection->gridDefinitions | std::views::values)
-    {
-        if (grid.gridElements.size() > 1)
-        {
-            throw std::domain_error(
-              "Water values can currently only be computed for one gridElement per gridId.");
-        }
-    }
-}
-
 int main(int argc, char** argv)
 {
     try
     {
-        auto optionsParser = BellmanValuesExeOptions();
+        auto optionsParser = CommonExeOptions();
         optionsParser.Parse(argc, argv);
         auto studyPath = optionsParser.StudyPath();
-        auto solverName = optionsParser.SolverName();
         int nbThreads = optionsParser.NbThreads();
-        int startWeek = optionsParser.StartWeek();
-        int endWeek = optionsParser.EndWeek();
-        int nbLevels = optionsParser.NbLevels();
-        bool antaresFormat = optionsParser.AntaresFormat();
-        bool writePbFiles = optionsParser.WritePbFiles();
-        const std::string problemFormat = optionsParser.ProblemFormat();
-        const bool useOptimalTrajectory = optionsParser.UseOptimalTrajectory();
-        const std::string verbosity = optionsParser.Verbosity();
-        // this bool needs to be implemented correctly after merging with the more recent use of
-        // YAML setting files
-        bool cacheProblems = optionsParser.CacheProblems();
 
-        auto gridCollection = std::make_shared<GridCollection>(studyPath
-                                                               / "user/water_values/grid.csv");
+        // getting the maximum hardware concurrency (default)
+        int max_thread_concurrency = tbb::global_control::active_value(
+          tbb::global_control::max_allowed_parallelism);
+        // limiting the number of TBB threads, as long as this instance is alive
+        tbb::global_control thread_limiter(tbb::global_control::max_allowed_parallelism, nbThreads);
+        // nbThreads shouldn't be larger than the maximum hardware concurrency
+        nbThreads = std::min(nbThreads, max_thread_concurrency);
 
-        checkForValidGrid(gridCollection);
+        const std::filesystem::path bellmanConfigFilePath(
+          studyPath / "user/water_values/dynamic_programming.yaml");
+        const std::filesystem::path settingsConfigFilePath(studyPath
+                                                           / "user/water_values/settings.yaml");
 
-        const std::filesystem::path penaltiesConfigFilePath(studyPath
-                                                            / "user/water_values/penalties.yaml");
+        // DynamicProgrammingConfigReader will check whether the dynamic_programming.yaml file
+        // exists and return default values if needed
+        DynamicProgrammingConfigReader dpcr(bellmanConfigFilePath);
+        int startWeek = dpcr.getStartWeek();
+        int endWeek = dpcr.getEndWeek();
+        int nbLevels = dpcr.getNbLevels();
+        bool antaresFormat = dpcr.getAntaresFormat();
+        bool useOptimalTrajectory = dpcr.getUseOptimalTrajectory();
 
-        // PenaltiesConfigReader will check whether the file exists and return default
-        // values if needed
-        PenaltiesConfigReader pcr(penaltiesConfigFilePath);
+        // SettingsConfigReader will check whether the settings.yaml file exists and
+        // return default values if needed
+        SettingsConfigReader scr(settingsConfigFilePath);
+        std::string solverName = scr.getSolver();
+        bool writePbFiles = scr.getKeepMps();
+        const std::string problemFormat = scr.getProblemFormat();
+        const std::string verbosity = scr.getVerbosity();
+        bool cacheProblems = scr.getCacheProblems();
 
         ConfigurationManager::ConfigDirectories directories{
           .study_dir = studyPath,
@@ -228,13 +225,18 @@ int main(int argc, char** argv)
         {
             std::filesystem::create_directories(directories.simulation_dir);
         }
-        std::filesystem::path logPath = directories.simulation_dir / "water_values_log.txt";
-        std::ofstream{logPath}; // creates log file, since the FileLoggerFactory doesn't
-        auto loggerFactory = FileAndStdoutLoggerFactory(logPath, false);
-        Logger masterLogger = loggerFactory.get_logger();
-        std::shared_ptr<FilteredLogger> logger = std::make_shared<FilteredLogger>(
-          masterLogger,
+        std::string logSubFolder = "water_values_logs";
+        std::string logFilename = "water_values_log.txt";
+        std::filesystem::create_directories(directories.simulation_dir / logSubFolder);
+        std::shared_ptr<MultithreadTBBLogger> logger = std::make_shared<MultithreadTBBLogger>(
+          directories.simulation_dir / logSubFolder,
+          logFilename,
+          nbThreads,
           LogUtils::StrToLogLevel(verbosity));
+
+        auto gridCollection = std::make_shared<GridCollection>(studyPath
+                                                                 / "user/water_values/grid.csv",
+                                                               logger);
 
         auto problemManager = std::make_shared<ProblemManager>(solverName,
                                                                problemFormat,
@@ -286,12 +288,12 @@ int main(int argc, char** argv)
             // multistock here
             // update the reservoir in ReservoirManagement based on the considered area
             ReservoirManagement reservoirManagement(grid.reservoirs.at(gridElement.area),
-                                                    pcr.getPenaltyBottomRuleCurve(),
-                                                    pcr.getPenaltyUpperRuleCurve(),
-                                                    pcr.getPenaltyFinalLevel(),
-                                                    pcr.getForceFinalLevel(),
-                                                    pcr.getFinalLevel(),
-                                                    pcr.getCvar());
+                                                    dpcr.getPenaltyBottomRuleCurve(),
+                                                    dpcr.getPenaltyUpperRuleCurve(),
+                                                    dpcr.getPenaltyFinalLevel(),
+                                                    dpcr.getForceFinalLevel(),
+                                                    dpcr.getFinalLevel(),
+                                                    dpcr.getCvar());
             // this is also where we will update penalties if they need to be
 
             auto startProblemUpdate = std::chrono::system_clock::now();
@@ -325,8 +327,8 @@ int main(int argc, char** argv)
             auto bellmanValuesEvaluator = BellmanValues(evaluator, reservoirManagement, logger);
 
             logger->display_message("Computing Bellman values...");
-            auto bellmanValues = bellmanValuesEvaluator.compute(nbLevels);
-            logger->display_message("Computed Bellman values");
+            auto [bellmanValues, costs] = bellmanValuesEvaluator.compute(nbLevels);
+            logger->display_message("Computed Bellman values and costs");
 
             std::string bellmanValuesFileName = std::to_string(grid.gridID) + "_" + gridElement.area
                                                 + "_bellman_values.csv";
@@ -334,6 +336,10 @@ int main(int argc, char** argv)
                        bellmanValues,
                        logger,
                        false);
+
+            std::string costsFileName = std::to_string(grid.gridID) + "_" + gridElement.area
+                                        + "_costs.csv";
+            saveValues(directories.simulation_dir / costsFileName, costs, logger, false);
 
             auto levels = bellmanValuesEvaluator.getLevels();
             if (antaresFormat)

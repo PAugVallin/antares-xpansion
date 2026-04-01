@@ -1,10 +1,13 @@
 
 #include <chrono>
 #include <iostream>
+#include <tbb/global_control.h>
 
 #include "antares-xpansion/balancing/BalancingParser.h"
+#include "antares-xpansion/balancing/SettingsConfigReader.h"
 #include "antares-xpansion/bellman_values/ProblemManager.h"
 #include "antares-xpansion/benders/factories/LoggerFactories.h"
+#include "antares-xpansion/benders/logger/MultithreadTBBLogger.h"
 #include "antares-xpansion/evaluator/GreedyBalancingFinder.h"
 #include "antares-xpansion/exe_options/CommonExeOptions.h"
 #include "antares-xpansion/lpnamer/main/ProblemGenerationForBalancing.h"
@@ -39,8 +42,25 @@ int main(int argc, char** argv)
         auto optionsParser = CommonExeOptions();
         optionsParser.Parse(argc, argv);
         auto studyPath = optionsParser.StudyPath();
-        auto solverName = optionsParser.SolverName();
         int nbThreads = optionsParser.NbThreads();
+
+        // getting the maximum hardware concurrency (default)
+        int max_thread_concurrency = tbb::global_control::active_value(
+          tbb::global_control::max_allowed_parallelism);
+        // limiting the number of TBB threads, as long as this instance is alive
+        tbb::global_control thread_limiter(tbb::global_control::max_allowed_parallelism, nbThreads);
+        // nbThreads shouldn't be larger than the maximum hardware concurrency
+        nbThreads = std::min(nbThreads, max_thread_concurrency);
+
+        const std::filesystem::path settingsConfigFilePath(studyPath
+                                                           / "user/balancing/settings.yaml");
+
+        // SettingsConfigReader will check whether the settings.yaml file exists and
+        // return default values if needed
+        SettingsConfigReader scr(settingsConfigFilePath);
+        std::string solverName = scr.getSolver();
+        const std::string verbosity = scr.getVerbosity();
+        bool cacheProblems = scr.getCacheProblems();
         const auto areaFile = studyPath / "area.txt";
 
         ConfigurationManager::ConfigDirectories directories{
@@ -57,34 +77,49 @@ int main(int argc, char** argv)
         {
             std::filesystem::create_directories(directories.simulation_dir);
         }
-        std::filesystem::path logPath = directories.simulation_dir / "balancing_log.txt";
-        auto loggerFactory = FileAndStdoutLoggerFactory(logPath, false);
-        Logger logger = loggerFactory.get_logger();
+
+        std::string logSubFolder = "balancing_logs";
+        std::string logFilename = "balancing_log.txt";
+        std::filesystem::create_directories(directories.simulation_dir / logSubFolder);
+
+        std::shared_ptr<MultithreadTBBLogger> logger = std::make_shared<MultithreadTBBLogger>(
+          directories.simulation_dir / logSubFolder,
+          logFilename,
+          nbThreads,
+          LogUtils::StrToLogLevel(verbosity));
 
         auto startProblemGeneration = std::chrono::system_clock::now();
-        logger->display_message(
-          "Generating problems (starting time: " + formatTime(startProblemGeneration) + ")");
+        logger->display_message("Generating problems (starting time: "
+                                  + formatTime(startProblemGeneration) + ")",
+                                LogUtils::LOGLEVEL::INFO,
+                                logger->CONTEXT);
         auto problemManager = std::make_shared<ProblemManager>(solverName);
         ProblemGenerationForBalancing pbg(directories,
                                           balParser.areaSettings,
                                           logger,
                                           problemManager);
         auto endProblemGeneration = std::chrono::system_clock::now();
-        logger->display_message("Problems generated");
+        logger->display_message("Problems generated", LogUtils::LOGLEVEL::INFO, logger->CONTEXT);
         std::chrono::duration<double> elapsed_seconds = endProblemGeneration
                                                         - startProblemGeneration;
         logger->display_message("Elapsed time for problem generation: "
-                                + formatDuration(elapsed_seconds));
+                                  + formatDuration(elapsed_seconds),
+                                LogUtils::LOGLEVEL::INFO,
+                                logger->CONTEXT);
 
         std::map<Antares::Solver::WeeklyProblemId, PbOutput> res;
         constexpr int MAX_ITERATIONS = 30;
         int iteration = 0;
         auto startBalancingProcess = std::chrono::system_clock::now();
-        logger->display_message("Starting balancing process");
+        logger->display_message("Starting balancing process",
+                                LogUtils::LOGLEVEL::INFO,
+                                logger->CONTEXT);
         while (!pbg.isBalanced(res) && iteration < MAX_ITERATIONS)
         {
             auto startIteration = std::chrono::system_clock::now();
-            logger->display_message("Iteration " + std::to_string(iteration));
+            logger->display_message("Iteration " + std::to_string(iteration),
+                                    LogUtils::LOGLEVEL::INFO,
+                                    logger->CONTEXT);
             iteration++;
             auto problems = pbg.updateProblems(res);
 
@@ -99,16 +134,22 @@ int main(int argc, char** argv)
             auto endIteration = std::chrono::system_clock::now();
             std::chrono::duration<double> elapsed_iteration_seconds = endIteration - startIteration;
             logger->display_message("Elapsed time for iteration " + std::to_string(iteration) + ": "
-                                    + formatDuration(elapsed_iteration_seconds));
+                                      + formatDuration(elapsed_iteration_seconds),
+                                    LogUtils::LOGLEVEL::INFO,
+                                    logger->CONTEXT);
         };
         pbg.logCriterionAndAreaSettings(res);
         auto endProblemUpdate = std::chrono::system_clock::now();
         std::chrono::duration<double> elapsed_update_seconds = endProblemUpdate
                                                                - startBalancingProcess;
         logger->display_message("Balancing process ended after " + std::to_string(iteration)
-                                + " iterations. In " + formatDuration(elapsed_update_seconds));
+                                  + " iterations. In " + formatDuration(elapsed_update_seconds),
+                                LogUtils::LOGLEVEL::INFO,
+                                logger->CONTEXT);
         logger->display_message(pbg.isBalanced(res) ? "The system is balanced."
-                                                    : "The system is not balanced.");
+                                                    : "The system is not balanced.",
+                                LogUtils::LOGLEVEL::INFO,
+                                logger->CONTEXT);
 
         return 0;
     }

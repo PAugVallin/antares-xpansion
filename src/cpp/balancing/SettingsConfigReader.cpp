@@ -1,0 +1,10 @@
+#include "antares-xpansion/balancing/SettingsConfigReader.h"
+
+void SettingsConfigReader::emplaceAllElements()
+{
+    // instantiate all elements with key (as in YAML), default value, and boolean for optional
+    // type is inferred from default value
+    elements_.emplace(solverKey, YAMLElement(solverKey, "xpress"));
+    elements_.emplace(verbosityKey, YAMLElement(verbosityKey, "INFO"));
+    elements_.emplace(cacheProblemsKey, YAMLElement(cacheProblemsKey, false));
+}

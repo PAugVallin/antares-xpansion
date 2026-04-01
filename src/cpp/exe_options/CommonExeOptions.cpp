@@ -10,14 +10,10 @@ CommonExeOptions::CommonExeOptions():
 CommonExeOptions::CommonExeOptions(const std::string& description):
     OptionsParser(description)
 {
-    AddOptions()("help,h",
-                 "produce help message")("study",
-                                         po::value<std::filesystem::path>(&studyPath_)->required(),
-                                         "Path to archive (required)")(
-      "solver",
-      po::value<std::string>(&solverName_)->default_value("xpress"),
-      "Solver to use (optional, default is xpress). Possible values are: xpress, coin")(
-      "threads",
-      po::value<int>(&nbThreads_)->default_value(1),
-      "Number of threads to use (optional, default is 1)");
+    AddOptions()("help,h", "produce help message")(
+      "study",
+      po::value<std::filesystem::path>(&studyPath_)->required(),
+      "Path to archive (required)")("threads",
+                                    po::value<int>(&nbThreads_)->default_value(1),
+                                    "Number of threads to use (optional, default is 1)");
 }

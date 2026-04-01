@@ -85,8 +85,8 @@ void Reservoir::loadHydroIni(const std::filesystem::path& ini_path)
     bool found_capacity = false;
     bool found_efficiency = false;
     // computing water values requires that the area uses heuristic and not water
-    bool use_water = true;      // expected: false
-    bool use_heuristic = false; // expected: true
+    std::optional<bool> use_water = std::nullopt;     // expected: false
+    std::optional<bool> use_heuristic = std::nullopt; // expected: true
 
     while (std::getline(file, line))
     {
@@ -154,11 +154,20 @@ void Reservoir::loadHydroIni(const std::filesystem::path& ini_path)
         throw std::runtime_error("Missing efficiency for area: " + area);
     }
     // computing water values requires that the area uses heuristic and not water
-    if (!use_heuristic || use_water)
+    // but only if said sections exist
+    // otherwise, a default value is used, as implemented below:
+    if (!use_heuristic.value_or(true))
+    {
+        throw std::runtime_error(
+          "Area " + area
+          + " should define [use heuristic] as "
+            "true in hydro.ini, or not define it at all, to compute water values.");
+    }
+    if (use_water.value_or(false))
     {
         throw std::runtime_error("Area " + area
-                                 + " should define [use water] as False and [use heuristic] as "
-                                   "True in hydro.ini to compute water values.");
+                                 + " should define [use water] as false in hydro.ini, or not "
+                                   "define it at all, to compute water values.");
     }
 }
 
@@ -223,6 +232,8 @@ void Reservoir::loadInflow(const std::filesystem::path& dir_study)
 
     std::vector<std::vector<double>> daily_inflow;
     std::string line;
+    // during the parsing of the file, scenario builder is not used, so it is assumed that year 1
+    // goes with column 1, year 2 goes with column 2, etc.
     while (std::getline(file, line))
     {
         std::istringstream iss(line);
@@ -374,6 +385,7 @@ void Reservoir::initializeOptimalTrajectory(int startWeek, int endWeek)
     int nbWeeks = endWeek - startWeek + 2; // nb of week + 1
     // inflow holds values for all possible MCYears, which can be a
     // lot, but they are necessary at this point
+    // TODO: use active years only
     int nbMCYears = inflow[0].size();
     // initialize with initial levels
     std::vector<std::vector<double>> initTraj(nbWeeks,
