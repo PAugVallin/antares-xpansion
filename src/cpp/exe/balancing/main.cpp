@@ -6,7 +6,6 @@
 #include "antares-xpansion/balancing/BalancingParser.h"
 #include "antares-xpansion/balancing/SettingsConfigReader.h"
 #include "antares-xpansion/bellman_values/ProblemManager.h"
-#include "antares-xpansion/benders/factories/LoggerFactories.h"
 #include "antares-xpansion/benders/logger/MultithreadTBBLogger.h"
 #include "antares-xpansion/evaluator/GreedyBalancingFinder.h"
 #include "antares-xpansion/exe_options/CommonExeOptions.h"
@@ -109,18 +108,20 @@ int main(int argc, char** argv)
 
         std::map<Antares::Solver::WeeklyProblemId, PbOutput> res;
         constexpr int MAX_ITERATIONS = 30;
-        int iteration = 0;
+        // First iteratiion will be iteration 0 (the iteration before any modification is applied to
+        // the problems)
+        int iteration = -1;
         auto startBalancingProcess = std::chrono::system_clock::now();
         logger->display_message("Starting balancing process",
                                 LogUtils::LOGLEVEL::INFO,
                                 logger->CONTEXT);
         while (!pbg.isBalanced(res) && iteration < MAX_ITERATIONS)
         {
+            iteration++;
             auto startIteration = std::chrono::system_clock::now();
             logger->display_message("Iteration " + std::to_string(iteration),
                                     LogUtils::LOGLEVEL::INFO,
                                     logger->CONTEXT);
-            iteration++;
             auto problems = pbg.updateProblems(res);
 
             res = GreedyBalancingFinder(logger,
