@@ -5,11 +5,11 @@
 #include <tbb/global_control.h>
 
 #include "antares-xpansion/bellman_values/BellmanValues.h"
-#include "antares-xpansion/bellman_values/BellmanValuesExeOptions.h"
 #include "antares-xpansion/bellman_values/DynamicProgrammingConfigReader.h"
 #include "antares-xpansion/bellman_values/ProblemManager.h"
 #include "antares-xpansion/bellman_values/SettingsConfigReader.h"
 #include "antares-xpansion/benders/logger/MultithreadTBBLogger.h"
+#include "antares-xpansion/exe_options/CommonExeOptions.h"
 #include "antares-xpansion/lpnamer/main/ProblemGenerationForWaterValueCalculation.h"
 #include "antares-xpansion/lpnamer/problem_modifier/XpansionProblemsFromAntaresProvider.h"
 #include "malloc.h"
@@ -180,7 +180,7 @@ int main(int argc, char** argv)
 {
     try
     {
-        auto optionsParser = BellmanValuesExeOptions();
+        auto optionsParser = CommonExeOptions();
         optionsParser.Parse(argc, argv);
         auto studyPath = optionsParser.StudyPath();
         int nbThreads = optionsParser.NbThreads();
@@ -365,8 +365,8 @@ int main(int argc, char** argv)
             {
                 logger->display_message("Computing optimal trajectory...");
 
-                gridCollection->reservoirs.at(gridElement.area)
-                  .optimal_trajectory = bellmanValuesEvaluator.computeOptimalTrajectories();
+                gridCollection->reservoirs.at(gridElement.area).optimal_trajectory
+                  = bellmanValuesEvaluator.computeOptimalTrajectories();
 
                 logger->display_message("Computed optimal trajectory");
 
