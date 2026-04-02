@@ -67,8 +67,8 @@ int main(int argc, char** argv)
           .simulation_dir = ConfigurationManager::generateOutputName(studyPath),
         };
 
-        const std::filesystem::path balancingConfigFilePath(studyPath
-                                                            / "user/balancing/input_balancing.yml");
+        const std::filesystem::path balancingConfigFilePath(
+          studyPath / "user/balancing/input_balancing.yaml");
 
         BalancingParser balParser(balancingConfigFilePath);
 
