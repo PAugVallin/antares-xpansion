@@ -295,7 +295,9 @@ CapacityAction ProblemGenerationForBalancing::determineCapacityAction(
         << " Current criterion state: " << to_string(currentState) << "\n"
         << "Previous action: "
         << (previousAction.has_value() ? to_string(previousAction.value()) : "None");
-    throw std::runtime_error(oss.str());
+    logger->display_message(oss.str(),
+                            LogUtils::LOGLEVEL::WARNING,
+                            PROBLEM_GENERATION_LOGGER_CONTEXT);
 }
 
 template<typename CandidateType>
