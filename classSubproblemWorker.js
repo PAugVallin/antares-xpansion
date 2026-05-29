@@ -1,6 +1,5 @@
 var classSubproblemWorker =
 [
-    [ "SubproblemWorker", "classSubproblemWorker.html#a4353df6111363aa803afcfa82c21bd2d", null ],
     [ "fix_rhs_to", "classSubproblemWorker.html#a87b58b353c4ea4f3f8a3fbb6d1ab20db", null ],
     [ "fix_to", "classSubproblemWorker.html#a9032b50b5b2e7ed630cbb106f487a1ec", null ],
     [ "get_solution", "classSubproblemWorker.html#af1c505070e046e61bf4c46fa015907fa", null ],

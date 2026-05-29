@@ -152,26 +152,28 @@ Inheritance diagram for BendersBase:</div>
  <div class="center">
   <img src="classBendersBase.png" usemap="#BendersBase_map" alt=""/>
   <map id="BendersBase_map" name="BendersBase_map">
-<area href="classBendersBaseDouble.html" alt="BendersBaseDouble" shape="rect" coords="0,56,202,80"/>
-<area href="classBendersMpi.html" title="Class use run the benders algorithm in parallel." alt="BendersMpi" shape="rect" coords="212,56,414,80"/>
-<area href="classBendersSequential.html" title="Class use run the benders algorithm in sequential." alt="BendersSequential" shape="rect" coords="530,56,732,80"/>
-<area href="classBendersByBatch.html" alt="BendersByBatch" shape="rect" coords="106,112,308,136"/>
-<area href="classOuterloop_1_1BendersMpiOuterLoop.html" alt="Outerloop::BendersMpiOuterLoop" shape="rect" coords="318,112,520,136"/>
-<area href="classBendersSequentialDouble.html" alt="BendersSequentialDouble" shape="rect" coords="530,112,732,136"/>
+<area href="classBendersBaseDouble.html" alt="BendersBaseDouble" shape="rect" coords="0,56,157,80"/>
+<area href="classBendersMpi.html" title="Class use run the benders algorithm in parallel." alt="BendersMpi" shape="rect" coords="167,56,324,80"/>
+<area href="classBendersSequential.html" title="Class use run the benders algorithm in sequential." alt="BendersSequential" shape="rect" coords="334,56,491,80"/>
+<area href="classBendersByBatch.html" alt="BendersByBatch" shape="rect" coords="167,112,324,136"/>
+<area href="classBendersSequentialDouble.html" alt="BendersSequentialDouble" shape="rect" coords="334,112,491,136"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a87a0122eb98a56e0273236b7c0e279c7" id="r_a87a0122eb98a56e0273236b7c0e279c7"><td class="memItemLeft" align="right" valign="top"><a id="a87a0122eb98a56e0273236b7c0e279c7" name="a87a0122eb98a56e0273236b7c0e279c7"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>BendersBase</b> (<a class="el" href="structBendersBaseOptions.html">BendersBaseOptions</a> options, Logger logger, std::shared_ptr&lt; <a class="el" href="classOutput_1_1OutputWriter.html">Output::OutputWriter</a> &gt; writer, std::shared_ptr&lt; <a class="el" href="classMathLoggerDriver.html">MathLoggerDriver</a> &gt; mathLoggerDriver)</td></tr>
-<tr class="separator:a87a0122eb98a56e0273236b7c0e279c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade139cf757fafcd9f9859fb749726619" id="r_ade139cf757fafcd9f9859fb749726619"><td class="memItemLeft" align="right" valign="top"><a id="ade139cf757fafcd9f9859fb749726619" name="ade139cf757fafcd9f9859fb749726619"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>BendersBase</b> (<a class="el" href="structBendersBaseOptions.html">BendersBaseOptions</a> options, Logger logger, std::shared_ptr&lt; <a class="el" href="classOutput_1_1OutputWriter.html">Output::OutputWriter</a> &gt; writer, std::shared_ptr&lt; <a class="el" href="classMathLoggerDriver.html">MathLoggerDriver</a> &gt; mathLoggerDriver, std::shared_ptr&lt; <a class="el" href="classICommunicationStrategy.html">ICommunicationStrategy</a> &gt; communication_strategy=nullptr)</td></tr>
+<tr class="separator:ade139cf757fafcd9f9859fb749726619"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa41936ea3aa14acf3f3d4883ed418063" id="r_aa41936ea3aa14acf3f3d4883ed418063"><td class="memItemLeft" align="right" valign="top"><a id="aa41936ea3aa14acf3f3d4883ed418063" name="aa41936ea3aa14acf3f3d4883ed418063"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>launch</b> ()=0</td></tr>
 <tr class="separator:aa41936ea3aa14acf3f3d4883ed418063"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a927c888ce776000281dba98f171008" id="r_a7a927c888ce776000281dba98f171008"><td class="memItemLeft" align="right" valign="top"><a id="a7a927c888ce776000281dba98f171008" name="a7a927c888ce776000281dba98f171008"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>set_solver_log_file</b> (const std::filesystem::path &amp;log_file)</td></tr>
 <tr class="separator:a7a927c888ce776000281dba98f171008"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5a4bbbff8178dfd742defd06c7d9ba9" id="r_ad5a4bbbff8178dfd742defd06c7d9ba9"><td class="memItemLeft" align="right" valign="top"><a id="ad5a4bbbff8178dfd742defd06c7d9ba9" name="ad5a4bbbff8178dfd742defd06c7d9ba9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetPlugin</b> (std::shared_ptr&lt; <a class="el" href="classBendersPlugin.html">BendersPlugin</a> &gt; benders_plugin)</td></tr>
+<tr class="separator:ad5a4bbbff8178dfd742defd06c7d9ba9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa413265948260979c6a6078f18ae4f91" id="r_aa413265948260979c6a6078f18ae4f91"><td class="memItemLeft" align="right" valign="top"><a id="aa413265948260979c6a6078f18ae4f91" name="aa413265948260979c6a6078f18ae4f91"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>execution_time</b> () const</td></tr>
 <tr class="separator:aa413265948260979c6a6078f18ae4f91"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -254,6 +256,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>SetMaxIteration</b> (
 <tr class="memitem:aa24eed1c6a43a636946bef99a8953daa" id="r_aa24eed1c6a43a636946bef99a8953daa"><td class="memItemLeft" align="right" valign="top"><a id="aa24eed1c6a43a636946bef99a8953daa" name="aa24eed1c6a43a636946bef99a8953daa"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>GetBendersRunNumber</b> () const</td></tr>
 <tr class="separator:aa24eed1c6a43a636946bef99a8953daa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac469ad54877aa8af852d386cc7862e80" id="r_ac469ad54877aa8af852d386cc7862e80"><td class="memItemLeft" align="right" valign="top"><a id="ac469ad54877aa8af852d386cc7862e80" name="ac469ad54877aa8af852d386cc7862e80"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>IncrementBendersRunNumber</b> ()</td></tr>
+<tr class="separator:ac469ad54877aa8af852d386cc7862e80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9a5ed5a1bc0ed04c32a39fb3e1806df" id="r_af9a5ed5a1bc0ed04c32a39fb3e1806df"><td class="memItemLeft" align="right" valign="top"><a id="af9a5ed5a1bc0ed04c32a39fb3e1806df" name="af9a5ed5a1bc0ed04c32a39fb3e1806df"></a>
 <a class="el" href="structCurrentIterationData.html">CurrentIterationData</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetCurrentIterationData</b> () const</td></tr>
 <tr class="separator:af9a5ed5a1bc0ed04c32a39fb3e1806df"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -293,6 +298,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateOverallCosts</b
 <tr class="memitem:a4fe8f9f915e343f93d1e8a03bf31a6f4" id="r_a4fe8f9f915e343f93d1e8a03bf31a6f4"><td class="memItemLeft" align="right" valign="top"><a id="a4fe8f9f915e343f93d1e8a03bf31a6f4" name="a4fe8f9f915e343f93d1e8a03bf31a6f4"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setCriterionComputationInputs</b> (const <a class="el" href="classBenders_1_1Criterion_1_1CriterionInputData.html">Benders::Criterion::CriterionInputData</a> &amp;criterion_input_data)</td></tr>
 <tr class="separator:a4fe8f9f915e343f93d1e8a03bf31a6f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6e9493dddfb66ae2f8ab8ccda461385" id="r_ae6e9493dddfb66ae2f8ab8ccda461385"><td class="memItemLeft" align="right" valign="top"><a id="ae6e9493dddfb66ae2f8ab8ccda461385" name="ae6e9493dddfb66ae2f8ab8ccda461385"></a>
+std::shared_ptr&lt; <a class="el" href="classICommunicationStrategy.html">ICommunicationStrategy</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetCommunicationStrategy</b> () const</td></tr>
+<tr class="separator:ae6e9493dddfb66ae2f8ab8ccda461385"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -311,9 +319,6 @@ std::once_flag&#160;</td><td class="memItemRight" valign="bottom"><b>variable_in
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:ad98097a9099ab7bb4072b4f0995cc9dd" id="r_ad98097a9099ab7bb4072b4f0995cc9dd"><td class="memItemLeft" align="right" valign="top"><a id="ad98097a9099ab7bb4072b4f0995cc9dd" name="ad98097a9099ab7bb4072b4f0995cc9dd"></a>
-std::vector&lt; SubProblemNamesInCut &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>split_subproblem_data_pairs</b> (const std::vector&lt; SubProblemDataMap &gt; &amp;gathered_subproblem_map, int n_cuts) const</td></tr>
-<tr class="separator:ad98097a9099ab7bb4072b4f0995cc9dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25e30de3bc2efc3d0b4d493ff09be00e" id="r_a25e30de3bc2efc3d0b4d493ff09be00e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a25e30de3bc2efc3d0b4d493ff09be00e">Run</a> ()=0</td></tr>
 <tr class="separator:a25e30de3bc2efc3d0b4d493ff09be00e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af938b540f0daa0592257f5fb9fcfc80f" id="r_af938b540f0daa0592257f5fb9fcfc80f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af938b540f0daa0592257f5fb9fcfc80f">update_best_ub</a> ()</td></tr>
@@ -549,6 +554,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>SetSubproblemVariable
 <tr class="memitem:a3d39766a1dae7a57862b30522527bee5" id="r_a3d39766a1dae7a57862b30522527bee5"><td class="memItemLeft" align="right" valign="top"><a id="a3d39766a1dae7a57862b30522527bee5" name="a3d39766a1dae7a57862b30522527bee5"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>build_all_aggregated_cuts</b> (const std::vector&lt; SubProblemNamesInCut &gt; &amp;subproblem_names, const std::vector&lt; SubProblemDataMap &gt; &amp;gathered_subproblem_map)</td></tr>
 <tr class="separator:a3d39766a1dae7a57862b30522527bee5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38a2e126224428ccdb2eb528a04b5019" id="r_a38a2e126224428ccdb2eb528a04b5019"><td class="memItemLeft" align="right" valign="top"><a id="a38a2e126224428ccdb2eb528a04b5019" name="a38a2e126224428ccdb2eb528a04b5019"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>SetAggregation</b> (int max_aggregation) const</td></tr>
+<tr class="separator:a38a2e126224428ccdb2eb528a04b5019"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1db900761b3878f3b85870a812de1c39" id="r_a1db900761b3878f3b85870a812de1c39"><td class="memItemLeft" align="right" valign="top"><a id="a1db900761b3878f3b85870a812de1c39" name="a1db900761b3878f3b85870a812de1c39"></a>
+std::map&lt; int, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetSubCutTolerance</b> () const</td></tr>
+<tr class="separator:a1db900761b3878f3b85870a812de1c39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -561,12 +572,21 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>exception_raised_</b>
 <tr class="memitem:a37aca7a7579e839eb5dd11108a1708a2" id="r_a37aca7a7579e839eb5dd11108a1708a2"><td class="memItemLeft" align="right" valign="top"><a id="a37aca7a7579e839eb5dd11108a1708a2" name="a37aca7a7579e839eb5dd11108a1708a2"></a>
 WorkerMasterDataVect&#160;</td><td class="memItemRight" valign="bottom"><b>workerMasterDataVect_</b></td></tr>
 <tr class="separator:a37aca7a7579e839eb5dd11108a1708a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24b17ce072e50bfdc2e6ab2e0b241d12" id="r_a24b17ce072e50bfdc2e6ab2e0b241d12"><td class="memItemLeft" align="right" valign="top"><a id="a24b17ce072e50bfdc2e6ab2e0b241d12" name="a24b17ce072e50bfdc2e6ab2e0b241d12"></a>
+WorkerMasterPtr&#160;</td><td class="memItemRight" valign="bottom"><b>_master</b></td></tr>
+<tr class="separator:a24b17ce072e50bfdc2e6ab2e0b241d12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae11bf308dcc77ba4366535f1fea0137b" id="r_ae11bf308dcc77ba4366535f1fea0137b"><td class="memItemLeft" align="right" valign="top"><a id="ae11bf308dcc77ba4366535f1fea0137b" name="ae11bf308dcc77ba4366535f1fea0137b"></a>
+std::shared_ptr&lt; <a class="el" href="classBendersPlugin.html">BendersPlugin</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>benders_plugin_</b></td></tr>
+<tr class="separator:ae11bf308dcc77ba4366535f1fea0137b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3bc5a009985e1c9c751d3d531f27f61" id="r_af3bc5a009985e1c9c751d3d531f27f61"><td class="memItemLeft" align="right" valign="top"><a id="af3bc5a009985e1c9c751d3d531f27f61" name="af3bc5a009985e1c9c751d3d531f27f61"></a>
 VariableMap&#160;</td><td class="memItemRight" valign="bottom"><b>master_variable_map_</b></td></tr>
 <tr class="separator:af3bc5a009985e1c9c751d3d531f27f61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abecce65445c68127a10574ddd8b7e92f" id="r_abecce65445c68127a10574ddd8b7e92f"><td class="memItemLeft" align="right" valign="top"><a id="abecce65445c68127a10574ddd8b7e92f" name="abecce65445c68127a10574ddd8b7e92f"></a>
 CouplingMap&#160;</td><td class="memItemRight" valign="bottom"><b>coupling_map_</b></td></tr>
 <tr class="separator:abecce65445c68127a10574ddd8b7e92f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a248af1e65254d044be4841443eccc84b" id="r_a248af1e65254d044be4841443eccc84b"><td class="memItemLeft" align="right" valign="top"><a id="a248af1e65254d044be4841443eccc84b" name="a248af1e65254d044be4841443eccc84b"></a>
+VariableMap&#160;</td><td class="memItemRight" valign="bottom"><b>_problem_to_id</b></td></tr>
+<tr class="separator:a248af1e65254d044be4841443eccc84b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad1a67361ef2f93f2dcc1783f05c62f50" id="r_ad1a67361ef2f93f2dcc1783f05c62f50"><td class="memItemLeft" align="right" valign="top"><a id="ad1a67361ef2f93f2dcc1783f05c62f50" name="ad1a67361ef2f93f2dcc1783f05c62f50"></a>
 <a class="el" href="structBendersRelevantIterationsData.html">BendersRelevantIterationsData</a>&#160;</td><td class="memItemRight" valign="bottom"><b>relevantIterationData_</b> = {<a class="el" href="classWorkerMasterData.html">WorkerMasterData</a>(), <a class="el" href="classWorkerMasterData.html">WorkerMasterData</a>()}</td></tr>
 <tr class="separator:ad1a67361ef2f93f2dcc1783f05c62f50"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -952,7 +972,7 @@ SubproblemsMapPtr&#160;</td><td class="memItemRight" valign="bottom"><b>subprobl
 </table>
 </div><div class="memdoc">
 <p>for the nth variable name, Subproblems shares the same prefix , only the suffix is different ex variable at index = 0 is named in:</p>
-<p>subproblems-1-1 --&gt; NTCDirect::link&lt;area1$$area2&gt;::hour&lt;0&gt; subproblems-3-5 --&gt; NTCDirect::link&lt;area1$$area2&gt;::hour&lt;672&gt; </p>
+<p>subproblems-1-1 --&gt; DirectFlow::link&lt;area1$$area2&gt;::hour&lt;0&gt; subproblems-3-5 --&gt; DirectFlow::link&lt;area1$$area2&gt;::hour&lt;672&gt; </p>
 
 </div>
 </div>

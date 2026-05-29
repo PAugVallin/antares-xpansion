@@ -140,10 +140,10 @@ $(function(){initNavTree('md_docs_2user-guide_2get-started_2water-values-computa
   <div class="headertitle"><div class="title">Water Values Computation</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md242"></a></p>
+<div class="textblock"><p><a class="anchor" id="autotoc_md293"></a></p>
 <p>This document explains what water values are and how to compute them for Antares studies using <code>water_values_exe</code>. It covers both the business perspective and practical usage. This document is intended for users familiar with Antares studies, hydro modeling, and stochastic optimization.</p>
 <hr  />
-<h1><a class="anchor" id="autotoc_md244"></a>
+<h1><a class="anchor" id="autotoc_md295"></a>
 Business Overview: Understanding Water Values</h1>
 <p>Water values represent the <b>economic value of one additional unit of water</b> stored in a hydro reservoir. In practice, they indicate whether it is more profitable to generate electricity immediately or to conserve water for future periods. <br  />
 </p>
@@ -151,7 +151,7 @@ Business Overview: Understanding Water Values</h1>
 </p>
 <p>Expressed in €/MWh, water values primarily depend on the reservoir storage level and the time of year. High water values signal that conserving water is economically advantageous, while low water values indicate that water can be used immediately with minimal opportunity cost. <br  />
 </p>
-<h2><a class="anchor" id="autotoc_md245"></a>
+<h2><a class="anchor" id="autotoc_md296"></a>
 From economic concept to numerical computation</h2>
 <p>The executable <code>water_values_exe</code> calculates water values for a set of hydro reservoirs in a given Antares study. <br  />
 </p>
@@ -184,16 +184,16 @@ From economic concept to numerical computation</h2>
 </p>
 <p>After the Bellman values for a reservoir are computed, an <b>optimal trajectory</b> for that reservoir can be determined for each scenario by performing a forward pass, which computes the optimal controls week by week.</p>
 <p>Note that steps 1 and 2 are performed only once and reused for all reservoirs.</p>
-<h1><a class="anchor" id="autotoc_md246"></a>
+<h1><a class="anchor" id="autotoc_md297"></a>
 How to use <code>water_values_exe</code></h1>
 <p><code>water_values_exe</code> is a command-line program that requires the following inputs:</p>
 <ul>
 <li>an <b>Antares study</b></li>
 <li>a grid defined by a <b>grid.csv</b> file located at <code>&lt;study_root&gt;/user/water_values/grid.csv</code></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md247"></a>
+<h1><a class="anchor" id="autotoc_md298"></a>
 Input file grid.csv</h1>
-<h2><a class="anchor" id="autotoc_md248"></a>
+<h2><a class="anchor" id="autotoc_md299"></a>
 Format</h2>
 <p>Here is an example of a grid.csv file in its simplest form (must be comma separated, shown here as a table for readability):</p>
 <table class="markdownTable">
@@ -213,7 +213,7 @@ Format</h2>
 <li><code>max</code>: the maximum value of the constraint or variable (from 0 to 1)</li>
 <li><code>step</code>: the step of the discretization of the constraint or variable (from 0 to 1)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md249"></a>
+<h2><a class="anchor" id="autotoc_md300"></a>
 Use cases where water values can be computed</h2>
 <p>Water values can be computed in the case of a single area containing one reservoir, as described above.</p>
 <p>Water values can also be computed for multiple areas/reservoirs, which need to be represented by a distinct grid_id:</p>
@@ -230,7 +230,7 @@ Use cases where water values can be computed</h2>
 <p>In this case, water values will be <b>computed sequentially</b>, in the order in which areas are defined in grid.csv.</p>
 <p>By default, optimal trajectories are not computed, and default trajectories are used instead, in the form of natural inflows. It is possible to compute optimal trajectories along with water values, and to take the optimal trajectory of a reservoir into account when calculating water values of subsequent areas, with use of the <code>--use-optimal-trajectory</code> flag (see below). In this case, given that water values are computed for all areas sequentially, in the order they are defined in grid.csv, water values for any given area will be computed by <b>using optimal trajectories of all previous areas</b>.</p>
 <p>It is not currently possible to compute water values for multiple areas sharing the same grid_id, in a use case referred to as <em>multivariate</em>.</p>
-<h2><a class="anchor" id="autotoc_md250"></a>
+<h2><a class="anchor" id="autotoc_md301"></a>
 Secondary input file penalties.yaml</h2>
 <p>Here is an example of a <b>penalties.yaml</b> file, that defines parameters related to the penalties when computing water values:</p>
 <div class="fragment"><div class="line"># All parameters related to penalties when computing water values.</div>
@@ -256,7 +256,7 @@ Secondary input file penalties.yaml</h2>
 <div class="line"># default: 1.0 (all scenarios taken into account for Bellman values)</div>
 <div class="line"># will be restricted to [0.0 ; 1.0]</div>
 </div><!-- fragment --><p>This file is expected to be located at <code>&lt;study_root&gt;/user/water_values/penalties.yaml</code>. It is optional, however default values are hard-coded in the program.</p>
-<h1><a class="anchor" id="autotoc_md251"></a>
+<h1><a class="anchor" id="autotoc_md302"></a>
 Outputs</h1>
 <p>The outputs are the <b>Bellman values</b>, <b>water values</b>, and <b>optimal trajectories</b> (if requested by use of the flag <code>--use-optimal-trajectory</code>, see below) for all specified weeks (see flags <code>--start-week</code> and <code>--end-week</code> below) discretized over the specified number of levels of stock (see flag <code>--nb-levels</code> below) for all areas in <code>grid.csv</code>.</p>
 <p>Outputted files consist of:</p>
@@ -266,9 +266,9 @@ Outputs</h1>
 <li>if requested, a comma-separated values file named <code>[grid_id]_[area]_optimal_trajectory.csv</code>.</li>
 </ul>
 <p>These files will be created in a timecoded folder located at <code>&lt;study_root&gt;/output/&lt;YYYYMMDD-hhmm&gt;eco/</code>. This folder will hold all output files produced by the program, including problem files in the MPS or SVF format if requested (see flags <code>--keepMps</code> and <code>--problem-format</code> below).</p>
-<h1><a class="anchor" id="autotoc_md252"></a>
+<h1><a class="anchor" id="autotoc_md303"></a>
 Command line usage</h1>
-<h2><a class="anchor" id="autotoc_md253"></a>
+<h2><a class="anchor" id="autotoc_md304"></a>
 Quick start</h2>
 <ol type="1">
 <li>Open a command line prompt in your Antares-Xpansion install directory (by default it is named <code>antaresXpansion-x.y.z-&lt;platform&gt;</code> where <code>x.y.z</code> is the version number). On Windows, you can launch a command line prompt by typing <code>cmd</code> in the path.</li>
@@ -276,43 +276,43 @@ Quick start</h2>
 <div class="fragment"><div class="line">water_values_exe --study data_test/one_node_base</div>
 </div><!-- fragment --></li>
 </ol>
-<h2><a class="anchor" id="autotoc_md254"></a>
+<h2><a class="anchor" id="autotoc_md305"></a>
 Command line parameters</h2>
 <p>Other command line parameters can be added to the previous line.</p>
-<h3><a class="anchor" id="autotoc_md255"></a>
+<h3><a class="anchor" id="autotoc_md306"></a>
 <code>-h, --help</code></h3>
 <p>Show a help message and exit.</p>
-<h3><a class="anchor" id="autotoc_md256"></a>
+<h3><a class="anchor" id="autotoc_md307"></a>
 <code>--study &lt;path&gt;</code></h3>
 <p>Path to the Antares study.</p>
-<h3><a class="anchor" id="autotoc_md257"></a>
+<h3><a class="anchor" id="autotoc_md308"></a>
 <code>--solver {xpress, coin}</code></h3>
 <p>Default value: <code>xpress</code>.</p>
-<h3><a class="anchor" id="autotoc_md258"></a>
+<h3><a class="anchor" id="autotoc_md309"></a>
 <code>--threads &lt;number&gt;</code></h3>
 <p>Default value: <code>1</code>.</p>
 <p>Number of threads that will be used to solve the problems from the grid.</p>
-<h3><a class="anchor" id="autotoc_md259"></a>
+<h3><a class="anchor" id="autotoc_md310"></a>
 <code>--start-week &lt;number&gt;</code></h3>
 <p>Default value: <code>1</code>.</p>
 <p>Starting week of the Bellman values computation.</p>
-<h3><a class="anchor" id="autotoc_md260"></a>
+<h3><a class="anchor" id="autotoc_md311"></a>
 <code>--end-week &lt;number&gt;</code></h3>
 <p>Default value: <code>52</code>.</p>
 <p>Ending week of the Bellman values computation.</p>
-<h3><a class="anchor" id="autotoc_md261"></a>
+<h3><a class="anchor" id="autotoc_md312"></a>
 <code>--nb-levels &lt;number&gt;</code></h3>
 <p>Default value: <code>10</code>.</p>
 <p>Number of levels of the stock.</p>
-<h3><a class="anchor" id="autotoc_md262"></a>
+<h3><a class="anchor" id="autotoc_md313"></a>
 <code>--antares-format &lt;bool&gt;</code></h3>
 <p>Default value: <code>false</code>.</p>
 <p>If true, the output will be in the Antares format (values will be interpolated to get 101 levels of stock).</p>
-<h3><a class="anchor" id="autotoc_md263"></a>
+<h3><a class="anchor" id="autotoc_md314"></a>
 <code>--keepMps &lt;bool&gt;</code></h3>
 <p>Default value: <code>false</code>.</p>
 <p>If true, a file (.mps or .svf, see below) for each solved problem will be written to disk (location is <code>&lt;study&gt;/output/&lt;run&gt;/mps_n</code>).</p>
-<h3><a class="anchor" id="autotoc_md264"></a>
+<h3><a class="anchor" id="autotoc_md315"></a>
 <code>--problem-format {mps, optimized}</code></h3>
 <p>Default value: <code>optimized</code>.</p>
 <p>Selects the storage format of the generated mathematical problems (master + subproblems):</p>
@@ -324,11 +324,11 @@ Command line parameters</h2>
 </li>
 <li>MPS : write the problems in MPS format, which is a standard format for mathematical programming problems.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md265"></a>
+<h3><a class="anchor" id="autotoc_md316"></a>
 <code>--use-optimal-trajectory &lt;bool&gt;</code></h3>
 <p>Default value: <code>false</code>.</p>
 <p>By default, the program will use default trajectories for the reservoirs, consisting of only natural inflows. If changed to <code>true</code>, optimal trajectories will be computed based on calculated Bellman values for any given area, and will be used when computing water values of all subsequent areas, in the order they are defined in grid.csv.</p>
-<h3><a class="anchor" id="autotoc_md266"></a>
+<h3><a class="anchor" id="autotoc_md317"></a>
 <code>--verbosity</code></h3>
 <p>Default value: <code>INFO</code></p>
 <p>Sets the desired level of verbosity of log messages displayed in the console. Possible choices are:</p>
@@ -343,7 +343,7 @@ Command line parameters</h2>
 </ul>
 <p>Setting the verbosity to a given level will allow messages to appear if their level is higher in the list or equal to the level specified. For example setting the verbosity to <code>WARNING</code> will filter out all messages at the <code>TRACE</code>, <code>DEBUG</code> or <code>INFO</code> level, and will pass along all messages at the <code>WARNING</code>, <code>ERR</code> or <code>FATAL</code> level.</p>
 <p>This parameter is case insensitive.</p>
-<h1><a class="anchor" id="autotoc_md267"></a>
+<h1><a class="anchor" id="autotoc_md318"></a>
 Workflow</h1>
 <p><img src="../../assets/media/water-values-workflow.png" alt="Water values computation workflow" class="inline"/> </p>
 </div></div><!-- contents -->

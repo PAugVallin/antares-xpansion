@@ -35,8 +35,7 @@ var hierarchy =
     [ "BendersBase", "classBendersBase.html", [
       [ "BendersBaseDouble", "classBendersBaseDouble.html", null ],
       [ "BendersMpi", "classBendersMpi.html", [
-        [ "BendersByBatch", "classBendersByBatch.html", null ],
-        [ "Outerloop::BendersMpiOuterLoop", "classOuterloop_1_1BendersMpiOuterLoop.html", null ]
+        [ "BendersByBatch", "classBendersByBatch.html", null ]
       ] ],
       [ "BendersSequential", "classBendersSequential.html", [
         [ "BendersSequentialDouble", "classBendersSequentialDouble.html", null ]
@@ -45,6 +44,11 @@ var hierarchy =
     [ "antares_xpansion.benders_driver.BendersDriver", "classantares__xpansion_1_1benders__driver_1_1BendersDriver.html", null ],
     [ "BendersFactory::BendersEnvironment", "structBendersFactory_1_1BendersEnvironment.html", null ],
     [ "BendersFactory", "classBendersFactory.html", null ],
+    [ "BendersPlugin", "classBendersPlugin.html", [
+      [ "Benders_MICRO_ITERS", "classBenders__MICRO__ITERS.html", null ],
+      [ "NoOperationPlugin", "classNoOperationPlugin.html", null ]
+    ] ],
+    [ "BendersPluginFactory", "classBendersPluginFactory.html", null ],
     [ "BendersRelevantIterationsData", "structBendersRelevantIterationsData.html", null ],
     [ "Candidate", "classCandidate.html", null ],
     [ "MergeMasterTrajectoryMPS::CandidateCosts", "structMergeMasterTrajectoryMPS_1_1CandidateCosts.html", null ],
@@ -55,6 +59,7 @@ var hierarchy =
     [ "CandidatesINIReader", "classCandidatesINIReader.html", null ],
     [ "antares_xpansion.candidates_reader.CandidatesReader", "classantares__xpansion_1_1candidates__reader_1_1CandidatesReader.html", null ],
     [ "ProblemModifier::CandidateWasNotAddedInProblem", "classProblemModifier_1_1CandidateWasNotAddedInProblem.html", null ],
+    [ "CapturingSolverForAlphas::CapturedRow", "structCapturingSolverForAlphas_1_1CapturedRow.html", null ],
     [ "antares_xpansion.chronicles_checker.ChronicleChecker", "classantares__xpansion_1_1chronicles__checker_1_1ChronicleChecker.html", null ],
     [ "class", "classclass.html", null ],
     [ "Clock", "classClock.html", [
@@ -68,6 +73,7 @@ var hierarchy =
     [ "antares_xpansion.xpansionConfig.ConfigParameters", "classantares__xpansion_1_1xpansionConfig_1_1ConfigParameters.html", null ],
     [ "ConfigurationManager", "classConfigurationManager.html", null ],
     [ "ProblemGenerationOptions::ConflictingParameters", "classProblemGenerationOptions_1_1ConflictingParameters.html", null ],
+    [ "ConstraintsFileReader", "classConstraintsFileReader.html", null ],
     [ "YAML::convert< CriterionSingleInputData >", "classYAML_1_1convert_3_01CriterionSingleInputData_01_4.html", null ],
     [ "YAML::convert< OuterLoopCriterionInputData >", "classYAML_1_1convert_3_01OuterLoopCriterionInputData_01_4.html", null ],
     [ "Benders::Criterion::CouldNotReadAreaField", "classBenders_1_1Criterion_1_1CouldNotReadAreaField.html", null ],
@@ -93,8 +99,9 @@ var hierarchy =
       [ "SolverAbstract", "classSolverAbstract.html", [
         [ "NOOPSolver", "classNOOPSolver.html", [
           [ "NOOPSolverForWorker", "classNOOPSolverForWorker.html", [
-            [ "NOOPSolverForSubproblemWorker", "classNOOPSolverForSubproblemWorker.html", null ],
-            [ "NOOPSolverForWorkerMaster", "classNOOPSolverForWorkerMaster.html", null ]
+            [ "NOOPSolverForWorkerMaster", "classNOOPSolverForWorkerMaster.html", [
+              [ "CapturingSolverForAlphas", "classCapturingSolverForAlphas.html", null ]
+            ] ]
           ] ]
         ] ],
         [ "Problem", "classProblem.html", null ],
@@ -103,6 +110,7 @@ var hierarchy =
         [ "SolverXpress", "classSolverXpress.html", null ]
       ] ]
     ] ],
+    [ "Entry", "structEntry.html", null ],
     [ "LpFilesExtractor::ErrorWithAreaFile", "classLpFilesExtractor_1_1ErrorWithAreaFile.html", null ],
     [ "LpFilesExtractor::ErrorWithIntercosFile", "classLpFilesExtractor_1_1ErrorWithIntercosFile.html", null ],
     [ "Evaluator", "classEvaluator.html", [
@@ -134,10 +142,12 @@ var hierarchy =
       [ "antares_xpansion.config_loader.ConfigLoader.MissingSimulationName", "classantares__xpansion_1_1config__loader_1_1ConfigLoader_1_1MissingSimulationName.html", null ],
       [ "antares_xpansion.config_loader.ConfigLoader.NotAnXpansionOutputDir", "classantares__xpansion_1_1config__loader_1_1ConfigLoader_1_1NotAnXpansionOutputDir.html", null ],
       [ "antares_xpansion.config_loader.NTCColumnConstraintError", "classantares__xpansion_1_1config__loader_1_1NTCColumnConstraintError.html", null ],
+      [ "antares_xpansion.config_loader.XpansionSettingsReader.AdditionalConstraintsNotSupportedWithGemsCandidates", "classantares__xpansion_1_1config__loader_1_1XpansionSettingsReader_1_1AdditionalConstraintsNotSupportedWithGemsCandidates.html", null ],
       [ "antares_xpansion.driver.XpansionDriver.AntaresArchiveUpdaterExeError", "classantares__xpansion_1_1driver_1_1XpansionDriver_1_1AntaresArchiveUpdaterExeError.html", null ],
       [ "antares_xpansion.driver.XpansionDriver.SolverXpressRequirementError", "classantares__xpansion_1_1driver_1_1XpansionDriver_1_1SolverXpressRequirementError.html", null ],
       [ "antares_xpansion.driver.XpansionDriver.UnknownStep", "classantares__xpansion_1_1driver_1_1XpansionDriver_1_1UnknownStep.html", null ],
       [ "antares_xpansion.full_run_driver.FullRunDriver.FullRunExecutionError", "classantares__xpansion_1_1full__run__driver_1_1FullRunDriver_1_1FullRunExecutionError.html", null ],
+      [ "antares_xpansion.gems_driver.GemsDriver.GemsExecutionError", "classantares__xpansion_1_1gems__driver_1_1GemsDriver_1_1GemsExecutionError.html", null ],
       [ "antares_xpansion.general_data_processor.GeneralDataFileExceptions.GeneralDataFileNotFound", "classantares__xpansion_1_1general__data__processor_1_1GeneralDataFileExceptions_1_1GeneralDataFileNotFound.html", null ],
       [ "antares_xpansion.general_data_reader.IniFileNotFound", "classantares__xpansion_1_1general__data__reader_1_1IniFileNotFound.html", null ],
       [ "antares_xpansion.input_checker.BatchSizeValueError", "classantares__xpansion_1_1input__checker_1_1BatchSizeValueError.html", null ],
@@ -232,6 +242,7 @@ var hierarchy =
       [ "fmt::formatter< ProblemsFormat >", "structfmt_1_1formatter_3_01ProblemsFormat_01_4.html", null ]
     ] ],
     [ "antares_xpansion.full_run_driver.FullRunDriver", "classantares__xpansion_1_1full__run__driver_1_1FullRunDriver.html", null ],
+    [ "antares_xpansion.gems_driver.GemsDriver", "classantares__xpansion_1_1gems__driver_1_1GemsDriver.html", null ],
     [ "antares_xpansion.general_data_processor.GeneralDataFileExceptions", "classantares__xpansion_1_1general__data__processor_1_1GeneralDataFileExceptions.html", null ],
     [ "antares_xpansion.general_data_reader.GeneralDataIniReader", "classantares__xpansion_1_1general__data__reader_1_1GeneralDataIniReader.html", null ],
     [ "GeneralDataIniReader", "classGeneralDataIniReader.html", null ],
@@ -246,8 +257,11 @@ var hierarchy =
     ] ],
     [ "IBendersProblemProvider", "classIBendersProblemProvider.html", [
       [ "BendersProblemFromFile", "classBendersProblemFromFile.html", null ],
-      [ "NOOPBendersProblemProvider", "classNOOPBendersProblemProvider.html", null ],
       [ "NOOPBendersProblemProvider", "classNOOPBendersProblemProvider.html", null ]
+    ] ],
+    [ "ICommunicationStrategy", "classICommunicationStrategy.html", [
+      [ "MpiCommunicationStrategy", "classMpiCommunicationStrategy.html", null ],
+      [ "SequentialCommunicationStrategy", "classSequentialCommunicationStrategy.html", null ]
     ] ],
     [ "Benders::Criterion::ICriterionInputDataReader", "classBenders_1_1Criterion_1_1ICriterionInputDataReader.html", [
       [ "Benders::Criterion::CriterionInputFromYaml", "classBenders_1_1Criterion_1_1CriterionInputFromYaml.html", null ]
@@ -472,6 +486,7 @@ var hierarchy =
     [ "SolverLogManager", "classSolverLogManager.html", [
       [ "EmptyLogManager", "classEmptyLogManager.html", null ]
     ] ],
+    [ "SolverRepresentedRows", "structSolverRepresentedRows.html", null ],
     [ "antares_xpansion.benders_driver.SolversExe", "classantares__xpansion_1_1benders__driver_1_1SolversExe.html", null ],
     [ "antares_xpansion.split_link_profile.SplitLinkProfile", "classantares__xpansion_1_1split__link__profile_1_1SplitLinkProfile.html", null ],
     [ "StandardLp", "classStandardLp.html", null ],
@@ -486,7 +501,9 @@ var hierarchy =
       [ "StudyUpdateLinkCapacitiesStrategy", "classStudyUpdateLinkCapacitiesStrategy.html", null ],
       [ "StudyUpdateLinkParameterStrategy", "classStudyUpdateLinkParameterStrategy.html", null ]
     ] ],
+    [ "SubproblemConstraintsManager", "classSubproblemConstraintsManager.html", null ],
     [ "PlainData::SubProblemData", "structPlainData_1_1SubProblemData.html", null ],
+    [ "SubProblemIds", "structSubProblemIds.html", null ],
     [ "tests.end_to_end.cucumber.features.steps.then.SubProblemStats", "classtests_1_1end__to__end_1_1cucumber_1_1features_1_1steps_1_1then_1_1SubProblemStats.html", null ],
     [ "T", null, [
       [ "LogUtils::XpansionError< T >", "classLogUtils_1_1XpansionError.html", null ],
@@ -543,13 +560,13 @@ var hierarchy =
       [ "SensitivityUserLoggerTest", "classSensitivityUserLoggerTest.html", null ],
       [ "SensitivityWriterTest", "classSensitivityWriterTest.html", null ],
       [ "StudyUpdateTest", "classStudyUpdateTest.html", null ],
-      [ "SubproblemWorkerTest", "classSubproblemWorkerTest.html", null ],
       [ "UpdateCapacitiesTest", "classUpdateCapacitiesTest.html", null ],
       [ "UserLoggerTest", "classUserLoggerTest.html", null ],
       [ "VariableFileReaderTest", "classVariableFileReaderTest.html", null ],
       [ "VariablesGroupTest", "classVariablesGroupTest.html", null ],
       [ "WeightsFileReaderTest", "classWeightsFileReaderTest.html", null ],
       [ "WeightsFileWriterTest", "classWeightsFileWriterTest.html", null ],
+      [ "WorkerMasterAddRowsTest", "classWorkerMasterAddRowsTest.html", null ],
       [ "WorkerMasterTest", "classWorkerMasterTest.html", null ]
     ] ],
     [ "tests.python.test_antares_driver.TestAntaresDriver", "classtests_1_1python_1_1test__antares__driver_1_1TestAntaresDriver.html", null ],

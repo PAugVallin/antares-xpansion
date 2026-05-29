@@ -1,5 +1,6 @@
 var classantares__xpansion_1_1config__loader_1_1XpansionSettingsReader =
 [
+    [ "AdditionalConstraintsNotSupportedWithGemsCandidates", "classantares__xpansion_1_1config__loader_1_1XpansionSettingsReader_1_1AdditionalConstraintsNotSupportedWithGemsCandidates.html", null ],
     [ "_get_settings_ini_filepath", "classantares__xpansion_1_1config__loader_1_1XpansionSettingsReader.html#a8b10ecfeea455e6764869fe120ea4152", null ],
     [ "additional_constraints", "classantares__xpansion_1_1config__loader_1_1XpansionSettingsReader.html#a734c86fa0787a3b5b390cfcdbb1ff4ee", null ],
     [ "antares_output", "classantares__xpansion_1_1config__loader_1_1XpansionSettingsReader.html#a2f48455d4f11ca7cfd31877c89dc3af7", null ],
