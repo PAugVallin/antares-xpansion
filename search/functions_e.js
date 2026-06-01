@@ -30,5 +30,6 @@ var searchData=
   ['solverxpress_27',['SolverXpress',['../classSolverXpress.html#a3fa04264091ce029e091b1c3eac8c560',1,'SolverXpress']]],
   ['solvesubproblem_28',['SolveSubproblem',['../classEvaluator.html#a738151112dc02e46641ba9b36235f72d',1,'Evaluator']]],
   ['studyupdater_29',['StudyUpdater',['../classStudyUpdater.html#ac386a6ced87a6a4315ed2c46f574601e',1,'StudyUpdater']]],
-  ['subproblemweight_30',['SubproblemWeight',['../classBendersBase.html#ab979fd9e6fd791c6b01d244da33ba849',1,'BendersBase']]]
+  ['subproblemweight_30',['SubproblemWeight',['../classBendersBase.html#ab979fd9e6fd791c6b01d244da33ba849',1,'BendersBase']]],
+  ['subproblemworker_31',['SubproblemWorker',['../classSubproblemWorker.html#a5a2957a2f29ebafa4adec5fd07fa65e4',1,'SubproblemWorker']]]
 ];

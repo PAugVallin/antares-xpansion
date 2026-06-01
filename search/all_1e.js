@@ -140,6 +140,6 @@ var searchData=
   ['subproblemids_137',['SubProblemIds',['../structSubProblemIds.html',1,'']]],
   ['subproblemstats_138',['SubProblemStats',['../classtests_1_1end__to__end_1_1cucumber_1_1features_1_1steps_1_1then_1_1SubProblemStats.html',1,'tests::end_to_end::cucumber::features::steps::then']]],
   ['subproblemweight_139',['SubproblemWeight',['../classBendersBase.html#ab979fd9e6fd791c6b01d244da33ba849',1,'BendersBase']]],
-  ['subproblemworker_140',['SubproblemWorker',['../classSubproblemWorker.html',1,'']]],
+  ['subproblemworker_140',['SubproblemWorker',['../classSubproblemWorker.html',1,'SubproblemWorker'],['../classSubproblemWorker.html#a5a2957a2f29ebafa4adec5fd07fa65e4',1,'SubproblemWorker::SubproblemWorker()']]],
   ['summary_20of_20the_20costs_141',['Summary of the costs',['../md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md331',1,'']]]
 ];

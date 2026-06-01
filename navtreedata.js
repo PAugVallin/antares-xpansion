@@ -523,10 +523,10 @@ var NAVTREEINDEX =
 "classNOOPSolver.html#a6e12a6093f67022a11de3f69152aef1f",
 "classSolverAbstract.html#a30be072480be208492a62fde86ff4f2b",
 "classSolverXpress.html#aeff0db8ee002795490782b17cd4be857",
-"classantares__xpansion_1_1input__checker_1_1IllegalCharsInCandidateName.html",
-"conceptOStreamable.html",
-"md_docs_2agents_2testing.html#autotoc_md50",
-"md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md300"
+"classantares__xpansion_1_1input__checker_1_1ExpertLogsValueError.html",
+"common__mpi_8h_source.html",
+"md_docs_2agents_2testing.html#autotoc_md49",
+"md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md299"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
