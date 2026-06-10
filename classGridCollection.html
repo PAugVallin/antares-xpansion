@@ -147,9 +147,9 @@ $(function(){initNavTree('classGridCollection.html',''); initResizable(true); })
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad14e655f17b7cbb43192888562d07f05" id="r_ad14e655f17b7cbb43192888562d07f05"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad14e655f17b7cbb43192888562d07f05">GridCollection</a> (const std::filesystem::path &amp;filePath)</td></tr>
-<tr class="memdesc:ad14e655f17b7cbb43192888562d07f05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build a <a class="el" href="classGridCollection.html">GridCollection</a> from a file.  <br /></td></tr>
-<tr class="separator:ad14e655f17b7cbb43192888562d07f05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9af500ae2fff82d42c3872e3673997a" id="r_ab9af500ae2fff82d42c3872e3673997a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab9af500ae2fff82d42c3872e3673997a">GridCollection</a> (const std::filesystem::path &amp;filePath, Logger logger, const std::optional&lt; std::filesystem::path &gt; &amp;generalDataFilePath=std::nullopt)</td></tr>
+<tr class="memdesc:ab9af500ae2fff82d42c3872e3673997a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build a <a class="el" href="classGridCollection.html">GridCollection</a> from a file.  <br /></td></tr>
+<tr class="separator:ab9af500ae2fff82d42c3872e3673997a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -159,10 +159,16 @@ std::map&lt; int, <a class="el" href="structGridDefinition.html">GridDefinition<
 <tr class="memitem:a46e9951e74af39de011720c293cba0f5" id="r_a46e9951e74af39de011720c293cba0f5"><td class="memItemLeft" align="right" valign="top"><a id="a46e9951e74af39de011720c293cba0f5" name="a46e9951e74af39de011720c293cba0f5"></a>
 std::map&lt; AreaName, <a class="el" href="classReservoir.html">Reservoir</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>reservoirs</b></td></tr>
 <tr class="separator:a46e9951e74af39de011720c293cba0f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59b28159fc5ceaf84121a550d459cac5" id="r_a59b28159fc5ceaf84121a550d459cac5"><td class="memItemLeft" align="right" valign="top"><a id="a59b28159fc5ceaf84121a550d459cac5" name="a59b28159fc5ceaf84121a550d459cac5"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>mcYears</b></td></tr>
+<tr class="separator:a59b28159fc5ceaf84121a550d459cac5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a568c1d06dee3e033e366e0cebbf8c9b1" id="r_a568c1d06dee3e033e366e0cebbf8c9b1"><td class="memItemLeft" align="right" valign="top"><a id="a568c1d06dee3e033e366e0cebbf8c9b1" name="a568c1d06dee3e033e366e0cebbf8c9b1"></a>
+std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>activeYears</b></td></tr>
+<tr class="separator:a568c1d06dee3e033e366e0cebbf8c9b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ad14e655f17b7cbb43192888562d07f05" name="ad14e655f17b7cbb43192888562d07f05"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad14e655f17b7cbb43192888562d07f05">&#9670;&#160;</a></span>GridCollection()</h2>
+<a id="ab9af500ae2fff82d42c3872e3673997a" name="ab9af500ae2fff82d42c3872e3673997a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9af500ae2fff82d42c3872e3673997a">&#9670;&#160;</a></span>GridCollection()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -170,8 +176,17 @@ std::map&lt; AreaName, <a class="el" href="classReservoir.html">Reservoir</a> &g
         <tr>
           <td class="memname">GridCollection::GridCollection </td>
           <td>(</td>
-          <td class="paramtype">const std::filesystem::path &amp;</td>          <td class="paramname"><span class="paramname"><em>filePath</em></span></td><td>)</td>
+          <td class="paramtype">const std::filesystem::path &amp;</td>          <td class="paramname"><span class="paramname"><em>filePath</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">Logger</td>          <td class="paramname"><span class="paramname"><em>logger</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::optional&lt; std::filesystem::path &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>generalDataFilePath</em></span><span class="paramdefsep"> = </span><span class="paramdefval">std::nullopt</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">

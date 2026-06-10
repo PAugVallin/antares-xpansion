@@ -64,7 +64,7 @@ var searchData=
   ['getlinkdatafilepath_61',['getLinkdataFilepath',['../classStudyUpdateLinkParameterStrategy.html#aa0b97c6cb17e2eb7cacc74eb8c77e5dd',1,'StudyUpdateLinkParameterStrategy']]],
   ['getname_62',['getName',['../classAdditionalConstraint.html#aaaf8c3518ce0fd0ad18efa15d336d9e5',1,'AdditionalConstraint']]],
   ['getnrows_63',['Getnrows',['../classWorker.html#acd83ae773438dcd743a263ba27ee8e2f',1,'Worker']]],
-  ['getproblems_64',['getProblems',['../classProblemManager.html#a4f37f27a17f0a44c55ca3816f9eb9d16',1,'ProblemManager']]],
+  ['getproblems_64',['getProblems',['../classProblemManager.html#a9f6d14e26f7667dd2a8470a4e8c87ee3',1,'ProblemManager']]],
   ['getrhs_65',['getRHS',['../classAdditionalConstraint.html#a9c953fe0733795086f091f5552c7fb67',1,'AdditionalConstraint']]],
   ['getsection_66',['getSection',['../structAdditionalConstraintsReader.html#aac79898cd2b33b32b6b1e7ecc8dc19c1',1,'AdditionalConstraintsReader']]],
   ['getsections_67',['getSections',['../structAdditionalConstraintsReader.html#a4701fc5d849bbc284c53668de7c2376a',1,'AdditionalConstraintsReader']]],
@@ -76,6 +76,6 @@ var searchData=
   ['getvariablessection_73',['getVariablesSection',['../structAdditionalConstraintsReader.html#a230f1d868d12475fb7382b0d6db10c50',1,'AdditionalConstraintsReader']]],
   ['getvariablestobinarise_74',['getVariablesToBinarise',['../classAdditionalConstraints.html#a43550c0da9e6561336d9486308bc921e',1,'AdditionalConstraints']]],
   ['getvarindices_75',['getVarIndices',['../classBenders_1_1Criterion_1_1CriterionComputation.html#adf80b3ed1467ee37074bec423ff7cbe6',1,'Benders::Criterion::CriterionComputation']]],
-  ['gridcollection_76',['GridCollection',['../classGridCollection.html#ad14e655f17b7cbb43192888562d07f05',1,'GridCollection']]],
-  ['gridevaluator_77',['GridEvaluator',['../classGridEvaluator.html#adcfd944e98b5b613fd26b8aa18bcbd67',1,'GridEvaluator']]]
+  ['gridcollection_76',['GridCollection',['../classGridCollection.html#ab9af500ae2fff82d42c3872e3673997a',1,'GridCollection']]],
+  ['gridevaluator_77',['GridEvaluator',['../classGridEvaluator.html#abf11777bd21a52ff80824e3df847091f',1,'GridEvaluator']]]
 ];

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['totalpbmodiftimer_0',['totalPbModifTimer',['../classEvaluator.html#aefe36433ac4de788260f9943e9b59f0a',1,'Evaluator']]],
-  ['totalsimplexiter_1',['totalSimplexIter',['../classEvaluator.html#a57bdb4d18583dbfbb1b4a89053ed9892',1,'Evaluator']]],
-  ['totalsubpbtimer_2',['totalSubPbTimer',['../classEvaluator.html#a06b16a7387ce34c6608d7ec459a6febc',1,'Evaluator']]]
+  ['solvername_0',['solverName',['../classEvaluator.html#abb5b4a4369b84c93a65c657d80967964',1,'Evaluator']]],
+  ['startweek_1',['startWeek',['../classProblemGenerationOptimSimu.html#a3dde1d5c3044aa88d8cdee46e013e81e',1,'ProblemGenerationOptimSimu']]],
+  ['studydir_2',['studyDir',['../classEvaluator.html#a6d3017bf2eb75191c62a95885a7aff78',1,'Evaluator']]]
 ];

@@ -388,109 +388,101 @@ var NAVTREE =
       [ "Business Overview: Understanding Water Values", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md295", [
         [ "From economic concept to numerical computation", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md296", null ]
       ] ],
-      [ "How to use water_values_exe", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md297", null ],
+      [ "How to use water_values", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md297", null ],
       [ "Input file grid.csv", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md298", [
         [ "Format", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md299", null ],
         [ "Use cases where water values can be computed", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md300", null ],
-        [ "Secondary input file penalties.yaml", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md301", null ]
+        [ "Secondary input file: dynamic_programming.yaml", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md301", null ],
+        [ "Secondary input file: settings.yaml", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md302", null ]
       ] ],
-      [ "Outputs", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md302", null ],
-      [ "Command line usage", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md303", [
-        [ "Quick start", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md304", null ],
-        [ "Command line parameters", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md305", [
-          [ "-h, --help", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md306", null ],
-          [ "--study <path>", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md307", null ],
-          [ "--solver {xpress, coin}", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md308", null ],
-          [ "--threads <number>", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md309", null ],
-          [ "--start-week <number>", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md310", null ],
-          [ "--end-week <number>", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md311", null ],
-          [ "--nb-levels <number>", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md312", null ],
-          [ "--antares-format <bool>", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md313", null ],
-          [ "--keepMps <bool>", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md314", null ],
-          [ "--problem-format {mps, optimized}", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md315", null ],
-          [ "--use-optimal-trajectory <bool>", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md316", null ],
-          [ "--verbosity", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md317", null ]
+      [ "Outputs", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md303", null ],
+      [ "Command line usage", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md304", [
+        [ "Quick start", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md305", null ],
+        [ "Command line parameters", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md306", [
+          [ "-h, --help", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md307", null ],
+          [ "--study <path>", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md308", null ],
+          [ "--threads <number>", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md309", null ]
         ] ]
       ] ],
-      [ "Workflow", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md318", null ]
+      [ "Workflow", "md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md310", null ]
     ] ],
     [ "The optimal investment problem in Antares-Xpansion", "md_docs_2user-guide_2optimization-principles_2investment-problem.html", [
-      [ "General description", "md_docs_2user-guide_2optimization-principles_2investment-problem.html#autotoc_md320", null ],
-      [ "Investment variables", "md_docs_2user-guide_2optimization-principles_2investment-problem.html#autotoc_md321", null ],
-      [ "Resolution with the Benders decomposition", "md_docs_2user-guide_2optimization-principles_2investment-problem.html#autotoc_md322", [
-        [ "Calling the presolve", "md_docs_2user-guide_2optimization-principles_2investment-problem.html#autotoc_md323", null ]
+      [ "General description", "md_docs_2user-guide_2optimization-principles_2investment-problem.html#autotoc_md312", null ],
+      [ "Investment variables", "md_docs_2user-guide_2optimization-principles_2investment-problem.html#autotoc_md313", null ],
+      [ "Resolution with the Benders decomposition", "md_docs_2user-guide_2optimization-principles_2investment-problem.html#autotoc_md314", [
+        [ "Calling the presolve", "md_docs_2user-guide_2optimization-principles_2investment-problem.html#autotoc_md315", null ]
       ] ]
     ] ],
     [ "Mathematical aspects of the investment problem", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html", [
-      [ "Problem formulation", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md325", [
-        [ "Variables and costs", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md326", [
-          [ "Invested capacity and investment cost", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md327", null ],
-          [ "Operating cost", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md328", [
-            [ "The operating cost as the solution of an Antares simulation", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md329", null ],
-            [ "Splitting the weeks", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md330", null ]
+      [ "Problem formulation", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md317", [
+        [ "Variables and costs", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md318", [
+          [ "Invested capacity and investment cost", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md319", null ],
+          [ "Operating cost", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md320", [
+            [ "The operating cost as the solution of an Antares simulation", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md321", null ],
+            [ "Splitting the weeks", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md322", null ]
           ] ],
-          [ "Summary of the costs", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md331", null ]
+          [ "Summary of the costs", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md323", null ]
         ] ],
-        [ "Constraints (for the investment problem)", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md332", null ],
-        [ "Investment problem", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md333", null ]
+        [ "Constraints (for the investment problem)", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md324", null ],
+        [ "Investment problem", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md325", null ]
       ] ],
-      [ "Benders reformulation and decomposition algorithm", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md334", [
-        [ "Benders reformulation of the investment problem", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md335", null ],
-        [ "The Benders decomposition algorithm", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md336", null ],
-        [ "The Benders by batch algorithm", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md337", null ]
+      [ "Benders reformulation and decomposition algorithm", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md326", [
+        [ "Benders reformulation of the investment problem", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md327", null ],
+        [ "The Benders decomposition algorithm", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md328", null ],
+        [ "The Benders by batch algorithm", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md329", null ]
       ] ],
-      [ "Reliability-constrained investment problem", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md338", null ]
+      [ "Reliability-constrained investment problem", "md_docs_2user-guide_2optimization-principles_2problem-formalization.html#autotoc_md330", null ]
     ] ],
     [ "Merging the master problems of annual Xpansion studies", "md_docs_2user-guide_2trajectory-investment_2merge-master.html", [
-      [ "Usage of the master merger executable", "md_docs_2user-guide_2trajectory-investment_2merge-master.html#autotoc_md340", null ],
-      [ "Options file", "md_docs_2user-guide_2trajectory-investment_2merge-master.html#autotoc_md341", null ],
-      [ "Master merger info file", "md_docs_2user-guide_2trajectory-investment_2merge-master.html#autotoc_md342", null ],
-      [ "Nodal lp info file", "md_docs_2user-guide_2trajectory-investment_2merge-master.html#autotoc_md343", null ],
-      [ "Input files from each annual study", "md_docs_2user-guide_2trajectory-investment_2merge-master.html#autotoc_md344", null ],
-      [ "Trajectory constraints", "md_docs_2user-guide_2trajectory-investment_2merge-master.html#autotoc_md345", null ]
+      [ "Usage of the master merger executable", "md_docs_2user-guide_2trajectory-investment_2merge-master.html#autotoc_md332", null ],
+      [ "Options file", "md_docs_2user-guide_2trajectory-investment_2merge-master.html#autotoc_md333", null ],
+      [ "Master merger info file", "md_docs_2user-guide_2trajectory-investment_2merge-master.html#autotoc_md334", null ],
+      [ "Nodal lp info file", "md_docs_2user-guide_2trajectory-investment_2merge-master.html#autotoc_md335", null ],
+      [ "Input files from each annual study", "md_docs_2user-guide_2trajectory-investment_2merge-master.html#autotoc_md336", null ],
+      [ "Trajectory constraints", "md_docs_2user-guide_2trajectory-investment_2merge-master.html#autotoc_md337", null ]
     ] ],
     [ "Weights", "md_docs_2user-guide_2trajectory-investment_2merge-weights.html", [
-      [ "Why we need custom weights", "md_docs_2user-guide_2trajectory-investment_2merge-weights.html#autotoc_md347", null ],
-      [ "Usage", "md_docs_2user-guide_2trajectory-investment_2merge-weights.html#autotoc_md348", null ],
-      [ "Output", "md_docs_2user-guide_2trajectory-investment_2merge-weights.html#autotoc_md349", null ]
+      [ "Why we need custom weights", "md_docs_2user-guide_2trajectory-investment_2merge-weights.html#autotoc_md339", null ],
+      [ "Usage", "md_docs_2user-guide_2trajectory-investment_2merge-weights.html#autotoc_md340", null ],
+      [ "Output", "md_docs_2user-guide_2trajectory-investment_2merge-weights.html#autotoc_md341", null ]
     ] ],
     [ "Multiple problem generation", "md_docs_2user-guide_2trajectory-investment_2multiple-problem-generation.html", [
-      [ "Usage", "md_docs_2user-guide_2trajectory-investment_2multiple-problem-generation.html#autotoc_md351", null ],
-      [ "Study paths / archives file", "md_docs_2user-guide_2trajectory-investment_2multiple-problem-generation.html#autotoc_md352", null ],
-      [ "Weights / additional constraints reference file", "md_docs_2user-guide_2trajectory-investment_2multiple-problem-generation.html#autotoc_md353", null ],
-      [ "Output : Nodal Lp Info file", "md_docs_2user-guide_2trajectory-investment_2multiple-problem-generation.html#autotoc_md354", null ]
+      [ "Usage", "md_docs_2user-guide_2trajectory-investment_2multiple-problem-generation.html#autotoc_md343", null ],
+      [ "Study paths / archives file", "md_docs_2user-guide_2trajectory-investment_2multiple-problem-generation.html#autotoc_md344", null ],
+      [ "Weights / additional constraints reference file", "md_docs_2user-guide_2trajectory-investment_2multiple-problem-generation.html#autotoc_md345", null ],
+      [ "Output : Nodal Lp Info file", "md_docs_2user-guide_2trajectory-investment_2multiple-problem-generation.html#autotoc_md346", null ]
     ] ],
     [ "Launching the workflow : <tt>xpansion trajectory</tt>", "md_docs_2user-guide_2trajectory-investment_2orchestration.html", [
-      [ "Usage", "md_docs_2user-guide_2trajectory-investment_2orchestration.html#autotoc_md356", null ],
-      [ "Mandatory arguments", "md_docs_2user-guide_2trajectory-investment_2orchestration.html#autotoc_md357", null ],
-      [ "Optional arguments", "md_docs_2user-guide_2trajectory-investment_2orchestration.html#autotoc_md358", [
-        [ "Input location", "md_docs_2user-guide_2trajectory-investment_2orchestration.html#autotoc_md359", null ],
-        [ "Execution options", "md_docs_2user-guide_2trajectory-investment_2orchestration.html#autotoc_md360", null ]
+      [ "Usage", "md_docs_2user-guide_2trajectory-investment_2orchestration.html#autotoc_md348", null ],
+      [ "Mandatory arguments", "md_docs_2user-guide_2trajectory-investment_2orchestration.html#autotoc_md349", null ],
+      [ "Optional arguments", "md_docs_2user-guide_2trajectory-investment_2orchestration.html#autotoc_md350", [
+        [ "Input location", "md_docs_2user-guide_2trajectory-investment_2orchestration.html#autotoc_md351", null ],
+        [ "Execution options", "md_docs_2user-guide_2trajectory-investment_2orchestration.html#autotoc_md352", null ]
       ] ],
-      [ "A note on intermediary files", "md_docs_2user-guide_2trajectory-investment_2orchestration.html#autotoc_md361", null ]
+      [ "A note on intermediary files", "md_docs_2user-guide_2trajectory-investment_2orchestration.html#autotoc_md353", null ]
     ] ],
     [ "Trajectory investment problem", "md_docs_2user-guide_2trajectory-investment_2trajectory-problem.html", [
-      [ "General description", "md_docs_2user-guide_2trajectory-investment_2trajectory-problem.html#autotoc_md363", null ],
-      [ " Switching to a pluriannual vision", "md_docs_2user-guide_2trajectory-investment_2trajectory-problem.html#autotoc_md364", null ],
-      [ "On the $dx^{+/-}$ variables", "md_docs_2user-guide_2trajectory-investment_2trajectory-problem.html#autotoc_md365", null ]
+      [ "General description", "md_docs_2user-guide_2trajectory-investment_2trajectory-problem.html#autotoc_md355", null ],
+      [ " Switching to a pluriannual vision", "md_docs_2user-guide_2trajectory-investment_2trajectory-problem.html#autotoc_md356", null ],
+      [ "On the $dx^{+/-}$ variables", "md_docs_2user-guide_2trajectory-investment_2trajectory-problem.html#autotoc_md357", null ]
     ] ],
     [ "Trajectory investment workflow", "md_docs_2user-guide_2trajectory-investment_2trajectory-workflow.html", [
-      [ "Workflow", "md_docs_2user-guide_2trajectory-investment_2trajectory-workflow.html#autotoc_md367", null ],
-      [ "File structure", "md_docs_2user-guide_2trajectory-investment_2trajectory-workflow.html#autotoc_md368", null ]
+      [ "Workflow", "md_docs_2user-guide_2trajectory-investment_2trajectory-workflow.html#autotoc_md359", null ],
+      [ "File structure", "md_docs_2user-guide_2trajectory-investment_2trajectory-workflow.html#autotoc_md360", null ]
     ] ],
     [ "User input file parsing", "md_docs_2user-guide_2trajectory-investment_2user-input.html", [
-      [ "User input file", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md370", null ],
-      [ "Input file parser & translator", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md371", null ],
-      [ "A note on candidates", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md372", null ],
-      [ "Trajectory constraints translation", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md373", [
-        [ "type: max_investment_per_node_per_candidate", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md374", null ],
-        [ "type: max_cumulative_investment_per_node", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md375", null ],
-        [ "type: max_retirement_per_node_per_candidate", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md376", null ],
-        [ "type: max_cumulative_retirement_per_node", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md377", null ],
-        [ "type: min_investment_per_candidate_per_node", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md378", null ],
-        [ "type: min_retirement_per_candidate_per_node", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md379", null ]
+      [ "User input file", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md362", null ],
+      [ "Input file parser & translator", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md363", null ],
+      [ "A note on candidates", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md364", null ],
+      [ "Trajectory constraints translation", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md365", [
+        [ "type: max_investment_per_node_per_candidate", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md366", null ],
+        [ "type: max_cumulative_investment_per_node", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md367", null ],
+        [ "type: max_retirement_per_node_per_candidate", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md368", null ],
+        [ "type: max_cumulative_retirement_per_node", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md369", null ],
+        [ "type: min_investment_per_candidate_per_node", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md370", null ],
+        [ "type: min_retirement_per_candidate_per_node", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md371", null ]
       ] ],
-      [ "Input data of local study or input data from input-trajectory.yaml ?", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md380", null ]
+      [ "Input data of local study or input data from input-trajectory.yaml ?", "md_docs_2user-guide_2trajectory-investment_2user-input.html#autotoc_md372", null ]
     ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
@@ -519,14 +511,14 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "ActiveLinks_8h_source.html",
-"classBendersBase.html#a12e1da335571d21dc124f5d1b2de41e0",
-"classNOOPSolver.html#a6e12a6093f67022a11de3f69152aef1f",
-"classSolverAbstract.html#a30be072480be208492a62fde86ff4f2b",
-"classSolverXpress.html#aeff0db8ee002795490782b17cd4be857",
-"classantares__xpansion_1_1input__checker_1_1ExpertLogsValueError.html",
-"common__mpi_8h_source.html",
-"md_docs_2agents_2testing.html#autotoc_md49",
-"md_docs_2user-guide_2get-started_2water-values-computation.html#autotoc_md299"
+"classBendersBase.html#a037b186f9ac884cc1224f91c13b6ff3d",
+"classNOOPSolver.html#a2479f92e85cf3ed466def2b23215b646",
+"classSimulationOptions.html#ab1572096e9ea6d3cc6272124578b2c49",
+"classSolverXpress.html#a9d20d096f5eba5bd073e0b2d7554428b",
+"classantares__xpansion_1_1general__data__processor_1_1GeneralDataFileExceptions_1_1GeneralDataFileNotFound.html",
+"classuser__input__translation_1_1UserInputTranslator.html#a498240a3054c2a8b5a81010ef651c3b5",
+"md_docs_2agents_2python-conventions.html#autotoc_md31",
+"md_docs_2user-guide_2get-started_2settings-definition.html#autotoc_md280"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

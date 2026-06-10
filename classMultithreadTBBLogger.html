@@ -1,0 +1,877 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Antares Xpansion" />
+<meta property="og:image" content="https://github.com/AntaresSimulatorTeam/antares-xpansion/blob/develop/docs/assets/logo.png" />
+<meta property="og:description" content="Investment simulations for Antares studies." />
+<meta property="og:url" content="https://github.com/AntaresSimulatorTeam/antares-xpansion/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://github.com/AntaresSimulatorTeam/antares-xpansion/blob/develop/docs/assets/logo.png" />
+<meta name="twitter:title" content="Antares Xpansion" />
+<meta name="twitter:description" content="Investment simulations for Antares studies." />
+<!-- END twitter metadata -->
+<title>Antares Xpansion: MultithreadTBBLogger Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://github.com/AntaresSimulatorTeam/antares-xpansion/ -->
+<a href="https://github.com/AntaresSimulatorTeam/antares-xpansion" class="github-corner" title="View source on GitHub" target="_blank">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Antares Xpansion
+   </div>
+   <div id="projectbrief">Investment simulations for Antares studies</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classMultithreadTBBLogger.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="classMultithreadTBBLogger-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">MultithreadTBBLogger Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>a decorator class to log in separate files for separate threads, with a given verbosity level  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="MultithreadTBBLogger_8h_source.html">MultithreadTBBLogger.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for MultithreadTBBLogger:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classMultithreadTBBLogger.png" usemap="#MultithreadTBBLogger_map" alt=""/>
+  <map id="MultithreadTBBLogger_map" name="MultithreadTBBLogger_map">
+<area href="classILogger.html" title="abstract class for operational logs" alt="ILogger" shape="rect" coords="0,56,138,80"/>
+<area href="structILoggerXpansion.html" title="Xpansion Unique log Interface." alt="ILoggerXpansion" shape="rect" coords="0,0,138,24"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:aafd7e920abd3d9bfe56ce3d88c54fa60" id="r_aafd7e920abd3d9bfe56ce3d88c54fa60"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aafd7e920abd3d9bfe56ce3d88c54fa60">MultithreadTBBLogger</a> (std::filesystem::path logFolder, std::filesystem::path logFileName, int nbThreads, std::optional&lt; LogUtils::LOGLEVEL &gt; verbosity=std::nullopt)</td></tr>
+<tr class="memdesc:aafd7e920abd3d9bfe56ce3d88c54fa60"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructor for the <a class="el" href="classMultithreadTBBLogger.html" title="a decorator class to log in separate files for separate threads, with a given verbosity level">MultithreadTBBLogger</a> class  <br /></td></tr>
+<tr class="separator:aafd7e920abd3d9bfe56ce3d88c54fa60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4126620395d9e8f1af7d828b97c02637" id="r_a4126620395d9e8f1af7d828b97c02637"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4126620395d9e8f1af7d828b97c02637">display_message</a> (const std::string &amp;str) override</td></tr>
+<tr class="memdesc:a4126620395d9e8f1af7d828b97c02637"><td class="mdescLeft">&#160;</td><td class="mdescRight">pure virtual method to display a std::string message  <br /></td></tr>
+<tr class="separator:a4126620395d9e8f1af7d828b97c02637"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae79c4de2bdfabc0e7e1956c1d3652506" id="r_ae79c4de2bdfabc0e7e1956c1d3652506"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae79c4de2bdfabc0e7e1956c1d3652506">display_message</a> (const std::string &amp;str, LogUtils::LOGLEVEL level, const std::string &amp;context) override</td></tr>
+<tr class="separator:ae79c4de2bdfabc0e7e1956c1d3652506"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f018ab991c5549f95ba06ca44fd8c63" id="r_a6f018ab991c5549f95ba06ca44fd8c63"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6f018ab991c5549f95ba06ca44fd8c63">PrintIterationSeparatorBegin</a> () override</td></tr>
+<tr class="separator:a6f018ab991c5549f95ba06ca44fd8c63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a339df9fb5e3a1b42b361ef86b25103b9" id="r_a339df9fb5e3a1b42b361ef86b25103b9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a339df9fb5e3a1b42b361ef86b25103b9">PrintIterationSeparatorEnd</a> () override</td></tr>
+<tr class="separator:a339df9fb5e3a1b42b361ef86b25103b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f580ec25d5c60be5faf45972fbb63bc" id="r_a5f580ec25d5c60be5faf45972fbb63bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f580ec25d5c60be5faf45972fbb63bc">log_at_initialization</a> (const int it_number) override</td></tr>
+<tr class="separator:a5f580ec25d5c60be5faf45972fbb63bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1054de31f42eb3c6903cd4b2234c412a" id="r_a1054de31f42eb3c6903cd4b2234c412a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1054de31f42eb3c6903cd4b2234c412a">log_iteration_candidates</a> (const <a class="el" href="structLogData.html">LogData</a> &amp;d) override</td></tr>
+<tr class="separator:a1054de31f42eb3c6903cd4b2234c412a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a787a6851a78e7094071462047f308191" id="r_a787a6851a78e7094071462047f308191"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a787a6851a78e7094071462047f308191">log_master_solving_duration</a> (double durationInSeconds) override</td></tr>
+<tr class="separator:a787a6851a78e7094071462047f308191"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a745d6d0c8cf904d4e0c869760234f5d8" id="r_a745d6d0c8cf904d4e0c869760234f5d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a745d6d0c8cf904d4e0c869760234f5d8">LogSubproblemsSolvingWalltime</a> (double durationInSeconds) override</td></tr>
+<tr class="separator:a745d6d0c8cf904d4e0c869760234f5d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dfdc14dad87b82770534720a6c21a4a" id="r_a7dfdc14dad87b82770534720a6c21a4a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7dfdc14dad87b82770534720a6c21a4a">LogSubproblemsSolvingCumulativeCpuTime</a> (double durationInSeconds) override</td></tr>
+<tr class="separator:a7dfdc14dad87b82770534720a6c21a4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28e00e1ef94eecae92fba05fdc5c269f" id="r_a28e00e1ef94eecae92fba05fdc5c269f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28e00e1ef94eecae92fba05fdc5c269f">log_at_iteration_end</a> (const <a class="el" href="structLogData.html">LogData</a> &amp;d) override</td></tr>
+<tr class="separator:a28e00e1ef94eecae92fba05fdc5c269f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6172706b953fabc49a3e095d0db25926" id="r_a6172706b953fabc49a3e095d0db25926"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6172706b953fabc49a3e095d0db25926">log_at_ending</a> (const <a class="el" href="structLogData.html">LogData</a> &amp;d) override</td></tr>
+<tr class="separator:a6172706b953fabc49a3e095d0db25926"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e4cf3e6c7cba2a8768ad8bad3e69b0c" id="r_a0e4cf3e6c7cba2a8768ad8bad3e69b0c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e4cf3e6c7cba2a8768ad8bad3e69b0c">log_total_duration</a> (double durationInSeconds) override</td></tr>
+<tr class="separator:a0e4cf3e6c7cba2a8768ad8bad3e69b0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adec4b15348e231bf7de9aa60db657ab2" id="r_adec4b15348e231bf7de9aa60db657ab2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adec4b15348e231bf7de9aa60db657ab2">log_stop_criterion_reached</a> (const StoppingCriterion stopping_criterion) override</td></tr>
+<tr class="separator:adec4b15348e231bf7de9aa60db657ab2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3ab546c6c4b475c2e58be8b91b0765d" id="r_ad3ab546c6c4b475c2e58be8b91b0765d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3ab546c6c4b475c2e58be8b91b0765d">display_restart_message</a> () override</td></tr>
+<tr class="separator:ad3ab546c6c4b475c2e58be8b91b0765d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2c900d9d1f76c6a74c41537c385a5d9" id="r_ab2c900d9d1f76c6a74c41537c385a5d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab2c900d9d1f76c6a74c41537c385a5d9">restart_elapsed_time</a> (const double elapsed_time) override</td></tr>
+<tr class="separator:ab2c900d9d1f76c6a74c41537c385a5d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37e91a2d78b70ccf3927747ab44601b2" id="r_a37e91a2d78b70ccf3927747ab44601b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a37e91a2d78b70ccf3927747ab44601b2">number_of_iterations_before_restart</a> (const int num_iterations) override</td></tr>
+<tr class="separator:a37e91a2d78b70ccf3927747ab44601b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad59eb7b249be95275b687dbba3b26303" id="r_ad59eb7b249be95275b687dbba3b26303"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad59eb7b249be95275b687dbba3b26303">restart_best_iteration</a> (const int best_iterations) override</td></tr>
+<tr class="separator:ad59eb7b249be95275b687dbba3b26303"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55d5c8462f1f5f862741d6c22e59b51c" id="r_a55d5c8462f1f5f862741d6c22e59b51c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a55d5c8462f1f5f862741d6c22e59b51c">restart_best_iterations_infos</a> (const <a class="el" href="structLogData.html">LogData</a> &amp;best_iterations_data) override</td></tr>
+<tr class="separator:a55d5c8462f1f5f862741d6c22e59b51c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a609c026b4f41b98c48d58baf32b898a4" id="r_a609c026b4f41b98c48d58baf32b898a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a609c026b4f41b98c48d58baf32b898a4">LogAtInitialRelaxation</a> () override</td></tr>
+<tr class="separator:a609c026b4f41b98c48d58baf32b898a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07013effdd5935b283306c55db8b0915" id="r_a07013effdd5935b283306c55db8b0915"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07013effdd5935b283306c55db8b0915">LogAtSwitchToInteger</a> () override</td></tr>
+<tr class="separator:a07013effdd5935b283306c55db8b0915"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e04c73cc986b7c44128694debcdad9f" id="r_a8e04c73cc986b7c44128694debcdad9f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e04c73cc986b7c44128694debcdad9f">cumulative_number_of_sub_problem_solved</a> (int number) override</td></tr>
+<tr class="separator:a8e04c73cc986b7c44128694debcdad9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b143a92ae76486da5ecd3bd1e66a05b" id="r_a2b143a92ae76486da5ecd3bd1e66a05b"><td class="memItemLeft" align="right" valign="top"><a id="a2b143a92ae76486da5ecd3bd1e66a05b" name="a2b143a92ae76486da5ecd3bd1e66a05b"></a>
+Logger&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (int threadId)</td></tr>
+<tr class="separator:a2b143a92ae76486da5ecd3bd1e66a05b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classILogger"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classILogger')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classILogger.html">ILogger</a></td></tr>
+<tr class="inherit_header pub_methods_structILoggerXpansion"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_structILoggerXpansion')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="structILoggerXpansion.html">ILoggerXpansion</a></td></tr>
+<tr class="memitem:ac29cdc7dc59c2dde6ce45201c91e770e inherit pub_methods_structILoggerXpansion" id="r_ac29cdc7dc59c2dde6ce45201c91e770e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structILoggerXpansion.html#ac29cdc7dc59c2dde6ce45201c91e770e">display_message</a> (const std::ostringstream &amp;msg)</td></tr>
+<tr class="separator:ac29cdc7dc59c2dde6ce45201c91e770e inherit pub_methods_structILoggerXpansion"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_attribs_classILogger"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_classILogger')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classILogger.html">ILogger</a></td></tr>
+<tr class="memitem:a2607de07ee85d443d1229a9a9c3bd699 inherit pub_attribs_classILogger" id="r_a2607de07ee85d443d1229a9a9c3bd699"><td class="memItemLeft" align="right" valign="top">
+const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>CONTEXT</b> = &quot;Benders&quot;</td></tr>
+<tr class="separator:a2607de07ee85d443d1229a9a9c3bd699 inherit pub_attribs_classILogger"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>a decorator class to log in separate files for separate threads, with a given verbosity level </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="aafd7e920abd3d9bfe56ce3d88c54fa60" name="aafd7e920abd3d9bfe56ce3d88c54fa60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aafd7e920abd3d9bfe56ce3d88c54fa60">&#9670;&#160;</a></span>MultithreadTBBLogger()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MultithreadTBBLogger::MultithreadTBBLogger </td>
+          <td>(</td>
+          <td class="paramtype">std::filesystem::path</td>          <td class="paramname"><span class="paramname"><em>logFolder</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::filesystem::path</td>          <td class="paramname"><span class="paramname"><em>logFileName</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>nbThreads</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::optional&lt; LogUtils::LOGLEVEL &gt;</td>          <td class="paramname"><span class="paramname"><em>verbosity</em></span><span class="paramdefsep"> = </span><span class="paramdefval">std::nullopt</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>constructor for the <a class="el" href="classMultithreadTBBLogger.html" title="a decorator class to log in separate files for separate threads, with a given verbosity level">MultithreadTBBLogger</a> class </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">logFolder</td><td>the folder where all log files will be </td></tr>
+    <tr><td class="paramname">logFileName</td><td>the basename of all log files, which will be prefixed by the thread id </td></tr>
+    <tr><td class="paramname">nbThreads</td><td>the number of desired threads </td></tr>
+    <tr><td class="paramname">verbosity</td><td>the lowest verbosity desired </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a8e04c73cc986b7c44128694debcdad9f" name="a8e04c73cc986b7c44128694debcdad9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e04c73cc986b7c44128694debcdad9f">&#9670;&#160;</a></span>cumulative_number_of_sub_problem_solved()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MultithreadTBBLogger::cumulative_number_of_sub_problem_solved </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>number</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a4126620395d9e8f1af7d828b97c02637" name="a4126620395d9e8f1af7d828b97c02637"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4126620395d9e8f1af7d828b97c02637">&#9670;&#160;</a></span>display_message() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MultithreadTBBLogger::display_message </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>str</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>pure virtual method to display a std::string message </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>the message to be displayed </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="classILogger.html#a319fd8917fa66d8e6244897e74e206fe">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="ae79c4de2bdfabc0e7e1956c1d3652506" name="ae79c4de2bdfabc0e7e1956c1d3652506"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae79c4de2bdfabc0e7e1956c1d3652506">&#9670;&#160;</a></span>display_message() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MultithreadTBBLogger::display_message </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>str</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">LogUtils::LOGLEVEL</td>          <td class="paramname"><span class="paramname"><em>level</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>context</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="ad3ab546c6c4b475c2e58be8b91b0765d" name="ad3ab546c6c4b475c2e58be8b91b0765d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3ab546c6c4b475c2e58be8b91b0765d">&#9670;&#160;</a></span>display_restart_message()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MultithreadTBBLogger::display_restart_message </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a6172706b953fabc49a3e095d0db25926" name="a6172706b953fabc49a3e095d0db25926"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6172706b953fabc49a3e095d0db25926">&#9670;&#160;</a></span>log_at_ending()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MultithreadTBBLogger::log_at_ending </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structLogData.html">LogData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>d</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a5f580ec25d5c60be5faf45972fbb63bc" name="a5f580ec25d5c60be5faf45972fbb63bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f580ec25d5c60be5faf45972fbb63bc">&#9670;&#160;</a></span>log_at_initialization()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MultithreadTBBLogger::log_at_initialization </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>it_number</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a28e00e1ef94eecae92fba05fdc5c269f" name="a28e00e1ef94eecae92fba05fdc5c269f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28e00e1ef94eecae92fba05fdc5c269f">&#9670;&#160;</a></span>log_at_iteration_end()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MultithreadTBBLogger::log_at_iteration_end </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structLogData.html">LogData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>d</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a1054de31f42eb3c6903cd4b2234c412a" name="a1054de31f42eb3c6903cd4b2234c412a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1054de31f42eb3c6903cd4b2234c412a">&#9670;&#160;</a></span>log_iteration_candidates()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MultithreadTBBLogger::log_iteration_candidates </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structLogData.html">LogData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>d</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a787a6851a78e7094071462047f308191" name="a787a6851a78e7094071462047f308191"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a787a6851a78e7094071462047f308191">&#9670;&#160;</a></span>log_master_solving_duration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MultithreadTBBLogger::log_master_solving_duration </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>durationInSeconds</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="adec4b15348e231bf7de9aa60db657ab2" name="adec4b15348e231bf7de9aa60db657ab2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adec4b15348e231bf7de9aa60db657ab2">&#9670;&#160;</a></span>log_stop_criterion_reached()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MultithreadTBBLogger::log_stop_criterion_reached </td>
+          <td>(</td>
+          <td class="paramtype">const StoppingCriterion</td>          <td class="paramname"><span class="paramname"><em>stopping_criterion</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a0e4cf3e6c7cba2a8768ad8bad3e69b0c" name="a0e4cf3e6c7cba2a8768ad8bad3e69b0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e4cf3e6c7cba2a8768ad8bad3e69b0c">&#9670;&#160;</a></span>log_total_duration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MultithreadTBBLogger::log_total_duration </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>durationInSeconds</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a609c026b4f41b98c48d58baf32b898a4" name="a609c026b4f41b98c48d58baf32b898a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a609c026b4f41b98c48d58baf32b898a4">&#9670;&#160;</a></span>LogAtInitialRelaxation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MultithreadTBBLogger::LogAtInitialRelaxation </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a07013effdd5935b283306c55db8b0915" name="a07013effdd5935b283306c55db8b0915"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07013effdd5935b283306c55db8b0915">&#9670;&#160;</a></span>LogAtSwitchToInteger()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MultithreadTBBLogger::LogAtSwitchToInteger </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a7dfdc14dad87b82770534720a6c21a4a" name="a7dfdc14dad87b82770534720a6c21a4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7dfdc14dad87b82770534720a6c21a4a">&#9670;&#160;</a></span>LogSubproblemsSolvingCumulativeCpuTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MultithreadTBBLogger::LogSubproblemsSolvingCumulativeCpuTime </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>durationInSeconds</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a745d6d0c8cf904d4e0c869760234f5d8" name="a745d6d0c8cf904d4e0c869760234f5d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a745d6d0c8cf904d4e0c869760234f5d8">&#9670;&#160;</a></span>LogSubproblemsSolvingWalltime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MultithreadTBBLogger::LogSubproblemsSolvingWalltime </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>durationInSeconds</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a37e91a2d78b70ccf3927747ab44601b2" name="a37e91a2d78b70ccf3927747ab44601b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37e91a2d78b70ccf3927747ab44601b2">&#9670;&#160;</a></span>number_of_iterations_before_restart()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MultithreadTBBLogger::number_of_iterations_before_restart </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>num_iterations</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a6f018ab991c5549f95ba06ca44fd8c63" name="a6f018ab991c5549f95ba06ca44fd8c63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f018ab991c5549f95ba06ca44fd8c63">&#9670;&#160;</a></span>PrintIterationSeparatorBegin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MultithreadTBBLogger::PrintIterationSeparatorBegin </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a339df9fb5e3a1b42b361ef86b25103b9" name="a339df9fb5e3a1b42b361ef86b25103b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a339df9fb5e3a1b42b361ef86b25103b9">&#9670;&#160;</a></span>PrintIterationSeparatorEnd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MultithreadTBBLogger::PrintIterationSeparatorEnd </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="ad59eb7b249be95275b687dbba3b26303" name="ad59eb7b249be95275b687dbba3b26303"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad59eb7b249be95275b687dbba3b26303">&#9670;&#160;</a></span>restart_best_iteration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MultithreadTBBLogger::restart_best_iteration </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>best_iterations</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a55d5c8462f1f5f862741d6c22e59b51c" name="a55d5c8462f1f5f862741d6c22e59b51c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55d5c8462f1f5f862741d6c22e59b51c">&#9670;&#160;</a></span>restart_best_iterations_infos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MultithreadTBBLogger::restart_best_iterations_infos </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structLogData.html">LogData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>best_iterations_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<a id="ab2c900d9d1f76c6a74c41537c385a5d9" name="ab2c900d9d1f76c6a74c41537c385a5d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2c900d9d1f76c6a74c41537c385a5d9">&#9670;&#160;</a></span>restart_elapsed_time()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MultithreadTBBLogger::restart_elapsed_time </td>
+          <td>(</td>
+          <td class="paramtype">const double</td>          <td class="paramname"><span class="paramname"><em>elapsed_time</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classILogger.html">ILogger</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>src/cpp/benders/logger/include/antares-xpansion/benders/logger/<a class="el" href="MultithreadTBBLogger_8h_source.html">MultithreadTBBLogger.h</a></li>
+<li>src/cpp/benders/logger/<b>MultithreadTBBLogger.cpp</b></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classMultithreadTBBLogger.html">MultithreadTBBLogger</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+</body>
+</html>

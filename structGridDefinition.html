@@ -159,6 +159,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>generateGridValues</b
 <tr class="memitem:a5d820e1c4d3fdb9fd3dfe323bf0491e3" id="r_a5d820e1c4d3fdb9fd3dfe323bf0491e3"><td class="memItemLeft" align="right" valign="top"><a id="a5d820e1c4d3fdb9fd3dfe323bf0491e3" name="a5d820e1c4d3fdb9fd3dfe323bf0491e3"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setReservoirs</b> (const std::map&lt; std::string, <a class="el" href="classReservoir.html">Reservoir</a> &gt; &amp;reservoirs)</td></tr>
 <tr class="separator:a5d820e1c4d3fdb9fd3dfe323bf0491e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d8f79eedc54b34855074209a952950a" id="r_a7d8f79eedc54b34855074209a952950a"><td class="memItemLeft" align="right" valign="top"><a id="a7d8f79eedc54b34855074209a952950a" name="a7d8f79eedc54b34855074209a952950a"></a>
+std::vector&lt; std::vector&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getRhsValuesForWeek</b> (size_t week) const</td></tr>
+<tr class="separator:a7d8f79eedc54b34855074209a952950a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abcc8e09dc6238009b8b7013114e78574" id="r_abcc8e09dc6238009b8b7013114e78574"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abcc8e09dc6238009b8b7013114e78574">addGridElement</a> (const std::string &amp;pbName, const std::string &amp;type, const std::string &amp;cstName, const std::string &amp;areaName, double min, double max, double step)</td></tr>
 <tr class="memdesc:abcc8e09dc6238009b8b7013114e78574"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a gridElement for the current gridCollection.  <br /></td></tr>
 <tr class="separator:abcc8e09dc6238009b8b7013114e78574"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -168,12 +171,15 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a6f405c424d291bfaa0767310f9e3257a" id="r_a6f405c424d291bfaa0767310f9e3257a"><td class="memItemLeft" align="right" valign="top"><a id="a6f405c424d291bfaa0767310f9e3257a" name="a6f405c424d291bfaa0767310f9e3257a"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>gridID</b></td></tr>
 <tr class="separator:a6f405c424d291bfaa0767310f9e3257a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b8a6b30d123a0086f9c7b793d1d0769" id="r_a5b8a6b30d123a0086f9c7b793d1d0769"><td class="memItemLeft" align="right" valign="top"><a id="a5b8a6b30d123a0086f9c7b793d1d0769" name="a5b8a6b30d123a0086f9c7b793d1d0769"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>area</b></td></tr>
+<tr class="separator:a5b8a6b30d123a0086f9c7b793d1d0769"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa09fa390c4751eacb1cfb3959bfc3fac" id="r_aa09fa390c4751eacb1cfb3959bfc3fac"><td class="memItemLeft" align="right" valign="top"><a id="aa09fa390c4751eacb1cfb3959bfc3fac" name="aa09fa390c4751eacb1cfb3959bfc3fac"></a>
 std::map&lt; std::string, <a class="el" href="classReservoir.html">Reservoir</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>reservoirs</b></td></tr>
 <tr class="separator:aa09fa390c4751eacb1cfb3959bfc3fac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb290ab8e19730c086e73c940e0a3b61" id="r_aeb290ab8e19730c086e73c940e0a3b61"><td class="memItemLeft" align="right" valign="top"><a id="aeb290ab8e19730c086e73c940e0a3b61" name="aeb290ab8e19730c086e73c940e0a3b61"></a>
-std::vector&lt; <a class="el" href="structGridElement.html">GridElement</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>gridElements</b></td></tr>
-<tr class="separator:aeb290ab8e19730c086e73c940e0a3b61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c80720595fb41bd09cbed9f289b158e" id="r_a5c80720595fb41bd09cbed9f289b158e"><td class="memItemLeft" align="right" valign="top"><a id="a5c80720595fb41bd09cbed9f289b158e" name="a5c80720595fb41bd09cbed9f289b158e"></a>
+std::map&lt; Week, <a class="el" href="structGridElement.html">GridElement</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>gridElements</b></td></tr>
+<tr class="separator:a5c80720595fb41bd09cbed9f289b158e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae39f66f859edb753cdc7c2f514896052" id="r_ae39f66f859edb753cdc7c2f514896052"><td class="memItemLeft" align="right" valign="top"><a id="ae39f66f859edb753cdc7c2f514896052" name="ae39f66f859edb753cdc7c2f514896052"></a>
 std::map&lt; Week, AreaConstraintMaps &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>weekAreaConstraints</b></td></tr>
 <tr class="separator:ae39f66f859edb753cdc7c2f514896052"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -220,7 +226,7 @@ std::map&lt; Week, AreaConstraintMaps &gt;&#160;</td><td class="memItemRight" va
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>step</em></span>&#160;)</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>nbValues</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">

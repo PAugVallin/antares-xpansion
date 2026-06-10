@@ -173,9 +173,9 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>ProblemGenerationForWaterValueCalculation</b> (<a class="el" href="structConfigurationManager_1_1ConfigDirectories.html">ConfigurationManager::ConfigDirectories</a> directories, Logger <a class="el" href="classProblemGenerationOptimSimu.html#a903868661fe7cb18e86ab4b161c430fc">logger</a>, std::shared_ptr&lt; <a class="el" href="classProblemManager.html">ProblemManager</a> &gt; <a class="el" href="classProblemGenerationOptimSimu.html#ab4bcde1d1d02eeb85f51093fa0e7b418">problemManager</a>, const WaterValueComputationMode &amp;computationMode=WaterValueComputationMode::SEQUENTIAL_IGNORE_TRAJECTORY, unsigned int <a class="el" href="classProblemGenerationOptimSimu.html#a3dde1d5c3044aa88d8cdee46e013e81e">startWeek</a>=1, unsigned int <a class="el" href="classProblemGenerationOptimSimu.html#a50faa43fbf3d2c8342505a95713c5125">endWeek</a>=52)</td></tr>
 <tr class="memdesc:a3684ac0496acdddb95b15c51357f774b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Launch the simulation and save the problems satisfying startWeek &lt;= week &lt;= endweek. <br /></td></tr>
 <tr class="separator:a3684ac0496acdddb95b15c51357f774b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad364207e5a03afa50bf5bfd2efd2a22d" id="r_ad364207e5a03afa50bf5bfd2efd2a22d"><td class="memItemLeft" align="right" valign="top">std::map&lt; Antares::Solver::WeeklyProblemId, std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad364207e5a03afa50bf5bfd2efd2a22d">updateProblems</a> (const <a class="el" href="structGridDefinition.html">GridDefinition</a> &amp;gridDefinition, const std::optional&lt; std::string &gt; &amp;areaName=std::nullopt)</td></tr>
-<tr class="memdesc:ad364207e5a03afa50bf5bfd2efd2a22d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the problems for the water value calculation.  <br /></td></tr>
-<tr class="separator:ad364207e5a03afa50bf5bfd2efd2a22d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f6fa034d3c9fba5349793e896c65304" id="r_a2f6fa034d3c9fba5349793e896c65304"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classProblemManager.html">ProblemManager</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f6fa034d3c9fba5349793e896c65304">updateProblems</a> (const <a class="el" href="structGridDefinition.html">GridDefinition</a> &amp;gridDefinition, const std::optional&lt; std::string &gt; &amp;areaName=std::nullopt)</td></tr>
+<tr class="memdesc:a2f6fa034d3c9fba5349793e896c65304"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the problems for the water value calculation.  <br /></td></tr>
+<tr class="separator:a2f6fa034d3c9fba5349793e896c65304"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa322d9640d1de5e1627da42f6db7ceee" id="r_aa322d9640d1de5e1627da42f6db7ceee"><td class="memItemLeft" align="right" valign="top"><a id="aa322d9640d1de5e1627da42f6db7ceee" name="aa322d9640d1de5e1627da42f6db7ceee"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>initializeOptimalTrajectories</b> (std::shared_ptr&lt; <a class="el" href="classGridCollection.html">GridCollection</a> &gt; gridCollection) const</td></tr>
 <tr class="separator:aa322d9640d1de5e1627da42f6db7ceee"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -253,14 +253,14 @@ std::shared_ptr&lt; <a class="el" href="classProblemManager.html">ProblemManager
 
 </div>
 </div>
-<a id="ad364207e5a03afa50bf5bfd2efd2a22d" name="ad364207e5a03afa50bf5bfd2efd2a22d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad364207e5a03afa50bf5bfd2efd2a22d">&#9670;&#160;</a></span>updateProblems()</h2>
+<a id="a2f6fa034d3c9fba5349793e896c65304" name="a2f6fa034d3c9fba5349793e896c65304"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f6fa034d3c9fba5349793e896c65304">&#9670;&#160;</a></span>updateProblems()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt; Antares::Solver::WeeklyProblemId, std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; &gt; ProblemGenerationForWaterValueCalculation::updateProblems </td>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="classProblemManager.html">ProblemManager</a> &gt; ProblemGenerationForWaterValueCalculation::updateProblems </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structGridDefinition.html">GridDefinition</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>gridDefinition</em></span>, </td>
         </tr>

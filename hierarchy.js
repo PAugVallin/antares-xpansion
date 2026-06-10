@@ -71,6 +71,10 @@ var hierarchy =
     [ "ConfigurationManager::ConfigDirectories", "structConfigurationManager_1_1ConfigDirectories.html", null ],
     [ "antares_xpansion.config_file_parser.ConfigFileParser", "classantares__xpansion_1_1config__file__parser_1_1ConfigFileParser.html", null ],
     [ "antares_xpansion.xpansionConfig.ConfigParameters", "classantares__xpansion_1_1xpansionConfig_1_1ConfigParameters.html", null ],
+    [ "ConfigReader", "classConfigReader.html", [
+      [ "DynamicProgrammingConfigReader", "classDynamicProgrammingConfigReader.html", null ],
+      [ "SettingsConfigReader", "classSettingsConfigReader.html", null ]
+    ] ],
     [ "ConfigurationManager", "classConfigurationManager.html", null ],
     [ "ProblemGenerationOptions::ConflictingParameters", "classProblemGenerationOptions_1_1ConflictingParameters.html", null ],
     [ "ConstraintsFileReader", "classConstraintsFileReader.html", null ],
@@ -274,6 +278,7 @@ var hierarchy =
       [ "EmptyLogger", "structEmptyLogger.html", null ],
       [ "ILogger", "classILogger.html", [
         [ "FilteredLogger", "classFilteredLogger.html", null ],
+        [ "MultithreadTBBLogger", "classMultithreadTBBLogger.html", null ],
         [ "SimpleLoggerMock", "classSimpleLoggerMock.html", null ],
         [ "Xpansion::Test::LoggerNOOPStub", "classXpansion_1_1Test_1_1LoggerNOOPStub.html", null ],
         [ "xpansion::logger::Master", "classxpansion_1_1logger_1_1Master.html", null ],
@@ -417,7 +422,6 @@ var hierarchy =
         [ "WriterMockStatus", "classWriterMockStatus.html", null ]
       ] ]
     ] ],
-    [ "PenaltiesConfigReader", "classPenaltiesConfigReader.html", null ],
     [ "performance.PerfPlotsGenerator", "classperformance_1_1PerfPlotsGenerator.html", null ],
     [ "Output::PointWeekScenarioKey", "structOutput_1_1PointWeekScenarioKey.html", null ],
     [ "Predicate", "structPredicate.html", null ],
@@ -664,6 +668,7 @@ var hierarchy =
     [ "antares_xpansion.xpansion_study_reader.XpansionStudyReader", "classantares__xpansion_1_1xpansion__study__reader_1_1XpansionStudyReader.html", null ],
     [ "LoadXpress::XpressLoader", "classLoadXpress_1_1XpressLoader.html", null ],
     [ "XpressManager", "classXpressManager.html", null ],
+    [ "ConfigReader::YAMLElement", "classConfigReader_1_1YAMLElement.html", null ],
     [ "YearlyWeightsWriter", "classYearlyWeightsWriter.html", null ],
     [ "antares_xpansion.yearly_weight_writer.YearlyWeightWriter", "classantares__xpansion_1_1yearly__weight__writer_1_1YearlyWeightWriter.html", null ],
     [ "BaseModel", null, [

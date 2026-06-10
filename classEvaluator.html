@@ -165,9 +165,9 @@ Inheritance diagram for Evaluator:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2311bc2e0eef4270d9305d482b377569" id="r_a2311bc2e0eef4270d9305d482b377569"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2311bc2e0eef4270d9305d482b377569">Evaluator</a> (Logger logger, std::map&lt; Antares::Solver::WeeklyProblemId, std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; &gt; <a class="el" href="#aa63c020e9d9fdaabb50ab973abe80484">problems</a>, std::filesystem::path <a class="el" href="#a6d3017bf2eb75191c62a95885a7aff78">studyDir</a>, std::string <a class="el" href="#abb5b4a4369b84c93a65c657d80967964">solverName</a>, int <a class="el" href="#ab38f95115602148511c854f0a4562dec">nbThreads</a>=1)</td></tr>
-<tr class="memdesc:a2311bc2e0eef4270d9305d482b377569"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
-<tr class="separator:a2311bc2e0eef4270d9305d482b377569"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2921e929a5e3cfb3a1c9e14edab92f1" id="r_ae2921e929a5e3cfb3a1c9e14edab92f1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae2921e929a5e3cfb3a1c9e14edab92f1">Evaluator</a> (Logger logger, std::shared_ptr&lt; <a class="el" href="classProblemManager.html">ProblemManager</a> &gt; <a class="el" href="#ae151da44dee8f37fbbcb7893077b4f24">problemManager</a>, std::filesystem::path <a class="el" href="#a6d3017bf2eb75191c62a95885a7aff78">studyDir</a>, std::string <a class="el" href="#abb5b4a4369b84c93a65c657d80967964">solverName</a>, int <a class="el" href="#ab38f95115602148511c854f0a4562dec">nbThreads</a>=1)</td></tr>
+<tr class="memdesc:ae2921e929a5e3cfb3a1c9e14edab92f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
+<tr class="separator:ae2921e929a5e3cfb3a1c9e14edab92f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -207,10 +207,8 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a14f958bb81d8847e3c1166b5ef902b03" id="r_a14f958bb81d8847e3c1166b5ef902b03"><td class="memItemLeft" align="right" valign="top"><a id="a14f958bb81d8847e3c1166b5ef902b03" name="a14f958bb81d8847e3c1166b5ef902b03"></a>
 Logger&#160;</td><td class="memItemRight" valign="bottom"><b>logger</b></td></tr>
 <tr class="separator:a14f958bb81d8847e3c1166b5ef902b03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa63c020e9d9fdaabb50ab973abe80484" id="r_aa63c020e9d9fdaabb50ab973abe80484"><td class="memItemLeft" align="right" valign="top"><a id="aa63c020e9d9fdaabb50ab973abe80484" name="aa63c020e9d9fdaabb50ab973abe80484"></a>
-std::map&lt; Antares::Solver::WeeklyProblemId, std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>problems</b></td></tr>
-<tr class="memdesc:aa63c020e9d9fdaabb50ab973abe80484"><td class="mdescLeft">&#160;</td><td class="mdescRight">map of subproblems <br /></td></tr>
-<tr class="separator:aa63c020e9d9fdaabb50ab973abe80484"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae151da44dee8f37fbbcb7893077b4f24" id="r_ae151da44dee8f37fbbcb7893077b4f24"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classProblemManager.html">ProblemManager</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae151da44dee8f37fbbcb7893077b4f24">problemManager</a></td></tr>
+<tr class="separator:ae151da44dee8f37fbbcb7893077b4f24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb5b4a4369b84c93a65c657d80967964" id="r_abb5b4a4369b84c93a65c657d80967964"><td class="memItemLeft" align="right" valign="top"><a id="abb5b4a4369b84c93a65c657d80967964" name="abb5b4a4369b84c93a65c657d80967964"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>solverName</b></td></tr>
 <tr class="memdesc:abb5b4a4369b84c93a65c657d80967964"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solver name. <br /></td></tr>
@@ -236,8 +234,8 @@ Friends</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class to compute Stock levels variation. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a2311bc2e0eef4270d9305d482b377569" name="a2311bc2e0eef4270d9305d482b377569"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2311bc2e0eef4270d9305d482b377569">&#9670;&#160;</a></span>Evaluator()</h2>
+<a id="ae2921e929a5e3cfb3a1c9e14edab92f1" name="ae2921e929a5e3cfb3a1c9e14edab92f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2921e929a5e3cfb3a1c9e14edab92f1">&#9670;&#160;</a></span>Evaluator()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -250,7 +248,7 @@ Friends</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::map&lt; Antares::Solver::WeeklyProblemId, std::shared_ptr&lt; <a class="el" href="classProblem.html">Problem</a> &gt; &gt;</td>          <td class="paramname"><span class="paramname"><em>problems</em></span>, </td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classProblemManager.html">ProblemManager</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>problemManager</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -429,6 +427,30 @@ Friends</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The data of the solved subproblem : cost and dualValues </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ae151da44dee8f37fbbcb7893077b4f24" name="ae151da44dee8f37fbbcb7893077b4f24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae151da44dee8f37fbbcb7893077b4f24">&#9670;&#160;</a></span>problemManager</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="classProblemManager.html">ProblemManager</a>&gt; Evaluator::problemManager</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>problemManager holding all subproblems, either in memory or streamed from files </p>
 
 </div>
 </div>

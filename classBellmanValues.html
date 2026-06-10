@@ -155,9 +155,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9d3ece1b817db4d740a677732862a0e8" id="r_a9d3ece1b817db4d740a677732862a0e8"><td class="memItemLeft" align="right" valign="top"><a id="a9d3ece1b817db4d740a677732862a0e8" name="a9d3ece1b817db4d740a677732862a0e8"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>BellmanValues</b> (<a class="el" href="classGridEvaluator.html">GridEvaluator</a> &amp;<a class="el" href="#a2e0fb954173f6dcf2228b91e1a12035d">gridEvaluator</a>, const <a class="el" href="classReservoirManagement.html">ReservoirManagement</a> &amp;<a class="el" href="#ae01c9dd750be5b5a4183820023ead22d">reservoirManagement</a>, Logger logger)</td></tr>
 <tr class="separator:a9d3ece1b817db4d740a677732862a0e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2de0fad8531906316b8e0a33d245abee" id="r_a2de0fad8531906316b8e0a33d245abee"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2de0fad8531906316b8e0a33d245abee">compute</a> (int nbLevels=10)</td></tr>
-<tr class="memdesc:a2de0fad8531906316b8e0a33d245abee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the Bellman values.  <br /></td></tr>
-<tr class="separator:a2de0fad8531906316b8e0a33d245abee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4394649a367b5a8b6ac2661d184af3ae" id="r_a4394649a367b5a8b6ac2661d184af3ae"><td class="memItemLeft" align="right" valign="top">std::pair&lt; std::vector&lt; std::vector&lt; double &gt; &gt;, std::vector&lt; std::vector&lt; double &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4394649a367b5a8b6ac2661d184af3ae">compute</a> (int nbLevels=10)</td></tr>
+<tr class="memdesc:a4394649a367b5a8b6ac2661d184af3ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the Bellman values.  <br /></td></tr>
+<tr class="separator:a4394649a367b5a8b6ac2661d184af3ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aebccc37d3e1b2c5be92d5047555dfd24" id="r_aebccc37d3e1b2c5be92d5047555dfd24"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; double &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aebccc37d3e1b2c5be92d5047555dfd24">getLevels</a> () const</td></tr>
 <tr class="memdesc:aebccc37d3e1b2c5be92d5047555dfd24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the levels of the reservoir.  <br /></td></tr>
 <tr class="separator:aebccc37d3e1b2c5be92d5047555dfd24"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -186,14 +186,14 @@ std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class to compute Bellman values. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a2de0fad8531906316b8e0a33d245abee" name="a2de0fad8531906316b8e0a33d245abee"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2de0fad8531906316b8e0a33d245abee">&#9670;&#160;</a></span>compute()</h2>
+<a id="a4394649a367b5a8b6ac2661d184af3ae" name="a4394649a367b5a8b6ac2661d184af3ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4394649a367b5a8b6ac2661d184af3ae">&#9670;&#160;</a></span>compute()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; std::vector&lt; double &gt; &gt; BellmanValues::compute </td>
+          <td class="memname">std::pair&lt; std::vector&lt; std::vector&lt; double &gt; &gt;, std::vector&lt; std::vector&lt; double &gt; &gt; &gt; BellmanValues::compute </td>
           <td>(</td>
           <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>nbLevels</em></span><span class="paramdefsep"> = </span><span class="paramdefval">10</span></td><td>)</td>
           <td></td>
@@ -208,7 +208,7 @@ std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The bellman values for each week </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The bellman values and the costs for each week </dd></dl>
 
 </div>
 </div>

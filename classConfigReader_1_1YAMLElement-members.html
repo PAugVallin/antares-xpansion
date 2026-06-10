@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Antares Xpansion" />
 <meta name="twitter:description" content="Investment simulations for Antares studies." />
 <!-- END twitter metadata -->
-<title>Antares Xpansion: PenaltiesConfigReader Class Reference</title>
+<title>Antares Xpansion: Member List</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -111,7 +111,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('classPenaltiesConfigReader.html',''); initResizable(true); });
+$(function(){initNavTree('classConfigReader_1_1YAMLElement.html',''); initResizable(true); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -137,73 +137,20 @@ $(function(){initNavTree('classPenaltiesConfigReader.html',''); initResizable(tr
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="classPenaltiesConfigReader-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">PenaltiesConfigReader Class Reference</div></div>
+  <div class="headertitle"><div class="title">ConfigReader::YAMLElement Member List</div></div>
 </div><!--header-->
 <div class="contents">
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:a47c2d0940e9c0ae5a40cdc39528e3193" id="r_a47c2d0940e9c0ae5a40cdc39528e3193"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a47c2d0940e9c0ae5a40cdc39528e3193">PenaltiesConfigReader</a> (const std::filesystem::path &amp;pathToYamlConfigFile=&quot;&quot;)</td></tr>
-<tr class="memdesc:a47c2d0940e9c0ae5a40cdc39528e3193"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor to determine all penalties-related parameters' values. Here is where one can add new parameters to parse from a YAML file if needed (getters would need to be implemented as well).  <br /></td></tr>
-<tr class="separator:a47c2d0940e9c0ae5a40cdc39528e3193"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4238dc922b472ff03431480efac9c9da" id="r_a4238dc922b472ff03431480efac9c9da"><td class="memItemLeft" align="right" valign="top"><a id="a4238dc922b472ff03431480efac9c9da" name="a4238dc922b472ff03431480efac9c9da"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>getPenaltyBottomRuleCurve</b> () const</td></tr>
-<tr class="separator:a4238dc922b472ff03431480efac9c9da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adfd72719806bbced335fdf209654fed6" id="r_adfd72719806bbced335fdf209654fed6"><td class="memItemLeft" align="right" valign="top"><a id="adfd72719806bbced335fdf209654fed6" name="adfd72719806bbced335fdf209654fed6"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>getPenaltyUpperRuleCurve</b> () const</td></tr>
-<tr class="separator:adfd72719806bbced335fdf209654fed6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af881e6e71f11bbbe453d75f0254b2152" id="r_af881e6e71f11bbbe453d75f0254b2152"><td class="memItemLeft" align="right" valign="top"><a id="af881e6e71f11bbbe453d75f0254b2152" name="af881e6e71f11bbbe453d75f0254b2152"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>getPenaltyFinalLevel</b> () const</td></tr>
-<tr class="separator:af881e6e71f11bbbe453d75f0254b2152"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0dbb8d671ea72974b4baf1bc2e786b96" id="r_a0dbb8d671ea72974b4baf1bc2e786b96"><td class="memItemLeft" align="right" valign="top"><a id="a0dbb8d671ea72974b4baf1bc2e786b96" name="a0dbb8d671ea72974b4baf1bc2e786b96"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>getForceFinalLevel</b> () const</td></tr>
-<tr class="separator:a0dbb8d671ea72974b4baf1bc2e786b96"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac193e0d9ee05ae0b1a83479c9b1efdd4" id="r_ac193e0d9ee05ae0b1a83479c9b1efdd4"><td class="memItemLeft" align="right" valign="top"><a id="ac193e0d9ee05ae0b1a83479c9b1efdd4" name="ac193e0d9ee05ae0b1a83479c9b1efdd4"></a>
-std::optional&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getFinalLevel</b> () const</td></tr>
-<tr class="separator:ac193e0d9ee05ae0b1a83479c9b1efdd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6130d34966d8390b8321ca6b846e764" id="r_ae6130d34966d8390b8321ca6b846e764"><td class="memItemLeft" align="right" valign="top"><a id="ae6130d34966d8390b8321ca6b846e764" name="ae6130d34966d8390b8321ca6b846e764"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>getCvar</b> () const</td></tr>
-<tr class="separator:ae6130d34966d8390b8321ca6b846e764"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a47c2d0940e9c0ae5a40cdc39528e3193" name="a47c2d0940e9c0ae5a40cdc39528e3193"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a47c2d0940e9c0ae5a40cdc39528e3193">&#9670;&#160;</a></span>PenaltiesConfigReader()</h2>
 
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">PenaltiesConfigReader::PenaltiesConfigReader </td>
-          <td>(</td>
-          <td class="paramtype">const std::filesystem::path &amp;</td>          <td class="paramname"><span class="paramname"><em>pathToYamlConfigFile</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&quot;</span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Constructor to determine all penalties-related parameters' values. Here is where one can add new parameters to parse from a YAML file if needed (getters would need to be implemented as well). </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">pathToYamlConfigFile</td><td>A path to the YAML file </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/cpp/bellman_values/include/antares-xpansion/bellman_values/<a class="el" href="PenaltiesConfigReader_8h_source.html">PenaltiesConfigReader.h</a></li>
-<li>src/cpp/bellman_values/<b>PenaltiesConfigReader.cpp</b></li>
-</ul>
-</div><!-- contents -->
+<p>This is the complete list of members for <a class="el" href="classConfigReader_1_1YAMLElement.html">ConfigReader::YAMLElement</a>, including all inherited members.</p>
+<table class="directory">
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getValue</b>() const (defined in <a class="el" href="classConfigReader_1_1YAMLElement.html">ConfigReader::YAMLElement</a>)</td><td class="entry"><a class="el" href="classConfigReader_1_1YAMLElement.html">ConfigReader::YAMLElement</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classConfigReader_1_1YAMLElement.html#a15761429b3c54967e49f16cbe70d3d93">updateValue</a>(const YAML::Node &amp;config)</td><td class="entry"><a class="el" href="classConfigReader_1_1YAMLElement.html">ConfigReader::YAMLElement</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>YAMLElement</b>(const std::string &amp;key, const ElementValueType &amp;defaultValue, bool isOptional=false) (defined in <a class="el" href="classConfigReader_1_1YAMLElement.html">ConfigReader::YAMLElement</a>)</td><td class="entry"><a class="el" href="classConfigReader_1_1YAMLElement.html">ConfigReader::YAMLElement</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+</table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="classPenaltiesConfigReader.html">PenaltiesConfigReader</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>
