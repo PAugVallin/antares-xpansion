@@ -11,19 +11,10 @@
 #include <antares/solver/lps/LpsFromAntares.h>
 
 #include "ConfigurationManager.h"
-#include "ProblemGenerationOptions.h"
 #include "antares-xpansion/bellman_values/ProblemManager.h"
-#include "antares-xpansion/core/ProblemFormat.h"
 #include "antares-xpansion/evaluator/GridCollection.h"
-#include "antares-xpansion/helpers/ArchiveReader.h"
-#include "antares-xpansion/lpnamer/helper/ProblemGenerationLogger.h"
-#include "antares-xpansion/lpnamer/input_reader/MpsTxtWriter.h"
-#include "antares-xpansion/lpnamer/main/ProblemGenerationExeOptions.h"
 #include "antares-xpansion/lpnamer/main/ProblemGenerationOptimSimu.h"
 #include "antares-xpansion/lpnamer/model/Problem.h"
-#include "antares-xpansion/lpnamer/model/SimulationInputMode.h"
-#include "antares-xpansion/multisolver_interface/SolverAbstract.h"
-#include "antares-xpansion/multisolver_interface/SolverConfig.h"
 
 /// @brief Class to generate and modify problems in memory
 class ProblemGenerationForWaterValueCalculation: public ProblemGenerationOptimSimu
@@ -43,7 +34,8 @@ public:
       unsigned int startWeek = 1,
       unsigned int endWeek = 52);
     virtual ~ProblemGenerationForWaterValueCalculation() = default;
-    std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>> updateProblems(
+    // std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>>
+    std::shared_ptr<ProblemManager> updateProblems(
       const GridDefinition& gridDefinition,
       const std::optional<std::string>& areaName = std::nullopt);
     void initializeOptimalTrajectories(std::shared_ptr<GridCollection> gridCollection) const;
@@ -72,11 +64,12 @@ private:
     /// @param reservoirManagement an instance of ReservoirManagement holding all reservoirs
     /// @param areaName The optional name of the area, used only in a multistock context
     /// @return
-    std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>>
-    cleanProblemsForBellmanCalculations(const std::filesystem::path& xpansion_output_dir,
-                                        const std::filesystem::path& log_file_path,
-                                        const GridDefinition& gridDefinition,
-                                        const std::string& areaName);
+    // std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>>
+    std::shared_ptr<ProblemManager> cleanProblemsForBellmanCalculations(
+      const std::filesystem::path& xpansion_output_dir,
+      const std::filesystem::path& log_file_path,
+      const GridDefinition& gridDefinition,
+      const std::string& areaName);
 
     void cleanProblemForBellmanCalculations(std::shared_ptr<Problem> problem,
                                             const GridDefinition& gridDefinition,

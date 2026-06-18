@@ -17,18 +17,18 @@ using namespace PlainData;
 /// @param logger The logger to use for the evaluation
 /// @param areaSettings The area investments to use for the evaluation
 /// @param criterion The criterion to evaluate
-/// @param problems The problems to evaluate on
+/// @param problemManager The problemManager holding all problems to evaluate on
 /// @param solverName The name of the solver to use for the evaluation
 /// @param nbThreads The number of threads to use for the evaluation
 GreedyBalancingFinder::GreedyBalancingFinder(
   Logger logger,
   const std::map<std::string, AreaSettings>& areaSettings,
   Benders::Criterion::Type criterion,
-  std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>> problems,
+  std::shared_ptr<ProblemManager> problemManager,
   std::string solverName,
   std::filesystem::path studyDir,
   int nbThreads):
-    Evaluator(logger, problems, studyDir, solverName, nbThreads),
+    Evaluator(logger, problemManager, studyDir, solverName, nbThreads),
     areaSettings(areaSettings)
 {
     auto criterionInputData = buildPatterns(criterion, areaSettings);
@@ -175,11 +175,11 @@ void GreedyBalancingFinder::setCriterionComputationInputs(
   const Benders::Criterion::CriterionInputData& criterion_input_data)
 {
     using enum Benders::Criterion::Type;
-    if (problems.empty())
+    if (problemManager->getProblems().empty())
     {
         throw std::runtime_error("No problems available");
     }
-    auto& [id, problem] = *problems.begin();
+    auto& [id, problem] = *problemManager->getProblems().begin();
 
     switch (criterion_input_data.criterion)
     {

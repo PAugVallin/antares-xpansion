@@ -67,8 +67,8 @@ int main(int argc, char** argv)
           .simulation_dir = ConfigurationManager::generateOutputName(studyPath),
         };
 
-        const std::filesystem::path balancingConfigFilePath(
-          studyPath / "user/balancing/input_balancing.yaml");
+        const std::filesystem::path balancingConfigFilePath(studyPath
+                                                            / "user/balancing/input_balancing.yml");
 
         BalancingParser balParser(balancingConfigFilePath);
 
@@ -122,12 +122,12 @@ int main(int argc, char** argv)
             logger->display_message("Iteration " + std::to_string(iteration),
                                     LogUtils::LOGLEVEL::INFO,
                                     logger->CONTEXT);
-            auto problems = pbg.updateProblems(res);
+            auto updatedProblemsManager = pbg.updateProblems(res);
 
             res = GreedyBalancingFinder(logger,
                                         balParser.areaSettings,
                                         balParser.getReliabilityStandardIndicator(),
-                                        problems,
+                                        updatedProblemsManager,
                                         solverName,
                                         directories.simulation_dir,
                                         nbThreads)

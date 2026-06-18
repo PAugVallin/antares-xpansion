@@ -4,8 +4,15 @@
 
 #pragma once
 
+#include <antares/solver/lps/LpsFromAntares.h>
+
 #include "ConfigurationManager.h"
 #include "antares-xpansion/bellman_values/ProblemManager.h"
+
+namespace Antares::Solver
+{
+class SingleProblemGetter;
+}
 
 constexpr char PROBLEM_GENERATION_LOGGER_CONTEXT[] = "ProblemGeneration";
 
@@ -29,7 +36,7 @@ public:
 
 private:
     void loadProblemsFromAntares();
-    void generateAntaresProblems();
+    void generateAntaresProblems(Antares::Solver::SingleProblemGetter& spg);
     void performAntaresSimulation();
     void lpsToProblems(const Antares::Solver::LpsFromAntares& lps);
 };

@@ -23,14 +23,13 @@ struct PbOutput
 class GreedyBalancingFinder: public Evaluator
 {
 public:
-    GreedyBalancingFinder(
-      Logger logger,
-      const std::map<std::string, AreaSettings>& areaSettings,
-      Benders::Criterion::Type criterion,
-      std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>> problems,
-      std::string solverName,
-      std::filesystem::path studyDir,
-      int nbThreads = 1);
+    GreedyBalancingFinder(Logger logger,
+                          const std::map<std::string, AreaSettings>& areaSettings,
+                          Benders::Criterion::Type criterion,
+                          std::shared_ptr<ProblemManager> problemManager,
+                          std::string solverName,
+                          std::filesystem::path studyDir,
+                          int nbThreads = 1);
 
     std::map<Antares::Solver::WeeklyProblemId, PbOutput> ComputeCriterionAndPrice();
     void setCriterionComputationInputs(

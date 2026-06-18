@@ -17,12 +17,12 @@ using namespace PlainData;
 /// @param solverName Name of the solver to use
 /// @param nbThreads Number of threads to use
 Evaluator::Evaluator(Logger logger,
-                     std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>> problems,
+                     std::shared_ptr<ProblemManager> problemManager,
                      std::filesystem::path studyDir,
                      std::string solverName,
                      int nbThreads):
     logger{std::move(logger)},
-    problems(problems),
+    problemManager(problemManager),
     solverName(solverName),
     studyDir(studyDir),
     nbThreads(nbThreads)
@@ -37,6 +37,10 @@ void Evaluator::SetConstraintsRHSValues(const std::map<std::string, double>& rhs
 {
     for (const auto& [constraintName, value]: rhsValues)
     {
+        logger->display_message("Setting value " + std::to_string(value) + " to constraint "
+                                  + constraintName,
+                                LogUtils::LOGLEVEL::DEBUG,
+                                EVALUATOR_LOGGER_CONTEXT);
         subProblem->fix_rhs_to(constraintName, value);
     }
 }
@@ -59,11 +63,12 @@ void Evaluator::Run()
     // Limiter TBB au nombre de cœurs physiques
     tbb::global_control limit(tbb::global_control::max_allowed_parallelism, nbThreads);
 
-    tbb::parallel_for_each(problems.begin(),
-                           problems.end(),
-                           [this](auto& kv)
+    auto problemIds = problemManager->getProblemIds();
+    tbb::parallel_for_each(problemIds.begin(),
+                           problemIds.end(),
+                           [this](auto& yearWeekId)
                            {
-                               auto& [yearWeekId, subPb] = kv;
+                               //    auto& [yearWeekId, subPb] = kv;
                                logger->display_message((std::stringstream()
                                                         << "Processing subproblem : year "
                                                         << yearWeekId.year << " week "
@@ -71,6 +76,7 @@ void Evaluator::Run()
                                                          .str(),
                                                        LogUtils::LOGLEVEL::DEBUG,
                                                        EVALUATOR_LOGGER_CONTEXT);
+                               auto subPb = problemManager->getProblemFromId(yearWeekId);
                                ProcessSubproblem(yearWeekId, subPb);
                            });
 }
@@ -98,6 +104,11 @@ SubProblemData Evaluator::SolveSubproblem(std::shared_ptr<Problem> problem)
                                 EVALUATOR_LOGGER_CONTEXT);
     }
     subPbData.subproblem_cost = problem->get_lp_value();
+    logger->display_message("Calculated cost for year " + std::to_string(problem->mc_year)
+                              + " week " + std::to_string(problem->week) + ": "
+                              + std::to_string(subPbData.subproblem_cost),
+                            LogUtils::LOGLEVEL::DEBUG,
+                            EVALUATOR_LOGGER_CONTEXT);
     subPbData.subproblem_timer = subproblem_timer.elapsed();
     int nbSimplexIter = problem->get_splex_num_of_ite_last();
 

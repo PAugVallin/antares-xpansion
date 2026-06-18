@@ -15,17 +15,17 @@ public:
 
     std::string getSolver() const
     {
-        return getValueFromKey<std::string>(solverKey);
+        return getValueFromKey<std::string>(solverKey, elements_);
     }
 
     std::string getVerbosity() const
     {
-        return getValueFromKey<std::string>(verbosityKey);
+        return getValueFromKey<std::string>(verbosityKey, elements_);
     }
 
     bool getCacheProblems() const
     {
-        return getValueFromKey<bool>(cacheProblemsKey);
+        return getValueFromKey<bool>(cacheProblemsKey, elements_);
     }
 
 private:

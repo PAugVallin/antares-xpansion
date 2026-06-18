@@ -10,6 +10,11 @@
 #include "antares-xpansion/xpansion_interfaces/ILogger.h"
 
 /// @brief key area name, value constraint map
+enum WEEK
+{
+    ALLWEEKS = -1
+};
+
 using Week = int;
 using AreaName = std::string;
 using ConstraintName = std::string;
@@ -23,12 +28,14 @@ using AreaConstraintMaps = std::map<AreaName, ConstraintMap>;
 struct GridElement
 {
     std::string problemName;           // name of the problem
+    int week;                          // week of the problem
     [[maybe_unused]] std::string type; // field unused at the moment as we only treat constraints
     std::string name;                  // name of the constraint
     std::string area;                  // name of the area
-    double min;                        // min relative value
-    double max;                        // max relative value
-    double step;                       // step used to go from min to max
+    double min;                        // min absolute value
+    double max;                        // max absolute value
+    // double step;                       // step used to go from min to max
+    double nbValues; // number of values to divide from min to max
 
     std::vector<std::vector<double>> rhsValues = std::vector<std::vector<double>>(
       Reservoir::weeks_in_year,
@@ -39,10 +46,11 @@ struct GridElement
 struct GridDefinition
 {
     int gridID;
+    std::string area;                            // name of the area
     std::map<std::string, Reservoir> reservoirs; // in the case of multistock, each gridDefinition
                                                  // needs its own copy of the reservoirs that will
                                                  // be modified as the computation goes
-    std::vector<GridElement> gridElements;
+    std::map<Week, GridElement> gridElements;
     std::map<Week, AreaConstraintMaps>
       weekAreaConstraints; // key week, value map (key area name, value vector of rhs values)
 
@@ -53,6 +61,8 @@ struct GridDefinition
         this->reservoirs = reservoirs;
         generateGridValues();
     }
+
+    std::vector<std::vector<double>> getRhsValuesForWeek(size_t week) const;
 
     void addGridElement(const std::string& pbName,
                         const std::string& type,
@@ -65,13 +75,11 @@ struct GridDefinition
 private:
     std::optional<int> parseWeekFromProblem(const std::string& problemName) const;
     double interpolate(double min, double max, double normalized) const;
-    std::vector<double> generateRhsValues(const GridElement& gridElement,
-                                          double minConstraint,
-                                          double maxConstraint) const;
+    std::vector<double> generateRhsValues(const GridElement& gridElement) const;
     void processWeek(GridElement& gridElement, size_t week);
     void processAllWeeks(GridElement& gridElement);
     void processGridElementWeeks(GridElement& gridElement);
-    void adjustBoundaryValues(GridElement& gridElement);
+    Week gridDefinitionKeyForProblem(std::string pbName) const;
 };
 
 class GridCollection

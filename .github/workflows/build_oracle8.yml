@@ -12,6 +12,7 @@ on:
       - release/*
       - doc/*
       - dependabot/**
+      - copilot/*
   release:
     types: [ created ]
 
@@ -79,7 +80,7 @@ jobs:
           submodules: true
 
       - name: Setup Python environment using conda
-        uses: conda-incubator/setup-miniconda@v3.3.0
+        uses: conda-incubator/setup-miniconda@v4.0.1
         with:
           auto-update-conda: false
           activate-environment: xpansion-tests
@@ -155,7 +156,7 @@ jobs:
         run: |
           export PATH=${GITHUB_WORKSPACE}/_build/vcpkg_installed/x64-linux-release/tools/openmpi/bin/:$PATH
           cd _build
-          ctest -C Release --output-on-failure -L "unit|benders|lpnamer|medium"
+          ctest -C Release --output-on-failure -L "unit|benders|lpnamer|medium|bellman_values"
 
       - name: Cache vcpkg binary dir
         if: always()

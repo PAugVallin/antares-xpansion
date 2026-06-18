@@ -73,7 +73,7 @@ void saveCostsAndDuals(const std::filesystem::path& path,
     // Header
     file << "scenario,week,";
     std::set<std::string> areaNames;
-    std::ranges::transform(grid.gridElements,
+    std::ranges::transform(grid.gridElements | std::views::values,
                            std::inserter(areaNames, areaNames.end()),
                            &GridElement::area);
 
@@ -154,13 +154,6 @@ int main(int argc, char** argv)
         auto gridCollection = std::make_shared<GridCollection>(studyPath
                                                                  / "user/water_values/grid.csv",
                                                                logger);
-
-        ReservoirManagement reservoirManagement(gridCollection->reservoirs.begin()->second,
-                                                dpcr.getPenaltyBottomRuleCurve(),
-                                                dpcr.getPenaltyUpperRuleCurve(),
-                                                dpcr.getPenaltyFinalLevel(),
-                                                dpcr.getForceFinalLevel(),
-                                                dpcr.getFinalLevel());
 
         auto problemManager = std::make_shared<ProblemManager>(solverName,
                                                                problemFormat,

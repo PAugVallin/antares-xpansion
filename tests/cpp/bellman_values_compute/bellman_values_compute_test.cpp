@@ -1,15 +1,11 @@
-#include <algorithm>
-
 #include "RandomDirGenerator.h"
 #include "antares-xpansion/bellman_values/BellmanValues.h"
 #include "antares-xpansion/benders/benders_core/BendersMathLogger.h"
 #include "antares-xpansion/benders/logger/FilteredLogger.h"
 #include "antares-xpansion/benders/logger/Master.h"
 #include "antares-xpansion/benders/logger/User.h"
-#include "antares-xpansion/benders/output/JsonWriter.h"
 #include "antares-xpansion/lpnamer/main/ConfigurationManager.h"
 #include "antares-xpansion/lpnamer/main/ProblemGenerationForWaterValueCalculation.h"
-#include "antares-xpansion/multisolver_interface/environment.h"
 #include "gtest/gtest.h"
 
 #define EXPECT_NEAR_REL(val1, val2, rel_tol)                                                       \
@@ -47,6 +43,7 @@ protected:
                 newValues[iLevel].push_back(values[iWeeks][iLevel]);
             }
         }
+        std::filesystem::create_directory(path.parent_path());
         std::ofstream file(path);
         file << std::fixed;
         for (const auto& levelValues: newValues)
@@ -58,6 +55,7 @@ protected:
             }
             file << '\n';
         }
+        logger->display_message("Saved reference file: " + path.string());
     }
 
     void SetUp() override
@@ -199,11 +197,12 @@ protected:
 
         GridDefinition gridDef = {.gridID = 0,
                                   .reservoirs = reservoirs,
-                                  .gridElements = {{
-                                    .name = "cst",
-                                    .area = "area",
-                                    .rhsValues = values,
-                                  }},
+                                  .gridElements = {{WEEK::ALLWEEKS,
+                                                    {
+                                                      .name = "cst",
+                                                      .area = "area",
+                                                      .rhsValues = values,
+                                                    }}},
                                   .weekAreaConstraints = {
                                     {1, {{"area", {{"cst", values[0]}}}}},
                                     {2, {{"area", {{"cst", values[1]}}}}},
@@ -215,8 +214,8 @@ protected:
 TEST_F(BellmanValuesComputeTest, unitTestNoPenalties)
 {
     ReservoirManagement reservoirManagement(evaluatorMock.reservoirMock, 0, 0, 0);
-    auto [bellmanValues, costs] = BellmanValues(evaluatorMock, reservoirManagement, logger)
-                                    .compute(6);
+    auto [bellmanValues,
+          costs] = BellmanValues(evaluatorMock, reservoirManagement, logger).compute(6);
 
     std::vector<std::vector<double>> expected = {{180, 140, 100, 60, 60, 60},
                                                  {120, 80, 40, 40, 40, 40},
@@ -229,8 +228,8 @@ TEST_F(BellmanValuesComputeTest, unitTestNoPenalties)
 TEST_F(BellmanValuesComputeTest, unitTestPenalties)
 {
     ReservoirManagement reservoirManagement(evaluatorMock.reservoirMock, 10, 10, 0);
-    auto [bellmanValues, costs] = BellmanValues(evaluatorMock, reservoirManagement, logger)
-                                    .compute(6);
+    auto [bellmanValues,
+          costs] = BellmanValues(evaluatorMock, reservoirManagement, logger).compute(6);
 
     std::vector<std::vector<double>> expected = {{1220, 180, 140, 100, 60, 1060},
                                                  {1160, 120, 80, 40, 40, 1040},
@@ -243,8 +242,8 @@ TEST_F(BellmanValuesComputeTest, unitTestPenalties)
 TEST_F(BellmanValuesComputeTest, unitTestPenaltiesWithFinalLevel)
 {
     ReservoirManagement reservoirManagement(evaluatorMock.reservoirMock, 10, 10, 30, true, 400);
-    auto [bellmanValues, costs] = BellmanValues(evaluatorMock, reservoirManagement, logger)
-                                    .compute(6);
+    auto [bellmanValues,
+          costs] = BellmanValues(evaluatorMock, reservoirManagement, logger).compute(6);
 
     std::vector<std::vector<double>> expected = {{4300, 300, 260, 220, 180, 1140},
                                                  {7200, 3200, 200, 160, 120, 1080},
@@ -285,7 +284,7 @@ TEST_F(BellmanValuesComputeTest, OneNodeBaseCaseNoPenalties)
                                    8);
     auto [res, costs] = BellmanValues(evaluator, reservoir_management, logger).compute(11);
 
-    for (unsigned int week = 1; week < res.size(); week++)
+    for (unsigned int week = 1; week <= res.size(); week++)
     {
         for (int level_index = 0; level_index < res[week - 1].size(); level_index++)
         {
@@ -331,7 +330,7 @@ TEST_F(BellmanValuesComputeTest, OneNodeBaseCasePenalties)
                                    8);
     auto [res, costs] = BellmanValues(evaluator, reservoir_management, logger).compute(11);
 
-    for (unsigned int week = 1; week < res.size(); week++)
+    for (unsigned int week = 1; week <= res.size(); week++)
     {
         for (int level_index = 0; level_index < res[week - 1].size(); level_index++)
         {
@@ -378,7 +377,7 @@ TEST_F(BellmanValuesComputeTest, OneNodeBaseCasePenaltiesWithFinalLevel)
                                    8);
     auto [res, costs] = BellmanValues(evaluator, reservoir_management, logger).compute(11);
 
-    for (unsigned int week = 1; week < res.size(); week++)
+    for (unsigned int week = 1; week <= res.size(); week++)
     {
         for (int level_index = 0; level_index < res[week - 1].size(); level_index++)
         {
@@ -422,59 +421,55 @@ TEST_F(BellmanValuesComputeTest, ThreeNodesCaseNoPenalties)
     {
         grid.setReservoirs(grid_collection->reservoirs);
 
-        for (auto& gridElement: grid.gridElements)
+        const std::string referenceFileName = std::to_string(grid.gridID) + "_" + grid.area
+                                              + "_bellman_values_no_penalties.csv";
+        logger->display_message(
+          (std::stringstream() << "Parsing reference file at " << tmpDir / referenceFileName)
+            .str());
+        auto expected_costs = getOutputCosts(referenceFileName);
+        logger->display_message("Parsing done");
+
+        ReservoirManagement reservoir_management(grid.reservoirs.at(grid.area), 0, 0, 0);
+
+        if (reservoir_management.reservoir.area != grid.area)
         {
-            const std::string referenceFileName = std::to_string(grid.gridID) + "_"
-                                                  + gridElement.area
-                                                  + "_bellman_values_no_penalties.csv";
-            logger->display_message(
-              (std::stringstream() << "Parsing reference file at " << tmpDir / referenceFileName)
-                .str());
-            auto expected_costs = getOutputCosts(referenceFileName);
-            logger->display_message("Parsing done");
-
-            ReservoirManagement reservoir_management(grid.reservoirs.at(gridElement.area), 0, 0, 0);
-
-            if (reservoir_management.reservoir.area != gridElement.area)
-            {
-                reservoir_management.setReservoir(grid_collection->reservoirs.at(gridElement.area));
-            }
-
-            logger->display_message("Updating problems...");
-            auto problems = pbg.updateProblems(grid, gridElement.area);
-            logger->display_message("Updated.");
-
-            auto evaluator = GridEvaluator(logger,
-                                           problems,
-                                           grid,
-                                           config_dirs.simulation_dir,
-                                           solverNameMultistock,
-                                           8);
-
-            auto bellmanValues = BellmanValues(evaluator, reservoir_management, logger);
-            logger->display_message("Computing Bellman values...");
-            auto [res, costs] = bellmanValues.compute(11);
-            logger->display_message("Computed Bellman values");
-
-            for (unsigned int week = 1; week < res.size(); week++)
-            {
-                logger->display_message("comparing week " + std::to_string(week));
-                for (int level_index = 0; level_index < res[week - 1].size(); level_index++)
-                {
-                    double cost = res[week - 1][level_index];
-                    double expected_cost = expected_costs[{1, week}][0];
-                    EXPECT_NEAR_REL(cost, expected_cost, 1e-6);
-                    expected_costs[{1, week}].erase(expected_costs[{1, week}].begin());
-                }
-            }
-            logger->display_message("Swapping main reservoir");
-            grid_collection->reservoirs.at(gridElement.area) = reservoir_management.reservoir;
-
-            logger->display_message("Computing optimal trajectories...");
-            grid_collection->reservoirs.at(gridElement.area).optimal_trajectory
-              = bellmanValues.computeOptimalTrajectories();
-            logger->display_message("Computing done");
+            reservoir_management.setReservoir(grid_collection->reservoirs.at(grid.area));
         }
+
+        logger->display_message("Updating problems...");
+        auto problems = pbg.updateProblems(grid, grid.area);
+        logger->display_message("Updated.");
+
+        auto evaluator = GridEvaluator(logger,
+                                       problems,
+                                       grid,
+                                       config_dirs.simulation_dir,
+                                       solverNameMultistock,
+                                       8);
+
+        auto bellmanValues = BellmanValues(evaluator, reservoir_management, logger);
+        logger->display_message("Computing Bellman values...");
+        auto [res, costs] = bellmanValues.compute(11);
+        logger->display_message("Computed Bellman values");
+
+        for (unsigned int week = 1; week <= res.size(); week++)
+        {
+            logger->display_message("comparing week " + std::to_string(week));
+            for (int level_index = 0; level_index < res[week - 1].size(); level_index++)
+            {
+                double cost = res[week - 1][level_index];
+                double expected_cost = expected_costs[{1, week}][0];
+                EXPECT_NEAR_REL(cost, expected_cost, 1e-6);
+                expected_costs[{1, week}].erase(expected_costs[{1, week}].begin());
+            }
+        }
+        logger->display_message("Swapping main reservoir");
+        grid_collection->reservoirs.at(grid.area) = reservoir_management.reservoir;
+
+        logger->display_message("Computing optimal trajectories...");
+        grid_collection->reservoirs.at(grid.area)
+          .optimal_trajectory = bellmanValues.computeOptimalTrajectories();
+        logger->display_message("Computing done");
     }
 }
 
@@ -510,62 +505,55 @@ TEST_F(BellmanValuesComputeTest, ThreeNodesCaseWithPenalties)
     {
         grid.setReservoirs(grid_collection->reservoirs);
 
-        for (auto& gridElement: grid.gridElements)
+        const std::string referenceFileName = std::to_string(grid.gridID) + "_" + grid.area
+                                              + "_bellman_values_penalties.csv";
+        logger->display_message(
+          (std::stringstream() << "Parsing reference file at " << tmpDir / referenceFileName)
+            .str());
+        auto expected_costs = getOutputCosts(referenceFileName);
+        logger->display_message("Parsing done");
+
+        ReservoirManagement reservoir_management(grid.reservoirs.at(grid.area), 3000, 3000, 3000);
+
+        if (reservoir_management.reservoir.area != grid.area)
         {
-            const std::string referenceFileName = std::to_string(grid.gridID) + "_"
-                                                  + gridElement.area
-                                                  + "_bellman_values_penalties.csv";
-            logger->display_message(
-              (std::stringstream() << "Parsing reference file at " << tmpDir / referenceFileName)
-                .str());
-            auto expected_costs = getOutputCosts(referenceFileName);
-            logger->display_message("Parsing done");
-
-            ReservoirManagement reservoir_management(grid.reservoirs.at(gridElement.area),
-                                                     3000,
-                                                     3000,
-                                                     3000);
-
-            if (reservoir_management.reservoir.area != gridElement.area)
-            {
-                reservoir_management.setReservoir(grid_collection->reservoirs.at(gridElement.area));
-            }
-
-            logger->display_message("Updating problems...");
-            auto problems = pbg.updateProblems(grid, gridElement.area);
-            logger->display_message("Updated.");
-
-            auto evaluator = GridEvaluator(logger,
-                                           problems,
-                                           grid,
-                                           config_dirs.simulation_dir,
-                                           solverNameMultistock,
-                                           8);
-
-            auto bellmanValues = BellmanValues(evaluator, reservoir_management, logger);
-            logger->display_message("Computing Bellman values...");
-            auto [res, costs] = bellmanValues.compute(11);
-            logger->display_message("Computed Bellman values");
-
-            for (unsigned int week = 1; week < res.size(); week++)
-            {
-                logger->display_message("comparing week " + std::to_string(week));
-                for (int level_index = 0; level_index < res[week - 1].size(); level_index++)
-                {
-                    double cost = res[week - 1][level_index];
-                    double expected_cost = expected_costs[{1, week}][0];
-                    EXPECT_NEAR_REL(cost, expected_cost, 1e-6);
-                    expected_costs[{1, week}].erase(expected_costs[{1, week}].begin());
-                }
-            }
-            logger->display_message("Swapping main reservoir");
-            grid_collection->reservoirs.at(gridElement.area) = reservoir_management.reservoir;
-
-            logger->display_message("Computing optimal trajectories...");
-            grid_collection->reservoirs.at(gridElement.area).optimal_trajectory
-              = bellmanValues.computeOptimalTrajectories();
-            logger->display_message("Computing done");
+            reservoir_management.setReservoir(grid_collection->reservoirs.at(grid.area));
         }
+
+        logger->display_message("Updating problems...");
+        auto problems = pbg.updateProblems(grid, grid.area);
+        logger->display_message("Updated.");
+
+        auto evaluator = GridEvaluator(logger,
+                                       problems,
+                                       grid,
+                                       config_dirs.simulation_dir,
+                                       solverNameMultistock,
+                                       8);
+
+        auto bellmanValues = BellmanValues(evaluator, reservoir_management, logger);
+        logger->display_message("Computing Bellman values...");
+        auto [res, costs] = bellmanValues.compute(11);
+        logger->display_message("Computed Bellman values");
+
+        for (unsigned int week = 1; week <= res.size(); week++)
+        {
+            logger->display_message("comparing week " + std::to_string(week));
+            for (int level_index = 0; level_index < res[week - 1].size(); level_index++)
+            {
+                double cost = res[week - 1][level_index];
+                double expected_cost = expected_costs[{1, week}][0];
+                EXPECT_NEAR_REL(cost, expected_cost, 1e-6);
+                expected_costs[{1, week}].erase(expected_costs[{1, week}].begin());
+            }
+        }
+        logger->display_message("Swapping main reservoir");
+        grid_collection->reservoirs.at(grid.area) = reservoir_management.reservoir;
+
+        logger->display_message("Computing optimal trajectories...");
+        grid_collection->reservoirs.at(grid.area)
+          .optimal_trajectory = bellmanValues.computeOptimalTrajectories();
+        logger->display_message("Computing done");
     }
 }
 
@@ -601,62 +589,58 @@ TEST_F(BellmanValuesComputeTest, ThreeNodesCaseWithPenaltiesFinalLevel)
     {
         grid.setReservoirs(grid_collection->reservoirs);
 
-        for (auto& gridElement: grid.gridElements)
+        const std::string referenceFileName = std::to_string(grid.gridID) + "_" + grid.area
+                                              + "_bellman_values_penalties_final_level.csv";
+        logger->display_message(
+          (std::stringstream() << "Parsing reference file at " << tmpDir / referenceFileName)
+            .str());
+        auto expected_costs = getOutputCosts(referenceFileName);
+        logger->display_message("Parsing done");
+
+        ReservoirManagement reservoir_management(grid.reservoirs.at(grid.area),
+                                                 3000,
+                                                 3000,
+                                                 3000,
+                                                 true);
+
+        if (reservoir_management.reservoir.area != grid.area)
         {
-            const std::string referenceFileName = std::to_string(grid.gridID) + "_"
-                                                  + gridElement.area
-                                                  + "_bellman_values_penalties_final_level.csv";
-            logger->display_message(
-              (std::stringstream() << "Parsing reference file at " << tmpDir / referenceFileName)
-                .str());
-            auto expected_costs = getOutputCosts(referenceFileName);
-            logger->display_message("Parsing done");
-
-            ReservoirManagement reservoir_management(grid.reservoirs.at(gridElement.area),
-                                                     3000,
-                                                     3000,
-                                                     3000,
-                                                     true);
-
-            if (reservoir_management.reservoir.area != gridElement.area)
-            {
-                reservoir_management.setReservoir(grid_collection->reservoirs.at(gridElement.area));
-            }
-
-            logger->display_message("Updating problems...");
-            auto problems = pbg.updateProblems(grid, gridElement.area);
-            logger->display_message("Updated.");
-
-            auto evaluator = GridEvaluator(logger,
-                                           problems,
-                                           grid,
-                                           config_dirs.simulation_dir,
-                                           solverNameMultistock,
-                                           8);
-
-            auto bellmanValues = BellmanValues(evaluator, reservoir_management, logger);
-            logger->display_message("Computing Bellman values...");
-            auto [res, costs] = bellmanValues.compute(11);
-            logger->display_message("Computed Bellman values");
-
-            for (unsigned int week = 1; week < res.size(); week++)
-            {
-                logger->display_message("comparing week " + std::to_string(week));
-                for (int level_index = 0; level_index < res[week - 1].size(); level_index++)
-                {
-                    double cost = res[week - 1][level_index];
-                    double expected_cost = expected_costs[{1, week}][0];
-                    EXPECT_NEAR_REL(cost, expected_cost, 1e-6);
-                    expected_costs[{1, week}].erase(expected_costs[{1, week}].begin());
-                }
-            }
-            logger->display_message("Swapping main reservoir");
-            grid_collection->reservoirs.at(gridElement.area) = reservoir_management.reservoir;
-
-            logger->display_message("Computing optimal trajectories...");
-            grid_collection->reservoirs.at(gridElement.area).optimal_trajectory
-              = bellmanValues.computeOptimalTrajectories();
-            logger->display_message("Computing done");
+            reservoir_management.setReservoir(grid_collection->reservoirs.at(grid.area));
         }
+
+        logger->display_message("Updating problems...");
+        auto problems = pbg.updateProblems(grid, grid.area);
+        logger->display_message("Updated.");
+
+        auto evaluator = GridEvaluator(logger,
+                                       problems,
+                                       grid,
+                                       config_dirs.simulation_dir,
+                                       solverNameMultistock,
+                                       8);
+
+        auto bellmanValues = BellmanValues(evaluator, reservoir_management, logger);
+        logger->display_message("Computing Bellman values...");
+        auto [res, costs] = bellmanValues.compute(11);
+        logger->display_message("Computed Bellman values");
+
+        for (unsigned int week = 1; week <= res.size(); week++)
+        {
+            logger->display_message("comparing week " + std::to_string(week));
+            for (int level_index = 0; level_index < res[week - 1].size(); level_index++)
+            {
+                double cost = res[week - 1][level_index];
+                double expected_cost = expected_costs[{1, week}][0];
+                EXPECT_NEAR_REL(cost, expected_cost, 1e-6);
+                expected_costs[{1, week}].erase(expected_costs[{1, week}].begin());
+            }
+        }
+        logger->display_message("Swapping main reservoir");
+        grid_collection->reservoirs.at(grid.area) = reservoir_management.reservoir;
+
+        logger->display_message("Computing optimal trajectories...");
+        grid_collection->reservoirs.at(grid.area)
+          .optimal_trajectory = bellmanValues.computeOptimalTrajectories();
+        logger->display_message("Computing done");
     }
 }

@@ -1,17 +1,10 @@
 
 #include "antares-xpansion/lpnamer/main/ProblemGenerationForWaterValueCalculation.h"
 
-#include <execution>
-#include <iostream>
 #include <tbb/parallel_for_each.h>
 #include <utility>
 
 #include <antares/api/solver.h>
-
-#include "antares-xpansion/benders/output/OutputWriter.h"
-#include "antares-xpansion/helpers/solver_utils.h"
-#include "antares-xpansion/lpnamer/problem_modifier/XpansionProblemsFromAntaresProvider.h"
-#include "malloc.h"
 
 static const std::string LP_DIRNAME = "lp";
 
@@ -62,8 +55,8 @@ ProblemGenerationForWaterValueCalculation::ProblemGenerationForWaterValueCalcula
 /// @brief Update the problems for the water value calculation
 /// @param gridDefinition
 /// @return The modified problems
-std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>>
-ProblemGenerationForWaterValueCalculation::updateProblems(
+// std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>>
+std::shared_ptr<ProblemManager> ProblemGenerationForWaterValueCalculation::updateProblems(
   const GridDefinition& gridDefinition,
   const std::optional<std::string>& areaName)
 {
@@ -74,8 +67,7 @@ ProblemGenerationForWaterValueCalculation::updateProblems(
     CreateDirectories(directories.simulation_dir);
 
     logger->display_message("Updating problems");
-    logger->display_message(
-      "for area: " + areaName.value_or(gridDefinition.gridElements[0].area + " (assumed)"));
+    logger->display_message("for area: " + areaName.value_or(gridDefinition.area + " (assumed)"));
     // check added instead of passing the entire reservoirManagement, in a multistock context
     if (computationMode == WaterValueComputationMode::SEQUENTIAL_UPDATE_TRAJECTORY)
     {
@@ -84,7 +76,7 @@ ProblemGenerationForWaterValueCalculation::updateProblems(
             logger->display_message(
               "The areaName for the current reservoir must be provided in the "
               "context of a multistock computation. First element is assumed: "
-                + gridDefinition.gridElements[0].area,
+                + gridDefinition.area,
               LogUtils::LOGLEVEL::WARNING,
               logger->CONTEXT);
         }
@@ -98,13 +90,13 @@ ProblemGenerationForWaterValueCalculation::updateProblems(
             }
         }
     }
-    auto modifiedProblems = cleanProblemsForBellmanCalculations(
-      directories.simulation_dir,
-      log_file_path,
-      gridDefinition,
-      areaName.value_or(gridDefinition.gridElements[0].area));
+    auto modifiedProblemManager = cleanProblemsForBellmanCalculations(directories.simulation_dir,
+                                                                      log_file_path,
+                                                                      gridDefinition,
+                                                                      areaName.value_or(
+                                                                        gridDefinition.area));
 
-    return modifiedProblems;
+    return modifiedProblemManager;
 }
 
 /// @brief Clean the problems for the Bellman Values calculations
@@ -112,7 +104,8 @@ ProblemGenerationForWaterValueCalculation::updateProblems(
 /// @param log_file_path The path to the log file
 /// @param gridDefinition The gridDefinition
 /// @return The modified problems
-std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>>
+// std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>>
+std::shared_ptr<ProblemManager>
 ProblemGenerationForWaterValueCalculation::cleanProblemsForBellmanCalculations(
   const std::filesystem::path& xpansion_output_dir,
   const std::filesystem::path& log_file_path,
@@ -120,12 +113,17 @@ ProblemGenerationForWaterValueCalculation::cleanProblemsForBellmanCalculations(
   const std::string& areaName)
 {
     logger->display_message("Cleaning problems for Bellman calculations");
-    std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>> modifiedProblems;
+    // std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>> modifiedProblems;
+    std::shared_ptr<ProblemManager> modifiedProblemManager = std::make_shared<ProblemManager>(
+      *problemManager);
     std::mutex mapMutex;
 
     // Create directory for Bellman problems
     auto outputMpsPath = xpansion_output_dir / ("mps_" + std::to_string(gridDefinition.gridID));
     std::filesystem::create_directory(outputMpsPath);
+    // use it in modified problem manager
+    modifiedProblemManager->setProblemsPath(outputMpsPath);
+
     auto problems = problemManager->getProblemIds();
     tbb::parallel_for_each(
       problems.begin(),
@@ -137,8 +135,6 @@ ProblemGenerationForWaterValueCalculation::cleanProblemsForBellmanCalculations(
           {
               // copy of the problem needed if gridCollection contains multiple
               // gridDefinitions, and for multistock
-              // make_shared will be wrong about the counter here, resulting in a memory leak
-              // use shared_ptr instead
               std::shared_ptr<Problem> problem = problemManager->getProblemCloneFromId(pbId);
               std::string pbName = problemManager->getPbNameFromId(pbId);
               logger->display_message("Modifying problem: " + pbName,
@@ -150,18 +146,14 @@ ProblemGenerationForWaterValueCalculation::cleanProblemsForBellmanCalculations(
                                       logger->CONTEXT);
               {
                   std::lock_guard<std::mutex> lock(mapMutex);
-                  modifiedProblems[pbId] = problem;
-              }
-
-              if (problemManager->writePbFiles())
-              {
-                  logger->display_message("Writing problem " + pbName + " to disk...");
-                  problemManager->saveProblemToFile(pbId, problem, outputMpsPath);
+                  //   modifiedProblems[pbId] = problem;
+                  modifiedProblemManager->setProblem(pbId, problem);
               }
           }
       });
 
-    return modifiedProblems;
+    // return modifiedProblems;
+    return modifiedProblemManager;
 }
 
 int checkedMapLookup(const std::unordered_map<std::string, int>& nameToIndex,
@@ -220,11 +212,14 @@ void ProblemGenerationForWaterValueCalculation::cleanProblemForBellmanCalculatio
 
     int weekEnd = pbID.week * 168;
 
-    for (const auto& gridElement: gridDefinition.gridElements)
+    for (const auto& gridElement: gridDefinition.gridElements | std::views::values)
     {
-        if (gridElement.problemName == "all" || gridElement.problemName == pbName)
+        if (gridElement.week == WEEK::ALLWEEKS || gridElement.week == pbID.week)
         {
             // it was checked earlier that there is only one area in gridDefinition
+            logger->display_message("Cleaning reservoir constraints for problem " + pbName,
+                                    LogUtils::LOGLEVEL::DEBUG,
+                                    logger->CONTEXT);
             cleanReservoirConstraints(problem,
                                       gridDefinition.reservoirs.at(gridElement.area),
                                       pbID,
@@ -234,11 +229,13 @@ void ProblemGenerationForWaterValueCalculation::cleanProblemForBellmanCalculatio
 
     // other gridElements/reservoirs in a multistock context must be updated with their optimal
     // trajectories, for this specific flag
-    if (gridDefinition.gridElements.size() == 1
-        && this->computationMode == WaterValueComputationMode::SEQUENTIAL_UPDATE_TRAJECTORY
-        && (gridDefinition.gridElements[0].problemName == "all"
-            || gridDefinition.gridElements[0].problemName == pbName))
+    if (this->computationMode == WaterValueComputationMode::SEQUENTIAL_UPDATE_TRAJECTORY
+        && (gridDefinition.gridElements.begin()->second.problemName == "all"
+            || gridDefinition.gridElements.count(pbID.week)))
     {
+        logger->display_message("Updating trajectories for problem " + pbName,
+                                LogUtils::LOGLEVEL::DEBUG,
+                                logger->CONTEXT);
         for (auto& reservoir: gridDefinition.reservoirs)
         {
             if (reservoir.second.area != areaName)
@@ -247,6 +244,12 @@ void ProblemGenerationForWaterValueCalculation::cleanProblemForBellmanCalculatio
                 updateReservoirWithOptimalTrajectory(problem, reservoir.second, pbID);
             }
         }
+    }
+    else
+    {
+        logger->display_message("Not updating trajectories for problem " + pbName,
+                                LogUtils::LOGLEVEL::DEBUG,
+                                logger->CONTEXT);
     }
     // Sort in descending order to preserve indices during deletion
     std::sort(affectedColsAndRows.colsToDelete.rbegin(), affectedColsAndRows.colsToDelete.rend());

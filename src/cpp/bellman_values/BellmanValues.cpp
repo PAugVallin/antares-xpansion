@@ -86,6 +86,8 @@ BellmanValues::compute(int nbLevels)
 {
     auto variationDeNiveauxDeStockData = gridEvaluator.ComputeCostsAndDuals();
 
+    logger->display_message("Computed costs and duals", LogUtils::LOGLEVEL::INFO, logger->CONTEXT);
+
     levels = linspace(0.0, reservoirManagement.reservoir.capacity, nbLevels);
     std::map<Antares::Solver::WeeklyProblemId, std::vector<double>> V;
     std::map<Antares::Solver::WeeklyProblemId, std::vector<double>> costs;
@@ -107,14 +109,13 @@ BellmanValues::compute(int nbLevels)
             V[{scenario, week}] = std::vector<double>(levels.size(), 0.0);
         }
 
-        auto penalty_fn = reservoirManagement.get_penalty(endWeek, endWeek);
+        auto penalty_fn = reservoirManagement.get_penalty(endWeek + 1, endWeek + 1);
         for (int i_level = 0; i_level < levels.size(); ++i_level)
         {
             V[{scenario, endWeek + 1}][i_level] += penalty_fn(levels[i_level]);
         }
     }
 
-    const auto& gridDef = gridEvaluator.gridDefinition;
     for (unsigned int week = endWeek + 1; week-- > startWeek;)
     {
         for (unsigned int scenario: scenarios)
@@ -125,9 +126,7 @@ BellmanValues::compute(int nbLevels)
                 return [this, &V_vec, &week, &scenario](double x)
                 { return Interpolator::linearInterpolation(this->levels, V_vec)(x); };
             };
-            auto valuesVect = gridDef.weekAreaConstraints.at(week + 1)
-                                .at(gridDef.gridElements[0].area)
-                                .at(gridDef.gridElements[0].name);
+
             for (size_t i = 0; i < levels.size(); ++i)
             {
                 double Vu;
@@ -242,9 +241,8 @@ std::tuple<double, double, double> BellmanValues::solveWeeklyProblemWithCost(
     double Vu = std::numeric_limits<double>::max(); // optimal objective value (Bellman value)
     double xf = 0.;                                 // final level of stock
     const Reservoir reservoir = reservoirManagement.reservoir;
-    auto costFn = Interpolator::linearInterpolation(
-      gridEvaluator.gridDefinition.gridElements[0].rhsValues[week],
-      costs);
+    std::vector<DblVector> rhsValues = gridEvaluator.gridDefinition.getRhsValuesForWeek(week);
+    auto costFn = Interpolator::linearInterpolation(rhsValues[week], costs);
     auto penalty = reservoirManagement.get_penalty(week, endWeek + 1)(level);
 
     for (double value_fut: X)
@@ -263,7 +261,7 @@ std::tuple<double, double, double> BellmanValues::solveWeeklyProblemWithCost(
         }
     }
 
-    for (double u: gridEvaluator.gridDefinition.gridElements[0].rhsValues[week])
+    for (double u: rhsValues[week])
     {
         double state_fut = level - u + reservoir.inflow[week][scenario];
         if (0 <= state_fut && state_fut <= reservoir.capacity)
@@ -357,8 +355,8 @@ std::vector<std::vector<double>> BellmanValues::computeOptimalTrajectories()
               = solveWeeklyProblemWithCost(week,
                                            endWeek,
                                            scenario,
-                                           level, // here: trajectory of the previous week
-                                                  // (first week: initial level)
+                                           level, // here: trajectory of the previous
+                                                  // week (first week: initial level)
                                            levels,
                                            costs[{scenario, week}],
                                            V_fut());

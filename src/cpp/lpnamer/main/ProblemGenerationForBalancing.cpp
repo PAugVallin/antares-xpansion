@@ -605,21 +605,20 @@ void ProblemGenerationForBalancing::applyActionToCluster(const AreaCluster& area
 /// @brief Update the problems using the balancing algorithm
 /// @param simuValues The simulation values to use for the problems modification
 /// @return The updated problems
-std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>>
-ProblemGenerationForBalancing::updateProblems(
+std::shared_ptr<ProblemManager> ProblemGenerationForBalancing::updateProblems(
   const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues)
 {
     // For the first iteration, simuValues is empty and no modification should be applied
     if (simuValues.empty())
     {
-        return problemManager->getProblems();
+        return problemManager;
     }
 
     for (const auto& [areaCluster, action]: findAreaClustersToModify(simuValues))
     {
         applyActionToCluster(areaCluster, action);
     }
-    return problemManager->getProblems();
+    return problemManager;
 }
 
 /// @brief Check if the system is balanced from the simulation values

@@ -15,19 +15,18 @@ using namespace PlainData;
 
 /// @brief Constructor
 /// @param logger Logger
-/// @param problems map of subproblems to evaluate
+/// @param problemManager manager holding subproblems to evaluate
 /// @param gridDefinition GridCollection containing the grids to evaluate
 /// @param studyDir Path to the study, used to save MPS files in case of error
 /// @param solverName Name of the solver to use
 /// @param nbThreads Number of threads to use
-GridEvaluator::GridEvaluator(
-  Logger logger,
-  std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>> problems,
-  GridDefinition& gridDefinition,
-  std::filesystem::path studyDir,
-  std::string solverName,
-  int nbThreads):
-    Evaluator(logger, problems, studyDir, solverName, nbThreads),
+GridEvaluator::GridEvaluator(Logger logger,
+                             std::shared_ptr<ProblemManager> problemManager,
+                             GridDefinition& gridDefinition,
+                             std::filesystem::path studyDir,
+                             std::string solverName,
+                             int nbThreads):
+    Evaluator(logger, problemManager, studyDir, solverName, nbThreads),
     gridDefinition(gridDefinition)
 {
 }
@@ -79,8 +78,15 @@ ConstraintCombos GridEvaluator::GenerateSubPbCombos(
 
     for (const auto& [areaName, constraints]: areasConstraints)
     {
+        logger->display_message("Processing areasConstraints for area " + areaName,
+                                LogUtils::LOGLEVEL::DEBUG,
+                                GRID_EVALUATOR_LOGGER_CONTEXT);
         ConstraintCombos newCombos;
         ConstraintCombos localCombos = GenerateConstraintProduct(constraints);
+        logger->display_message("localCombos size: " + std::to_string(localCombos.size())
+                                  + " for area " + areaName,
+                                LogUtils::LOGLEVEL::DEBUG,
+                                GRID_EVALUATOR_LOGGER_CONTEXT);
 
         for (const auto& combo: currentCombos)
         {
@@ -89,6 +95,11 @@ ConstraintCombos GridEvaluator::GenerateSubPbCombos(
                 std::map<std::string, double> merged = combo;
                 for (const auto& [cst, val]: local)
                 {
+                    logger->display_message("Adding value " + std::to_string(val)
+                                              + " to constraint "
+                                              + GetConstraintName(problemId, areaName, cst),
+                                            LogUtils::LOGLEVEL::DEBUG,
+                                            GRID_EVALUATOR_LOGGER_CONTEXT);
                     merged[GetConstraintName(problemId, areaName, cst)] = val;
                 }
                 newCombos.push_back(merged);

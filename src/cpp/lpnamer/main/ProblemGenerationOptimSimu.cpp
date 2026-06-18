@@ -33,7 +33,7 @@ void ProblemGenerationOptimSimu::loadProblemsFromAntares()
     if (spg.areWeeksIndependent())
     {
         logger->display_message("Weeks are independent, using optimized problem generation");
-        generateAntaresProblems();
+        generateAntaresProblems(spg);
     }
     else
     {
@@ -42,10 +42,9 @@ void ProblemGenerationOptimSimu::loadProblemsFromAntares()
     }
 }
 
-void ProblemGenerationOptimSimu::generateAntaresProblems()
+void ProblemGenerationOptimSimu::generateAntaresProblems(Antares::Solver::SingleProblemGetter& spg)
 {
     Antares::Solver::LpsFromAntares lps;
-    Antares::Solver::SingleProblemGetter spg(directories.study_dir);
     lps.setConstantData(spg.getConstantData());
 
     spg.writeNTCTimeSeries(directories.simulation_dir);

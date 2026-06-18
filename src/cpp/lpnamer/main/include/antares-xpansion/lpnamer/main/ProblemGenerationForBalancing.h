@@ -48,7 +48,7 @@ public:
                                            Logger logger,
                                            std::shared_ptr<ProblemManager> problemManager);
     virtual ~ProblemGenerationForBalancing() = default;
-    std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>> updateProblems(
+    std::shared_ptr<ProblemManager> updateProblems(
       const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues);
     bool isBalanced(const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues) const;
     void logCriterionAndAreaSettings(

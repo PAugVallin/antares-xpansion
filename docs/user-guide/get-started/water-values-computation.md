@@ -1,6 +1,6 @@
 # Water Values Computation
 
-This document explains what water values are and how to compute them for Antares studies using `water_values_exe`. It covers both the business perspective and practical usage. This document is intended for users familiar with Antares studies, hydro modeling, and stochastic optimization.
+This document explains what water values are and how to compute them for Antares studies using `water_values`. It covers both the business perspective and practical usage. This document is intended for users familiar with Antares studies, hydro modeling, and stochastic optimization.
 
 ---
 
@@ -14,13 +14,13 @@ Expressed in €/MWh, water values primarily depend on the reservoir storage lev
 
 ### From economic concept to numerical computation
 
-The executable `water_values_exe` calculates water values for a set of hydro reservoirs in a given Antares study.  
+The executable `water_values` calculates water values for a set of hydro reservoirs in a given Antares study.  
 
 The computation relies on an efficient implementation for solving repeated optimization sub-problems. For a given reservoir, the process follows these steps:
 
 1. **Generate sub-problems** for all Monte Carlo years using Antares. Each sub-problem represents the system for a single week and a single scenario.  
 2. **Modify the sub-problems** to deactivate tracking of the reservoir's storage level, so that water usage can be freely adjusted within operational limits.  
-3. **Evaluate the control grid** defined in `grid.csv`. For each sub-problem, the `HydroPower` constraint is varied from a minimum value (maximum pumping) to a maximum value (maximum generation) using the discretization step defined in the grid.  
+3. **Evaluate the control grid** defined in `grid.csv`. For each sub-problem, the `HydroPower` constraint is varied from a minimum value (maximum pumping) to a maximum value (maximum generation) using the number of steps defined in the grid.  
    - Each "control" corresponds to the net water usage over the week: total generation minus total pumping multiplied by pumping efficiency, ignoring natural inflows.  
    - This step leverages a hot start to solve the same sub-problem multiple times efficiently, reducing computational time.
 4. **Compute Bellman values using dynamic programming.**
@@ -36,9 +36,9 @@ After the Bellman values for a reservoir are computed, an **optimal trajectory**
 
 Note that steps 1 and 2 are performed only once and reused for all reservoirs.
 
-## How to use `water_values_exe`
+## How to use `water_values`
 
-`water_values_exe` is a command-line program that requires the following inputs:
+`water_values` is a command-line program that requires the following inputs:
 
 - an **Antares study**
 - a grid defined by a **grid.csv** file located at `<study_root>/user/water_values/grid.csv`
@@ -50,32 +50,32 @@ Note that steps 1 and 2 are performed only once and reused for all reservoirs.
 
 Here is an example of a grid.csv file in its simplest form (must be comma separated, shown here as a table for readability):
 
-|grid_id|problem_name|type|name|area|min|max|step|
+|grid_id|problem_name|type|name|area|min|max|nb_values|
 |-|-|-|-|-|-|-|-|
-|0|all|constraint|HydroPower|area|0|1|0.1|
+|0|all|constraint|HydroPower|area|-100000|50000|11|
 
 with the following columns:
 
 - `grid_id`: the ID of the grid
-- `problem_name`: the name of the problem (`all` if all the problems are considered)
+- `problem_name`: the name of the problem, following the pattern `problem-y-w--optim-nb-1` where `y` is the year and `w` is the week of the problem ( the name can be `all` if all the problems are considered with the same values)
 - `type`: the type of the constraint (`constraint` or `variable`)
 - `name`: the name of the constraint or variable (`HydroPower` for Bellman values computation)
 - `area`: the area to take into account
-- `min`: the minimum value of the constraint or variable (from 0 to 1)
-- `max`: the maximum value of the constraint or variable (from 0 to 1)
-- `step`: the step of the discretization of the constraint or variable (from 0 to 1)
+- `min`: the minimum absolute value of the constraint or variable (should be equal to `-max_pumping * efficiency` for Bellman values computation)
+- `max`: the maximum absolute value of the constraint or variable (should be equal to `max_generating` for Bellman values computation)
+- `nb_values`: the number of discrete values of the constraint or variable, ranging from `min` to `max`
 
 ### Use cases where water values can be computed
 
 Water values can be computed in the case of a single area containing one reservoir, as described above.
 
-Water values can also be computed for multiple areas/reservoirs, which need to be represented by a distinct grid_id:
+Water values can also be computed for multiple areas/reservoirs, which need to be represented by a distinct `grid_id` (values are arbitrary):
 
-|grid_id|problem_name|type|name|area|min|max|step|
+|grid_id|problem_name|type|name|area|min|max|nb_values|
 |-|-|-|-|-|-|-|-|
-|0|all|constraint|HydroPower|area1|0|1|0.1|
-|1|all|constraint|HydroPower|area2|0|1|0.1|
-|2|all|constraint|HydroPower|area3|0|1|0.1|
+|0|all|constraint|HydroPower|area1|-100000|50000|11|
+|1|all|constraint|HydroPower|area2|-800000|30000|11|
+|2|all|constraint|HydroPower|area3|-200000|70000|11|
 
 In this case, water values will be **computed sequentially**, in the order in which areas are defined in grid.csv.
 
@@ -114,27 +114,39 @@ use_optimal_trajectory : false
 # and will be used when computing water values of all subsequent areas, in the order they are defined in grid.csv.
 # default: false
 
-penalty_bottom_rule_curve : 2000
-# default: 0
+# penalties are specified by area. If an area is present in grid.csv but in this file, default values will be used.
+penalties:
+  area1:
+    penalty_bottom_rule_curve : 2000
+    # default: 0
 
-penalty_upper_rule_curve : 2000
-# default: 0
+    penalty_upper_rule_curve : 2000
+    # default: 0
 
-penalty_final_level : 2000
-# default: 0
+    penalty_final_level : 2000
+    # default: 0
 
-force_final_level : true
-# default: false
+    force_final_level : true
+    # default: false
 
-final_level : ~
-# default: initial level
+    final_level : ~
+    # default: initial level
 
-cvar : 0.8
-# default: 1.0 (all scenarios taken into account for Bellman values)
-# will be restricted to [0.0 ; 1.0]
+    cvar : 0.8
+    # default: 1.0 (all scenarios taken into account for Bellman values)
+    # will be restricted to [0.0 ; 1.0]
+  area2:
+    penalty_bottom_rule_curve : 1000
+    # default: 0
+
+    cvar : 0.6
+    # default: 1.0 (all scenarios taken into account for Bellman values)
+    # will be restricted to [0.0 ; 1.0]
 ```
 
 This file is expected to be located at `<study_root>/user/water_values/dynamic_programming.yaml`. It is optional, however default values are hard-coded in the program.
+
+Values related to penalties are to be specified by area. If an area is present in grid.csv but not in this YAML file, or if some parameters are not present for a zone, default values will be used. The example above covers that case: all values are specified for `area1`, some of them for `area2`, and none for `area3`.
 
 ### Secondary input file: settings.yaml
 
@@ -169,6 +181,10 @@ verbosity : INFO
 # and will pass along all messages at the `WARNING`, `ERR` or `FATAL` level.
 # default: INFO
 # possible values are: NONE, TRACE, DEBUG, INFO, WARNING, ERR, FATAL
+
+cache_problems : true
+# Sets whether to write and read problems from disk to reduce memory use (will increase computation time) 
+# default: false
 ```
 
 This file is expected to be located at `<study_root>/user/water_values/settings.yaml`. It is optional, however default values are hard-coded in the program.
@@ -179,6 +195,7 @@ The outputs are the **Bellman values**, **water values**, and **optimal trajecto
 
 Outputted files consist of:
 
+- a comma-separated values file named `[grid_id]_[area]_costs.csv`;
 - a comma-separated values file named `[grid_id]_[area]_bellman_values.csv`;
 - a comma-separated values file named `[grid_id]_[area]_water_values.csv`;
 - if requested, a comma-separated values file named `[grid_id]_[area]_optimal_trajectory.csv`.
@@ -192,10 +209,10 @@ These files will be created in a timecoded folder located at `<study_root>/outpu
 1. Open a command line prompt in your Antares-Xpansion install directory (by default it is named `antaresXpansion-x.y.z-<platform>` where `x.y.z` is the version number).
     On Windows, you can launch a command line prompt by typing `cmd` in the path.
 
-2. Run `water_values_exe<.exe>` and specify the path to the Antares study with the `--study` parameter:
+2. Run `water_values<.exe>` and specify the path to the Antares study with the `--study` parameter:
 
     ```cmd
-    water_values_exe --study data_test/one_node_base
+    water_values --study data_test/one_node_base
     ```
 
 ### Command line parameters
