@@ -64,3 +64,6 @@ xwiki_source
 .venv
 vcpkg_installed
 CMakeUserPresets.json
+
+# Jupyter cache
+.cache
