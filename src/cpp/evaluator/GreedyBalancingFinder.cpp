@@ -183,7 +183,7 @@ void GreedyBalancingFinder::setCriterionComputationInputs(
 
     switch (criterion_input_data.criterion)
     {
-    case PositiveUnsuppliedEnergy:
+    case UnsuppliedEnergy:
         criterion_computation_ = std::make_unique<Benders::Criterion::CriterionLOL>(
           criterion_input_data);
         break;

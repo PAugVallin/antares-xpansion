@@ -177,7 +177,7 @@ public:
         }
 
         rhs.SetCriterion(criterion.as<double>());
-        rhs.ResetPattern(getPrefix(Type::PositiveUnsuppliedEnergy), body.as<std::string>());
+        rhs.ResetPattern(getPrefix(Type::UnsuppliedEnergy), body.as<std::string>());
         return true;
     }
 };

@@ -20,7 +20,7 @@ CriterionNPCAP::CriterionNPCAP(const CriterionInputData& criterion_input_data,
         // remove end spaces
         const auto& name = StringManip::removeTrailingSpacesInPlace(col_names[index]);
 
-        if (name.starts_with("PositiveUnsuppliedEnergy::area<") && name.ends_with(">::hour<0>"))
+        if (name.starts_with(std::string(getPrefix(Type::UnsuppliedEnergy))+"area<") && name.ends_with(">::hour<0>"))
         {
             std::string area = StringManip::split(StringManip::split(name, "area<")[1],
                                                   ">::hour")[0];

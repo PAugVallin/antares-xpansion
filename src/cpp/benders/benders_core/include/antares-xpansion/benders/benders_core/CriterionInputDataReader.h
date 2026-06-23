@@ -10,7 +10,7 @@ namespace Benders::Criterion
 {
 enum class Type
 {
-    PositiveUnsuppliedEnergy,
+    UnsuppliedEnergy,
     NearPriceCapHours,
 };
 
@@ -18,8 +18,8 @@ constexpr std::string_view getPrefix(Type t)
 {
     switch (t)
     {
-    case Type::PositiveUnsuppliedEnergy:
-        return "PositiveUnsuppliedEnergy::";
+    case Type::UnsuppliedEnergy:
+        return "UnsuppliedEnergy::";
     case Type::NearPriceCapHours:
         return "AreaBalance::";
     }
@@ -98,7 +98,7 @@ private:
 class CriterionInputData
 {
 public:
-    CriterionInputData(const Type criterion = Type::PositiveUnsuppliedEnergy):
+    CriterionInputData(const Type criterion = Type::UnsuppliedEnergy):
         criterion(criterion)
     {
     }
@@ -112,7 +112,7 @@ public:
     [[nodiscard]] double CriterionCountThreshold() const;
     void AddSingleData(const CriterionSingleInputData& data);
 
-    Type criterion{Type::PositiveUnsuppliedEnergy};
+    Type criterion{Type::UnsuppliedEnergy};
 
 private:
     std::vector<CriterionSingleInputData> criterion_vector_;
