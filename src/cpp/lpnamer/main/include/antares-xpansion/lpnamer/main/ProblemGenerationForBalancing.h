@@ -1,5 +1,6 @@
 #pragma once
 
+#include <optional>
 #include <string>
 
 #include "ConfigurationManager.h"
@@ -78,9 +79,9 @@ private:
       const AreaSettings& areaSettings,
       CapacityAction action) const;
     void updateOldCriterionState(const std::map<std::string, CriterionState>& areaCritState);
-    CapacityAction determineCapacityAction(const std::string& areaName,
-                                           CriterionState currentState,
-                                           const AreaSettings& areaSettings) const;
+    std::optional<CapacityAction> determineCapacityAction(const std::string& areaName,
+                                                          CriterionState currentState,
+                                                          const AreaSettings& areaSettings) const;
     template<typename CandidateType>
     std::map<std::string, double> computeRentabilityForCandidates(
       const std::string& areaName,

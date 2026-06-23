@@ -213,9 +213,18 @@ std::map<AreaCluster, CapacityAction> ProblemGenerationForBalancing::findAreaClu
             continue;
         }
 
-        CapacityAction action = determineCapacityAction(areaName, current, areaSettings);
-        const std::string clusterName = getBestCluster(simuValues, areaName, areaSettings, action);
-        areaClusterToModify[{areaName, clusterName}] = action;
+        std::optional<CapacityAction> action = determineCapacityAction(areaName,
+                                                                       current,
+                                                                       areaSettings);
+        // if no action possible, no cluster will be modified
+        if (action.has_value())
+        {
+            const std::string clusterName = getBestCluster(simuValues,
+                                                           areaName,
+                                                           areaSettings,
+                                                           action.value());
+            areaClusterToModify[{areaName, clusterName}] = action.value();
+        }
     }
 
     updateOldCriterionState(areaCritState);
@@ -227,7 +236,7 @@ std::map<AreaCluster, CapacityAction> ProblemGenerationForBalancing::findAreaClu
 /// @param currentState The current criterion state
 /// @param areaSettings The area investment parameters
 /// @return The action to apply
-CapacityAction ProblemGenerationForBalancing::determineCapacityAction(
+std::optional<CapacityAction> ProblemGenerationForBalancing::determineCapacityAction(
   const std::string& areaName,
   CriterionState currentState,
   const AreaSettings& areaSettings) const
@@ -290,14 +299,16 @@ CapacityAction ProblemGenerationForBalancing::determineCapacityAction(
         }
     }
 
+    // if no action is possible: logging a warning and carrying on
     std::ostringstream oss;
     oss << "Area " << areaName << " is not balanced but no modification is possible\n"
         << " Current criterion state: " << to_string(currentState) << "\n"
         << "Previous action: "
-        << (previousAction.has_value() ? to_string(previousAction.value()) : "None");
+        << (previousAction.has_value() ? to_string(previousAction.value()) : "None") << "\n";
     logger->display_message(oss.str(),
                             LogUtils::LOGLEVEL::WARNING,
                             PROBLEM_GENERATION_LOGGER_CONTEXT);
+    return std::nullopt;
 }
 
 template<typename CandidateType>
