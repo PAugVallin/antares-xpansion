@@ -627,7 +627,32 @@ std::shared_ptr<ProblemManager> ProblemGenerationForBalancing::updateProblems(
 
     for (const auto& [areaCluster, action]: findAreaClustersToModify(simuValues))
     {
+        const double* candidateCapacity;
+        switch (action)
+        {
+        case CapacityAction::INVESTMENT:
+        case CapacityAction::DISINVESTMENT:
+            candidateCapacity = &areasSettings.at(areaCluster.first)
+                                   .investmentCandidates.at(areaCluster.second)
+                                   .currentCapacity;
+            break;
+        case CapacityAction::DECOMMISSIONING:
+        case CapacityAction::RECOMMISSIONING:
+            candidateCapacity = &areasSettings.at(areaCluster.first)
+                                   .decommissioningCandidates.at(areaCluster.second)
+                                   .currentCapacity;
+            break;
+        }
+        double previousCandidateCapacity = *candidateCapacity;
         applyActionToCluster(areaCluster, action);
+        logger->display_message((std::stringstream()
+                                 << " action: " << to_string(action) << " area: "
+                                 << areaCluster.first << " cluster: " << areaCluster.second
+                                 << " new capacity: " << *candidateCapacity
+                                 << " delta: " << (*candidateCapacity - previousCandidateCapacity))
+                                  .str(),
+                                LogUtils::LOGLEVEL::INFO,
+                                PROBLEM_GENERATION_LOGGER_CONTEXT);
     }
     return problemManager;
 }
