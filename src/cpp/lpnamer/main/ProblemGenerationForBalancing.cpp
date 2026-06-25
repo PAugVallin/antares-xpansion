@@ -627,7 +627,39 @@ std::shared_ptr<ProblemManager> ProblemGenerationForBalancing::updateProblems(
 
     for (const auto& [areaCluster, action]: findAreaClustersToModify(simuValues))
     {
-        applyActionToCluster(areaCluster, action);
+        double previousCandidateCapacity, newCandidatesapacity;
+        switch (action)
+        {
+        case CapacityAction::INVESTMENT:
+        case CapacityAction::DISINVESTMENT:
+
+            previousCandidateCapacity = areasSettings.at(areaCluster.first)
+                                          .investmentCandidates.at(areaCluster.second)
+                                          .currentCapacity;
+            applyActionToCluster(areaCluster, action);
+            newCandidatesapacity = areasSettings.at(areaCluster.first)
+                                     .investmentCandidates.at(areaCluster.second)
+                                     .currentCapacity;
+            break;
+        case CapacityAction::DECOMMISSIONING:
+        case CapacityAction::RECOMMISSIONING:
+            previousCandidateCapacity = areasSettings.at(areaCluster.first)
+                                          .decommissioningCandidates.at(areaCluster.second)
+                                          .currentCapacity;
+            applyActionToCluster(areaCluster, action);
+            newCandidatesapacity = areasSettings.at(areaCluster.first)
+                                     .decommissioningCandidates.at(areaCluster.second)
+                                     .currentCapacity;
+            break;
+        }
+        logger->display_message((std::stringstream()
+                                 << " action: " << to_string(action) << " area: "
+                                 << areaCluster.first << " cluster: " << areaCluster.second
+                                 << " new capacity: " << newCandidatesapacity << " delta: "
+                                 << (newCandidatesapacity - previousCandidateCapacity))
+                                  .str(),
+                                LogUtils::LOGLEVEL::INFO,
+                                PROBLEM_GENERATION_LOGGER_CONTEXT);
     }
     return problemManager;
 }
