@@ -192,11 +192,11 @@ int main(int argc, char** argv)
         nbThreads = std::min(nbThreads, max_thread_concurrency);
 
         const std::filesystem::path bellmanConfigFilePath(
-          studyPath / "user/water_values/dynamic_programming.yaml");
+          studyPath / "user/water_values/dynamic_programming.yml");
         const std::filesystem::path settingsConfigFilePath(studyPath
-                                                           / "user/water_values/settings.yaml");
+                                                           / "user/water_values/settings.yml");
 
-        // SettingsConfigReader will check whether the settings.yaml file exists and
+        // SettingsConfigReader will check whether the settings.yml file exists and
         // return default values if needed
         SettingsConfigReader scr(settingsConfigFilePath);
         std::string solverName = scr.getSolver();
@@ -229,7 +229,7 @@ int main(int argc, char** argv)
                                                                  / "user/water_values/grid.csv",
                                                                logger);
 
-        // DynamicProgrammingConfigReader will check whether the dynamic_programming.yaml file
+        // DynamicProgrammingConfigReader will check whether the dynamic_programming.yml file
         // exists and return default values if needed
         // TODO: check that there aren't any zones in the file that aren't in grid.csv
         DynamicProgrammingConfigReader dpcr(bellmanConfigFilePath);
@@ -363,8 +363,8 @@ int main(int argc, char** argv)
             {
                 logger->display_message("Computing optimal trajectory...");
 
-                gridCollection->reservoirs.at(grid.area).optimal_trajectory
-                  = bellmanValuesEvaluator.computeOptimalTrajectories();
+                gridCollection->reservoirs.at(grid.area)
+                  .optimal_trajectory = bellmanValuesEvaluator.computeOptimalTrajectories();
 
                 logger->display_message("Computed optimal trajectory");
 

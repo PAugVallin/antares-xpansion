@@ -110,11 +110,11 @@ int main(int argc, char** argv)
         int nbThreads = optionsParser.NbThreads();
 
         const std::filesystem::path bellmanConfigFilePath(
-          studyPath / "user/water_values/dynamic_programming.yaml");
+          studyPath / "user/water_values/dynamic_programming.yml");
         const std::filesystem::path settingsConfigFilePath(studyPath
-                                                           / "user/water_values/settings.yaml");
+                                                           / "user/water_values/settings.yml");
 
-        // DynamicProgrammingConfigReader will check whether the dynamic_programming.yaml file
+        // DynamicProgrammingConfigReader will check whether the dynamic_programming.yml file
         // exists and return default values if needed
         DynamicProgrammingConfigReader dpcr(bellmanConfigFilePath);
         int startWeek = dpcr.getStartWeek();
@@ -123,7 +123,7 @@ int main(int argc, char** argv)
         bool antaresFormat = dpcr.getAntaresFormat();
         bool useOptimalTrajectory = dpcr.getUseOptimalTrajectory();
 
-        // SettingsConfigReader will check whether the settings.yaml file exists and
+        // SettingsConfigReader will check whether the settings.yml file exists and
         // return default values if needed
         SettingsConfigReader scr(settingsConfigFilePath);
         std::string solverName = scr.getSolver();

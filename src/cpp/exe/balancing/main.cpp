@@ -52,7 +52,7 @@ int main(int argc, char** argv)
         nbThreads = std::min(nbThreads, max_thread_concurrency);
 
         const std::filesystem::path settingsConfigFilePath(studyPath
-                                                           / "user/balancing/settings.yaml");
+                                                           / "user/balancing/settings.yml");
 
         // SettingsConfigReader will check whether the settings.yaml file exists and
         // return default values if needed
