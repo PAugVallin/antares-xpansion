@@ -146,13 +146,13 @@ void ProblemGenerationForBalancing::logCriterionAndAreaSettings(
         const auto& areaSettings = areasSettings.at(areaName);
         for (const auto& [clusterName, investmentCandidate]: areaSettings.investmentCandidates)
         {
-            ss << "  Investment candidate cluster " << clusterName << " : +"
+            ss << "  Capacity of investment candidate cluster " << clusterName << " : "
                << investmentCandidate.currentCapacity << "\n";
         }
         for (const auto& [clusterName, decommissioningCandidate]:
              areaSettings.decommissioningCandidates)
         {
-            ss << "  Decommissioning candidate cluster " << clusterName << " : -"
+            ss << "  Capacity of decommissioning candidate cluster " << clusterName << " : "
                << decommissioningCandidate.currentCapacity << "\n";
         }
 
@@ -201,7 +201,6 @@ std::map<AreaCluster, CapacityAction> ProblemGenerationForBalancing::findAreaClu
     std::map<AreaCluster, CapacityAction> areaClusterToModify;
     const auto areaCritState = areaCriteriaState(simuValues);
     updateAreaSettingsIncrement(areaCritState);
-    logCriterionAndAreaSettings(simuValues);
 
     for (const auto& [areaName, areaSettings]: areasSettings)
     {
@@ -436,6 +435,7 @@ void ProblemGenerationForBalancing::updateAreaSettingsIncrement(
     for (auto& [area, areaSettings]: areasSettings)
     {
         if (areaSettings.oldCriterionState != areaCritState.at(area)
+            && areaSettings.oldCriterionState != CriterionState::UNINITIALIZED
             && areaCritState.at(area) != CriterionState::VALID)
         {
             areaSettings.currentInvestmentIncrement = std::max(
@@ -554,12 +554,12 @@ double ProblemGenerationForBalancing::computeNewBoundAndUpdateCandidate(
         areaSettings.investmentCandidates.at(clusterName).currentCapacity = newBound;
         break;
     case CapacityAction::DECOMMISSIONING:
-        problem->get_lb(&newBound, varIndex, varIndex);
+        problem->get_ub(&newBound, varIndex, varIndex);
         newBound = std::max(newBound - areaSettings.currentDecommissioningIncrement, 0.0);
         areaSettings.decommissioningCandidates.at(clusterName).currentCapacity = newBound;
         break;
     case CapacityAction::RECOMMISSIONING:
-        problem->get_lb(&newBound, varIndex, varIndex);
+        problem->get_ub(&newBound, varIndex, varIndex);
         newBound = std::min(
           newBound + areaSettings.currentDecommissioningIncrement,
           areaSettings.decommissioningCandidates.at(clusterName).params->decommissioningPotential);
@@ -575,10 +575,9 @@ static char boundTypeForAction(CapacityAction action)
     {
     case CapacityAction::INVESTMENT:
     case CapacityAction::DISINVESTMENT:
-        return 'U';
     case CapacityAction::DECOMMISSIONING:
     case CapacityAction::RECOMMISSIONING:
-        return 'L';
+        return 'U';
     }
 }
 
@@ -627,36 +626,29 @@ std::shared_ptr<ProblemManager> ProblemGenerationForBalancing::updateProblems(
 
     for (const auto& [areaCluster, action]: findAreaClustersToModify(simuValues))
     {
-        double previousCandidateCapacity, newCandidatesapacity;
+        const double* candidateCapacity;
         switch (action)
         {
         case CapacityAction::INVESTMENT:
         case CapacityAction::DISINVESTMENT:
-
-            previousCandidateCapacity = areasSettings.at(areaCluster.first)
-                                          .investmentCandidates.at(areaCluster.second)
-                                          .currentCapacity;
-            applyActionToCluster(areaCluster, action);
-            newCandidatesapacity = areasSettings.at(areaCluster.first)
-                                     .investmentCandidates.at(areaCluster.second)
-                                     .currentCapacity;
+            candidateCapacity = &areasSettings.at(areaCluster.first)
+                                   .investmentCandidates.at(areaCluster.second)
+                                   .currentCapacity;
             break;
         case CapacityAction::DECOMMISSIONING:
         case CapacityAction::RECOMMISSIONING:
-            previousCandidateCapacity = areasSettings.at(areaCluster.first)
-                                          .decommissioningCandidates.at(areaCluster.second)
-                                          .currentCapacity;
-            applyActionToCluster(areaCluster, action);
-            newCandidatesapacity = areasSettings.at(areaCluster.first)
-                                     .decommissioningCandidates.at(areaCluster.second)
-                                     .currentCapacity;
+            candidateCapacity = &areasSettings.at(areaCluster.first)
+                                   .decommissioningCandidates.at(areaCluster.second)
+                                   .currentCapacity;
             break;
         }
+        double previousCandidateCapacity = *candidateCapacity;
+        applyActionToCluster(areaCluster, action);
         logger->display_message((std::stringstream()
                                  << " action: " << to_string(action) << " area: "
                                  << areaCluster.first << " cluster: " << areaCluster.second
-                                 << " new capacity: " << newCandidatesapacity << " delta: "
-                                 << (newCandidatesapacity - previousCandidateCapacity))
+                                 << " new capacity: " << *candidateCapacity
+                                 << " delta: " << (*candidateCapacity - previousCandidateCapacity))
                                   .str(),
                                 LogUtils::LOGLEVEL::INFO,
                                 PROBLEM_GENERATION_LOGGER_CONTEXT);

@@ -115,6 +115,7 @@ int main(int argc, char** argv)
         logger->display_message("Starting balancing process",
                                 LogUtils::LOGLEVEL::INFO,
                                 logger->CONTEXT);
+        pbg.logCriterionAndAreaSettings(res);
         while (!pbg.isBalanced(res) && iteration < max_iterations)
         {
             iteration++;
@@ -132,6 +133,7 @@ int main(int argc, char** argv)
                                         directories.simulation_dir,
                                         nbThreads)
                     .ComputeCriterionAndPrice();
+            pbg.logCriterionAndAreaSettings(res);
             auto endIteration = std::chrono::system_clock::now();
             std::chrono::duration<double> elapsed_iteration_seconds = endIteration - startIteration;
             logger->display_message("Elapsed time for iteration " + std::to_string(iteration) + ": "
@@ -139,7 +141,6 @@ int main(int argc, char** argv)
                                     LogUtils::LOGLEVEL::INFO,
                                     logger->CONTEXT);
         };
-        pbg.logCriterionAndAreaSettings(res);
         pbg.saveCriterionAndAreaSettingsToCSV(res,
                                               directories.simulation_dir / "balancing_results.csv");
         auto endProblemUpdate = std::chrono::system_clock::now();
