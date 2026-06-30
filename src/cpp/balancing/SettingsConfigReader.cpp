@@ -7,4 +7,5 @@ void SettingsConfigReader::emplaceAllElements()
     elements_.emplace(solverKey, YAMLElement(solverKey, "xpress"));
     elements_.emplace(verbosityKey, YAMLElement(verbosityKey, "INFO"));
     elements_.emplace(cacheProblemsKey, YAMLElement(cacheProblemsKey, false));
+    elements_.emplace(maxIterationsKey, YAMLElement(maxIterationsKey, 30));
 }

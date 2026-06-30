@@ -28,10 +28,16 @@ public:
         return getValueFromKey<bool>(cacheProblemsKey, elements_);
     }
 
+    int getMaxIterations() const
+    {
+        return getValueFromKey<int>(maxIterationsKey, elements_);
+    }
+
 private:
     void emplaceAllElements() override;
 
     // keys from YAML file:
     inline static const std::string solverKey = "solver", verbosityKey = "verbosity",
-                                    cacheProblemsKey = "cache_problems";
+                                    cacheProblemsKey = "cache_problems",
+                                    maxIterationsKey = "max_iterations";
 };

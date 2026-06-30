@@ -59,7 +59,8 @@ int main(int argc, char** argv)
         SettingsConfigReader scr(settingsConfigFilePath);
         std::string solverName = scr.getSolver();
         const std::string verbosity = scr.getVerbosity();
-        bool cacheProblems = scr.getCacheProblems();
+        const bool cacheProblems = scr.getCacheProblems();
+        const int max_iterations = scr.getMaxIterations();
         const auto areaFile = studyPath / "area.txt";
 
         ConfigurationManager::ConfigDirectories directories{
@@ -107,15 +108,14 @@ int main(int argc, char** argv)
                                 logger->CONTEXT);
 
         std::map<Antares::Solver::WeeklyProblemId, PbOutput> res;
-        constexpr int MAX_ITERATIONS = 30;
-        // First iteratiion will be iteration 0 (the iteration before any modification is applied to
+        // First iteration will be iteration 0 (the iteration before any modification is applied to
         // the problems)
         int iteration = -1;
         auto startBalancingProcess = std::chrono::system_clock::now();
         logger->display_message("Starting balancing process",
                                 LogUtils::LOGLEVEL::INFO,
                                 logger->CONTEXT);
-        while (!pbg.isBalanced(res) && iteration < MAX_ITERATIONS)
+        while (!pbg.isBalanced(res) && iteration < max_iterations)
         {
             iteration++;
             auto startIteration = std::chrono::system_clock::now();
