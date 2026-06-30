@@ -146,13 +146,13 @@ void ProblemGenerationForBalancing::logCriterionAndAreaSettings(
         const auto& areaSettings = areasSettings.at(areaName);
         for (const auto& [clusterName, investmentCandidate]: areaSettings.investmentCandidates)
         {
-            ss << "  Investment candidate cluster " << clusterName << " : +"
+            ss << "  Capacity of investment candidate cluster " << clusterName << " : "
                << investmentCandidate.currentCapacity << "\n";
         }
         for (const auto& [clusterName, decommissioningCandidate]:
              areaSettings.decommissioningCandidates)
         {
-            ss << "  Decommissioning candidate cluster " << clusterName << " : -"
+            ss << "  Capacity of decommissioning candidate cluster " << clusterName << " : "
                << decommissioningCandidate.currentCapacity << "\n";
         }
 
@@ -201,7 +201,6 @@ std::map<AreaCluster, CapacityAction> ProblemGenerationForBalancing::findAreaClu
     std::map<AreaCluster, CapacityAction> areaClusterToModify;
     const auto areaCritState = areaCriteriaState(simuValues);
     updateAreaSettingsIncrement(areaCritState);
-    logCriterionAndAreaSettings(simuValues);
 
     for (const auto& [areaName, areaSettings]: areasSettings)
     {
