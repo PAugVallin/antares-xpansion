@@ -435,6 +435,7 @@ void ProblemGenerationForBalancing::updateAreaSettingsIncrement(
     for (auto& [area, areaSettings]: areasSettings)
     {
         if (areaSettings.oldCriterionState != areaCritState.at(area)
+            && areaSettings.oldCriterionState != CriterionState::UNINITIALIZED
             && areaCritState.at(area) != CriterionState::VALID)
         {
             areaSettings.currentInvestmentIncrement = std::max(
@@ -553,12 +554,12 @@ double ProblemGenerationForBalancing::computeNewBoundAndUpdateCandidate(
         areaSettings.investmentCandidates.at(clusterName).currentCapacity = newBound;
         break;
     case CapacityAction::DECOMMISSIONING:
-        problem->get_lb(&newBound, varIndex, varIndex);
+        problem->get_ub(&newBound, varIndex, varIndex);
         newBound = std::max(newBound - areaSettings.currentDecommissioningIncrement, 0.0);
         areaSettings.decommissioningCandidates.at(clusterName).currentCapacity = newBound;
         break;
     case CapacityAction::RECOMMISSIONING:
-        problem->get_lb(&newBound, varIndex, varIndex);
+        problem->get_ub(&newBound, varIndex, varIndex);
         newBound = std::min(
           newBound + areaSettings.currentDecommissioningIncrement,
           areaSettings.decommissioningCandidates.at(clusterName).params->decommissioningPotential);
@@ -574,10 +575,9 @@ static char boundTypeForAction(CapacityAction action)
     {
     case CapacityAction::INVESTMENT:
     case CapacityAction::DISINVESTMENT:
-        return 'U';
     case CapacityAction::DECOMMISSIONING:
     case CapacityAction::RECOMMISSIONING:
-        return 'L';
+        return 'U';
     }
 }
 
