@@ -19,6 +19,8 @@ enum class CapacityAction
     RECOMMISSIONING
 };
 
+using OscillationStatus = std::pair<int, std::optional<CapacityAction>>;
+
 constexpr std::string_view to_string(CapacityAction action)
 {
     switch (action)
@@ -61,11 +63,14 @@ public:
 private:
     std::map<std::string, AreaSettings>& areasSettings;
     std::map<AreaCluster, BalancingData> balancingData;
+    std::map<AreaCluster, OscillationStatus> oscillationRecords;
     std::map<std::string, CapacityAction> lastActionForArea;
 
     void fillDispProdVarIndicesAndMarginalCosts();
     void getInitialCapacitiesForCandidates();
-
+    void initializeOscillationRecords();
+    bool maxOscillationReached(const std::string& areaName) const;
+    void updateRecords(const AreaCluster& areaCluster, CapacityAction action);
     std::map<AreaCluster, CapacityAction> findAreaClustersToModify(
       const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues);
     CriterionState criterionState(AreaSettings& areaSettings, double value) const;

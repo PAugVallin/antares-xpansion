@@ -58,6 +58,8 @@ struct AreaSettings
     double currentDecommissioningIncrement;
     double investmentIncrement;
     double currentInvestmentIncrement;
+    int maxOscillation;
+    bool maxOscillationReached;
     std::map<std::string, Candidate<Decommissioning>> decommissioningCandidates;
     std::map<std::string, Candidate<Investment>> investmentCandidates;
     CriterionState oldCriterionState{CriterionState::UNINITIALIZED};

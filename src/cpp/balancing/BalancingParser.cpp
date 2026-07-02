@@ -231,6 +231,7 @@ void BalancingParser::parseAreasSettings()
         requireField(areaData, "reliability_standard", context);
         requireField(areaData, "decommissioning_increment", context);
         requireField(areaData, "investment_increment", context);
+        requireField(areaData, "max_oscillation", context);
 
         AreaSettings area;
         area.reliabilityStandard = areaData["reliability_standard"].as<double>();
@@ -238,6 +239,8 @@ void BalancingParser::parseAreasSettings()
         area.currentDecommissioningIncrement = area.decommissioningIncrement;
         area.investmentIncrement = areaData["investment_increment"].as<double>();
         area.currentInvestmentIncrement = area.investmentIncrement;
+        area.maxOscillation = areaData["max_oscillation"].as<int>();
+        area.maxOscillationReached = false;
 
         area.reliabilityStandardDeadBandUp = areaData["reliability_standard_dead_band_up"]
                                                ? areaData["reliability_standard_dead_band_up"]
