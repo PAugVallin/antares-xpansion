@@ -69,6 +69,7 @@ void ProblemGenerationForBalancing::getInitialCapacitiesForCandidates()
         problemManager->getProblems().begin()->second->get_ub(&candidate.currentCapacity,
                                                               dispProdVarIndices[0],
                                                               dispProdVarIndices[0]);
+        candidate.initialCapacity = candidate.currentCapacity;
     };
 
     for (auto& [areaName, areaSetting]: areasSettings)
@@ -359,7 +360,8 @@ std::map<std::string, double> ProblemGenerationForBalancing::computeRentabilityF
                 rentability[clusterName] = std::numeric_limits<double>::min();
                 continue;
             }
-            else if (action == CapacityAction::DISINVESTMENT && candidate.currentCapacity == 0.0)
+            else if (action == CapacityAction::DISINVESTMENT
+                     && candidate.currentCapacity == candidate.initialCapacity)
             {
                 rentability[clusterName] = std::numeric_limits<double>::max();
                 continue;
@@ -367,13 +369,14 @@ std::map<std::string, double> ProblemGenerationForBalancing::computeRentabilityF
         }
         else
         {
-            if (action == CapacityAction::DECOMMISSIONING && candidate.currentCapacity == 0.0)
+            if (action == CapacityAction::DECOMMISSIONING
+                && candidate.currentCapacity == candidate.params->decommissioningPotential)
             {
                 rentability[clusterName] = std::numeric_limits<double>::max();
                 continue;
             }
             else if (action == CapacityAction::RECOMMISSIONING
-                     && candidate.currentCapacity == candidate.params->decommissioningPotential)
+                     && candidate.currentCapacity == candidate.initialCapacity)
             {
                 rentability[clusterName] = std::numeric_limits<double>::min();
                 continue;
@@ -566,19 +569,21 @@ double ProblemGenerationForBalancing::computeNewBoundAndUpdateCandidate(
         break;
     case CapacityAction::DISINVESTMENT:
         problem->get_ub(&newBound, varIndex, varIndex);
-        newBound = std::max(newBound - areaSettings.currentInvestmentIncrement, 0.0);
+        newBound = std::max(newBound - areaSettings.currentInvestmentIncrement,
+                            areaSettings.investmentCandidates.at(clusterName).initialCapacity);
         areaSettings.investmentCandidates.at(clusterName).currentCapacity = newBound;
         break;
     case CapacityAction::DECOMMISSIONING:
         problem->get_ub(&newBound, varIndex, varIndex);
-        newBound = std::max(newBound - areaSettings.currentDecommissioningIncrement, 0.0);
+        newBound = std::max(
+          newBound - areaSettings.currentDecommissioningIncrement,
+          areaSettings.decommissioningCandidates.at(clusterName).params->decommissioningPotential);
         areaSettings.decommissioningCandidates.at(clusterName).currentCapacity = newBound;
         break;
     case CapacityAction::RECOMMISSIONING:
         problem->get_ub(&newBound, varIndex, varIndex);
-        newBound = std::min(
-          newBound + areaSettings.currentDecommissioningIncrement,
-          areaSettings.decommissioningCandidates.at(clusterName).params->decommissioningPotential);
+        newBound = std::min(newBound + areaSettings.currentDecommissioningIncrement,
+                            areaSettings.decommissioningCandidates.at(clusterName).initialCapacity);
         areaSettings.decommissioningCandidates.at(clusterName).currentCapacity = newBound;
         break;
     }
