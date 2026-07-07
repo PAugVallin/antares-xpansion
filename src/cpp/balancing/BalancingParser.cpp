@@ -18,7 +18,10 @@ bool AreaSettings::isInvestmentPossible() const
 bool AreaSettings::isDecommissioningPossible() const
 {
     return std::ranges::any_of(decommissioningCandidates,
-                               [](const auto& entry) { return entry.second.currentCapacity > 0; });
+                               [](const auto& entry) {
+                                   return entry.second.currentCapacity
+                                          > entry.second.params->decommissioningPotential;
+                               });
 }
 
 /// @brief Check if disinvestment is possible for the area
@@ -26,7 +29,10 @@ bool AreaSettings::isDecommissioningPossible() const
 bool AreaSettings::isDisinvestmentPossible() const
 {
     return std::ranges::any_of(investmentCandidates,
-                               [](const auto& entry) { return entry.second.currentCapacity > 0; });
+                               [](const auto& entry) {
+                                   return entry.second.currentCapacity
+                                          > entry.second.initialCapacity;
+                               });
 }
 
 /// @brief Check if recommissioning is possible for the area
@@ -36,7 +42,7 @@ bool AreaSettings::isRecommissioningPossible() const
     return std::ranges::any_of(decommissioningCandidates,
                                [](const auto& entry) {
                                    return entry.second.currentCapacity
-                                          < entry.second.params->decommissioningPotential;
+                                          < entry.second.initialCapacity;
                                });
 }
 
@@ -135,12 +141,15 @@ void BalancingParser::parseDecommissioningCandidatesTypes()
     for (const auto& typeNode: config["decommissioning_candidates_types"])
     {
         std::string typeName = typeNode.first.as<std::string>();
-        requireField(typeNode.second,
-                     "fixed_om_costs",
-                     "decommissioning candidate of type: " + typeName);
+        YAML::Node typeData = typeNode.second;
+        const std::string context = "decommissioning candidate of type: " + typeName;
+
+        requireField(typeData, "fixed_om_costs", context);
+        requireField(typeData, "decommissioning_potential", context);
 
         auto type = std::make_shared<Decommissioning>();
         type->fixedOmCosts = typeNode.second["fixed_om_costs"].as<double>();
+        type->decommissioningPotential = typeData["decommissioning_potential"].as<double>();
         decommissioningCandidatesTypes[typeName] = std::move(type);
     }
 }
@@ -231,6 +240,7 @@ void BalancingParser::parseAreasSettings()
         requireField(areaData, "reliability_standard", context);
         requireField(areaData, "decommissioning_increment", context);
         requireField(areaData, "investment_increment", context);
+        requireField(areaData, "max_oscillation", context);
 
         AreaSettings area;
         area.reliabilityStandard = areaData["reliability_standard"].as<double>();
@@ -238,6 +248,7 @@ void BalancingParser::parseAreasSettings()
         area.currentDecommissioningIncrement = area.decommissioningIncrement;
         area.investmentIncrement = areaData["investment_increment"].as<double>();
         area.currentInvestmentIncrement = area.investmentIncrement;
+        area.maxOscillation = areaData["max_oscillation"].as<int>();
 
         area.reliabilityStandardDeadBandUp = areaData["reliability_standard_dead_band_up"]
                                                ? areaData["reliability_standard_dead_band_up"]

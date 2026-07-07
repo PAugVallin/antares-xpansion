@@ -47,6 +47,7 @@ struct Candidate
 {
     std::shared_ptr<Type> params;
     double currentCapacity;
+    double initialCapacity;
 };
 
 struct AreaSettings
@@ -58,6 +59,7 @@ struct AreaSettings
     double currentDecommissioningIncrement;
     double investmentIncrement;
     double currentInvestmentIncrement;
+    int maxOscillation;
     std::map<std::string, Candidate<Decommissioning>> decommissioningCandidates;
     std::map<std::string, Candidate<Investment>> investmentCandidates;
     CriterionState oldCriterionState{CriterionState::UNINITIALIZED};

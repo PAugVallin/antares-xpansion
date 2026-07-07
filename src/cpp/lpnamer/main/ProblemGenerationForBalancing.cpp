@@ -24,6 +24,7 @@ ProblemGenerationForBalancing::ProblemGenerationForBalancing(
 {
     fillDispProdVarIndicesAndMarginalCosts();
     getInitialCapacitiesForCandidates();
+    initializeOscillationRecords();
 }
 
 /// @brief Fill the DispatchableProduction variable indices and marginal cost for a given area
@@ -68,6 +69,7 @@ void ProblemGenerationForBalancing::getInitialCapacitiesForCandidates()
         problemManager->getProblems().begin()->second->get_ub(&candidate.currentCapacity,
                                                               dispProdVarIndices[0],
                                                               dispProdVarIndices[0]);
+        candidate.initialCapacity = candidate.currentCapacity;
     };
 
     for (auto& [areaName, areaSetting]: areasSettings)
@@ -175,9 +177,9 @@ void ProblemGenerationForBalancing::logCriterionAndAreaSettings(
     {
         std::stringstream ss;
         ss << "\n  Criterion state for area " << areaName << ": " << to_string(criterionState)
+           << " | max oscillation reached : " << std::boolalpha << maxOscillationReached(areaName)
            << "\n";
         ss << "  Average criteria value: " << avgAreaCriteria.at(areaName);
-
         const auto& areaSettings = areasSettings.at(areaName);
         if (criterionState != CriterionState::VALID)
         {
@@ -196,13 +198,17 @@ void ProblemGenerationForBalancing::logCriterionAndAreaSettings(
         for (const auto& [clusterName, investmentCandidate]: areaSettings.investmentCandidates)
         {
             ss << "  Invested capacity for candidate cluster " << clusterName << ": "
-               << investmentCandidate.currentCapacity << "\n";
+               << investmentCandidate.currentCapacity
+               << " | oscillation : " << oscillationRecords.at({areaName, clusterName}).first
+               << "\n";
         }
         for (const auto& [clusterName, decommissioningCandidate]:
              areaSettings.decommissioningCandidates)
         {
             ss << "  Decommissioned capacity for candidate cluster " << clusterName << ": "
-               << decommissioningCandidate.currentCapacity << "\n";
+               << decommissioningCandidate.currentCapacity
+               << " | oscillation : " << oscillationRecords.at({areaName, clusterName}).first
+               << "\n";
         }
 
         logger->display_message(ss.str(),
@@ -302,6 +308,17 @@ std::optional<CapacityAction> ProblemGenerationForBalancing::determineCapacityAc
                                    || previousAction == CapacityAction::DISINVESTMENT
                                    || (!previousAction.has_value() && isHigher);
 
+    if (maxOscillationReached(areaName))
+    {
+        // if no action is possible: logging a warning and carrying on
+        std::ostringstream oss;
+        oss << "No action in area " << areaName << " because max oscillation has been reached";
+        logger->display_message(oss.str(),
+                                LogUtils::LOGLEVEL::INFO,
+                                PROBLEM_GENERATION_LOGGER_CONTEXT);
+        return std::nullopt;
+    }
+
     if (isInvestmentCycle && isHigher)
     {
         if (areaSettings.isInvestmentPossible())
@@ -392,7 +409,8 @@ std::map<std::string, double> ProblemGenerationForBalancing::computeRentabilityF
                 rentability[clusterName] = std::numeric_limits<double>::min();
                 continue;
             }
-            else if (action == CapacityAction::DISINVESTMENT && candidate.currentCapacity == 0.0)
+            else if (action == CapacityAction::DISINVESTMENT
+                     && candidate.currentCapacity == candidate.initialCapacity)
             {
                 rentability[clusterName] = std::numeric_limits<double>::max();
                 continue;
@@ -400,13 +418,14 @@ std::map<std::string, double> ProblemGenerationForBalancing::computeRentabilityF
         }
         else
         {
-            if (action == CapacityAction::DECOMMISSIONING && candidate.currentCapacity == 0.0)
+            if (action == CapacityAction::DECOMMISSIONING
+                && candidate.currentCapacity == candidate.params->decommissioningPotential)
             {
                 rentability[clusterName] = std::numeric_limits<double>::max();
                 continue;
             }
             else if (action == CapacityAction::RECOMMISSIONING
-                     && candidate.currentCapacity == candidate.params->decommissioningPotential)
+                     && candidate.currentCapacity == candidate.initialCapacity)
             {
                 rentability[clusterName] = std::numeric_limits<double>::min();
                 continue;
@@ -572,19 +591,21 @@ double ProblemGenerationForBalancing::computeNewBoundAndUpdateCandidate(
         break;
     case CapacityAction::DISINVESTMENT:
         problem->get_ub(&newBound, varIndex, varIndex);
-        newBound = std::max(newBound - areaSettings.currentInvestmentIncrement, 0.0);
+        newBound = std::max(newBound - areaSettings.currentInvestmentIncrement,
+                            areaSettings.investmentCandidates.at(clusterName).initialCapacity);
         areaSettings.investmentCandidates.at(clusterName).currentCapacity = newBound;
         break;
     case CapacityAction::DECOMMISSIONING:
         problem->get_ub(&newBound, varIndex, varIndex);
-        newBound = std::max(newBound - areaSettings.currentDecommissioningIncrement, 0.0);
+        newBound = std::max(
+          newBound - areaSettings.currentDecommissioningIncrement,
+          areaSettings.decommissioningCandidates.at(clusterName).params->decommissioningPotential);
         areaSettings.decommissioningCandidates.at(clusterName).currentCapacity = newBound;
         break;
     case CapacityAction::RECOMMISSIONING:
         problem->get_ub(&newBound, varIndex, varIndex);
-        newBound = std::min(
-          newBound + areaSettings.currentDecommissioningIncrement,
-          areaSettings.decommissioningCandidates.at(clusterName).params->decommissioningPotential);
+        newBound = std::min(newBound + areaSettings.currentDecommissioningIncrement,
+                            areaSettings.decommissioningCandidates.at(clusterName).initialCapacity);
         areaSettings.decommissioningCandidates.at(clusterName).currentCapacity = newBound;
         break;
     }
@@ -645,8 +666,13 @@ std::shared_ptr<ProblemManager> ProblemGenerationForBalancing::updateProblems(
     {
         return problemManager;
     }
-
-    for (const auto& [areaCluster, action]: findAreaClustersToModify(simuValues))
+    const auto& areaClusterToModify = findAreaClustersToModify(simuValues);
+    // If no action available on all areas then the system is blocked
+    if (areaClusterToModify.empty())
+    {
+        blocked = true;
+    }
+    for (const auto& [areaCluster, action]: areaClusterToModify)
     {
         const double* candidateCapacity;
         switch (action)
@@ -666,6 +692,7 @@ std::shared_ptr<ProblemManager> ProblemGenerationForBalancing::updateProblems(
         }
         double previousCandidateCapacity = *candidateCapacity;
         applyActionToCluster(areaCluster, action);
+        updateRecords(areaCluster, action);
         logger->display_message((std::stringstream()
                                  << " action: " << to_string(action) << " area: "
                                  << areaCluster.first << " cluster: " << areaCluster.second
@@ -689,4 +716,61 @@ bool ProblemGenerationForBalancing::isBalanced(
            && std::ranges::all_of(areaCritState | std::views::values,
                                   [](const auto& critState)
                                   { return critState == CriterionState::VALID; });
+}
+
+/// @brief Check if the system can perform any action
+/// @return true if the system is blocked, false otherwise
+bool ProblemGenerationForBalancing::isBlocked() const
+{
+    return blocked;
+}
+
+/// @brief Intialize oscillation records
+/// @param areaSettings Data of the areas
+void ProblemGenerationForBalancing::initializeOscillationRecords()
+{
+    for (const auto& [areaName, areaSetting]: areasSettings)
+    {
+        for (const auto& [clusterName, investmentCandidate]: areaSetting.investmentCandidates)
+        {
+            oscillationRecords[{areaName, clusterName}] = {0, std::nullopt};
+        }
+        for (const auto& [clusterName, decommissioningCandidate]:
+             areaSetting.decommissioningCandidates)
+        {
+            oscillationRecords[{areaName, clusterName}] = {0, std::nullopt};
+        }
+    }
+}
+
+/// @brief Update records for an area cluster
+/// @param areaCluster Area cluster to update
+/// @param areaCluster Action apply to the area cluster
+void ProblemGenerationForBalancing::updateRecords(const AreaCluster& areaCluster,
+                                                  CapacityAction action)
+{
+    auto& oscillationStatus = oscillationRecords[areaCluster];
+    if (oscillationStatus.second.has_value() && action != oscillationStatus.second)
+    {
+        oscillationStatus.first += 1;
+    }
+    oscillationStatus.second = action;
+}
+
+/// @brief Check if an area reachs max oscillation through one of their candidate
+/// @param areaName The name of area to check
+/// @return true if the area has reached mas oscillation, false otherwise
+bool ProblemGenerationForBalancing::maxOscillationReached(const std::string& areaName) const
+{
+    bool maxOscillationReached = false;
+    for (const auto& [areaCluster, oscillationStatus]: oscillationRecords)
+    {
+        if (areaCluster.first == areaName
+            && oscillationStatus.first >= areasSettings[areaName].maxOscillation)
+        {
+            maxOscillationReached = true;
+            continue;
+        }
+    }
+    return maxOscillationReached;
 }
