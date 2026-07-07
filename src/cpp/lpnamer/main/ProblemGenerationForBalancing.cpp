@@ -131,10 +131,44 @@ void ProblemGenerationForBalancing::fillDispProdVarIndicesAndMarginalCosts()
     }
 }
 
+/// @brief Compute the average area criteria values from the simulation values
+/// @param simuValues The simulation values to compute the average from
+/// @return The average area criteria values
+std::map<std::string, double> computeAverageAreaCriteriaValues(
+  const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues)
+{
+    std::set<unsigned int> years;
+    std::map<std::string, double> areaCriteria;
+
+    for (const auto& [id, output]: simuValues)
+    {
+        years.insert(id.year);
+        for (const auto& [area, value]: output.areaCriterionValues)
+        {
+            areaCriteria[area] += value;
+        }
+    }
+
+    const double numYears = static_cast<double>(years.size());
+    for (auto& sum: areaCriteria | std::views::values)
+    {
+        sum /= numYears;
+    }
+
+    return areaCriteria;
+}
+
 void ProblemGenerationForBalancing::logCriterionAndAreaSettings(
   const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues) const
 {
-    const auto areaCritState = areaCriteriaState(simuValues);
+    std::map<std::string, CriterionState> areaCritState;
+    // the average criteria values are needed for logging purposes
+    const auto avgAreaCriteria = computeAverageAreaCriteriaValues(simuValues);
+    for (const auto& [area, value]: avgAreaCriteria)
+    {
+        areaCritState[area] = criterionState(areasSettings[area], value);
+    }
+
     // For each area, log the criterion state and the DispatchableProduction variable values for the
     // clusters of the area
     for (const auto& [areaName, criterionState]: areaCritState)
@@ -142,17 +176,32 @@ void ProblemGenerationForBalancing::logCriterionAndAreaSettings(
         std::stringstream ss;
         ss << "\n  Criterion state for area " << areaName << ": " << to_string(criterionState)
            << "\n";
+        ss << "  Average criteria value: " << avgAreaCriteria.at(areaName);
 
         const auto& areaSettings = areasSettings.at(areaName);
+        if (criterionState != CriterionState::VALID)
+        {
+            double threshold;
+            if (criterionState == CriterionState::HIGHER)
+            {
+                ss << " (which is above the threshold of " << higherThreshold(areaSettings) << ")";
+            }
+            else
+            {
+                ss << " (which is below the threshold of " << lowerThreshold(areaSettings) << ")";
+            }
+        }
+        ss << "\n";
+
         for (const auto& [clusterName, investmentCandidate]: areaSettings.investmentCandidates)
         {
-            ss << "  Capacity of investment candidate cluster " << clusterName << " : "
+            ss << "  Invested capacity for candidate cluster " << clusterName << ": "
                << investmentCandidate.currentCapacity << "\n";
         }
         for (const auto& [clusterName, decommissioningCandidate]:
              areaSettings.decommissioningCandidates)
         {
-            ss << "  Capacity of decommissioning candidate cluster " << clusterName << " : "
+            ss << "  Decommissioned capacity for candidate cluster " << clusterName << ": "
                << decommissioningCandidate.currentCapacity << "\n";
         }
 
@@ -302,7 +351,7 @@ std::optional<CapacityAction> ProblemGenerationForBalancing::determineCapacityAc
     std::ostringstream oss;
     oss << "Area " << areaName << " is not balanced but no modification is possible\n"
         << " Current criterion state: " << to_string(currentState) << "\n"
-        << "Previous action: "
+        << " Previous action: "
         << (previousAction.has_value() ? to_string(previousAction.value()) : "None") << "\n";
     logger->display_message(oss.str(),
                             LogUtils::LOGLEVEL::WARNING,
@@ -465,14 +514,14 @@ void ProblemGenerationForBalancing::updateOldCriterionState(
 /// @param areaSettings The area investment parameters to use for the computation
 /// @param value The criterion value to use for the computation
 /// @return The criterion state computed
-CriterionState ProblemGenerationForBalancing::criterionState(AreaSettings& areaSettings,
+CriterionState ProblemGenerationForBalancing::criterionState(const AreaSettings& areaSettings,
                                                              double value) const
 {
-    if (value < areaSettings.reliabilityStandard - areaSettings.reliabilityStandardDeadBandDown)
+    if (value < lowerThreshold(areaSettings))
     {
         return CriterionState::LOWER;
     }
-    else if (value > areaSettings.reliabilityStandard + areaSettings.reliabilityStandardDeadBandUp)
+    else if (value > higherThreshold(areaSettings))
     {
         return CriterionState::HIGHER;
     }
@@ -480,33 +529,6 @@ CriterionState ProblemGenerationForBalancing::criterionState(AreaSettings& areaS
     {
         return CriterionState::VALID;
     }
-}
-
-/// @brief Compute the average area criteria values from the simulation values
-/// @param simuValues The simulation values to compute the average from
-/// @return The average area criteria values
-std::map<std::string, double> computeAverageAreaCriteriaValues(
-  const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues)
-{
-    std::set<unsigned int> years;
-    std::map<std::string, double> areaCriteria;
-
-    for (const auto& [id, output]: simuValues)
-    {
-        years.insert(id.year);
-        for (const auto& [area, value]: output.areaCriterionValues)
-        {
-            areaCriteria[area] += value;
-        }
-    }
-
-    const double numYears = static_cast<double>(years.size());
-    for (auto& sum: areaCriteria | std::views::values)
-    {
-        sum /= numYears;
-    }
-
-    return areaCriteria;
 }
 
 /// @brief Compute the criterion states for each area

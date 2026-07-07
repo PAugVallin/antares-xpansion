@@ -63,12 +63,22 @@ private:
     std::map<AreaCluster, BalancingData> balancingData;
     std::map<std::string, CapacityAction> lastActionForArea;
 
+    double lowerThreshold(const AreaSettings& areaSettings) const
+    {
+        return areaSettings.reliabilityStandard - areaSettings.reliabilityStandardDeadBandDown;
+    }
+
+    double higherThreshold(const AreaSettings& areaSettings) const
+    {
+        return areaSettings.reliabilityStandard + areaSettings.reliabilityStandardDeadBandUp;
+    }
+
     void fillDispProdVarIndicesAndMarginalCosts();
     void getInitialCapacitiesForCandidates();
 
     std::map<AreaCluster, CapacityAction> findAreaClustersToModify(
       const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues);
-    CriterionState criterionState(AreaSettings& areaSettings, double value) const;
+    CriterionState criterionState(const AreaSettings& areaSettings, double value) const;
     std::map<std::string, CriterionState> areaCriteriaState(
       const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues) const;
     void updateAreaSettingsIncrement(const std::map<std::string, CriterionState>& areaCritState);
