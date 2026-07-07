@@ -143,8 +143,8 @@ void ProblemGenerationForBalancing::logCriterionAndAreaSettings(
     {
         std::stringstream ss;
         ss << "\n  Criterion state for area " << areaName << ": " << to_string(criterionState)
-           << " | max oscillation reached : " << std::boolalpha
-           << areasSettings.at(areaName).maxOscillationReached << "\n";
+           << " | max oscillation reached : " << std::boolalpha << maxOscillationReached(areaName)
+           << "\n";
         const auto& areaSettings = areasSettings.at(areaName);
         for (const auto& [clusterName, investmentCandidate]: areaSettings.investmentCandidates)
         {
@@ -213,7 +213,7 @@ std::map<AreaCluster, CapacityAction> ProblemGenerationForBalancing::findAreaClu
         const CriterionState current = areaCritState.at(areaName);
         const CriterionState previous = areaSettings.oldCriterionState;
 
-        if (current == CriterionState::VALID || areaSettings.maxOscillationReached)
+        if (current == CriterionState::VALID)
         {
             continue;
         }
@@ -644,8 +644,13 @@ std::shared_ptr<ProblemManager> ProblemGenerationForBalancing::updateProblems(
     {
         return problemManager;
     }
-
-    for (const auto& [areaCluster, action]: findAreaClustersToModify(simuValues))
+    const auto& areaClusterToModify = findAreaClustersToModify(simuValues);
+    // If no action available on all areas then the system is blocked
+    if (areaClusterToModify.empty())
+    {
+        blocked = true;
+    }
+    for (const auto& [areaCluster, action]: areaClusterToModify)
     {
         const double* candidateCapacity;
         switch (action)
@@ -689,6 +694,13 @@ bool ProblemGenerationForBalancing::isBalanced(
            && std::ranges::all_of(areaCritState | std::views::values,
                                   [](const auto& critState)
                                   { return critState == CriterionState::VALID; });
+}
+
+/// @brief Check if the system can perform any action
+/// @return true if the system is blocked, false otherwise
+bool ProblemGenerationForBalancing::isBlocked() const
+{
+    return blocked;
 }
 
 /// @brief Intialize oscillation records
@@ -738,6 +750,5 @@ bool ProblemGenerationForBalancing::maxOscillationReached(const std::string& are
             continue;
         }
     }
-    areasSettings[areaName].maxOscillationReached = maxOscillationReached;
     return maxOscillationReached;
 }

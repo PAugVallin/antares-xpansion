@@ -116,7 +116,7 @@ int main(int argc, char** argv)
                                 LogUtils::LOGLEVEL::INFO,
                                 logger->CONTEXT);
         pbg.logCriterionAndAreaSettings(res);
-        while (!pbg.isBalanced(res) && iteration < max_iterations)
+        while (!pbg.isBalanced(res) && !pbg.isBlocked() && iteration < max_iterations)
         {
             iteration++;
             auto startIteration = std::chrono::system_clock::now();

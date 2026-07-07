@@ -249,7 +249,6 @@ void BalancingParser::parseAreasSettings()
         area.investmentIncrement = areaData["investment_increment"].as<double>();
         area.currentInvestmentIncrement = area.investmentIncrement;
         area.maxOscillation = areaData["max_oscillation"].as<int>();
-        area.maxOscillationReached = false;
 
         area.reliabilityStandardDeadBandUp = areaData["reliability_standard_dead_band_up"]
                                                ? areaData["reliability_standard_dead_band_up"]

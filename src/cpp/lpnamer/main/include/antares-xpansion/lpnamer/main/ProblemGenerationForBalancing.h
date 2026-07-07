@@ -54,6 +54,7 @@ public:
     std::shared_ptr<ProblemManager> updateProblems(
       const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues);
     bool isBalanced(const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues) const;
+    bool isBlocked() const;
     void logCriterionAndAreaSettings(
       const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues) const;
     void saveCriterionAndAreaSettingsToCSV(
@@ -61,6 +62,7 @@ public:
       const std::filesystem::path& outputPath) const;
 
 private:
+    bool blocked;
     std::map<std::string, AreaSettings>& areasSettings;
     std::map<AreaCluster, BalancingData> balancingData;
     std::map<AreaCluster, OscillationStatus> oscillationRecords;
