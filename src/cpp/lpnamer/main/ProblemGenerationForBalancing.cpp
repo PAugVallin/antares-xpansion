@@ -18,13 +18,16 @@ ProblemGenerationForBalancing::ProblemGenerationForBalancing(
   ConfigurationManager::ConfigDirectories directories,
   std::map<std::string, AreaSettings>& areasSettings,
   Logger logger,
-  std::shared_ptr<ProblemManager> problemManager):
+  std::shared_ptr<ProblemManager> problemManager,
+  std::filesystem::path iterationsLogFileName):
     ProblemGenerationOptimSimu(directories, logger, problemManager),
-    areasSettings(areasSettings)
+    areasSettings(areasSettings),
+    iterationsLogFileName(iterationsLogFileName)
 {
     fillDispProdVarIndicesAndMarginalCosts();
     getInitialCapacitiesForCandidates();
     initializeOscillationRecords();
+    initializeIterativeLogCSV();
 }
 
 /// @brief Fill the DispatchableProduction variable indices and marginal cost for a given area
@@ -70,6 +73,7 @@ void ProblemGenerationForBalancing::getInitialCapacitiesForCandidates()
                                                               dispProdVarIndices[0],
                                                               dispProdVarIndices[0]);
         candidate.initialCapacity = candidate.currentCapacity;
+        candidate.previousCapacity = candidate.initialCapacity;
     };
 
     for (auto& [areaName, areaSetting]: areasSettings)
@@ -214,6 +218,63 @@ void ProblemGenerationForBalancing::logCriterionAndAreaSettings(
         logger->display_message(ss.str(),
                                 LogUtils::LOGLEVEL::INFO,
                                 PROBLEM_GENERATION_LOGGER_CONTEXT);
+    }
+}
+
+void ProblemGenerationForBalancing::initializeIterativeLogCSV() const
+{
+    std::ofstream file(iterationsLogFileName);
+    if (!file.is_open())
+    {
+        throw std::runtime_error("Failed to open iterative log file for writing: "
+                                 + iterationsLogFileName.string());
+    }
+    // header
+    file << "iteration,zone,criteria,action,cluster candidate,capacity change\n";
+}
+
+void ProblemGenerationForBalancing::saveCriterionAndAreaSettingsToIterativeLogCSV(
+  int iteration,
+  const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues) const
+{
+    std::ofstream file(iterationsLogFileName, std::ios_base::app);
+    if (!file.is_open())
+    {
+        throw std::runtime_error("Failed to open iterative log file for writing: "
+                                 + iterationsLogFileName.string());
+    }
+    const auto areaCritState = areaCriteriaState(simuValues);
+    std::string action;
+    auto writeLineToFile = [&]<typename T>(const std::string& areaName,
+                                           const std::string& clusterName,
+                                           const CriterionState& criterionState,
+                                           const Candidate<T>& candidate)
+    {
+        // only writing the line if capacity has been modified, i.e. an action has been
+        // performed
+        if (candidate.currentCapacity != candidate.previousCapacity)
+        {
+            action = (lastActionForArea.find(areaName) != lastActionForArea.end())
+                       ? to_string(lastActionForArea.at(areaName))
+                       : "NO ACTION";
+            file << iteration << "," << areaName << "," << to_string(criterionState) << ","
+                 << action << "," << clusterName << ","
+                 << candidate.currentCapacity - candidate.previousCapacity << "\n";
+        }
+    };
+
+    for (const auto& [areaName, criterionState]: areaCritState)
+    {
+        const auto& areaSettings = areasSettings.at(areaName);
+        for (const auto& [clusterName, investmentCandidate]: areaSettings.investmentCandidates)
+        {
+            writeLineToFile(areaName, clusterName, criterionState, investmentCandidate);
+        }
+        for (const auto& [clusterName, decommissioningCandidate]:
+             areaSettings.decommissioningCandidates)
+        {
+            writeLineToFile(areaName, clusterName, criterionState, decommissioningCandidate);
+        }
     }
 }
 
@@ -666,6 +727,20 @@ std::shared_ptr<ProblemManager> ProblemGenerationForBalancing::updateProblems(
     {
         return problemManager;
     }
+
+    // updating previous capacity
+    for (auto& [areaName, areaSettings]: areasSettings)
+    {
+        for (auto& candidate: areaSettings.investmentCandidates | std::views::values)
+        {
+            candidate.previousCapacity = candidate.currentCapacity;
+        }
+        for (auto& candidate: areaSettings.decommissioningCandidates | std::views::values)
+        {
+            candidate.previousCapacity = candidate.currentCapacity;
+        }
+    }
+
     const auto& areaClusterToModify = findAreaClustersToModify(simuValues);
     // If no action available on all areas then the system is blocked
     if (areaClusterToModify.empty())

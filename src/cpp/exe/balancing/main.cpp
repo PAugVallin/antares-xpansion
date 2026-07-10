@@ -78,9 +78,15 @@ int main(int argc, char** argv)
             std::filesystem::create_directories(directories.simulation_dir);
         }
 
-        std::string logSubFolder = "balancing_logs";
-        std::string logFilename = "balancing_log.txt";
+        const std::string logSubFolder = "balancing_logs";
+        const std::string logFilename = "balancing_log.txt";
         std::filesystem::create_directories(directories.simulation_dir / logSubFolder);
+        // logs containing all values for every iteration
+        const std::filesystem::path iterationsLogFileName = directories.simulation_dir
+                                                            / "iterations_values_log.csv";
+        // logs containing all values reached at the end of the simulation
+        const std::filesystem::path finalValuesLogFileName = directories.simulation_dir
+                                                             / "final_values_log.txt";
 
         std::shared_ptr<MultithreadTBBLogger> logger = std::make_shared<MultithreadTBBLogger>(
           directories.simulation_dir / logSubFolder,
@@ -97,7 +103,8 @@ int main(int argc, char** argv)
         ProblemGenerationForBalancing pbg(directories,
                                           balParser.areaSettings,
                                           logger,
-                                          problemManager);
+                                          problemManager,
+                                          iterationsLogFileName);
         auto endProblemGeneration = std::chrono::system_clock::now();
         logger->display_message("Problems generated", LogUtils::LOGLEVEL::INFO, logger->CONTEXT);
         std::chrono::duration<double> elapsed_seconds = endProblemGeneration
@@ -140,6 +147,7 @@ int main(int argc, char** argv)
                                       + formatDuration(elapsed_iteration_seconds),
                                     LogUtils::LOGLEVEL::INFO,
                                     logger->CONTEXT);
+            pbg.saveCriterionAndAreaSettingsToIterativeLogCSV(iteration, res);
         };
         pbg.saveCriterionAndAreaSettingsToCSV(res,
                                               directories.simulation_dir / "balancing_results.csv");

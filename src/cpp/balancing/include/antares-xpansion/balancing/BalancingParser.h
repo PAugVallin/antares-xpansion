@@ -47,6 +47,7 @@ struct Candidate
 {
     std::shared_ptr<Type> params;
     double currentCapacity;
+    double previousCapacity;
     double initialCapacity;
 };
 

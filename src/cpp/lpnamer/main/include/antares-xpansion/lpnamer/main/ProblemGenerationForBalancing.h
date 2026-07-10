@@ -49,7 +49,8 @@ public:
     explicit ProblemGenerationForBalancing(ConfigurationManager::ConfigDirectories directories,
                                            std::map<std::string, AreaSettings>& areasSettings,
                                            Logger logger,
-                                           std::shared_ptr<ProblemManager> problemManager);
+                                           std::shared_ptr<ProblemManager> problemManager,
+                                           std::filesystem::path iterationsLogFileName);
     virtual ~ProblemGenerationForBalancing() = default;
     std::shared_ptr<ProblemManager> updateProblems(
       const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues);
@@ -60,6 +61,9 @@ public:
     void saveCriterionAndAreaSettingsToCSV(
       const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues,
       const std::filesystem::path& outputPath) const;
+    void saveCriterionAndAreaSettingsToIterativeLogCSV(
+      int iteration,
+      const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues) const;
 
 private:
     bool blocked;
@@ -67,6 +71,7 @@ private:
     std::map<AreaCluster, BalancingData> balancingData;
     std::map<AreaCluster, OscillationStatus> oscillationRecords;
     std::map<std::string, CapacityAction> lastActionForArea;
+    std::filesystem::path iterationsLogFileName;
 
     double lowerThreshold(const AreaSettings& areaSettings) const
     {
@@ -78,6 +83,7 @@ private:
         return areaSettings.reliabilityStandard + areaSettings.reliabilityStandardDeadBandUp;
     }
 
+    void initializeIterativeLogCSV() const;
     void fillDispProdVarIndicesAndMarginalCosts();
     void getInitialCapacitiesForCandidates();
     void initializeOscillationRecords();
