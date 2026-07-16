@@ -447,7 +447,8 @@ static double extraCost(const Candidate<CandidateType>& candidate)
     }
     else
     {
-        return candidate.currentCapacity * candidate.params->fixedOmCosts;
+        return candidate.currentCapacity
+               * (candidate.params->decommissioningCost + candidate.params->fixedOmCosts);
     }
 }
 
@@ -492,13 +493,22 @@ std::map<std::string, double> ProblemGenerationForBalancing::computeRentabilityF
                 continue;
             }
         }
+        double production(0.0);
+        double marginalCost = balancingData.at({areaName, clusterName}).marginalCost;
         for (const auto& [pbId, pbOutput]: simuValues)
         {
-            value += std::accumulate(pbOutput.areaPrices.at(areaName).begin(),
-                                     pbOutput.areaPrices.at(areaName).end(),
-                                     0.0)
-                       * candidate.currentCapacity
-                     - balancingData.at({areaName, clusterName}).marginalCost;
+            const auto& dispProdVarIndices = balancingData.at({areaName, clusterName})
+                                               .dispProdVarIndices;
+            // production is fetched from values resulting of the optimization
+            std::shared_ptr<Problem> problem = problemManager->getProblemFromId(pbId);
+            std::vector<double> solution(problem->get_ncols());
+            problem->get_lp_sol(solution.data(), NULL, NULL);
+
+            for (size_t hour = 0; hour < NUMBER_OF_HOURS_PER_WEEK; ++hour)
+            {
+                production = solution.at(dispProdVarIndices.at(hour));
+                value += (pbOutput.areaPrices.at(areaName).at(hour) - marginalCost) * production;
+            }
         }
         value -= extraCost(candidate);
         rentability[clusterName] = value;

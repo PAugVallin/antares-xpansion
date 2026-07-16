@@ -39,6 +39,7 @@ struct Investment
 struct Decommissioning
 {
     double decommissioningPotential;
+    double decommissioningCost;
     double fixedOmCosts;
 };
 

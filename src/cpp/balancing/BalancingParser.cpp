@@ -146,10 +146,12 @@ void BalancingParser::parseDecommissioningCandidatesTypes()
 
         requireField(typeData, "fixed_om_costs", context);
         requireField(typeData, "decommissioning_potential", context);
+        requireField(typeData, "decommissioning_cost", context);
 
         auto type = std::make_shared<Decommissioning>();
         type->fixedOmCosts = typeNode.second["fixed_om_costs"].as<double>();
         type->decommissioningPotential = typeData["decommissioning_potential"].as<double>();
+        type->decommissioningCost = typeData["decommissioning_cost"].as<double>();
         decommissioningCandidatesTypes[typeName] = std::move(type);
     }
 }
