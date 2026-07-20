@@ -167,28 +167,20 @@ std::map<std::string, double> computeAverageAreaCriteriaValues(
 void ProblemGenerationForBalancing::logCriterionAndAreaSettings(
   const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues) const
 {
-    std::map<std::string, CriterionState> areaCritState;
-    // the average criteria values are needed for logging purposes
-    const auto avgAreaCriteria = computeAverageAreaCriteriaValues(simuValues);
-    for (const auto& [area, value]: avgAreaCriteria)
-    {
-        areaCritState[area] = criterionState(areasSettings[area], value);
-    }
-
     // For each area, log the criterion state and the DispatchableProduction variable values for the
     // clusters of the area
-    for (const auto& [areaName, criterionState]: areaCritState)
+    for (const auto& [areaName, criterionData]: currentAreaCriteriaData)
     {
         std::stringstream ss;
-        ss << "\n  Criterion state for area " << areaName << ": " << to_string(criterionState)
+        ss << "\n  Criterion state for area " << areaName << ": " << to_string(criterionData.second)
            << " | max oscillation reached : " << std::boolalpha << maxOscillationReached(areaName)
            << "\n";
-        ss << "  Average criteria value: " << avgAreaCriteria.at(areaName);
+        ss << "  Average criteria value: " << criterionData.first;
         const auto& areaSettings = areasSettings.at(areaName);
-        if (criterionState != CriterionState::VALID)
+        if (criterionData.second != CriterionState::VALID)
         {
             double threshold;
-            if (criterionState == CriterionState::HIGHER)
+            if (criterionData.second == CriterionState::HIGHER)
             {
                 ss << " (which is above the threshold of " << higherThreshold(areaSettings) << ")";
             }
@@ -243,7 +235,6 @@ void ProblemGenerationForBalancing::saveCriterionAndAreaSettingsToIterativeLogCS
         throw std::runtime_error("Failed to open iterative log file for writing: "
                                  + iterationsLogFileName.string());
     }
-    const auto areaCritState = areaCriteriaState(simuValues);
     std::string action;
     auto writeLineToFile = [&]<typename T>(const std::string& areaName,
                                            const std::string& clusterName,
@@ -252,28 +243,29 @@ void ProblemGenerationForBalancing::saveCriterionAndAreaSettingsToIterativeLogCS
     {
         // only writing the line if capacity has been modified, i.e. an action has been
         // performed
+        action = "NO ACTION";
         if (candidate.currentCapacity != candidate.previousCapacity)
         {
             action = (lastActionForArea.find(areaName) != lastActionForArea.end())
                        ? to_string(lastActionForArea.at(areaName))
                        : "NO ACTION";
-            file << iteration << "," << areaName << "," << to_string(criterionState) << ","
-                 << action << "," << clusterName << ","
-                 << candidate.currentCapacity - candidate.previousCapacity << "\n";
         }
+        file << iteration << "," << areaName << "," << to_string(criterionState) << "," << action
+             << "," << clusterName << "," << candidate.currentCapacity - candidate.previousCapacity
+             << "\n";
     };
 
-    for (const auto& [areaName, criterionState]: areaCritState)
+    for (const auto& [areaName, criterionData]: currentAreaCriteriaData)
     {
         const auto& areaSettings = areasSettings.at(areaName);
         for (const auto& [clusterName, investmentCandidate]: areaSettings.investmentCandidates)
         {
-            writeLineToFile(areaName, clusterName, criterionState, investmentCandidate);
+            writeLineToFile(areaName, clusterName, criterionData.second, investmentCandidate);
         }
         for (const auto& [clusterName, decommissioningCandidate]:
              areaSettings.decommissioningCandidates)
         {
-            writeLineToFile(areaName, clusterName, criterionState, decommissioningCandidate);
+            writeLineToFile(areaName, clusterName, criterionData.second, decommissioningCandidate);
         }
     }
 }
@@ -290,8 +282,7 @@ void ProblemGenerationForBalancing::saveCriterionAndAreaSettingsToCSV(
 
     file << "areaName,candidateName,capacity\n";
 
-    const auto areaCritState = areaCriteriaState(simuValues);
-    for (const auto& [areaName, criterionState]: areaCritState)
+    for (const auto& [areaName, criterionState]: currentAreaCriteriaData)
     {
         const auto& areaSettings = areasSettings.at(areaName);
         for (const auto& [clusterName, investmentCandidate]: areaSettings.investmentCandidates)
@@ -315,12 +306,11 @@ std::map<AreaCluster, CapacityAction> ProblemGenerationForBalancing::findAreaClu
   const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues)
 {
     std::map<AreaCluster, CapacityAction> areaClusterToModify;
-    const auto areaCritState = areaCriteriaState(simuValues);
-    updateAreaSettingsIncrement(areaCritState);
+    updateAreaSettingsIncrement(currentAreaCriteriaData);
 
     for (const auto& [areaName, areaSettings]: areasSettings)
     {
-        const CriterionState current = areaCritState.at(areaName);
+        const CriterionState current = currentAreaCriteriaData.at(areaName).second;
         const CriterionState previous = areaSettings.oldCriterionState;
 
         if (current == CriterionState::VALID)
@@ -342,7 +332,7 @@ std::map<AreaCluster, CapacityAction> ProblemGenerationForBalancing::findAreaClu
         }
     }
 
-    updateOldCriterionState(areaCritState);
+    updateOldCriterionState();
     return areaClusterToModify;
 }
 
@@ -567,15 +557,15 @@ std::string ProblemGenerationForBalancing::getBestCluster(
 }
 
 /// @brief Update the the area investment increments based on the criterion states
-/// @param areaCritState The criterion states to use for the update
+/// @param areaCritData The criterion data containing states to use for the update
 void ProblemGenerationForBalancing::updateAreaSettingsIncrement(
-  const std::map<std::string, CriterionState>& areaCritState)
+  const std::map<std::string, AreaCriterionData>& areaCritData)
 {
     for (auto& [area, areaSettings]: areasSettings)
     {
-        if (areaSettings.oldCriterionState != areaCritState.at(area)
+        if (areaSettings.oldCriterionState != areaCritData.at(area).second
             && areaSettings.oldCriterionState != CriterionState::UNINITIALIZED
-            && areaCritState.at(area) != CriterionState::VALID)
+            && areaCritData.at(area).second != CriterionState::VALID)
         {
             areaSettings.currentInvestmentIncrement = std::max(
               areaSettings.investmentIncrement * 0.1,
@@ -590,12 +580,11 @@ void ProblemGenerationForBalancing::updateAreaSettingsIncrement(
 
 /// @brief Update the old criterion states with the current ones
 /// @param areaCritState The current criterion states to set as old criterion states
-void ProblemGenerationForBalancing::updateOldCriterionState(
-  const std::map<std::string, CriterionState>& areaCritState)
+void ProblemGenerationForBalancing::updateOldCriterionState()
 {
     for (auto& [area, areaSettings]: areasSettings)
     {
-        areaSettings.oldCriterionState = areaCritState.at(area);
+        areaSettings.oldCriterionState = currentAreaCriteriaData.at(area).second;
     }
 }
 
@@ -624,16 +613,23 @@ CriterionState ProblemGenerationForBalancing::criterionState(const AreaSettings&
 /// @brief Compute the criterion states for each area
 /// @param simuValues The simulation values to use for the computation
 /// @return The criterion state for each area
-std::map<std::string, CriterionState> ProblemGenerationForBalancing::areaCriteriaState(
+std::map<std::string, AreaCriterionData> ProblemGenerationForBalancing::computeAreaCriteriaData(
   const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues) const
 {
-    std::map<std::string, CriterionState> areaCriteriaState;
+    std::map<std::string, AreaCriterionData> areaCriteriaState;
     const auto avgAreaCriteria = computeAverageAreaCriteriaValues(simuValues);
     for (const auto& [area, value]: avgAreaCriteria)
     {
-        areaCriteriaState[area] = criterionState(areasSettings[area], value);
+        areaCriteriaState[area] = {value, criterionState(areasSettings[area], value)};
     }
     return areaCriteriaState;
+}
+
+/// @brief Update current area criteria data
+void ProblemGenerationForBalancing::updateAreaCriteriaData(
+  const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues)
+{
+    currentAreaCriteriaData = computeAreaCriteriaData(simuValues);
 }
 
 /// @brief Compute the new bound for a variable and update the candidate's current value
@@ -793,14 +789,12 @@ std::shared_ptr<ProblemManager> ProblemGenerationForBalancing::updateProblems(
 /// @brief Check if the system is balanced from the simulation values
 /// @param simuValues The simulation values to use for the computation
 /// @return true if the system is balanced, false otherwise
-bool ProblemGenerationForBalancing::isBalanced(
-  const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues) const
+bool ProblemGenerationForBalancing::isBalanced() const
 {
-    const auto areaCritState = areaCriteriaState(simuValues);
-    return !areaCritState.empty()
-           && std::ranges::all_of(areaCritState | std::views::values,
-                                  [](const auto& critState)
-                                  { return critState == CriterionState::VALID; });
+    return !currentAreaCriteriaData.empty()
+           && std::ranges::all_of(currentAreaCriteriaData | std::views::values,
+                                  [](const auto& critData)
+                                  { return critData.second == CriterionState::VALID; });
 }
 
 /// @brief Check if the system can perform any action

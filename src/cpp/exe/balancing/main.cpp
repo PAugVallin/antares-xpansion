@@ -123,7 +123,7 @@ int main(int argc, char** argv)
                                 LogUtils::LOGLEVEL::INFO,
                                 logger->CONTEXT);
         pbg.logCriterionAndAreaSettings(res);
-        while (!pbg.isBalanced(res) && !pbg.isBlocked() && iteration < max_iterations)
+        while (!pbg.isBalanced() && !pbg.isBlocked() && iteration < max_iterations)
         {
             iteration++;
             auto startIteration = std::chrono::system_clock::now();
@@ -140,14 +140,15 @@ int main(int argc, char** argv)
                                         directories.simulation_dir,
                                         nbThreads)
                     .ComputeCriterionAndPrice();
-            pbg.logCriterionAndAreaSettings(res);
             auto endIteration = std::chrono::system_clock::now();
+            pbg.logCriterionAndAreaSettings(res);
             std::chrono::duration<double> elapsed_iteration_seconds = endIteration - startIteration;
             logger->display_message("Elapsed time for iteration " + std::to_string(iteration) + ": "
                                       + formatDuration(elapsed_iteration_seconds),
                                     LogUtils::LOGLEVEL::INFO,
                                     logger->CONTEXT);
             pbg.saveCriterionAndAreaSettingsToIterativeLogCSV(iteration, res);
+            pbg.updateAreaCriteriaData(res);
         };
         pbg.saveCriterionAndAreaSettingsToCSV(res,
                                               directories.simulation_dir / "balancing_results.csv");
@@ -158,8 +159,8 @@ int main(int argc, char** argv)
                                   + " iterations. In " + formatDuration(elapsed_update_seconds),
                                 LogUtils::LOGLEVEL::INFO,
                                 logger->CONTEXT);
-        logger->display_message(pbg.isBalanced(res) ? "The system is balanced."
-                                                    : "The system is not balanced.",
+        logger->display_message(pbg.isBalanced() ? "The system is balanced."
+                                                 : "The system is not balanced.",
                                 LogUtils::LOGLEVEL::INFO,
                                 logger->CONTEXT);
 
