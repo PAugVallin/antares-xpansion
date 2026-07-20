@@ -66,7 +66,7 @@ public:
       const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues) const;
 
 private:
-    bool blocked;
+    bool blocked = false;
     std::map<std::string, AreaSettings>& areasSettings;
     std::map<AreaCluster, BalancingData> balancingData;
     std::map<AreaCluster, OscillationStatus> oscillationRecords;
