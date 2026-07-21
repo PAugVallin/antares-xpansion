@@ -1,0 +1,49 @@
+iteration,zone,criteria,action,cluster candidate,capacity change
+1,area1,HIGHER,INVESTMENT,invest_peak,500
+1,area1,HIGHER,NO ACTION,invest_semibase1,0
+1,area2,HIGHER,INVESTMENT,invest_peak2,500
+1,area2,HIGHER,NO ACTION,invest_semibase,0
+2,area1,HIGHER,NO ACTION,invest_peak,0
+2,area1,HIGHER,INVESTMENT,invest_semibase1,500
+2,area2,HIGHER,NO ACTION,invest_peak2,0
+2,area2,HIGHER,INVESTMENT,invest_semibase,500
+3,area1,HIGHER,INVESTMENT,invest_peak,500
+3,area1,HIGHER,NO ACTION,invest_semibase1,0
+3,area2,HIGHER,INVESTMENT,invest_peak2,500
+3,area2,HIGHER,NO ACTION,invest_semibase,0
+4,area1,HIGHER,NO ACTION,invest_peak,0
+4,area1,HIGHER,INVESTMENT,invest_semibase1,500
+4,area2,HIGHER,NO ACTION,invest_peak2,0
+4,area2,HIGHER,INVESTMENT,invest_semibase,500
+5,area1,VALID,NO ACTION,invest_peak,0
+5,area1,VALID,NO ACTION,invest_semibase1,0
+5,area2,HIGHER,INVESTMENT,invest_peak2,500
+5,area2,HIGHER,NO ACTION,invest_semibase,0
+6,area1,VALID,NO ACTION,invest_peak,0
+6,area1,VALID,NO ACTION,invest_semibase1,0
+6,area2,HIGHER,INVESTMENT,invest_peak2,500
+6,area2,HIGHER,NO ACTION,invest_semibase,0
+7,area1,VALID,NO ACTION,invest_peak,0
+7,area1,VALID,NO ACTION,invest_semibase1,0
+7,area2,HIGHER,INVESTMENT,invest_peak2,500
+7,area2,HIGHER,NO ACTION,invest_semibase,0
+8,area1,LOWER,NO ACTION,invest_peak,0
+8,area1,LOWER,DISINVESTMENT,invest_semibase1,-450
+8,area2,VALID,NO ACTION,invest_peak2,0
+8,area2,VALID,NO ACTION,invest_semibase,0
+9,area1,HIGHER,NO ACTION,invest_peak,0
+9,area1,HIGHER,INVESTMENT,invest_semibase1,400
+9,area2,VALID,NO ACTION,invest_peak2,0
+9,area2,VALID,NO ACTION,invest_semibase,0
+10,area1,LOWER,NO ACTION,invest_peak,0
+10,area1,LOWER,DISINVESTMENT,invest_semibase1,-350
+10,area2,VALID,NO ACTION,invest_peak2,0
+10,area2,VALID,NO ACTION,invest_semibase,0
+11,area1,HIGHER,NO ACTION,invest_peak,0
+11,area1,HIGHER,INVESTMENT,invest_semibase1,300
+11,area2,VALID,NO ACTION,invest_peak2,0
+11,area2,VALID,NO ACTION,invest_semibase,0
+12,area1,LOWER,NO ACTION,invest_peak,0
+12,area1,LOWER,DISINVESTMENT,invest_semibase1,-250
+12,area2,VALID,NO ACTION,invest_peak2,0
+12,area2,VALID,NO ACTION,invest_semibase,0
