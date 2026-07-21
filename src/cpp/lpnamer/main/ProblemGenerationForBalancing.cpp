@@ -270,8 +270,7 @@ void ProblemGenerationForBalancing::saveCriterionAndAreaSettingsToIterativeLogCS
     }
 }
 
-void ProblemGenerationForBalancing::saveCriterionAndAreaSettingsToCSV(
-  const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues,
+void ProblemGenerationForBalancing::saveClusterResultsToCSV(
   const std::filesystem::path& outputPath) const
 {
     std::ofstream file(outputPath);
@@ -280,7 +279,7 @@ void ProblemGenerationForBalancing::saveCriterionAndAreaSettingsToCSV(
         throw std::runtime_error("Failed to open file for writing: " + outputPath.string());
     }
 
-    file << "areaName,candidateName,capacity\n";
+    file << "area name,candidate name,capacity,capacity change\n";
 
     for (const auto& [areaName, criterionState]: currentAreaCriteriaData)
     {
@@ -288,14 +287,60 @@ void ProblemGenerationForBalancing::saveCriterionAndAreaSettingsToCSV(
         for (const auto& [clusterName, investmentCandidate]: areaSettings.investmentCandidates)
         {
             file << areaName << "," << clusterName << "," << investmentCandidate.currentCapacity
+                 << "," << investmentCandidate.currentCapacity - investmentCandidate.initialCapacity
                  << "\n";
         }
         for (const auto& [clusterName, decommissioningCandidate]:
              areaSettings.decommissioningCandidates)
         {
             file << areaName << "," << clusterName << ","
-                 << decommissioningCandidate.currentCapacity << "\n";
+                 << decommissioningCandidate.currentCapacity << ","
+                 << decommissioningCandidate.currentCapacity
+                      - decommissioningCandidate.initialCapacity
+                 << "\n";
         }
+    }
+}
+
+void ProblemGenerationForBalancing::saveCriterionAndAreaSettingsToCSV(
+  const std::filesystem::path& outputPath) const
+{
+    std::ofstream file(outputPath);
+    if (!file.is_open())
+    {
+        throw std::runtime_error("Failed to open file for writing: " + outputPath.string());
+    }
+
+    file << "area,criteria target,criteria lower bound, criteria upper bound,criteria "
+            "value,status,total capacity change\n";
+
+    for (const auto& [areaName, criterionState]: currentAreaCriteriaData)
+    {
+        const auto& areaSettings = areasSettings.at(areaName);
+
+        double criteriaValue = criterionState.first;
+
+        std::string status = (criteriaValue < lowerThreshold(areaSettings)
+                              || criteriaValue > higherThreshold(areaSettings))
+                               ? "*"
+                               : "OK";
+        double totalCapacityChange(0.0);
+
+        for (const auto& [clusterName, investmentCandidate]: areaSettings.investmentCandidates)
+        {
+            totalCapacityChange += investmentCandidate.currentCapacity
+                                   - investmentCandidate.initialCapacity;
+        }
+        for (const auto& [clusterName, decommissioningCandidate]:
+             areaSettings.decommissioningCandidates)
+        {
+            totalCapacityChange += decommissioningCandidate.currentCapacity
+                                   - decommissioningCandidate.initialCapacity;
+        }
+
+        file << areaName << "," << areaSettings.reliabilityStandard << ","
+             << lowerThreshold(areaSettings) << "," << higherThreshold(areaSettings) << ","
+             << criteriaValue << "," << status << "," << totalCapacityChange << "\n";
     }
 }
 

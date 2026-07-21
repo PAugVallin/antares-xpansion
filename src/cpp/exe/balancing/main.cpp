@@ -82,11 +82,11 @@ int main(int argc, char** argv)
         const std::string logFilename = "balancing_log.txt";
         std::filesystem::create_directories(directories.simulation_dir / logSubFolder);
         // logs containing all values for every iteration
-        const std::filesystem::path iterationsLogFileName = directories.simulation_dir
+        const std::filesystem::path iterationsLogFilePath = directories.simulation_dir
                                                             / "iterations_values_log.csv";
         // logs containing all values reached at the end of the simulation
-        const std::filesystem::path finalValuesLogFileName = directories.simulation_dir
-                                                             / "final_values_log.txt";
+        const std::filesystem::path finalValuesLogFilePath = directories.simulation_dir
+                                                             / "final_values_log.csv";
 
         std::shared_ptr<MultithreadTBBLogger> logger = std::make_shared<MultithreadTBBLogger>(
           directories.simulation_dir / logSubFolder,
@@ -104,7 +104,7 @@ int main(int argc, char** argv)
                                           balParser.areaSettings,
                                           logger,
                                           problemManager,
-                                          iterationsLogFileName);
+                                          iterationsLogFilePath);
         auto endProblemGeneration = std::chrono::system_clock::now();
         logger->display_message("Problems generated", LogUtils::LOGLEVEL::INFO, logger->CONTEXT);
         std::chrono::duration<double> elapsed_seconds = endProblemGeneration
@@ -150,8 +150,8 @@ int main(int argc, char** argv)
             pbg.saveCriterionAndAreaSettingsToIterativeLogCSV(iteration, res);
             pbg.updateAreaCriteriaData(res);
         };
-        pbg.saveCriterionAndAreaSettingsToCSV(res,
-                                              directories.simulation_dir / "balancing_results.csv");
+        pbg.saveClusterResultsToCSV(directories.simulation_dir / "balancing_results.csv");
+        pbg.saveCriterionAndAreaSettingsToCSV(finalValuesLogFilePath);
         auto endProblemUpdate = std::chrono::system_clock::now();
         std::chrono::duration<double> elapsed_update_seconds = endProblemUpdate
                                                                - startBalancingProcess;

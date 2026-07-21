@@ -60,9 +60,8 @@ public:
     bool isBlocked() const;
     void logCriterionAndAreaSettings(
       const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues) const;
-    void saveCriterionAndAreaSettingsToCSV(
-      const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues,
-      const std::filesystem::path& outputPath) const;
+    void saveClusterResultsToCSV(const std::filesystem::path& outputPath) const;
+    void saveCriterionAndAreaSettingsToCSV(const std::filesystem::path& outputPath) const;
     void saveCriterionAndAreaSettingsToIterativeLogCSV(
       int iteration,
       const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues) const;
