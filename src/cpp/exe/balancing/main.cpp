@@ -150,6 +150,10 @@ int main(int argc, char** argv)
             pbg.saveCriterionAndAreaSettingsToIterativeLogCSV(iteration, res);
             pbg.updateAreaCriteriaData(res);
         };
+        logger->display_message("Final iteration " + std::to_string(++iteration),
+                                LogUtils::LOGLEVEL::INFO,
+                                logger->CONTEXT);
+        pbg.logCriterionAndAreaSettings(res);
         pbg.saveClusterResultsToCSV(directories.simulation_dir / "balancing_results.csv");
         pbg.saveCriterionAndAreaSettingsToCSV(finalValuesLogFilePath);
         auto endProblemUpdate = std::chrono::system_clock::now();
