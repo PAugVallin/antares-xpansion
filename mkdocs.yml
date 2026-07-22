@@ -55,6 +55,8 @@ nav:
           - "Multiple problem generation": "user-guide/trajectory-investment/multiple-problem-generation.md"
           - "Merged weights file generation ": "user-guide/trajectory-investment/merge-weights.md"
           - "Merging annual problems": "user-guide/trajectory-investment/merge-master.md"
+      - "Water values computation": "user-guide/get-started/water-values-computation.md"
+      - "Balancing computation": "user-guide/get-started/balancing-computation.md"
   - "Developer guide":
       - "Install from sources":
           - "Introduction": "developer-guide/install_from_sources/0-INSTALL.md"
