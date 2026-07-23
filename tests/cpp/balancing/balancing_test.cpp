@@ -46,7 +46,7 @@ protected:
                                 | std::filesystem::copy_options::overwrite_existing);
     }
 
-    std::ifstream openFileWithChecks(const std::string& fileName)
+    std::ifstream openFileWithChecks(const std::filesystem::path& fileName)
     {
         std::ifstream file(tmpDir / fileName);
         EXPECT_TRUE(file);
@@ -57,9 +57,9 @@ protected:
         return file;
     }
 
-    void compareOutputFileToRef(const std::string& outputFileName, const std::string& refFileName)
+    void compareOutputFileToRef(const std::filesystem::path& outputFileName, const std::filesystem::path& refFileName)
     {
-        logger->display_message("\nComparing files " + outputFileName + " and " + refFileName
+        logger->display_message("\nComparing files " + outputFileName.string() + " and " + refFileName.string()
                                 + "...");
         std::string errorPrefix = "File " + (tmpDir / outputFileName).string() + ": ";
         // open result file
