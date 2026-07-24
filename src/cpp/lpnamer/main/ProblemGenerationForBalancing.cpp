@@ -69,7 +69,7 @@ void ProblemGenerationForBalancing::getInitialCapacitiesForCandidates()
     {
         const AreaCluster key{areaName, clusterName};
         const auto& dispProdVarIndices = balancingData[key].dispProdVarIndices;
-        problemManager->getProblems().begin()->second->get_ub(&candidate.currentCapacity,
+        problemManager->getFirstProblem()->get_ub(&candidate.currentCapacity,
                                                               dispProdVarIndices[0],
                                                               dispProdVarIndices[0]);
         candidate.initialCapacity = candidate.currentCapacity;
@@ -105,7 +105,7 @@ static std::unordered_map<std::string_view, size_t> buildVarToIndex(
 /// @brief Update the problems for the balancing calculation
 void ProblemGenerationForBalancing::fillDispProdVarIndicesAndMarginalCosts()
 {
-    const auto& firstProblem = problemManager->getProblems().begin()->second;
+    const auto& firstProblem = problemManager->getFirstProblem();
     auto vars = firstProblem->get_col_names();
     for (auto& s: vars)
     {
@@ -750,14 +750,15 @@ void ProblemGenerationForBalancing::applyActionToCluster(const AreaCluster& area
     std::vector<int> vecIndices(varIndices.begin(), varIndices.end());
     std::vector<char> boundTypes(NUMBER_OF_HOURS_PER_WEEK, boundType);
 
-    tbb::parallel_for_each(problemManager->getProblems() | std::views::values,
-                           [&](const std::shared_ptr<Problem>& problem)
+    tbb::parallel_for_each(
+      problemManager->getProblemIds(),
+      [&](const auto& pbId)
                            {
+          std::shared_ptr<Problem> problem = problemManager->getProblemFromId(pbId);
                                std::vector<double> localVarValues(NUMBER_OF_HOURS_PER_WEEK);
                                for (size_t hour = 0; hour < NUMBER_OF_HOURS_PER_WEEK; ++hour)
                                {
-                                   localVarValues[hour] = computeNewBoundAndUpdateCandidate(
-                                     problem,
+              localVarValues[hour] = computeNewBoundAndUpdateCandidate(problem,
                                      varIndices[hour],
                                      action,
                                      areaSettings,

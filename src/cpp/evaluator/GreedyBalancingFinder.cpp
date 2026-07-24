@@ -175,11 +175,11 @@ void GreedyBalancingFinder::setCriterionComputationInputs(
   const Benders::Criterion::CriterionInputData& criterion_input_data)
 {
     using enum Benders::Criterion::Type;
-    if (problemManager->getProblems().empty())
+    if (problemManager->getProblemIds().empty())
     {
         throw std::runtime_error("No problems available");
     }
-    auto& [id, problem] = *problemManager->getProblems().begin();
+    auto problem = problemManager->getFirstProblem();
 
     switch (criterion_input_data.criterion)
     {

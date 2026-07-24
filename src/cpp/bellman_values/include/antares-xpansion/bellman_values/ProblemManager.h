@@ -25,19 +25,18 @@ public:
     ~ProblemManager();
 
     /**
-     * @brief Get the Problems object, either read from disk or as stored in memory.
+     * @brief Get the first problem of the set, either read from disk or as stored in memory.
      *
-     * @return std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>>&
+     * @return std::shared_ptr<Problem>
      */
-    const std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>>& getProblems() const
+    std::shared_ptr<Problem> getFirstProblem() const
     {
-        return problems_;
-        // todo: read from disk
+        return getProblemFromId(*problemIds_.begin());
     }
 
     std::set<Antares::Solver::WeeklyProblemId> getProblemIds() const
     {
-        return problemIds;
+        return problemIds_;
     }
 
     /**
@@ -101,7 +100,7 @@ public:
 
     void setProblem(const Antares::Solver::WeeklyProblemId& pbId, std::shared_ptr<Problem> pb)
     {
-        problemIds.emplace(pbId);
+        problemIds_.emplace(pbId);
         if (cacheProblems_ || writePbFiles_)
         {
             // problems are written to disk
@@ -117,6 +116,11 @@ public:
     void setProblemsPath(const std::filesystem::path& problemsPath)
     {
         problemsPath_ = problemsPath;
+    }
+
+    const std::filesystem::path getProblemsPath() const
+    {
+        return problemsPath_.value_or("");
     }
 
     void saveProblemToFile(const Antares::Solver::WeeklyProblemId& pbId,
@@ -152,8 +156,8 @@ private:
     std::string solverName_ = "xpress";
     ProblemsFormat problemFormat_ = ProblemsFormat::OPTIMIZED; // can be MPS_FILE or OPTIMIZED (SVF)
     std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>>
-      problems_;                                           // a map storing all problems
-    std::set<Antares::Solver::WeeklyProblemId> problemIds; // a set holding all problem Ids
+      problems_;                                            // a map storing all problems
+    std::set<Antares::Solver::WeeklyProblemId> problemIds_; // a set holding all problem Ids
     std::optional<std::filesystem::path>
       problemsPath_ = std::nullopt;     // needed only when reading problems from disk
     SolverFactory solverFactory_;       // needed to construct problems from disk

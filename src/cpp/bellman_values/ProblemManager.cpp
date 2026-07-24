@@ -13,7 +13,7 @@ ProblemManager::ProblemManager(const std::string& solverName,
     solverFactory_()
 {
     setProblemFormat(problemsFormatFromString(problemFormat));
-    if (cacheProblems && problemsPath == std::nullopt)
+    if ((cacheProblems || writePbFiles) && problemsPath == std::nullopt)
     {
         throw std::runtime_error(
           "Error: trying to stream problems from disk without specifying a folder.");
@@ -50,7 +50,7 @@ void ProblemManager::setProblems(
   std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>>& problems)
 {
     problems_.clear();
-    problemIds.clear();
+    problemIds_.clear();
 
     for (auto& [pbId, problem]: problems)
     {
