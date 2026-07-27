@@ -70,8 +70,8 @@ void ProblemGenerationForBalancing::getInitialCapacitiesForCandidates()
         const AreaCluster key{areaName, clusterName};
         const auto& dispProdVarIndices = balancingData[key].dispProdVarIndices;
         problemManager->getFirstProblem()->get_ub(&candidate.currentCapacity,
-                                                              dispProdVarIndices[0],
-                                                              dispProdVarIndices[0]);
+                                                  dispProdVarIndices[0],
+                                                  dispProdVarIndices[0]);
         candidate.initialCapacity = candidate.currentCapacity;
         candidate.previousCapacity = candidate.initialCapacity;
     };
@@ -753,19 +753,19 @@ void ProblemGenerationForBalancing::applyActionToCluster(const AreaCluster& area
     tbb::parallel_for_each(
       problemManager->getProblemIds(),
       [&](const auto& pbId)
-                           {
+      {
           std::shared_ptr<Problem> problem = problemManager->getProblemFromId(pbId);
-                               std::vector<double> localVarValues(NUMBER_OF_HOURS_PER_WEEK);
-                               for (size_t hour = 0; hour < NUMBER_OF_HOURS_PER_WEEK; ++hour)
-                               {
+          std::vector<double> localVarValues(NUMBER_OF_HOURS_PER_WEEK);
+          for (size_t hour = 0; hour < NUMBER_OF_HOURS_PER_WEEK; ++hour)
+          {
               localVarValues[hour] = computeNewBoundAndUpdateCandidate(problem,
-                                     varIndices[hour],
-                                     action,
-                                     areaSettings,
-                                     areaCluster.second);
-                               }
-                               problem->chg_bounds(vecIndices, boundTypes, localVarValues);
-                           });
+                                                                       varIndices[hour],
+                                                                       action,
+                                                                       areaSettings,
+                                                                       areaCluster.second);
+          }
+          problem->chg_bounds(vecIndices, boundTypes, localVarValues);
+      });
 }
 
 /// @brief Update the problems using the balancing algorithm
