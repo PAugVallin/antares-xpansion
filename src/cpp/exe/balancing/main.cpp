@@ -59,7 +59,8 @@ int main(int argc, char** argv)
         SettingsConfigReader scr(settingsConfigFilePath);
         std::string solverName = scr.getSolver();
         const std::string verbosity = scr.getVerbosity();
-        const bool cacheProblems = scr.getCacheProblems();
+        const bool keepMps = scr.getKeepMps();
+        const std::string problemFormat = scr.getProblemFormat();
         const int max_iterations = scr.getMaxIterations();
         const auto areaFile = studyPath / "area.txt";
 
@@ -99,7 +100,12 @@ int main(int argc, char** argv)
                                   + formatTime(startProblemGeneration) + ")",
                                 LogUtils::LOGLEVEL::INFO,
                                 logger->CONTEXT);
-        auto problemManager = std::make_shared<ProblemManager>(solverName);
+        auto problemManager = std::make_shared<ProblemManager>(solverName,
+                                                               problemFormat,
+                                                               keepMps,
+                                                               false,
+                                                               directories.simulation_dir
+                                                                 / "initial_problems");
         ProblemGenerationForBalancing pbg(directories,
                                           balParser.areaSettings,
                                           logger,

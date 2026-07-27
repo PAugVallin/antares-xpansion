@@ -99,6 +99,19 @@ solver : xpress
 # default: xpress
 # possible values are: xpress, coin
 
+keep_mps : false
+# If true, a file (.mps or .svf, see below) for initial problems will be written to disk (location is `<study>/output/<run>/initial_problems`)
+# default: false
+
+problem_format : MPS
+# Selects the storage format of the generated mathematical problems (master + subproblems):
+# - OPTIMIZED (default) : use underlying solver to write problems in an optimized format to reduce disk space usage and I/O time. The underlying format depends on the solver used.
+#   - XPRESS : svf format: compressed binary format.
+#   - COIN : unsupported. Falls back to MPS.
+# - MPS : write the problems in MPS format, which is a standard format for mathematical programming problems.
+# default: OPTIMIZED
+# possible values are: MPS, OPTIMIZED
+
 verbosity : INFO
 # Sets the desired level of verbosity of log messages displayed in the console. 
 # Setting the verbosity to a given level will allow messages to appear if their level is higher in the list or equal to the level specified.
@@ -106,10 +119,6 @@ verbosity : INFO
 # and will pass along all messages at the `WARNING`, `ERR` or `FATAL` level.
 # default: INFO
 # possible values are: NONE, TRACE, DEBUG, INFO, WARNING, ERR, FATAL
-
-cache_problems : true
-# Sets whether to write and read problems from disk to reduce memory use (will increase computation time) 
-# default: false
 ```
 
 This file is expected to be located at `<study_root>/user/balancing/settings.yml`. It is optional then default values are hard-coded in the program.

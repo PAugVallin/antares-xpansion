@@ -18,6 +18,16 @@ public:
         return getValueFromKey<std::string>(solverKey, elements_);
     }
 
+    bool getKeepMps() const
+    {
+        return getValueFromKey<bool>(keepMpsKey, elements_);
+    }
+
+    std::string getProblemFormat() const
+    {
+        return getValueFromKey<std::string>(problemFormatKey, elements_);
+    }
+
     std::string getVerbosity() const
     {
         return getValueFromKey<std::string>(verbosityKey, elements_);
@@ -37,7 +47,8 @@ private:
     void emplaceAllElements() override;
 
     // keys from YAML file:
-    inline static const std::string solverKey = "solver", verbosityKey = "verbosity",
+    inline static const std::string solverKey = "solver", keepMpsKey = "keep_mps",
+                                    problemFormatKey = "problem_format", verbosityKey = "verbosity",
                                     cacheProblemsKey = "cache_problems",
                                     maxIterationsKey = "max_iterations";
 };
