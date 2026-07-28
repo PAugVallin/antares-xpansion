@@ -57,10 +57,11 @@ protected:
         return file;
     }
 
-    void compareOutputFileToRef(const std::filesystem::path& outputFileName, const std::filesystem::path& refFileName)
+    void compareOutputFileToRef(const std::filesystem::path& outputFileName,
+                                const std::filesystem::path& refFileName)
     {
-        logger->display_message("\nComparing files " + outputFileName.string() + " and " + refFileName.string()
-                                + "...");
+        logger->display_message("\nComparing files " + outputFileName.string() + " and "
+                                + refFileName.string() + "...");
         std::string errorPrefix = "File " + (tmpDir / outputFileName).string() + ": ";
         // open result file
         std::ifstream outputFile = openFileWithChecks(outputFileName);
@@ -143,8 +144,8 @@ protected:
         const std::filesystem::path iterationsLogFilePath = directories.simulation_dir
                                                             / "iterations_values_log.csv";
         // logs containing all values reached at the end of the simulation
-        const std::filesystem::path finalValuesLogFilePath = directories.simulation_dir
-                                                             / "final_values_log.csv";
+        const std::filesystem::path finalCriteriaFilePath = directories.simulation_dir
+                                                            / "final_criteria.csv";
 
         // generating problems
         logger->display_message("Generating problems...");
@@ -183,16 +184,16 @@ protected:
             pbg.updateAreaCriteriaData(res);
         };
         // saving final results
-        pbg.saveClusterResultsToCSV(directories.simulation_dir / "balancing_results.csv");
-        pbg.saveCriterionAndAreaSettingsToCSV(finalValuesLogFilePath);
+        pbg.saveClusterResultsToCSV(directories.simulation_dir / "final_capacities.csv");
+        pbg.saveCriterionAndAreaSettingsToCSV(finalCriteriaFilePath);
 
         // compare results to ref
         logger->display_message("\nComparing results files...");
         // cluster results
-        compareOutputFileToRef(directories.simulation_dir / "balancing_results.csv",
-                               tmpDir / "balancing_results_ref.csv");
+        compareOutputFileToRef(directories.simulation_dir / "final_capacities.csv",
+                               tmpDir / "final_capacities_ref.csv");
         // criterion and area results
-        compareOutputFileToRef(finalValuesLogFilePath, tmpDir / "final_values_log_ref.csv");
+        compareOutputFileToRef(finalCriteriaFilePath, tmpDir / "final_criteria_ref.csv");
         // iterative logs
         compareOutputFileToRef(iterationsLogFilePath, tmpDir / "iterations_values_log_ref.csv");
 

@@ -311,8 +311,9 @@ void ProblemGenerationForBalancing::saveCriterionAndAreaSettingsToCSV(
         throw std::runtime_error("Failed to open file for writing: " + outputPath.string());
     }
 
-    file << "area,criteria target,criteria lower bound, criteria upper bound,criteria "
-            "value,status,total capacity change\n";
+    file << "area,criteria "
+            "value,criteria target,criteria lower bound,criteria upper bound,status,total capacity "
+            "change\n";
 
     for (const auto& [areaName, criterionState]: currentAreaCriteriaData)
     {
@@ -320,10 +321,13 @@ void ProblemGenerationForBalancing::saveCriterionAndAreaSettingsToCSV(
 
         double criteriaValue = criterionState.first;
 
-        std::string status = (criteriaValue < lowerThreshold(areaSettings)
-                              || criteriaValue > higherThreshold(areaSettings))
-                               ? "*"
-                               : "OK";
+        // std::string status = (criteriaValue < lowerThreshold(areaSettings)
+        //                       || criteriaValue > higherThreshold(areaSettings))
+        //                        ? "*"
+        //                        : "OK";
+        std::string status = (criteriaValue < lowerThreshold(areaSettings))    ? "LOWER"
+                             : (criteriaValue > higherThreshold(areaSettings)) ? "HIGHER"
+                                                                               : "NO ACTION";
         double totalCapacityChange(0.0);
 
         for (const auto& [clusterName, investmentCandidate]: areaSettings.investmentCandidates)
@@ -338,9 +342,9 @@ void ProblemGenerationForBalancing::saveCriterionAndAreaSettingsToCSV(
                                    - decommissioningCandidate.initialCapacity;
         }
 
-        file << areaName << "," << areaSettings.reliabilityStandard << ","
+        file << areaName << "," << criteriaValue << "," << areaSettings.reliabilityStandard << ","
              << lowerThreshold(areaSettings) << "," << higherThreshold(areaSettings) << ","
-             << criteriaValue << "," << status << "," << totalCapacityChange << "\n";
+             << status << "," << totalCapacityChange << "\n";
     }
 }
 
