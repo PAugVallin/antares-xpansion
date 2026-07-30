@@ -362,7 +362,6 @@ std::map<AreaCluster, CapacityAction> ProblemGenerationForBalancing::findAreaClu
     for (const auto& [areaName, areaSettings]: areasSettings)
     {
         const CriterionState current = currentAreaCriteriaData.at(areaName).second;
-        const CriterionState previous = areaSettings.oldCriterionState;
 
         if (current == CriterionState::VALID)
         {
