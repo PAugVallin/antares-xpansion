@@ -129,15 +129,15 @@ This file is expected to be located at `<study_root>/user/balancing/settings.yml
 
 ## Outputs
 
-The outputs are three files: **balancing_results.csv**, **iterations_values_log.csv**, and **final_values_log.csv**.
+The outputs are three files: **final_capacities.csv**, **iterations_values_log.csv**, and **final_criteria.csv**.
 
 Outputted files consist of: 
 
-- a comma-separated values file named `balancing_results.csv`;
+- a comma-separated values file named `final_capacities.csv`;
   - contains for each candidate cluster of each area their final balanced invested capacity and the capacity change from initial invested capacity ;
 - a comma-separated values file named `iterations_values_log.csv`;
   - contains the criteria, action and capacity change of selected cluster candidates at each iteration ;
-- a comma-separated values file named `final_values_log.csv`;
+- a comma-separated values file named `final_criteria.csv`;
   - contains for each area the criterion target, criterion lower bound, criterion upper bound, final criterion value, their status (OK or not) and the total capacity change.
 
 These files will be created in a timecoded folder located at `<study_root>/output/<YYYYMMDD-hhmm>eco/`. This folder will hold all output files produced by the program.
