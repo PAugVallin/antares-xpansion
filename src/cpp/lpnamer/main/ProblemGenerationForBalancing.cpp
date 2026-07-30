@@ -827,9 +827,12 @@ std::shared_ptr<ProblemManager> ProblemGenerationForBalancing::updateProblems(
         applyActionToCluster(areaCluster, action);
         updateRecords(areaCluster, action);
         logger->display_message((std::stringstream()
-                                 << " action: " << to_string(action) << " area: "
-                                 << areaCluster.first << " cluster: " << areaCluster.second
-                                 << " new capacity: " << *candidateCapacity
+                                 << " Area: " << areaCluster.first << " criteria: "
+                                 << currentAreaCriteriaData[areaCluster.first].first << " ["
+                                 << lowerThreshold(areasSettings.at(areaCluster.first)) << "-"
+                                 << higherThreshold(areasSettings.at(areaCluster.first)) << "]"
+                                 << " action: " << to_string(action) << " cluster: "
+                                 << areaCluster.second << " new capacity: " << *candidateCapacity
                                  << " delta: " << (*candidateCapacity - previousCandidateCapacity))
                                   .str(),
                                 LogUtils::LOGLEVEL::INFO,
