@@ -185,7 +185,8 @@ void GreedyBalancingFinder::setCriterionComputationInputs(
     {
     case UnsuppliedEnergy:
         criterion_computation_ = std::make_unique<Benders::Criterion::CriterionLOL>(
-          criterion_input_data);
+          criterion_input_data,
+          problem);
         break;
     case NearPriceCapHours:
         criterion_computation_ = std::make_unique<Benders::Criterion::CriterionNPCAP>(

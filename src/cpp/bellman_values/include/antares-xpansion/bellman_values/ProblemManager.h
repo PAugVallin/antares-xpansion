@@ -113,6 +113,27 @@ public:
         }
     }
 
+    void setProblemSolution(const Antares::Solver::WeeklyProblemId& pbId,
+                            const std::vector<double>& solution)
+    {
+        solutions_[pbId] = solution;
+    }
+
+    void storeProblemSolution(std::shared_ptr<Problem> problem)
+    {
+        std::vector<double> solution(problem->get_ncols());
+        problem->get_lp_sol(solution.data(), NULL, NULL);
+        setProblemSolution({problem->mc_year, problem->week}, solution);
+    }
+
+    /// @brief returns the solution to a problem either from the local solution map (if
+    /// cacheProblems), or from the problem itself
+    /// @param pbId
+    /// @param problem
+    /// @return
+    std::vector<double> getProblemSolution(const Antares::Solver::WeeklyProblemId& pbId,
+                                           std::shared_ptr<Problem> problem) const;
+
     void setProblemsPath(const std::filesystem::path& problemsPath)
     {
         problemsPath_ = problemsPath;
@@ -158,6 +179,8 @@ private:
     std::map<Antares::Solver::WeeklyProblemId, std::shared_ptr<Problem>>
       problems_;                                            // a map storing all problems
     std::set<Antares::Solver::WeeklyProblemId> problemIds_; // a set holding all problem Ids
+    std::map<Antares::Solver::WeeklyProblemId, std::vector<double>>
+      solutions_; // a map of solutions for all problems
     std::optional<std::filesystem::path>
       problemsPath_ = std::nullopt;     // needed only when reading problems from disk
     SolverFactory solverFactory_;       // needed to construct problems from disk

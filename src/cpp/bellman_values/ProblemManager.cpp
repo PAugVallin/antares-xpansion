@@ -93,6 +93,27 @@ std::shared_ptr<Problem> ProblemManager::readProblemFromDisk(const std::string& 
     }
 }
 
+std::vector<double> ProblemManager::getProblemSolution(const Antares::Solver::WeeklyProblemId& pbId,
+                                                       std::shared_ptr<Problem> problem) const
+{
+    if (cacheProblems_)
+    {
+        const auto& solution = solutions_.find(pbId);
+        if (solution != solutions_.end())
+        {
+            return solution->second;
+        }
+        throw std::runtime_error("No solution was found in memory for problem "
+                                 + getPbNameFromId(pbId));
+    }
+    else
+    {
+        std::vector<double> solution(problem->get_ncols());
+        problem->get_lp_sol(solution.data(), NULL, NULL);
+        return solution;
+    }
+}
+
 void ProblemManager::saveProblemToFile(const Antares::Solver::WeeklyProblemId& pbId,
                                        std::shared_ptr<Problem> problem,
                                        std::filesystem::path& folder) const

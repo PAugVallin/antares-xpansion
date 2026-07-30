@@ -61,6 +61,7 @@ int main(int argc, char** argv)
         const std::string verbosity = scr.getVerbosity();
         const bool keepMps = scr.getKeepMps();
         const std::string problemFormat = scr.getProblemFormat();
+        const bool cacheProblems = scr.getCacheProblems();
         const int max_iterations = scr.getMaxIterations();
         const auto areaFile = studyPath / "area.txt";
 
@@ -103,7 +104,7 @@ int main(int argc, char** argv)
         auto problemManager = std::make_shared<ProblemManager>(solverName,
                                                                problemFormat,
                                                                keepMps,
-                                                               false,
+                                                               cacheProblems,
                                                                directories.simulation_dir
                                                                  / "initial_problems");
         ProblemGenerationForBalancing pbg(directories,

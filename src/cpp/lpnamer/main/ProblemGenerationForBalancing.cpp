@@ -540,8 +540,7 @@ std::map<std::string, double> ProblemGenerationForBalancing::computeRentabilityF
                                                .dispProdVarIndices;
             // production is fetched from values resulting of the optimization
             std::shared_ptr<Problem> problem = problemManager->getProblemFromId(pbId);
-            std::vector<double> solution(problem->get_ncols());
-            problem->get_lp_sol(solution.data(), NULL, NULL);
+            auto solution = problemManager->getProblemSolution(pbId, problem);
 
             for (size_t hour = 0; hour < NUMBER_OF_HOURS_PER_WEEK; ++hour)
             {
@@ -769,6 +768,7 @@ void ProblemGenerationForBalancing::applyActionToCluster(const AreaCluster& area
                                                                        areaCluster.second);
           }
           problem->chg_bounds(vecIndices, boundTypes, localVarValues);
+          problemManager->setProblem(pbId, problem);
       });
 }
 
