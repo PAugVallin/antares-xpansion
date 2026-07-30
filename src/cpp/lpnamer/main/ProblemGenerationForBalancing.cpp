@@ -59,6 +59,12 @@ void ProblemGenerationForBalancing::fillDispProdVarIndicesAndMarginalCostsForAre
                 balancingData[key].marginalCost = objCoeffs[it->second];
             }
         }
+        else
+        {
+            throw std::runtime_error("Failed to find for candidate " + clusterName + " of area "
+                                     + areaName + " the dispProdVarIndices of hour "
+                                     + std::to_string(hour));
+        }
     }
 }
 
