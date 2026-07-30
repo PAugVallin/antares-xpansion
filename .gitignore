@@ -67,3 +67,6 @@ CMakeUserPresets.json
 
 # Jupyter cache
 .cache
+
+# Zone.Identifier files from Windows to WSL
+*:Zone.Identifier

@@ -103,6 +103,11 @@ SubProblemData Evaluator::SolveSubproblem(std::shared_ptr<Problem> problem)
                                 LogUtils::LOGLEVEL::ERR,
                                 EVALUATOR_LOGGER_CONTEXT);
     }
+    else
+    {
+        std::lock_guard solutionGuard(solutionMutex);
+        problemManager->storeProblemSolution(problem);
+    }
     subPbData.subproblem_cost = problem->get_lp_value();
     logger->display_message("Calculated cost for year " + std::to_string(problem->mc_year)
                               + " week " + std::to_string(problem->week) + ": "
