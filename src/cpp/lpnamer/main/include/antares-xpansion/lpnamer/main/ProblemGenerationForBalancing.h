@@ -62,9 +62,7 @@ public:
       const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues) const;
     void saveClusterResultsToCSV(const std::filesystem::path& outputPath) const;
     void saveCriterionAndAreaSettingsToCSV(const std::filesystem::path& outputPath) const;
-    void saveCriterionAndAreaSettingsToIterativeLogCSV(
-      int iteration,
-      const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues) const;
+    void saveCriterionAndAreaSettingsToIterativeLogCSV(int iteration) const;
     void updateAreaCriteriaData(
       const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues);
 

@@ -180,7 +180,7 @@ protected:
                     .ComputeCriterionAndPrice();
             pbg.logCriterionAndAreaSettings(res);
             logger->display_message("Iteration " + std::to_string(iteration) + " done.");
-            pbg.saveCriterionAndAreaSettingsToIterativeLogCSV(iteration, res);
+            pbg.saveCriterionAndAreaSettingsToIterativeLogCSV(iteration);
             pbg.updateAreaCriteriaData(res);
         };
         // saving final results

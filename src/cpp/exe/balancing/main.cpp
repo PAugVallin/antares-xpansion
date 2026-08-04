@@ -154,7 +154,7 @@ int main(int argc, char** argv)
                                       + formatDuration(elapsed_iteration_seconds),
                                     LogUtils::LOGLEVEL::INFO,
                                     logger->CONTEXT);
-            pbg.saveCriterionAndAreaSettingsToIterativeLogCSV(iteration, res);
+            pbg.saveCriterionAndAreaSettingsToIterativeLogCSV(iteration);
             pbg.updateAreaCriteriaData(res);
         };
         logger->display_message("Final iteration " + std::to_string(++iteration),

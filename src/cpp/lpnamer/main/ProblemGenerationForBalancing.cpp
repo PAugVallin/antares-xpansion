@@ -232,8 +232,7 @@ void ProblemGenerationForBalancing::initializeIterativeLogCSV() const
 }
 
 void ProblemGenerationForBalancing::saveCriterionAndAreaSettingsToIterativeLogCSV(
-  int iteration,
-  const std::map<Antares::Solver::WeeklyProblemId, PbOutput>& simuValues) const
+  int iteration) const
 {
     std::ofstream file(iterationsLogFileName, std::ios_base::app);
     if (!file.is_open())
@@ -249,16 +248,15 @@ void ProblemGenerationForBalancing::saveCriterionAndAreaSettingsToIterativeLogCS
     {
         // only writing the line if capacity has been modified, i.e. an action has been
         // performed
-        action = "NO ACTION";
         if (candidate.currentCapacity != candidate.previousCapacity)
         {
             action = (lastActionForArea.find(areaName) != lastActionForArea.end())
                        ? to_string(lastActionForArea.at(areaName))
                        : "NO ACTION";
+            file << iteration << "," << areaName << "," << to_string(criterionState) << ","
+                 << action << "," << clusterName << ","
+                 << candidate.currentCapacity - candidate.previousCapacity << "\n";
         }
-        file << iteration << "," << areaName << "," << to_string(criterionState) << "," << action
-             << "," << clusterName << "," << candidate.currentCapacity - candidate.previousCapacity
-             << "\n";
     };
 
     for (const auto& [areaName, criterionData]: currentAreaCriteriaData)
