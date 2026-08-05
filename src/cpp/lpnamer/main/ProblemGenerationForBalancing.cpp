@@ -804,6 +804,10 @@ std::shared_ptr<ProblemManager> ProblemGenerationForBalancing::updateProblems(
     // If no action available on all areas then the system is blocked
     if (areaClusterToModify.empty())
     {
+        logger->display_message(
+          (std::stringstream() << "No actions found in any area, stop the process").str(),
+          LogUtils::LOGLEVEL::INFO,
+          PROBLEM_GENERATION_LOGGER_CONTEXT);
         blocked = true;
     }
     for (const auto& [areaCluster, action]: areaClusterToModify)
