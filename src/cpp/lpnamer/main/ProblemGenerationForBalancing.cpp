@@ -510,13 +510,11 @@ std::map<std::string, double> ProblemGenerationForBalancing::computeRentabilityF
             if (action == CapacityAction::INVESTMENT
                 && candidate.currentCapacity == candidate.params->expansionPotential)
             {
-                rentability[clusterName] = std::numeric_limits<double>::min();
                 continue;
             }
             else if (action == CapacityAction::DISINVESTMENT
                      && candidate.currentCapacity == candidate.initialCapacity)
             {
-                rentability[clusterName] = std::numeric_limits<double>::max();
                 continue;
             }
         }
@@ -525,13 +523,11 @@ std::map<std::string, double> ProblemGenerationForBalancing::computeRentabilityF
             if (action == CapacityAction::DECOMMISSIONING
                 && candidate.currentCapacity == candidate.params->decommissioningPotential)
             {
-                rentability[clusterName] = std::numeric_limits<double>::max();
                 continue;
             }
             else if (action == CapacityAction::RECOMMISSIONING
                      && candidate.currentCapacity == candidate.initialCapacity)
             {
-                rentability[clusterName] = std::numeric_limits<double>::min();
                 continue;
             }
         }
