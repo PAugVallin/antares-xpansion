@@ -123,4 +123,5 @@ private:
                                              CapacityAction action,
                                              AreaSettings& areaSettings,
                                              const std::string& clusterName) const;
+    friend class BalancingTest;
 };
