@@ -210,7 +210,8 @@ static void parseCandidatesToType(const YAML::Node& areaData,
 
     for (const auto& candidate: areaData[yamlKey])
     {
-        const std::string candidateName = candidate.first.as<std::string>();
+        std::string candidateName = candidate.first.as<std::string>();
+        std::replace(candidateName.begin(), candidateName.end(), ' ', '*');
         const std::string typeName = candidate.second.as<std::string>();
 
         auto it = candidateTypes.find(typeName);
