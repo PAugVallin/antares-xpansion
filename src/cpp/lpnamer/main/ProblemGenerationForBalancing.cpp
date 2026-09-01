@@ -38,15 +38,15 @@ ProblemGenerationForBalancing::ProblemGenerationForBalancing(
 void ProblemGenerationForBalancing::fillDispProdVarIndicesAndMarginalCostsForArea(
   const std::string& areaName,
   const std::string& clusterName,
-  const std::unordered_map<std::string_view, size_t>& varToIndex,
+  const std::unordered_map<std::string, size_t>& varToIndex,
   const std::vector<double>& objCoeffs)
 {
     const AreaCluster key{areaName, clusterName};
 
     for (size_t hour = 0; hour < NUMBER_OF_HOURS_PER_WEEK; ++hour)
     {
-        const std::string varName = "DispatchableProduction::area<" + areaName
-                                    + ">::ThermalCluster<" + clusterName + ">::hour<"
+        const std::string varName = "dispatchableproduction::area<" + areaName
+                                    + ">::thermalcluster<" + clusterName + ">::hour<"
                                     + std::to_string(hour) + ">";
 
         const auto it = varToIndex.find(varName);
@@ -96,14 +96,21 @@ void ProblemGenerationForBalancing::getInitialCapacitiesForCandidates()
     }
 }
 
-static std::unordered_map<std::string_view, size_t> buildVarToIndex(
-  const std::vector<std::string>& vars)
+static std::unordered_map<std::string, size_t> buildVarToIndex(const std::vector<std::string>& vars)
 {
-    std::unordered_map<std::string_view, size_t> index;
+    std::unordered_map<std::string, size_t> index;
     index.reserve(vars.size());
     for (size_t i = 0; i < vars.size(); ++i)
     {
-        index.emplace(vars[i], i);
+        // convert the source string to lower case
+        std::string lowerString;
+        lowerString.resize(vars[i].size());
+        std::transform(vars[i].begin(),
+                       vars[i].end(),
+                       lowerString.begin(),
+                       [](unsigned char c) { return char(std::tolower(c)); });
+        // add pair
+        index.emplace(lowerString, i);
     }
     return index;
 }

@@ -116,7 +116,7 @@ private:
     void fillDispProdVarIndicesAndMarginalCostsForArea(
       const std::string& areaName,
       const std::string& clusterName,
-      const std::unordered_map<std::string_view, size_t>& varToIndex,
+      const std::unordered_map<std::string, size_t>& varToIndex,
       const std::vector<double>& objCoeffs);
     double computeNewBoundAndUpdateCandidate(const std::shared_ptr<Problem>& problem,
                                              size_t varIndex,
