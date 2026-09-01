@@ -240,24 +240,18 @@ protected:
           "data_test/balancing/find_area_cluster_to_modify/input_balancing.yml");
         BalancingParser balParser(balancingConfigFilePath);
         pbg.areasSettings = balParser.areaSettings;
-        pbg.areasSettings["desinvest_area"]
-          .investmentCandidates["candidate_1"]
-          .currentCapacity = 1000;
-        pbg.areasSettings["desinvest_area"]
-          .investmentCandidates["candidate_2"]
-          .currentCapacity = 1000;
-        pbg.areasSettings["decom_area"]
-          .decommissioningCandidates["candidate_1"]
-          .currentCapacity = 1000;
-        pbg.areasSettings["decom_area"]
-          .decommissioningCandidates["candidate_2"]
-          .currentCapacity = 1000;
-        pbg.areasSettings["recom_area"]
-          .decommissioningCandidates["candidate_1"]
-          .initialCapacity = 1000;
-        pbg.areasSettings["recom_area"]
-          .decommissioningCandidates["candidate_2"]
-          .initialCapacity = 1000;
+        pbg.areasSettings["desinvest_area"].investmentCandidates["candidate_1"].currentCapacity
+          = 1000;
+        pbg.areasSettings["desinvest_area"].investmentCandidates["candidate_2"].currentCapacity
+          = 1000;
+        pbg.areasSettings["decom_area"].decommissioningCandidates["candidate_1"].currentCapacity
+          = 1000;
+        pbg.areasSettings["decom_area"].decommissioningCandidates["candidate_2"].currentCapacity
+          = 1000;
+        pbg.areasSettings["recom_area"].decommissioningCandidates["candidate_1"].initialCapacity
+          = 1000;
+        pbg.areasSettings["recom_area"].decommissioningCandidates["candidate_2"].initialCapacity
+          = 1000;
         // set pbg.lastActionForArea
         std::map<std::string, CapacityAction> lastActionForArea = {
           {"invest_area", CapacityAction::INVESTMENT},
@@ -375,18 +369,16 @@ protected:
         if (action == CapacityAction::INVESTMENT || action == CapacityAction::DISINVESTMENT)
         {
             pbg.areasSettings[areaName].currentInvestmentIncrement = investedCapacityIncrement;
-            pbg.areasSettings[areaName]
-              .investmentCandidates[candidateName]
-              .initialCapacity -= 2 * investedCapacityIncrement; // we set initialCapacity lower to
-                                                                 // allow disinvestment
+            pbg.areasSettings[areaName].investmentCandidates[candidateName].initialCapacity
+              -= 2 * investedCapacityIncrement; // we set initialCapacity lower to
+                                                // allow disinvestment
         }
         else
         {
             pbg.areasSettings[areaName].currentDecommissioningIncrement = investedCapacityIncrement;
-            pbg.areasSettings[areaName]
-              .decommissioningCandidates[candidateName]
-              .initialCapacity += 2 * investedCapacityIncrement; // we set initialCapacity higher to
-                                                                 // allow recom
+            pbg.areasSettings[areaName].decommissioningCandidates[candidateName].initialCapacity
+              += 2 * investedCapacityIncrement; // we set initialCapacity higher to
+                                                // allow recom
         }
         // run applyActionToCluster
         pbg.applyActionToCluster({areaName, candidateName}, action);
@@ -414,10 +406,10 @@ protected:
                                              const CapacityAction& action,
                                              const double expectedRentability)
     {
-        bool isInvest = action == CapacityAction::INVESTMENT;
-        std::string areaName = isInvest ? "area1" : "area2";
-        std::string candidateName = isInvest ? "invest_peak" : "unprofitable_peak";
-        std::string studyName = isInvest ? "one_candidate_per_area" : "with_decom_candidate";
+        std::string studyName = "with_decom_candidate";
+        std::string areaName = "area2";
+        std::string candidateName = action == CapacityAction::INVESTMENT ? "invest_peak2"
+                                                                         : "unprofitable_peak";
 
         // copy dummy data
         copyStudyData(studyName);
@@ -448,27 +440,25 @@ protected:
         // set investment cost and fixed om cost
         if (action == CapacityAction::INVESTMENT)
         {
-            pbg.areasSettings[areaName]
-              .investmentCandidates[candidateName]
-              .currentCapacity = currentCapacity;
-            pbg.areasSettings[areaName]
-              .investmentCandidates[candidateName]
-              .params->investmentCost = investmentCost;
-            pbg.areasSettings[areaName]
-              .investmentCandidates[candidateName]
-              .params->fixedOmCosts = fixedOmCosts;
+            pbg.areasSettings[areaName].investmentCandidates[candidateName].currentCapacity
+              = currentCapacity;
+            pbg.areasSettings[areaName].investmentCandidates[candidateName].params->investmentCost
+              = investmentCost;
+            pbg.areasSettings[areaName].investmentCandidates[candidateName].params->fixedOmCosts
+              = fixedOmCosts;
         }
         else
         {
+            pbg.areasSettings[areaName].decommissioningCandidates[candidateName].currentCapacity
+              = currentCapacity;
             pbg.areasSettings[areaName]
               .decommissioningCandidates[candidateName]
-              .currentCapacity = currentCapacity;
+              .params->decommissioningCost
+              = investmentCost;
             pbg.areasSettings[areaName]
               .decommissioningCandidates[candidateName]
-              .params->decommissioningCost = investmentCost;
-            pbg.areasSettings[areaName]
-              .decommissioningCandidates[candidateName]
-              .params->fixedOmCosts = fixedOmCosts;
+              .params->fixedOmCosts
+              = fixedOmCosts;
         }
         // set marginalCost
         pbg.balancingData.at({areaName, candidateName}).marginalCost = marginalCost;
@@ -549,15 +539,14 @@ protected:
         std::map<std::string, double> rentability;
         if (action == CapacityAction::INVESTMENT || action == CapacityAction::DISINVESTMENT)
         {
+            pbg.areasSettings[areaName].investmentCandidates[candidateName].currentCapacity
+              = capacityValue;
+            pbg.areasSettings[areaName].investmentCandidates[candidateName].initialCapacity
+              = capacityValue;
             pbg.areasSettings[areaName]
               .investmentCandidates[candidateName]
-              .currentCapacity = capacityValue;
-            pbg.areasSettings[areaName]
-              .investmentCandidates[candidateName]
-              .initialCapacity = capacityValue;
-            pbg.areasSettings[areaName]
-              .investmentCandidates[candidateName]
-              .params->expansionPotential = capacityValue;
+              .params->expansionPotential
+              = capacityValue;
             rentability = pbg.computeRentabilityForCandidates(
               areaName,
               pbg.areasSettings[areaName].investmentCandidates,
@@ -566,15 +555,14 @@ protected:
         }
         else
         {
+            pbg.areasSettings[areaName].decommissioningCandidates[candidateName].currentCapacity
+              = capacityValue;
+            pbg.areasSettings[areaName].decommissioningCandidates[candidateName].initialCapacity
+              = capacityValue;
             pbg.areasSettings[areaName]
               .decommissioningCandidates[candidateName]
-              .currentCapacity = capacityValue;
-            pbg.areasSettings[areaName]
-              .decommissioningCandidates[candidateName]
-              .initialCapacity = capacityValue;
-            pbg.areasSettings[areaName]
-              .decommissioningCandidates[candidateName]
-              .params->decommissioningPotential = capacityValue;
+              .params->decommissioningPotential
+              = capacityValue;
             rentability = pbg.computeRentabilityForCandidates(
               areaName,
               pbg.areasSettings[areaName].decommissioningCandidates,
@@ -614,18 +602,18 @@ protected:
                                                                           problemManager,
                                                                           iterLogFilePath);
         // set pbg.areaSettings
+        pbg.areasSettings["area2"].investmentCandidates["invest_semibase"].initialCapacity
+          = initialCapacity;
         pbg.areasSettings["area2"]
           .investmentCandidates["invest_semibase"]
-          .initialCapacity = initialCapacity;
-        pbg.areasSettings["area2"]
-          .investmentCandidates["invest_semibase"]
-          .params->expansionPotential = expansionPotential;
-        pbg.areasSettings["area2"]
-          .decommissioningCandidates["unprofitable_peak"]
-          .initialCapacity = initialCapacity;
+          .params->expansionPotential
+          = expansionPotential;
+        pbg.areasSettings["area2"].decommissioningCandidates["unprofitable_peak"].initialCapacity
+          = initialCapacity;
         pbg.areasSettings["area2"]
           .decommissioningCandidates["unprofitable_peak"]
-          .params->decommissioningPotential = decommissioningPotential;
+          .params->decommissioningPotential
+          = decommissioningPotential;
         //  isInvestmentCycle
         if (setLastAction)
         {
@@ -719,12 +707,12 @@ TEST_F(BalancingTest, computeNullRentabilityForCandidate)
     // test with INVESTMENT action
     testGetNullRentabilityForCandidates("one_candidate_per_area",
                                         "area1",
-                                        "invest_peak",
+                                        "invest_peak*1",
                                         CapacityAction::INVESTMENT);
     // test with DISINVESTMENT action
     testGetNullRentabilityForCandidates("one_candidate_per_area",
                                         "area1",
-                                        "invest_peak",
+                                        "invest_peak*1",
                                         CapacityAction::DISINVESTMENT);
     // test with DECOM action
     testGetNullRentabilityForCandidates("with_decom_candidate",

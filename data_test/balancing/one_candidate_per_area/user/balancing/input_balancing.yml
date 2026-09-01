@@ -11,7 +11,7 @@ areas:
     investment_increment: 500
     decommissioning_candidates_to_type:
     investment_candidates_to_type:
-      invest_peak: peak_type
+      invest_peak 1: peak_type
   area2:
     reliability_standard: 4.5
     max_oscillation: 10
@@ -19,7 +19,7 @@ areas:
     investment_increment: 500
     decommissioning_candidates_to_type:
     investment_candidates_to_type:
-      invest_semibase: semibase_type
+      invest_semibase 1: semibase_type
 
 decommissioning_candidates_types:
 investment_candidates_types:
