@@ -211,10 +211,6 @@ var annotated_dup =
       [ "SolutionData", "structOutput_1_1SolutionData.html", null ],
       [ "VoidWriter", "classOutput_1_1VoidWriter.html", "classOutput_1_1VoidWriter" ]
     ] ],
-    [ "performance", null, [
-      [ "JsonFileProcessor", "classperformance_1_1JsonFileProcessor.html", null ],
-      [ "PerfPlotsGenerator", "classperformance_1_1PerfPlotsGenerator.html", null ]
-    ] ],
     [ "PlainData", null, [
       [ "SubProblemData", "structPlainData_1_1SubProblemData.html", null ]
     ] ],
@@ -275,6 +271,14 @@ var annotated_dup =
         ] ],
         [ "test_config_file_parser", null, [
           [ "TestConfigFileParser", "classtests_1_1python_1_1test__config__file__parser_1_1TestConfigFileParser.html", null ]
+        ] ],
+        [ "test_config_loader", null, [
+          [ "TestGemsCandidates", "classtests_1_1python_1_1test__config__loader_1_1TestGemsCandidates.html", null ],
+          [ "TestLauncherOptionsSaveAndRestore", "classtests_1_1python_1_1test__config__loader_1_1TestLauncherOptionsSaveAndRestore.html", null ],
+          [ "TestSettingsFileDefaultsWhenKeyIsMissing", "classtests_1_1python_1_1test__config__loader_1_1TestSettingsFileDefaultsWhenKeyIsMissing.html", null ],
+          [ "TestSettingsFileLoading", "classtests_1_1python_1_1test__config__loader_1_1TestSettingsFileLoading.html", null ],
+          [ "TestSettingsFileOverrides", "classtests_1_1python_1_1test__config__loader_1_1TestSettingsFileOverrides.html", null ],
+          [ "TestSimulationName", "classtests_1_1python_1_1test__config__loader_1_1TestSimulationName.html", null ]
         ] ],
         [ "test_full_run_driver", null, [
           [ "TestFullRunDriver", "classtests_1_1python_1_1test__full__run__driver_1_1TestFullRunDriver.html", null ]
@@ -407,9 +411,12 @@ var annotated_dup =
     [ "BendersByBatch", "classBendersByBatch.html", "classBendersByBatch" ],
     [ "BendersFactory", "classBendersFactory.html", "classBendersFactory" ],
     [ "BendersLoggerBase", "structBendersLoggerBase.html", "structBendersLoggerBase" ],
+    [ "BendersMicroIterationsDouble", "classBendersMicroIterationsDouble.html", "classBendersMicroIterationsDouble" ],
+    [ "BendersMicroIterationsTest", "classBendersMicroIterationsTest.html", null ],
     [ "BendersMpi", "classBendersMpi.html", "classBendersMpi" ],
     [ "BendersPlugin", "classBendersPlugin.html", null ],
     [ "BendersPluginFactory", "classBendersPluginFactory.html", null ],
+    [ "BendersPluginStub", "classBendersPluginStub.html", null ],
     [ "BendersProblemFromFile", "classBendersProblemFromFile.html", null ],
     [ "BendersRelevantIterationsData", "structBendersRelevantIterationsData.html", null ],
     [ "BendersSequential", "classBendersSequential.html", "classBendersSequential" ],
@@ -430,7 +437,6 @@ var annotated_dup =
     [ "ColumnToChange", "structColumnToChange.html", null ],
     [ "ConfigReader", "classConfigReader.html", "classConfigReader" ],
     [ "ConfigurationManager", "classConfigurationManager.html", "classConfigurationManager" ],
-    [ "ConstraintsFileReader", "classConstraintsFileReader.html", null ],
     [ "CouplingMapGenerator", "classCouplingMapGenerator.html", null ],
     [ "CreateFixture", "classCreateFixture.html", null ],
     [ "CriteriaCurrentIterationData", "structCriteriaCurrentIterationData.html", null ],
@@ -546,6 +552,7 @@ var annotated_dup =
     [ "NoOperationPlugin", "classNoOperationPlugin.html", null ],
     [ "NoopProblemGenerationLogger", "classNoopProblemGenerationLogger.html", "classNoopProblemGenerationLogger" ],
     [ "NOOPSolver", "classNOOPSolver.html", "classNOOPSolver" ],
+    [ "NOOPSolverForSkeleton", "classNOOPSolverForSkeleton.html", "classNOOPSolverForSkeleton" ],
     [ "NOOPSolverForWorker", "classNOOPSolverForWorker.html", "classNOOPSolverForWorker" ],
     [ "NOOPSolverForWorkerMaster", "classNOOPSolverForWorkerMaster.html", "classNOOPSolverForWorkerMaster" ],
     [ "NotImplementedFeatureSolverException", "classNotImplementedFeatureSolverException.html", null ],
@@ -583,6 +590,7 @@ var annotated_dup =
     [ "RandomBatchShuffler", "classRandomBatchShuffler.html", null ],
     [ "RandomBatchShufflerTest", "classRandomBatchShufflerTest.html", null ],
     [ "RawPbData", "structRawPbData.html", null ],
+    [ "RecordingSolver", "classRecordingSolver.html", "classRecordingSolver" ],
     [ "RenameUtils", "classRenameUtils.html", null ],
     [ "Reservoir", "classReservoir.html", "classReservoir" ],
     [ "ReservoirManagement", "classReservoirManagement.html", "classReservoirManagement" ],
@@ -611,6 +619,12 @@ var annotated_dup =
     [ "SimpleLoggerMock", "classSimpleLoggerMock.html", "classSimpleLoggerMock" ],
     [ "SimulationOptions", "classSimulationOptions.html", "classSimulationOptions" ],
     [ "SinglePbData", "structSinglePbData.html", null ],
+    [ "SkeletonCoefficientReader", "classSkeletonCoefficientReader.html", "classSkeletonCoefficientReader" ],
+    [ "SkeletonCoefficientReaderTest", "classSkeletonCoefficientReaderTest.html", null ],
+    [ "SkeletonCoefficientSet", "classSkeletonCoefficientSet.html", null ],
+    [ "SkeletonConstraintSetLoader", "classSkeletonConstraintSetLoader.html", null ],
+    [ "SkeletonConstraintSetLoaderTest", "classSkeletonConstraintSetLoaderTest.html", null ],
+    [ "SkeletonSolverLoader", "classSkeletonSolverLoader.html", null ],
     [ "SolverAbstract", "classSolverAbstract.html", "classSolverAbstract" ],
     [ "SolverBaseOptions", "structSolverBaseOptions.html", null ],
     [ "SolverCbc", "classSolverCbc.html", "classSolverCbc" ],
@@ -622,6 +636,7 @@ var annotated_dup =
     [ "SolverLoader", "classSolverLoader.html", null ],
     [ "SolverLogManager", "classSolverLogManager.html", null ],
     [ "SolverRepresentedRows", "structSolverRepresentedRows.html", null ],
+    [ "SolverRowExtractor", "classSolverRowExtractor.html", null ],
     [ "SolverXpress", "classSolverXpress.html", "classSolverXpress" ],
     [ "StandardLp", "classStandardLp.html", null ],
     [ "StructureGeneration", "classStructureGeneration.html", null ],
@@ -631,9 +646,12 @@ var annotated_dup =
     [ "StudyUpdaterExeOptions", "classStudyUpdaterExeOptions.html", null ],
     [ "StudyUpdateStrategy", "classStudyUpdateStrategy.html", "classStudyUpdateStrategy" ],
     [ "StudyUpdateTest", "classStudyUpdateTest.html", null ],
+    [ "SubproblemBasisCache", "classSubproblemBasisCache.html", null ],
     [ "SubproblemConstraintsManager", "classSubproblemConstraintsManager.html", null ],
-    [ "SubProblemIds", "structSubProblemIds.html", null ],
+    [ "SubproblemConstraintsManagerTest", "classSubproblemConstraintsManagerTest.html", null ],
     [ "SubproblemWorker", "classSubproblemWorker.html", "classSubproblemWorker" ],
+    [ "SubproblemWorkerFactory", "classSubproblemWorkerFactory.html", null ],
+    [ "SubproblemWorkerFactoryTest", "classSubproblemWorkerFactoryTest.html", null ],
     [ "TestForSolverAndExpectation", "classTestForSolverAndExpectation.html", null ],
     [ "TestForSolverAndMode", "classTestForSolverAndMode.html", null ],
     [ "Timer", "classTimer.html", null ],

@@ -34,6 +34,7 @@ var hierarchy =
     [ "BendersApp", "classBendersApp.html", null ],
     [ "BendersBase", "classBendersBase.html", [
       [ "BendersBaseDouble", "classBendersBaseDouble.html", null ],
+      [ "BendersMicroIterationsDouble", "classBendersMicroIterationsDouble.html", null ],
       [ "BendersMpi", "classBendersMpi.html", [
         [ "BendersByBatch", "classBendersByBatch.html", null ]
       ] ],
@@ -45,6 +46,7 @@ var hierarchy =
     [ "BendersFactory::BendersEnvironment", "structBendersFactory_1_1BendersEnvironment.html", null ],
     [ "BendersFactory", "classBendersFactory.html", null ],
     [ "BendersPlugin", "classBendersPlugin.html", [
+      [ "BendersPluginStub", "classBendersPluginStub.html", null ],
       [ "Benders_MICRO_ITERS", "classBenders__MICRO__ITERS.html", null ],
       [ "NoOperationPlugin", "classNoOperationPlugin.html", null ]
     ] ],
@@ -77,7 +79,6 @@ var hierarchy =
     ] ],
     [ "ConfigurationManager", "classConfigurationManager.html", null ],
     [ "ProblemGenerationOptions::ConflictingParameters", "classProblemGenerationOptions_1_1ConflictingParameters.html", null ],
-    [ "ConstraintsFileReader", "classConstraintsFileReader.html", null ],
     [ "YAML::convert< CriterionSingleInputData >", "classYAML_1_1convert_3_01CriterionSingleInputData_01_4.html", null ],
     [ "YAML::convert< OuterLoopCriterionInputData >", "classYAML_1_1convert_3_01OuterLoopCriterionInputData_01_4.html", null ],
     [ "Benders::Criterion::CouldNotReadAreaField", "classBenders_1_1Criterion_1_1CouldNotReadAreaField.html", null ],
@@ -102,11 +103,13 @@ var hierarchy =
     [ "std::enable_shared_from_this", null, [
       [ "SolverAbstract", "classSolverAbstract.html", [
         [ "NOOPSolver", "classNOOPSolver.html", [
+          [ "NOOPSolverForSkeleton", "classNOOPSolverForSkeleton.html", null ],
           [ "NOOPSolverForWorker", "classNOOPSolverForWorker.html", [
             [ "NOOPSolverForWorkerMaster", "classNOOPSolverForWorkerMaster.html", [
               [ "CapturingSolverForAlphas", "classCapturingSolverForAlphas.html", null ]
             ] ]
-          ] ]
+          ] ],
+          [ "RecordingSolver", "classRecordingSolver.html", null ]
         ] ],
         [ "Problem", "classProblem.html", null ],
         [ "SolverCbc", "classSolverCbc.html", null ],
@@ -358,7 +361,6 @@ var hierarchy =
       [ "XpansionProblemsFromAntaresProvider", "classXpansionProblemsFromAntaresProvider.html", null ],
       [ "ZipProblemsProviderAdapter", "classZipProblemsProviderAdapter.html", null ]
     ] ],
-    [ "performance.JsonFileProcessor", "classperformance_1_1JsonFileProcessor.html", null ],
     [ "JsonXpansionReader", "classJsonXpansionReader.html", null ],
     [ "LastIterationPrinter", "classLastIterationPrinter.html", null ],
     [ "LastIterationReader", "classLastIterationReader.html", null ],
@@ -422,7 +424,6 @@ var hierarchy =
         [ "WriterMockStatus", "classWriterMockStatus.html", null ]
       ] ]
     ] ],
-    [ "performance.PerfPlotsGenerator", "classperformance_1_1PerfPlotsGenerator.html", null ],
     [ "Output::PointWeekScenarioKey", "structOutput_1_1PointWeekScenarioKey.html", null ],
     [ "Predicate", "structPredicate.html", null ],
     [ "Presolve", "classPresolve.html", null ],
@@ -459,7 +460,8 @@ var hierarchy =
       [ "GenericSolverException", "classGenericSolverException.html", null ],
       [ "IniFileNotFound", "classIniFileNotFound.html", null ],
       [ "InvalidMasterStructureFileException", "classInvalidMasterStructureFileException.html", null ],
-      [ "NotImplementedFeatureSolverException", "classNotImplementedFeatureSolverException.html", null ]
+      [ "NotImplementedFeatureSolverException", "classNotImplementedFeatureSolverException.html", null ],
+      [ "SkeletonCoefficientReader::NamesNotFoundException", "classSkeletonCoefficientReader_1_1NamesNotFoundException.html", null ]
     ] ],
     [ "ScenarioToChronicleReader", "classScenarioToChronicleReader.html", null ],
     [ "antares_xpansion.sensitivity_driver.SensitivityDriver", "classantares__xpansion_1_1sensitivity__driver_1_1SensitivityDriver.html", null ],
@@ -481,6 +483,10 @@ var hierarchy =
     [ "SettingsReader", "classSettingsReader.html", null ],
     [ "SimulationOptions", "classSimulationOptions.html", null ],
     [ "SinglePbData", "structSinglePbData.html", null ],
+    [ "SkeletonCoefficientReader", "classSkeletonCoefficientReader.html", null ],
+    [ "SkeletonCoefficientSet", "classSkeletonCoefficientSet.html", null ],
+    [ "SkeletonConstraintSetLoader", "classSkeletonConstraintSetLoader.html", null ],
+    [ "SkeletonSolverLoader", "classSkeletonSolverLoader.html", null ],
     [ "Output::SolutionData", "structOutput_1_1SolutionData.html", null ],
     [ "SolverConfig", "classSolverConfig.html", null ],
     [ "SolverData", "structSolverData.html", null ],
@@ -491,6 +497,7 @@ var hierarchy =
       [ "EmptyLogManager", "classEmptyLogManager.html", null ]
     ] ],
     [ "SolverRepresentedRows", "structSolverRepresentedRows.html", null ],
+    [ "SolverRowExtractor", "classSolverRowExtractor.html", null ],
     [ "antares_xpansion.benders_driver.SolversExe", "classantares__xpansion_1_1benders__driver_1_1SolversExe.html", null ],
     [ "antares_xpansion.split_link_profile.SplitLinkProfile", "classantares__xpansion_1_1split__link__profile_1_1SplitLinkProfile.html", null ],
     [ "StandardLp", "classStandardLp.html", null ],
@@ -505,10 +512,11 @@ var hierarchy =
       [ "StudyUpdateLinkCapacitiesStrategy", "classStudyUpdateLinkCapacitiesStrategy.html", null ],
       [ "StudyUpdateLinkParameterStrategy", "classStudyUpdateLinkParameterStrategy.html", null ]
     ] ],
+    [ "SubproblemBasisCache", "classSubproblemBasisCache.html", null ],
     [ "SubproblemConstraintsManager", "classSubproblemConstraintsManager.html", null ],
     [ "PlainData::SubProblemData", "structPlainData_1_1SubProblemData.html", null ],
-    [ "SubProblemIds", "structSubProblemIds.html", null ],
     [ "tests.end_to_end.cucumber.features.steps.then.SubProblemStats", "classtests_1_1end__to__end_1_1cucumber_1_1features_1_1steps_1_1then_1_1SubProblemStats.html", null ],
+    [ "SubproblemWorkerFactory", "classSubproblemWorkerFactory.html", null ],
     [ "T", null, [
       [ "LogUtils::XpansionError< T >", "classLogUtils_1_1XpansionError.html", null ],
       [ "LogUtils::XpansionError< T >", "classLogUtils_1_1XpansionError.html", null ]
@@ -522,6 +530,7 @@ var hierarchy =
       [ "BatchCollectionTest", "classBatchCollectionTest.html", null ],
       [ "BellmanValuesComputeTest", "classBellmanValuesComputeTest.html", null ],
       [ "BendersBaseTest", "classBendersBaseTest.html", null ],
+      [ "BendersMicroIterationsTest", "classBendersMicroIterationsTest.html", null ],
       [ "BendersSequentialTest", "classBendersSequentialTest.html", [
         [ "BendersSequentialTestBySolver", "classBendersSequentialTestBySolver.html", null ],
         [ "BendersSequentialTestSolverAndFormat", "classBendersSequentialTestSolverAndFormat.html", null ]
@@ -563,7 +572,11 @@ var hierarchy =
       [ "SensitivityStudyTest", "classSensitivityStudyTest.html", null ],
       [ "SensitivityUserLoggerTest", "classSensitivityUserLoggerTest.html", null ],
       [ "SensitivityWriterTest", "classSensitivityWriterTest.html", null ],
+      [ "SkeletonCoefficientReaderTest", "classSkeletonCoefficientReaderTest.html", null ],
+      [ "SkeletonConstraintSetLoaderTest", "classSkeletonConstraintSetLoaderTest.html", null ],
       [ "StudyUpdateTest", "classStudyUpdateTest.html", null ],
+      [ "SubproblemConstraintsManagerTest", "classSubproblemConstraintsManagerTest.html", null ],
+      [ "SubproblemWorkerFactoryTest", "classSubproblemWorkerFactoryTest.html", null ],
       [ "UpdateCapacitiesTest", "classUpdateCapacitiesTest.html", null ],
       [ "UserLoggerTest", "classUserLoggerTest.html", null ],
       [ "VariableFileReaderTest", "classVariableFileReaderTest.html", null ],
@@ -586,13 +599,19 @@ var hierarchy =
     [ "tests.python.test_chronicles_checker.TestChroniclesChecker", "classtests_1_1python_1_1test__chronicles__checker_1_1TestChroniclesChecker.html", null ],
     [ "tests.python.test_config_file_parser.TestConfigFileParser", "classtests_1_1python_1_1test__config__file__parser_1_1TestConfigFileParser.html", null ],
     [ "tests.python.test_full_run_driver.TestFullRunDriver", "classtests_1_1python_1_1test__full__run__driver_1_1TestFullRunDriver.html", null ],
+    [ "tests.python.test_config_loader.TestGemsCandidates", "classtests_1_1python_1_1test__config__loader_1_1TestGemsCandidates.html", null ],
     [ "tests.python.test_antares_driver.TestGeneralDataProcessor", "classtests_1_1python_1_1test__antares__driver_1_1TestGeneralDataProcessor.html", null ],
     [ "tests.python.test_ini_reader.TestGetNbActivatedYear", "classtests_1_1python_1_1test__ini__reader_1_1TestGetNbActivatedYear.html", null ],
     [ "tests.python.test_input_parser.TestInputParser", "classtests_1_1python_1_1test__input__parser_1_1TestInputParser.html", null ],
+    [ "tests.python.test_config_loader.TestLauncherOptionsSaveAndRestore", "classtests_1_1python_1_1test__config__loader_1_1TestLauncherOptionsSaveAndRestore.html", null ],
     [ "tests.python.test_problem_generator_driver.TestProblemGeneratorDriver", "classtests_1_1python_1_1test__problem__generator__driver_1_1TestProblemGeneratorDriver.html", null ],
     [ "tests.python.test_profile_link_checker.TestProfileLinkChecker", "classtests_1_1python_1_1test__profile__link__checker_1_1TestProfileLinkChecker.html", null ],
     [ "tests.python.test_resume_study.TestResumeStudy", "classtests_1_1python_1_1test__resume__study_1_1TestResumeStudy.html", null ],
     [ "tests.python.test_sensitivity_driver.TestSensitivityDriver", "classtests_1_1python_1_1test__sensitivity__driver_1_1TestSensitivityDriver.html", null ],
+    [ "tests.python.test_config_loader.TestSettingsFileDefaultsWhenKeyIsMissing", "classtests_1_1python_1_1test__config__loader_1_1TestSettingsFileDefaultsWhenKeyIsMissing.html", null ],
+    [ "tests.python.test_config_loader.TestSettingsFileLoading", "classtests_1_1python_1_1test__config__loader_1_1TestSettingsFileLoading.html", null ],
+    [ "tests.python.test_config_loader.TestSettingsFileOverrides", "classtests_1_1python_1_1test__config__loader_1_1TestSettingsFileOverrides.html", null ],
+    [ "tests.python.test_config_loader.TestSimulationName", "classtests_1_1python_1_1test__config__loader_1_1TestSimulationName.html", null ],
     [ "tests.python.test_split_link_profile.TestSplitLinkProfile", "classtests_1_1python_1_1test__split__link__profile_1_1TestSplitLinkProfile.html", null ],
     [ "tests.python.test_study_locker.TestStudyLocker", "classtests_1_1python_1_1test__study__locker_1_1TestStudyLocker.html", null ],
     [ "tests.python.test_study_output_cleaner.TestStudyOutputCleaner", "classtests_1_1python_1_1test__study__output__cleaner_1_1TestStudyOutputCleaner.html", null ],
